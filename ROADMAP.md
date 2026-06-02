@@ -14,9 +14,9 @@
 * [x] Validate dataset quality
 * [x] Normalize team names
 * [x] Handle historical country changes
-* [ ] Handle neutral venues
-* [ ] Build preprocessing scripts
-* [ ] Generate cleaned dataset
+* [x] Handle neutral venues
+* [x] Build preprocessing scripts
+* [x] Generate cleaned dataset
 
 ### World Cup Data
 
@@ -29,10 +29,10 @@
 
 ### Core Elo Logic
 
-* [ ] Implement expected score formula
-* [ ] Implement Elo update formula
-* [ ] Add configurable K-factor
-* [ ] Add home/host advantage
+* [x] Implement expected score formula
+* [x] Implement Elo update formula
+* [x] Add configurable K-factor
+* [x] Add home/host advantage
 * [ ] Add goal difference multiplier
 * [ ] Add match importance weighting
 
@@ -122,3 +122,7 @@
 * [ ] Configure update workflow
 * [ ] Freeze pre-tournament predictions
 * [ ] Add automatic data refresh
+
+## Future upgrades
+
+* [ ] Dynamic ELO based on match type (World Cup, friendlies, etc)

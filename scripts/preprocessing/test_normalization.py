@@ -2,9 +2,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from src.data.normalization import (
-    normalize_teams_in_dataframe,
-)
+from src.data.normalization import normalize_teams_in_dataframe
 
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
