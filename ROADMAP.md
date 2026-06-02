@@ -10,10 +10,10 @@
 
 ### Historical Data
 
-* [ ] Download international matches dataset
-* [ ] Validate dataset quality
-* [ ] Normalize team names
-* [ ] Handle historical country changes
+* [x] Download international matches dataset
+* [x] Validate dataset quality
+* [x] Normalize team names
+* [x] Handle historical country changes
 * [ ] Handle neutral venues
 * [ ] Build preprocessing scripts
 * [ ] Generate cleaned dataset
