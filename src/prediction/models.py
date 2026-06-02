@@ -51,6 +51,7 @@ class GroupOutcome:
     winner: str
     runner_up: str
     third_place: str | None = None
+    match_results: list[MatchResult] = field(default_factory=list)
 
 
 @dataclass(frozen=True)
