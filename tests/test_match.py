@@ -1,4 +1,7 @@
+import random
+
 from src.prediction.match import MatchResult, sample_poisson, simulate_match
+from src.prediction.models import MatchFixture
 
 
 def test_sample_poisson_returns_integer_in_range():
@@ -70,3 +73,25 @@ def test_knockout_tiebreaker_when_score_is_draw(monkeypatch):
     assert result.goals_b == 1
     assert result.winner in {"Spain", "France"}
     assert result.decided_by == "tiebreaker"
+
+
+def test_simulate_match_accepts_fixture_and_injected_rng():
+    fixture = MatchFixture(
+        match_id="A1",
+        stage="group",
+        group="A",
+        team_a="Spain",
+        team_b="France",
+    )
+
+    result = simulate_match(
+        fixture=fixture,
+        ratings={"Spain": 1700, "France": 1750},
+        rng=random.Random(42),
+    )
+
+    assert isinstance(result, MatchResult)
+    assert result.match_id == "A1"
+    assert result.is_real is False
+    assert result.team_a == "Spain"
+    assert result.team_b == "France"

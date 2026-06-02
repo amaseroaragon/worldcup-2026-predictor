@@ -49,8 +49,8 @@
 * [x] Implement Poisson goal model
 * [x] Estimate expected goals
 * [x] Generate score probability matrix
-* [ ] Compute win/draw/loss probabilities
-* [ ] Generate most likely scorelines
+* [x] Compute win/draw/loss probabilities
+* [x] Generate most likely scorelines
 
 ### Evaluation
 
