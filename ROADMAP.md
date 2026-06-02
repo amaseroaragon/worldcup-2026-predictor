@@ -46,9 +46,9 @@
 
 ### Probability Model
 
-* [ ] Implement Poisson goal model
-* [ ] Estimate expected goals
-* [ ] Generate score probability matrix
+* [x] Implement Poisson goal model
+* [x] Estimate expected goals
+* [x] Generate score probability matrix
 * [ ] Compute win/draw/loss probabilities
 * [ ] Generate most likely scorelines
 
@@ -126,3 +126,4 @@
 ## Future upgrades
 
 * [ ] Dynamic ELO based on match type (World Cup, friendlies, etc)
+* [ ] Distinguish between tiebreakers (extra time vs penalties), adjust probabilities accordingly and take into account last penalty shootout performance
