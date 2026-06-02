@@ -3,7 +3,7 @@
 ## Project Foundation
 
 * [x] Create GitHub repository and roadmap
-* [ ] Configure Python environment
+* [x] Configure Python environment
 * [ ] Configure credentials and .env file
 
 ## Data Pipeline
