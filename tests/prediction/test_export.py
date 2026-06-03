@@ -1,6 +1,12 @@
 import pandas as pd
+import pytest
 
-from src.prediction.export import PROBABILITY_COLUMNS, export_probabilities, probabilities_to_dataframe
+from src.prediction.export import (
+    PROBABILITY_COLUMNS,
+    export_probabilities,
+    probabilities_to_dataframe,
+    validate_probability_output,
+)
 
 
 def sample_probabilities() -> dict:
@@ -34,3 +40,24 @@ def test_export_probabilities_writes_csv(tmp_path):
     assert output_path.exists()
     assert written.columns.tolist() == PROBABILITY_COLUMNS
     assert written["team"].tolist() == df["team"].tolist()
+
+
+def test_validate_probability_output_accepts_valid_output():
+    df = probabilities_to_dataframe(sample_probabilities())
+
+    validate_probability_output(df)
+
+
+def test_validate_probability_output_rejects_missing_columns():
+    df = pd.DataFrame({"team": ["Team 1"]})
+
+    with pytest.raises(ValueError, match="Missing probability output columns"):
+        validate_probability_output(df)
+
+
+def test_validate_probability_output_rejects_probabilities_outside_range():
+    df = probabilities_to_dataframe(sample_probabilities())
+    df.loc[0, "champion_probability"] = 1.2
+
+    with pytest.raises(ValueError, match="between 0 and 1"):
+        validate_probability_output(df)
