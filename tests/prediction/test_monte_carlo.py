@@ -1,6 +1,7 @@
 import pytest
 
 from src.prediction.monte_carlo import run_monte_carlo
+from src.prediction.models import TournamentOutcome
 
 
 def mini_groups() -> dict[str, list[str]]:
@@ -119,3 +120,20 @@ def test_run_monte_carlo_champion_probabilities_sum_to_one():
     champion_probability_sum = sum(probabilities["champion"] for probabilities in result.values())
 
     assert champion_probability_sum == pytest.approx(1.0)
+
+
+def test_run_monte_carlo_can_return_sample_outcome():
+    groups = mini_groups()
+
+    probabilities, sample_outcome = run_monte_carlo(
+        groups,
+        mini_ratings(groups),
+        mini_knockout_matches(),
+        simulations=5,
+        seed=42,
+        return_sample_outcome=True,
+    )
+
+    assert isinstance(probabilities, dict)
+    assert isinstance(sample_outcome, TournamentOutcome)
+    assert sample_outcome.match_results

@@ -28,6 +28,27 @@ class MatchResult:
     is_real: bool = False
 
 
+@dataclass(frozen=True)
+class MatchPrediction:
+    match_id: str
+    stage: str
+    group: str | None
+    round: str | None
+    home_team: str
+    away_team: str
+    predicted_home_goals: int
+    predicted_away_goals: int
+    predicted_winner: str | None
+    home_win_probability: float
+    draw_probability: float
+    away_win_probability: float
+    user_home_goals: int | None = None
+    user_away_goals: int | None = None
+    real_home_goals: int | None = None
+    real_away_goals: int | None = None
+    prediction_correct: bool | None = None
+
+
 @dataclass
 class GroupStandingRow:
     team: str

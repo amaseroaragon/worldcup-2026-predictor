@@ -16,7 +16,13 @@ from src.prediction.config import (
     load_knockouts_config,
     load_third_place_combinations_config,
 )
-from src.prediction.export import export_probabilities, validate_probability_output
+from src.prediction.export import (
+    DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH,
+    build_match_predictions,
+    export_match_predictions_json,
+    export_probabilities,
+    validate_probability_output,
+)
 from src.prediction.monte_carlo import run_monte_carlo
 from src.prediction.ratings import load_ratings
 
@@ -29,6 +35,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--simulations", type=int, default=1000, help="Number of simulations to run.")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducible simulations.")
     parser.add_argument("--output", type=Path, default=OUTPUT_PATH, help="CSV output path.")
+    parser.add_argument(
+        "--predictions-output",
+        type=Path,
+        default=DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH,
+        help="JSON output path for match predictions.",
+    )
     parser.add_argument(
         "--groups-config",
         type=Path,
@@ -60,19 +72,28 @@ def main() -> None:
     third_place_combinations = load_third_place_combinations_config(args.third_place_combinations_config)
 
     print(f"Running prediction pipeline with {args.simulations} simulations...")
-    probabilities = run_monte_carlo(
+    probabilities, sample_outcome = run_monte_carlo(
         groups=groups,
         ratings=ratings,
         knockout_matches=knockout_matches,
         third_place_combinations=third_place_combinations,
         simulations=args.simulations,
         seed=args.seed,
+        return_sample_outcome=True,
     )
 
     df = export_probabilities(probabilities, args.output)
     validate_probability_output(df)
 
+    match_predictions = build_match_predictions(
+        sample_outcome.match_results,
+        ratings,
+        knockout_matches=knockout_matches,
+    )
+    export_match_predictions_json(match_predictions, args.predictions_output)
+
     print(f"Generated file: {args.output}")
+    print(f"Generated predictions file: {args.predictions_output}")
     print(f"Simulations executed: {args.simulations}")
     print("Validation status: passed")
     print("\nTop 10 teams by champion probability:")

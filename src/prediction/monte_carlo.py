@@ -13,6 +13,7 @@ def run_monte_carlo(
     third_place_combinations: dict[str, dict[str, str]] | None = None,
     simulations: int = 1000,
     seed: int | None = None,
+    return_sample_outcome: bool = False,
 ) -> dict:
     if simulations <= 0:
         raise ValueError("simulations must be greater than 0")
@@ -28,6 +29,7 @@ def run_monte_carlo(
         for team in teams
     }
 
+    sample_outcome = None
     for _ in range(simulations):
         outcome = simulate_tournament_once(
             groups=groups,
@@ -36,6 +38,8 @@ def run_monte_carlo(
             third_place_combinations=third_place_combinations,
             rng=rng,
         )
+        if sample_outcome is None:
+            sample_outcome = outcome
 
         if outcome.champion is not None:
             counts[outcome.champion]["champion"] += 1
@@ -44,7 +48,7 @@ def run_monte_carlo(
         for team in outcome.semifinalists:
             counts[team]["semifinal"] += 1
 
-    return {
+    probabilities = {
         team: {
             "champion": counts[team]["champion"] / simulations,
             "runner_up": counts[team]["runner_up"] / simulations,
@@ -52,3 +56,8 @@ def run_monte_carlo(
         }
         for team in teams
     }
+
+    if return_sample_outcome:
+        return probabilities, sample_outcome
+
+    return probabilities
