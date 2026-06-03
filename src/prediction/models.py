@@ -48,6 +48,13 @@ class MatchPrediction:
     home_win_probability: float
     draw_probability: float
     away_win_probability: float
+    simulations_count: int | None = None
+    appearance_count: int | None = None
+    appearance_probability: float | None = None
+    average_home_goals: float | None = None
+    average_away_goals: float | None = None
+    most_common_score: str | None = None
+    source: str | None = None
     user_home_goals: int | None = None
     user_away_goals: int | None = None
     real_home_goals: int | None = None

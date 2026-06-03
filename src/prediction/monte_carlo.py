@@ -14,6 +14,7 @@ def run_monte_carlo(
     simulations: int = 1000,
     seed: int | None = None,
     return_sample_outcome: bool = False,
+    return_outcomes: bool = False,
 ) -> dict:
     """Run repeated tournament simulations and aggregate advancement probabilities."""
 
@@ -32,6 +33,7 @@ def run_monte_carlo(
     }
 
     sample_outcome = None
+    outcomes = []
     for _ in range(simulations):
         outcome = simulate_tournament_once(
             groups=groups,
@@ -42,6 +44,8 @@ def run_monte_carlo(
         )
         if sample_outcome is None:
             sample_outcome = outcome
+        if return_outcomes:
+            outcomes.append(outcome)
 
         if outcome.champion is not None:
             counts[outcome.champion]["champion"] += 1
@@ -61,5 +65,8 @@ def run_monte_carlo(
 
     if return_sample_outcome:
         return probabilities, sample_outcome
+
+    if return_outcomes:
+        return probabilities, outcomes
 
     return probabilities

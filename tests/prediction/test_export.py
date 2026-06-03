@@ -6,12 +6,14 @@ import pytest
 from src.prediction.export import (
     PROBABILITY_COLUMNS,
     build_match_predictions,
+    build_predicted_bracket_predictions,
     export_match_predictions_json,
     export_probabilities,
     probabilities_to_dataframe,
     validate_probability_output,
 )
 from src.prediction.models import MatchPrediction, MatchResult
+from src.prediction.tournament import simulate_tournament_once
 
 
 def sample_probabilities() -> dict:
@@ -127,16 +129,62 @@ def test_export_match_predictions_json_writes_structured_file(tmp_path):
         )
     ]
 
-    rows = export_match_predictions_json(predictions, output_path)
+    payload = export_match_predictions_json(
+        predictions,
+        output_path,
+        metadata={"simulations": 10},
+    )
 
     with output_path.open(encoding="utf-8") as file:
         written = json.load(file)
 
     assert output_path.exists()
-    assert rows == written
-    assert written[0]["user_home_goals"] is None
-    assert written[0]["real_home_goals"] is None
-    assert written[0]["prediction_correct"] is None
+    assert payload == written
+    assert written["metadata"]["simulations"] == 10
+    assert written["matches"][0]["user_home_goals"] is None
+    assert written["matches"][0]["real_home_goals"] is None
+    assert written["matches"][0]["prediction_correct"] is None
+
+
+def test_build_predicted_bracket_predictions_returns_one_entry_per_bracket_slot():
+    groups = {
+        "A": ["Team 1", "Team 2", "Team 3", "Team 4"],
+        "B": ["Team 5", "Team 6", "Team 7", "Team 8"],
+        "C": ["Team 9", "Team 10", "Team 11", "Team 12"],
+        "D": ["Team 13", "Team 14", "Team 15", "Team 16"],
+    }
+    ratings = {
+        team: 1800.0 - index * 20
+        for index, team in enumerate(team for teams in groups.values() for team in teams)
+    }
+    knockout_matches = [
+        {"match_id": "M1", "round": "quarter_final", "home": "1A", "away": "2B"},
+        {"match_id": "M2", "round": "quarter_final", "home": "1B", "away": "2A"},
+        {"match_id": "M3", "round": "quarter_final", "home": "1C", "away": "2D"},
+        {"match_id": "M4", "round": "quarter_final", "home": "1D", "away": "2C"},
+        {"match_id": "M5", "round": "semi_final", "home": "W1", "away": "W2"},
+        {"match_id": "M6", "round": "semi_final", "home": "W3", "away": "W4"},
+        {"match_id": "M7", "round": "final", "home": "W5", "away": "W6"},
+    ]
+    outcomes = [
+        simulate_tournament_once(
+            groups=groups,
+            ratings=ratings,
+            knockout_matches=knockout_matches,
+        )
+        for _ in range(5)
+    ]
+
+    predictions = build_predicted_bracket_predictions(
+        outcomes,
+        groups,
+        ratings,
+        knockout_matches,
+    )
+
+    assert len(predictions) == 31
+    assert len({prediction.match_id for prediction in predictions}) == 31
+    assert predictions[-1].round == "final"
 
 
 def test_validate_probability_output_accepts_valid_output():

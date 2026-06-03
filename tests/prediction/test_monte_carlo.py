@@ -137,3 +137,20 @@ def test_run_monte_carlo_can_return_sample_outcome():
     assert isinstance(probabilities, dict)
     assert isinstance(sample_outcome, TournamentOutcome)
     assert sample_outcome.match_results
+
+
+def test_run_monte_carlo_can_return_all_outcomes():
+    groups = mini_groups()
+
+    probabilities, outcomes = run_monte_carlo(
+        groups,
+        mini_ratings(groups),
+        mini_knockout_matches(),
+        simulations=5,
+        seed=42,
+        return_outcomes=True,
+    )
+
+    assert isinstance(probabilities, dict)
+    assert len(outcomes) == 5
+    assert all(isinstance(outcome, TournamentOutcome) for outcome in outcomes)

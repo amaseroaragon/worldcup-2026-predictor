@@ -18,7 +18,7 @@ from src.prediction.config import (
 )
 from src.prediction.export import (
     DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH,
-    build_match_predictions,
+    build_predicted_bracket_predictions,
     export_match_predictions_json,
     export_probabilities,
     validate_probability_output,
@@ -76,25 +76,35 @@ def main() -> None:
     third_place_combinations = load_third_place_combinations_config(args.third_place_combinations_config)
 
     print(f"Running prediction pipeline with {args.simulations} simulations...")
-    probabilities, sample_outcome = run_monte_carlo(
+    probabilities, outcomes = run_monte_carlo(
         groups=groups,
         ratings=ratings,
         knockout_matches=knockout_matches,
         third_place_combinations=third_place_combinations,
         simulations=args.simulations,
         seed=args.seed,
-        return_sample_outcome=True,
+        return_outcomes=True,
     )
 
     df = export_probabilities(probabilities, args.output)
     validate_probability_output(df)
 
-    match_predictions = build_match_predictions(
-        sample_outcome.match_results,
+    match_predictions = build_predicted_bracket_predictions(
+        outcomes,
+        groups,
         ratings,
-        knockout_matches=knockout_matches,
+        knockout_matches,
+        third_place_combinations,
     )
-    export_match_predictions_json(match_predictions, args.predictions_output)
+    export_match_predictions_json(
+        match_predictions,
+        args.predictions_output,
+        metadata={
+            "simulations": args.simulations,
+            "seed": args.seed,
+            "method": "aggregate_group_stage_then_predicted_bracket",
+        },
+    )
 
     print(f"Generated file: {args.output}")
     print(f"Generated predictions file: {args.predictions_output}")
