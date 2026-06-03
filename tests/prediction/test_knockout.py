@@ -75,37 +75,6 @@ def test_build_knockout_fixtures_converts_config_matches_to_source_fixtures():
     ]
 
 
-def test_resolve_knockout_fixture_resolves_winner_group_placeholder():
-    fixture = MatchFixture(
-        match_id="knockout_1",
-        stage="round_of_32",
-        team_a=None,
-        team_b="Team 4",
-        source_a="winner_group_A",
-    )
-
-    resolved = resolve_knockout_fixture(fixture, group_outcomes())
-
-    assert resolved.team_a == "Team 1"
-    assert resolved.team_b == "Team 4"
-    assert fixture.team_a is None
-
-
-def test_resolve_knockout_fixture_resolves_runner_up_group_placeholder():
-    fixture = MatchFixture(
-        match_id="knockout_1",
-        stage="round_of_32",
-        team_a="Team 1",
-        team_b=None,
-        source_b="runner_up_group_B",
-    )
-
-    resolved = resolve_knockout_fixture(fixture, group_outcomes())
-
-    assert resolved.team_a == "Team 1"
-    assert resolved.team_b == "Team 4"
-
-
 def test_resolve_knockout_fixture_resolves_compact_group_placeholders():
     fixture = MatchFixture(
         match_id="M73",
@@ -210,8 +179,8 @@ def test_resolve_knockout_fixture_keeps_already_resolved_teams_and_metadata():
         group=None,
         team_a="Team 1",
         team_b="Team 2",
-        source_a="winner_group_A",
-        source_b="runner_up_group_B",
+        source_a="1A",
+        source_b="2B",
         date="2026-07-01",
     )
 
@@ -224,8 +193,8 @@ def test_resolve_knockout_fixture_keeps_already_resolved_teams_and_metadata():
     assert resolved.date == fixture.date
     assert resolved.team_a == "Team 1"
     assert resolved.team_b == "Team 2"
-    assert resolved.source_a == "winner_group_A"
-    assert resolved.source_b == "runner_up_group_B"
+    assert resolved.source_a == "1A"
+    assert resolved.source_b == "2B"
 
 
 def test_resolve_knockout_fixture_rejects_invalid_placeholder():
@@ -234,7 +203,7 @@ def test_resolve_knockout_fixture_rejects_invalid_placeholder():
         stage="round_of_32",
         team_a=None,
         team_b="Team 2",
-        source_a="third_place_group_A",
+        source_a="invalid_placeholder",
     )
 
     with pytest.raises(ValueError, match="Invalid knockout placeholder"):
@@ -247,7 +216,7 @@ def test_resolve_knockout_fixture_rejects_unknown_group():
         stage="round_of_32",
         team_a=None,
         team_b="Team 2",
-        source_a="winner_group_Z",
+        source_a="1Z",
     )
 
     with pytest.raises(ValueError, match="Unknown group"):
