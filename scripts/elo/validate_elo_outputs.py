@@ -8,16 +8,22 @@ ELO_RANKINGS_PATH = Path("data/processed/elo_rankings.csv")
 
 
 def validate_file_exists(path: Path) -> None:
+    """Validate that a required output file exists."""
+
     if not path.exists():
         raise FileNotFoundError(f"Missing file: {path}")
 
 
 def validate_not_empty(df: pd.DataFrame, name: str) -> None:
+    """Validate that a dataframe contains at least one row."""
+
     if df.empty:
         raise ValueError(f"{name} is empty")
 
 
 def validate_no_null_ratings(df: pd.DataFrame, columns: list[str], name: str) -> None:
+    """Validate that selected rating columns contain no nulls."""
+
     null_counts = df[columns].isna().sum()
     invalid = null_counts[null_counts > 0]
 
@@ -26,6 +32,8 @@ def validate_no_null_ratings(df: pd.DataFrame, columns: list[str], name: str) ->
 
 
 def validate_unique_ranked_teams(rankings: pd.DataFrame) -> None:
+    """Validate that each ranked team appears only once."""
+
     duplicated = rankings[rankings["team"].duplicated()]
 
     if not duplicated.empty:
@@ -33,11 +41,15 @@ def validate_unique_ranked_teams(rankings: pd.DataFrame) -> None:
 
 
 def validate_rankings_sorted(rankings: pd.DataFrame) -> None:
+    """Validate that rankings are sorted by descending Elo."""
+
     if not rankings["elo"].is_monotonic_decreasing:
         raise ValueError("Rankings are not sorted by descending Elo")
 
 
 def validate_rating_range(rankings: pd.DataFrame) -> None:
+    """Validate that Elo ratings are in a plausible range."""
+
     invalid = rankings[(rankings["elo"] < 800) | (rankings["elo"] > 2300)]
 
     if not invalid.empty:
@@ -45,6 +57,8 @@ def validate_rating_range(rankings: pd.DataFrame) -> None:
 
 
 def validate_ranked_teams_exist_in_history(history: pd.DataFrame, rankings: pd.DataFrame) -> None:
+    """Validate that ranked teams also appear in Elo history."""
+
     history_teams = set(history["home_team"]).union(set(history["away_team"]))
     ranking_teams = set(rankings["team"])
 
@@ -55,6 +69,8 @@ def validate_ranked_teams_exist_in_history(history: pd.DataFrame, rankings: pd.D
 
 
 def main() -> None:
+    """Run all Elo output validations."""
+
     validate_file_exists(ELO_HISTORY_PATH)
     validate_file_exists(ELO_RANKINGS_PATH)
 

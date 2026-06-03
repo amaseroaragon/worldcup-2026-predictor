@@ -23,6 +23,8 @@ DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH = Path(
 
 
 def probabilities_to_dataframe(probabilities: dict) -> pd.DataFrame:
+    """Convert aggregate tournament probabilities into a sorted dataframe."""
+
     rows = [
         {
             "team": team,
@@ -41,6 +43,8 @@ def probabilities_to_dataframe(probabilities: dict) -> pd.DataFrame:
 
 
 def export_probabilities(probabilities: dict, output_path: str | Path) -> pd.DataFrame:
+    """Write aggregate tournament probabilities to CSV."""
+
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -55,6 +59,8 @@ def build_match_predictions(
     ratings: dict[str, float],
     knockout_matches: list[dict[str, str]] | None = None,
 ) -> list[MatchPrediction]:
+    """Build persistable match prediction records from simulated match results."""
+
     knockout_rounds = {
         match["match_id"]: match["round"]
         for match in knockout_matches or []
@@ -69,6 +75,8 @@ def export_match_predictions_json(
     predictions: list[MatchPrediction],
     output_path: str | Path = DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH,
 ) -> list[dict]:
+    """Write match predictions to a JSON file."""
+
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -80,6 +88,8 @@ def export_match_predictions_json(
 
 
 def validate_probability_output(df: pd.DataFrame) -> None:
+    """Validate the exported probability dataframe contract."""
+
     missing_columns = set(PROBABILITY_COLUMNS) - set(df.columns)
     if missing_columns:
         missing = ", ".join(sorted(missing_columns))

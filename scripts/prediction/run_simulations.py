@@ -25,6 +25,8 @@ OUTPUT_PATH = Path("data/processed/world_cup_probabilities.csv")
 
 
 def parse_args() -> argparse.Namespace:
+    """Parse Monte Carlo simulation CLI arguments."""
+
     parser = argparse.ArgumentParser(description="Run V1 World Cup Monte Carlo simulations.")
     parser.add_argument("--simulations", type=int, default=1000, help="Number of tournament simulations to run.")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducible simulations.")
@@ -51,6 +53,8 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
+    """Run Monte Carlo simulations and export aggregate probabilities."""
+
     args = parse_args()
 
     print("Loading Elo rankings...")

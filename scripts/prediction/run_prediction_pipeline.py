@@ -31,6 +31,8 @@ OUTPUT_PATH = Path("data/processed/world_cup_probabilities.csv")
 
 
 def parse_args() -> argparse.Namespace:
+    """Parse prediction pipeline CLI arguments."""
+
     parser = argparse.ArgumentParser(description="Run the V1 prediction pipeline end to end.")
     parser.add_argument("--simulations", type=int, default=1000, help="Number of simulations to run.")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducible simulations.")
@@ -63,6 +65,8 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
+    """Run the end-to-end prediction pipeline."""
+
     args = parse_args()
 
     print("Loading Elo rankings...")

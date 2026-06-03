@@ -15,6 +15,8 @@ TEAMS_PER_GROUP = 4
 
 
 def load_groups_config(path: str | Path) -> dict[str, list[str]]:
+    """Load and validate World Cup group configuration."""
+
     config_path = Path(path)
     if not config_path.exists():
         raise FileNotFoundError(f"Groups config file does not exist: {config_path}")
@@ -44,6 +46,8 @@ def load_groups_config(path: str | Path) -> dict[str, list[str]]:
 
 
 def load_knockouts_config(path: str | Path) -> list[dict[str, str]]:
+    """Load and validate knockout bracket configuration."""
+
     config_path = Path(path)
     if not config_path.exists():
         raise FileNotFoundError(f"Knockouts config file does not exist: {config_path}")
@@ -85,6 +89,8 @@ def load_knockouts_config(path: str | Path) -> list[dict[str, str]]:
 
 
 def load_third_place_combinations_config(path: str | Path) -> dict[str, dict[str, str]]:
+    """Load valid third-place placeholder combinations."""
+
     config_path = Path(path)
     if not config_path.exists():
         raise FileNotFoundError(f"Third-place combinations config file does not exist: {config_path}")

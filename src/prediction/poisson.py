@@ -76,7 +76,7 @@ def score_matrix(expected_goals_a: float, expected_goals_b: float, max_goals: in
     """
     if max_goals < 0:
         raise ValueError("max_goals must be non-negative")
-    
+
     matrix = []
     for i in range(max_goals + 1):
         row = []

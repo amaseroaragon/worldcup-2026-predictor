@@ -7,6 +7,8 @@ from src.prediction.models import GroupOutcome, GroupStandingRow, MatchFixture, 
 
 
 def build_knockout_fixtures(knockout_matches: list[dict[str, str]]) -> list[MatchFixture]:
+    """Convert configured knockout matches into unresolved fixtures."""
+
     return [
         MatchFixture(
             match_id=match["match_id"],
@@ -28,6 +30,8 @@ def resolve_knockout_fixture(
     used_third_place_groups: set[str] | None = None,
     third_place_placeholder_resolution: dict[str, str] | None = None,
 ) -> MatchFixture:
+    """Resolve one knockout fixture from group outcomes and prior match results."""
+
     team_a = fixture.team_a or _resolve_knockout_placeholder(
         fixture.source_a,
         group_outcomes,
@@ -55,6 +59,90 @@ def resolve_knockout_fixture(
         source_b=fixture.source_b,
         date=fixture.date,
     )
+
+
+def rank_third_place_teams(
+    group_outcomes: dict[str, GroupOutcome],
+) -> list[tuple[str, GroupStandingRow]]:
+    """Rank third-place teams by tournament tiebreaker fields."""
+
+    rows = []
+    for group, outcome in group_outcomes.items():
+        if len(outcome.standings) < 3:
+            raise ValueError(f"Group {group} does not have a third-place team")
+        rows.append((group, outcome.standings[2]))
+
+    return sorted(
+        rows,
+        key=lambda row: (
+            -row[1].points,
+            -row[1].goal_difference,
+            -row[1].goals_for,
+            row[1].team,
+        ),
+    )
+
+
+def build_third_place_placeholder_resolution(
+    third_place_rankings: list[tuple[str, GroupStandingRow]],
+    third_place_combinations: dict[str, dict[str, str]],
+) -> dict[str, str]:
+    """Build placeholder mapping for the official best-third combination."""
+
+    best_third_groups = "".join(sorted(group for group, _row in third_place_rankings[:8]))
+    if best_third_groups not in third_place_combinations:
+        raise ValueError(f"Unknown best third-place combination: {best_third_groups}")
+    return third_place_combinations[best_third_groups]
+
+
+def simulate_knockout_match(
+    fixture: MatchFixture,
+    ratings: dict[str, float],
+    rng: random.Random | None = None,
+) -> MatchResult:
+    """Simulate a resolved knockout fixture."""
+
+    if fixture.stage == "group":
+        raise ValueError(f"Knockout fixture {fixture.match_id} cannot have stage='group'")
+
+    if fixture.team_a is None or fixture.team_b is None:
+        raise ValueError(f"Knockout fixture {fixture.match_id} must have both teams defined")
+
+    missing_ratings = [team for team in (fixture.team_a, fixture.team_b) if team not in ratings]
+    if missing_ratings:
+        missing = ", ".join(missing_ratings)
+        raise ValueError(f"Missing Elo rating for: {missing}")
+
+    return simulate_match(
+        fixture=fixture,
+        ratings=ratings,
+        rng=rng,
+        knockout=True,
+    )
+
+
+def simulate_knockout_round(
+    fixtures: list[MatchFixture],
+    ratings: dict[str, float],
+    rng: random.Random | None = None,
+) -> tuple[list[MatchResult], list[str]]:
+    """Simulate a full knockout round and return results plus winners."""
+
+    if not fixtures:
+        raise ValueError("Knockout round must contain at least one fixture")
+
+    results = [
+        simulate_knockout_match(
+            fixture=fixture,
+            ratings=ratings,
+            rng=rng,
+        )
+        for fixture in fixtures
+    ]
+
+    winners = [result.winner for result in results]
+
+    return results, winners
 
 
 def _resolve_knockout_placeholder(
@@ -94,36 +182,6 @@ def _resolve_knockout_placeholder(
         return _loser(result)
 
     raise ValueError(f"Invalid knockout placeholder: {placeholder}")
-
-
-def rank_third_place_teams(
-    group_outcomes: dict[str, GroupOutcome],
-) -> list[tuple[str, GroupStandingRow]]:
-    rows = []
-    for group, outcome in group_outcomes.items():
-        if len(outcome.standings) < 3:
-            raise ValueError(f"Group {group} does not have a third-place team")
-        rows.append((group, outcome.standings[2]))
-
-    return sorted(
-        rows,
-        key=lambda row: (
-            -row[1].points,
-            -row[1].goal_difference,
-            -row[1].goals_for,
-            row[1].team,
-        ),
-    )
-
-
-def build_third_place_placeholder_resolution(
-    third_place_rankings: list[tuple[str, GroupStandingRow]],
-    third_place_combinations: dict[str, dict[str, str]],
-) -> dict[str, str]:
-    best_third_groups = "".join(sorted(group for group, _row in third_place_rankings[:8]))
-    if best_third_groups not in third_place_combinations:
-        raise ValueError(f"Unknown best third-place combination: {best_third_groups}")
-    return third_place_combinations[best_third_groups]
 
 
 def _resolve_group_winner(
@@ -212,49 +270,3 @@ def _loser(result: MatchResult) -> str:
     if result.winner == result.team_a:
         return result.team_b
     return result.team_a
-
-
-def simulate_knockout_match(
-    fixture: MatchFixture,
-    ratings: dict[str, float],
-    rng: random.Random | None = None,
-) -> MatchResult:
-    if fixture.stage == "group":
-        raise ValueError(f"Knockout fixture {fixture.match_id} cannot have stage='group'")
-
-    if fixture.team_a is None or fixture.team_b is None:
-        raise ValueError(f"Knockout fixture {fixture.match_id} must have both teams defined")
-
-    missing_ratings = [team for team in (fixture.team_a, fixture.team_b) if team not in ratings]
-    if missing_ratings:
-        missing = ", ".join(missing_ratings)
-        raise ValueError(f"Missing Elo rating for: {missing}")
-
-    return simulate_match(
-        fixture=fixture,
-        ratings=ratings,
-        rng=rng,
-        knockout=True,
-    )
-
-
-def simulate_knockout_round(
-    fixtures: list[MatchFixture],
-    ratings: dict[str, float],
-    rng: random.Random | None = None,
-) -> tuple[list[MatchResult], list[str]]:
-    if not fixtures:
-        raise ValueError("Knockout round must contain at least one fixture")
-
-    results = [
-        simulate_knockout_match(
-            fixture=fixture,
-            ratings=ratings,
-            rng=rng,
-        )
-        for fixture in fixtures
-    ]
-
-    winners = [result.winner for result in results]
-
-    return results, winners

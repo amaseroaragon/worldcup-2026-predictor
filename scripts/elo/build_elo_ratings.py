@@ -3,7 +3,9 @@ import pandas as pd
 from src.elo.processor import process_matches
 
 
-def main():
+def main() -> None:
+    """Build chronological Elo history from clean match results."""
+
     input_path = "data/processed/clean_results.csv"
     output_path = "data/processed/elo_history.csv"
 

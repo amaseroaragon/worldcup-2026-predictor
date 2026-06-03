@@ -7,7 +7,6 @@ from src.prediction.poisson import expected_goals_from_elo, poisson_probability
 from src.elo.expected import expected_score
 
 
-
 def sample_poisson(lambda_: float, max_goals: int = 10, rng: random.Random | None = None) -> int:
     """
     Samples a goal count from a truncated Poisson distribution.
@@ -71,10 +70,30 @@ def simulate_match(
         goals_b = sample_poisson(expected_goals_b, max_goals=max_goals, rng=rng)
 
     if goals_a > goals_b:
-        return MatchResult(team_a, team_b, goals_a, goals_b, team_a, False, "regular_time", match_id, False)
+        return MatchResult(
+            team_a,
+            team_b,
+            goals_a,
+            goals_b,
+            team_a,
+            False,
+            "regular_time",
+            match_id,
+            False,
+        )
 
     if goals_b > goals_a:
-        return MatchResult(team_a, team_b, goals_a, goals_b, team_b, False, "regular_time", match_id, False)
+        return MatchResult(
+            team_a,
+            team_b,
+            goals_a,
+            goals_b,
+            team_b,
+            False,
+            "regular_time",
+            match_id,
+            False,
+        )
 
     if not knockout:
         return MatchResult(team_a, team_b, goals_a, goals_b, None, True, "draw", match_id, False)
@@ -82,4 +101,14 @@ def simulate_match(
     prob_a_advances = expected_score(elo_a, elo_b)
     winner = team_a if random_source.random() < prob_a_advances else team_b
 
-    return MatchResult(team_a, team_b, goals_a, goals_b, winner, False, "tiebreaker", match_id, False)
+    return MatchResult(
+        team_a,
+        team_b,
+        goals_a,
+        goals_b,
+        winner,
+        False,
+        "tiebreaker",
+        match_id,
+        False,
+    )

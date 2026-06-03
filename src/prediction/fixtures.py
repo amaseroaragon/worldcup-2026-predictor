@@ -9,6 +9,8 @@ TEAMS_PER_GROUP = 4
 
 
 def build_group_stage_fixtures(groups: dict[str, list[str]]) -> list[MatchFixture]:
+    """Create all round-robin fixtures for each group."""
+
     fixtures = []
 
     for group, teams in groups.items():

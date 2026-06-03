@@ -28,6 +28,8 @@ def simulate_tournament_once(
     knockout_matches: list[dict[str, str]] | None = None,
     third_place_combinations: dict[str, dict[str, str]] | None = None,
 ) -> TournamentOutcome:
+    """Simulate one full tournament from group stage through final."""
+
     if knockout_matches is None:
         raise ValueError("knockout_matches must be provided")
 

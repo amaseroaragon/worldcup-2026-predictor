@@ -9,6 +9,8 @@ CLEAN_RESULTS_PATH = ROOT_DIR / "data" / "processed" / "clean_results.csv"
 
 
 def main() -> None:
+    """Print and validate basic properties of the clean results dataset."""
+
     df = pd.read_csv(CLEAN_RESULTS_PATH)
 
     print("=" * 50)

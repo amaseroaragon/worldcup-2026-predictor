@@ -5,6 +5,8 @@ from dataclasses import dataclass, field
 
 @dataclass(frozen=True)
 class MatchFixture:
+    """Scheduled or resolved match metadata."""
+
     match_id: str
     stage: str
     team_a: str
@@ -17,6 +19,8 @@ class MatchFixture:
 
 @dataclass(frozen=True)
 class MatchResult:
+    """Simulated or real result for a single match."""
+
     team_a: str
     team_b: str
     goals_a: int
@@ -30,6 +34,8 @@ class MatchResult:
 
 @dataclass(frozen=True)
 class MatchPrediction:
+    """Persistable prediction record for a single match."""
+
     match_id: str
     stage: str
     group: str | None
@@ -51,6 +57,8 @@ class MatchPrediction:
 
 @dataclass
 class GroupStandingRow:
+    """Mutable standings row for one team in a group."""
+
     team: str
     played: int = 0
     points: int = 0
@@ -62,11 +70,15 @@ class GroupStandingRow:
 
     @property
     def goal_difference(self) -> int:
+        """Return goals scored minus goals conceded."""
+
         return self.goals_for - self.goals_against
 
 
 @dataclass(frozen=True)
 class GroupOutcome:
+    """Final standings and qualifiers for one group."""
+
     group: str
     standings: list[GroupStandingRow]
     winner: str
@@ -77,6 +89,8 @@ class GroupOutcome:
 
 @dataclass(frozen=True)
 class TournamentOutcome:
+    """Summary of one complete tournament simulation."""
+
     champion: str | None = None
     runner_up: str | None = None
     semifinalists: set[str] = field(default_factory=set)
@@ -90,6 +104,8 @@ class TournamentOutcome:
 
 @dataclass(frozen=True)
 class SimulationConfig:
+    """Runtime options for match and tournament simulation."""
+
     n_simulations: int = 1000
     random_seed: int | None = None
     fixed_elo: bool = True

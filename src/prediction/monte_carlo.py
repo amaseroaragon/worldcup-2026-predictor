@@ -15,6 +15,8 @@ def run_monte_carlo(
     seed: int | None = None,
     return_sample_outcome: bool = False,
 ) -> dict:
+    """Run repeated tournament simulations and aggregate advancement probabilities."""
+
     if simulations <= 0:
         raise ValueError("simulations must be greater than 0")
     if not groups:

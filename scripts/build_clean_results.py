@@ -13,6 +13,8 @@ CLEAN_RESULTS_PATH = PROCESSED_DIR / "clean_results.csv"
 
 
 def build_clean_results() -> pd.DataFrame:
+    """Build the normalized historical results dataset."""
+
     df = pd.read_csv(RAW_RESULTS_PATH)
 
     df["date"] = pd.to_datetime(df["date"])
@@ -53,6 +55,8 @@ def build_clean_results() -> pd.DataFrame:
 
 
 def main() -> None:
+    """Generate the processed clean results CSV."""
+
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
     df = build_clean_results()

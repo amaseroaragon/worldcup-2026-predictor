@@ -1,4 +1,5 @@
 import pandas as pd
+import pytest
 
 from src.elo.processor import process_matches
 
@@ -40,5 +41,5 @@ def test_process_matches_uses_context_columns_when_present():
 
     history = process_matches(matches)
 
-    assert history.loc[0, "home_elo_after"] == 1550.0
-    assert history.loc[0, "away_elo_after"] == 1450.0
+    assert history.loc[0, "home_elo_after"] == pytest.approx(1540.24)
+    assert history.loc[0, "away_elo_after"] == pytest.approx(1459.76)

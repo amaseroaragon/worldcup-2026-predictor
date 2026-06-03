@@ -3,7 +3,9 @@ import pandas as pd
 from src.elo.export import get_latest_ratings
 
 
-def main():
+def main() -> None:
+    """Export the latest Elo rating per team."""
+
     input_path = "data/processed/elo_history.csv"
     output_path = "data/processed/elo_rankings.csv"
 

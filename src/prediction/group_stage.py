@@ -18,6 +18,8 @@ def simulate_group_stage(
     rng: random.Random | None = None,
     config: SimulationConfig | None = None,
 ) -> dict[str, GroupOutcome]:
+    """Simulate all group-stage fixtures and return outcomes by group."""
+
     config = config or SimulationConfig()
     rng = rng or random.Random(config.random_seed)
     fixtures_by_group: dict[str, list[MatchFixture]] = defaultdict(list)

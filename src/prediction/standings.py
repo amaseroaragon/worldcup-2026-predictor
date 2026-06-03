@@ -4,6 +4,8 @@ from src.prediction.models import GroupStandingRow, MatchResult
 
 
 def build_group_standings(results: list[MatchResult]) -> list[GroupStandingRow]:
+    """Build sorted group standings from match results."""
+
     rows: dict[str, GroupStandingRow] = {}
 
     for result in results:
@@ -35,6 +37,8 @@ def build_group_standings(results: list[MatchResult]) -> list[GroupStandingRow]:
 
 
 def sort_group_standings(rows: list[GroupStandingRow]) -> list[GroupStandingRow]:
+    """Sort standings by points, goal difference, goals for, then team name."""
+
     return sorted(
         rows,
         key=lambda row: (

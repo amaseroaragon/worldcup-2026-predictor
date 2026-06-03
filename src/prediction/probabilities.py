@@ -5,7 +5,12 @@ import math
 from src.elo.expected import expected_score
 
 
-def draw_probability_from_elo_diff(elo_diff: float, base_draw_probability: float = 0.26, decay: float = 0.0008, min_draw_probability: float = 0.08) -> float:
+def draw_probability_from_elo_diff(
+    elo_diff: float,
+    base_draw_probability: float = 0.26,
+    decay: float = 0.0008,
+    min_draw_probability: float = 0.08,
+) -> float:
     """
     Estimates draw probability from absolute Elo difference.
 
@@ -16,7 +21,11 @@ def draw_probability_from_elo_diff(elo_diff: float, base_draw_probability: float
     return max(min_draw_probability, draw_prob)
 
 
-def elo_win_draw_loss_probs(elo_a: float, elo_b: float, base_draw_probability: float = 0.26) -> tuple[float, float, float]:
+def elo_win_draw_loss_probs(
+    elo_a: float,
+    elo_b: float,
+    base_draw_probability: float = 0.26,
+) -> tuple[float, float, float]:
     """
     Converts two Elo ratings into win/draw/loss probabilities for team A.
 
