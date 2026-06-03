@@ -2,8 +2,8 @@ import random
 
 import pytest
 
-from src.prediction.knockout import simulate_knockout_match, simulate_knockout_round
-from src.prediction.models import MatchFixture, MatchResult
+from src.prediction.knockout import resolve_knockout_fixture, simulate_knockout_match, simulate_knockout_round
+from src.prediction.models import GroupOutcome, MatchFixture, MatchResult
 
 
 def knockout_fixture() -> MatchFixture:
@@ -13,6 +13,95 @@ def knockout_fixture() -> MatchFixture:
         team_a="Team 1",
         team_b="Team 2",
     )
+
+
+def group_outcomes() -> dict[str, GroupOutcome]:
+    return {
+        "A": GroupOutcome(group="A", standings=[], winner="Team 1", runner_up="Team 2"),
+        "B": GroupOutcome(group="B", standings=[], winner="Team 3", runner_up="Team 4"),
+    }
+
+
+def test_resolve_knockout_fixture_resolves_winner_group_placeholder():
+    fixture = MatchFixture(
+        match_id="knockout_1",
+        stage="round_of_32",
+        team_a=None,
+        team_b="Team 4",
+        source_a="winner_group_A",
+    )
+
+    resolved = resolve_knockout_fixture(fixture, group_outcomes())
+
+    assert resolved.team_a == "Team 1"
+    assert resolved.team_b == "Team 4"
+    assert fixture.team_a is None
+
+
+def test_resolve_knockout_fixture_resolves_runner_up_group_placeholder():
+    fixture = MatchFixture(
+        match_id="knockout_1",
+        stage="round_of_32",
+        team_a="Team 1",
+        team_b=None,
+        source_b="runner_up_group_B",
+    )
+
+    resolved = resolve_knockout_fixture(fixture, group_outcomes())
+
+    assert resolved.team_a == "Team 1"
+    assert resolved.team_b == "Team 4"
+
+
+def test_resolve_knockout_fixture_keeps_already_resolved_teams_and_metadata():
+    fixture = MatchFixture(
+        match_id="knockout_1",
+        stage="round_of_32",
+        group=None,
+        team_a="Team 1",
+        team_b="Team 2",
+        source_a="winner_group_A",
+        source_b="runner_up_group_B",
+        date="2026-07-01",
+    )
+
+    resolved = resolve_knockout_fixture(fixture, group_outcomes())
+
+    assert resolved is not fixture
+    assert resolved.match_id == fixture.match_id
+    assert resolved.stage == fixture.stage
+    assert resolved.group == fixture.group
+    assert resolved.date == fixture.date
+    assert resolved.team_a == "Team 1"
+    assert resolved.team_b == "Team 2"
+    assert resolved.source_a == "winner_group_A"
+    assert resolved.source_b == "runner_up_group_B"
+
+
+def test_resolve_knockout_fixture_rejects_invalid_placeholder():
+    fixture = MatchFixture(
+        match_id="knockout_1",
+        stage="round_of_32",
+        team_a=None,
+        team_b="Team 2",
+        source_a="third_place_group_A",
+    )
+
+    with pytest.raises(ValueError, match="Invalid knockout placeholder"):
+        resolve_knockout_fixture(fixture, group_outcomes())
+
+
+def test_resolve_knockout_fixture_rejects_unknown_group():
+    fixture = MatchFixture(
+        match_id="knockout_1",
+        stage="round_of_32",
+        team_a=None,
+        team_b="Team 2",
+        source_a="winner_group_Z",
+    )
+
+    with pytest.raises(ValueError, match="Unknown group"):
+        resolve_knockout_fixture(fixture, group_outcomes())
 
 
 def test_simulate_knockout_match_returns_match_result():
