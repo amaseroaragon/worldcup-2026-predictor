@@ -28,3 +28,25 @@ def simulate_knockout_match(
         rng=rng,
         knockout=True,
     )
+
+
+def simulate_knockout_round(
+    fixtures: list[MatchFixture],
+    ratings: dict[str, float],
+    rng: random.Random | None = None,
+) -> tuple[list[MatchResult], list[str]]:
+    if not fixtures:
+        raise ValueError("Knockout round must contain at least one fixture")
+
+    results = [
+        simulate_knockout_match(
+            fixture=fixture,
+            ratings=ratings,
+            rng=rng,
+        )
+        for fixture in fixtures
+    ]
+
+    winners = [result.winner for result in results]
+
+    return results, winners

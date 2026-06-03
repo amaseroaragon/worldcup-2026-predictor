@@ -2,7 +2,7 @@ import random
 
 import pytest
 
-from src.prediction.knockout import simulate_knockout_match
+from src.prediction.knockout import simulate_knockout_match, simulate_knockout_round
 from src.prediction.models import MatchFixture, MatchResult
 
 
@@ -79,3 +79,45 @@ def test_simulate_knockout_match_uses_injected_rng_for_tiebreaker(monkeypatch):
     assert result_b.decided_by == "tiebreaker"
     assert result_a.winner == "Team 1"
     assert result_b.winner == "Team 2"
+
+
+def test_simulate_knockout_round_simulates_multiple_matches():
+    fixtures = [
+        MatchFixture("knockout_1", "round_of_32", "Team 1", "Team 2"),
+        MatchFixture("knockout_2", "round_of_32", "Team 3", "Team 4"),
+    ]
+    ratings = {
+        "Team 1": 1600.0,
+        "Team 2": 1550.0,
+        "Team 3": 1500.0,
+        "Team 4": 1650.0,
+    }
+
+    results, winners = simulate_knockout_round(fixtures, ratings, rng=random.Random(42))
+
+    assert len(results) == len(fixtures)
+    assert len(winners) == len(fixtures)
+    assert all(isinstance(result, MatchResult) for result in results)
+
+
+def test_simulate_knockout_round_returns_winners_in_fixture_order():
+    fixtures = [
+        MatchFixture("knockout_1", "round_of_32", "Team 1", "Team 2"),
+        MatchFixture("knockout_2", "round_of_32", "Team 3", "Team 4"),
+    ]
+    ratings = {
+        "Team 1": 1800.0,
+        "Team 2": 1200.0,
+        "Team 3": 1800.0,
+        "Team 4": 1200.0,
+    }
+
+    results, winners = simulate_knockout_round(fixtures, ratings, rng=random.Random(42))
+
+    assert winners == [result.winner for result in results]
+    assert all(winner is not None for winner in winners)
+
+
+def test_simulate_knockout_round_rejects_empty_fixture_list():
+    with pytest.raises(ValueError, match="at least one fixture"):
+        simulate_knockout_round([], {})
