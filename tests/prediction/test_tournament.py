@@ -20,12 +20,25 @@ def mini_ratings(groups: dict[str, list[str]]) -> dict[str, float]:
     }
 
 
+def mini_knockout_matches() -> list[dict[str, str]]:
+    return [
+        {"match_id": "M1", "round": "quarter_final", "home": "1A", "away": "2B"},
+        {"match_id": "M2", "round": "quarter_final", "home": "1B", "away": "2A"},
+        {"match_id": "M3", "round": "quarter_final", "home": "1C", "away": "2D"},
+        {"match_id": "M4", "round": "quarter_final", "home": "1D", "away": "2C"},
+        {"match_id": "M5", "round": "semi_final", "home": "W1", "away": "W2"},
+        {"match_id": "M6", "round": "semi_final", "home": "W3", "away": "W4"},
+        {"match_id": "M7", "round": "final", "home": "W5", "away": "W6"},
+    ]
+
+
 def test_simulate_tournament_once_returns_tournament_outcome():
     groups = mini_groups()
 
     outcome = simulate_tournament_once(
         groups=groups,
         ratings=mini_ratings(groups),
+        knockout_matches=mini_knockout_matches(),
         rng=random.Random(42),
     )
 
@@ -38,6 +51,7 @@ def test_simulate_tournament_once_returns_champion_and_runner_up():
     outcome = simulate_tournament_once(
         groups=groups,
         ratings=mini_ratings(groups),
+        knockout_matches=mini_knockout_matches(),
         rng=random.Random(42),
     )
 
@@ -52,6 +66,7 @@ def test_simulate_tournament_once_returns_match_results():
     outcome = simulate_tournament_once(
         groups=groups,
         ratings=mini_ratings(groups),
+        knockout_matches=mini_knockout_matches(),
         rng=random.Random(42),
     )
 
@@ -66,7 +81,17 @@ def test_simulate_tournament_once_is_reproducible_with_same_seed():
     groups = mini_groups()
     ratings = mini_ratings(groups)
 
-    outcome_a = simulate_tournament_once(groups, ratings, rng=random.Random(42))
-    outcome_b = simulate_tournament_once(groups, ratings, rng=random.Random(42))
+    outcome_a = simulate_tournament_once(
+        groups,
+        ratings,
+        knockout_matches=mini_knockout_matches(),
+        rng=random.Random(42),
+    )
+    outcome_b = simulate_tournament_once(
+        groups,
+        ratings,
+        knockout_matches=mini_knockout_matches(),
+        rng=random.Random(42),
+    )
 
     assert outcome_a == outcome_b

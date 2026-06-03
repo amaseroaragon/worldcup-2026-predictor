@@ -1,0 +1,196 @@
+{
+  "matches": [
+    {
+      "match_id": "M73",
+      "round": "round_of_32",
+      "home": "2A",
+      "away": "2B"
+    },
+    {
+      "match_id": "M74",
+      "round": "round_of_32",
+      "home": "1E",
+      "away": "3ABCDF"
+    },
+    {
+      "match_id": "M75",
+      "round": "round_of_32",
+      "home": "1F",
+      "away": "2C"
+    },
+    {
+      "match_id": "M76",
+      "round": "round_of_32",
+      "home": "1C",
+      "away": "2F"
+    },
+    {
+      "match_id": "M77",
+      "round": "round_of_32",
+      "home": "1I",
+      "away": "3CDFGH"
+    },
+    {
+      "match_id": "M78",
+      "round": "round_of_32",
+      "home": "2E",
+      "away": "2I"
+    },
+    {
+      "match_id": "M79",
+      "round": "round_of_32",
+      "home": "1A",
+      "away": "3CEFHI"
+    },
+    {
+      "match_id": "M80",
+      "round": "round_of_32",
+      "home": "1L",
+      "away": "3EHIJK"
+    },
+    {
+      "match_id": "M81",
+      "round": "round_of_32",
+      "home": "1D",
+      "away": "3BEFIJ"
+    },
+    {
+      "match_id": "M82",
+      "round": "round_of_32",
+      "home": "1G",
+      "away": "3AEHIJ"
+    },
+    {
+      "match_id": "M83",
+      "round": "round_of_32",
+      "home": "2K",
+      "away": "2L"
+    },
+    {
+      "match_id": "M84",
+      "round": "round_of_32",
+      "home": "1H",
+      "away": "2J"
+    },
+    {
+      "match_id": "M85",
+      "round": "round_of_32",
+      "home": "1B",
+      "away": "3EFGIJ"
+    },
+    {
+      "match_id": "M86",
+      "round": "round_of_32",
+      "home": "1J",
+      "away": "2H"
+    },
+    {
+      "match_id": "M87",
+      "round": "round_of_32",
+      "home": "1K",
+      "away": "3DEIJL"
+    },
+    {
+      "match_id": "M88",
+      "round": "round_of_32",
+      "home": "2D",
+      "away": "2G"
+    },
+    {
+      "match_id": "M89",
+      "round": "round_of_16",
+      "home": "W74",
+      "away": "W77"
+    },
+    {
+      "match_id": "M90",
+      "round": "round_of_16",
+      "home": "W73",
+      "away": "W75"
+    },
+    {
+      "match_id": "M91",
+      "round": "round_of_16",
+      "home": "W76",
+      "away": "W78"
+    },
+    {
+      "match_id": "M92",
+      "round": "round_of_16",
+      "home": "W79",
+      "away": "W80"
+    },
+    {
+      "match_id": "M93",
+      "round": "round_of_16",
+      "home": "W83",
+      "away": "W84"
+    },
+    {
+      "match_id": "M94",
+      "round": "round_of_16",
+      "home": "W81",
+      "away": "W82"
+    },
+    {
+      "match_id": "M95",
+      "round": "round_of_16",
+      "home": "W86",
+      "away": "W88"
+    },
+    {
+      "match_id": "M96",
+      "round": "round_of_16",
+      "home": "W85",
+      "away": "W87"
+    },
+    {
+      "match_id": "M97",
+      "round": "quarter_final",
+      "home": "W89",
+      "away": "W90"
+    },
+    {
+      "match_id": "M98",
+      "round": "quarter_final",
+      "home": "W93",
+      "away": "W94"
+    },
+    {
+      "match_id": "M99",
+      "round": "quarter_final",
+      "home": "W91",
+      "away": "W92"
+    },
+    {
+      "match_id": "M100",
+      "round": "quarter_final",
+      "home": "W95",
+      "away": "W96"
+    },
+    {
+      "match_id": "M101",
+      "round": "semi_final",
+      "home": "W97",
+      "away": "W98"
+    },
+    {
+      "match_id": "M102",
+      "round": "semi_final",
+      "home": "W99",
+      "away": "W100"
+    },
+    {
+      "match_id": "M103",
+      "round": "third_place_playoff",
+      "home": "RU101",
+      "away": "RU102"
+    },
+    {
+      "match_id": "M104",
+      "round": "final",
+      "home": "W101",
+      "away": "W102"
+    }
+  ]
+}

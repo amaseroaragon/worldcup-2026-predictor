@@ -2,8 +2,15 @@ import random
 
 import pytest
 
-from src.prediction.knockout import resolve_knockout_fixture, simulate_knockout_match, simulate_knockout_round
-from src.prediction.models import GroupOutcome, MatchFixture, MatchResult
+from src.prediction.knockout import (
+    build_knockout_fixtures,
+    build_third_place_placeholder_resolution,
+    rank_third_place_teams,
+    resolve_knockout_fixture,
+    simulate_knockout_match,
+    simulate_knockout_round,
+)
+from src.prediction.models import GroupOutcome, GroupStandingRow, MatchFixture, MatchResult
 
 
 def knockout_fixture() -> MatchFixture:
@@ -20,6 +27,52 @@ def group_outcomes() -> dict[str, GroupOutcome]:
         "A": GroupOutcome(group="A", standings=[], winner="Team 1", runner_up="Team 2"),
         "B": GroupOutcome(group="B", standings=[], winner="Team 3", runner_up="Team 4"),
     }
+
+
+def group_outcomes_with_standings() -> dict[str, GroupOutcome]:
+    return {
+        "A": GroupOutcome(
+            group="A",
+            standings=[
+                GroupStandingRow("Team 1", points=9),
+                GroupStandingRow("Team 2", points=6),
+                GroupStandingRow("Team 3", points=4, goals_for=5),
+                GroupStandingRow("Team 4", points=0),
+            ],
+            winner="Team 1",
+            runner_up="Team 2",
+            third_place="Team 3",
+        ),
+        "B": GroupOutcome(
+            group="B",
+            standings=[
+                GroupStandingRow("Team 5", points=9),
+                GroupStandingRow("Team 6", points=6),
+                GroupStandingRow("Team 7", points=5, goals_for=7),
+                GroupStandingRow("Team 8", points=0),
+            ],
+            winner="Team 5",
+            runner_up="Team 6",
+            third_place="Team 7",
+        ),
+    }
+
+
+def test_build_knockout_fixtures_converts_config_matches_to_source_fixtures():
+    fixtures = build_knockout_fixtures(
+        [{"match_id": "M73", "round": "round_of_32", "home": "2A", "away": "2B"}]
+    )
+
+    assert fixtures == [
+        MatchFixture(
+            match_id="M73",
+            stage="round_of_32",
+            team_a=None,
+            team_b=None,
+            source_a="2A",
+            source_b="2B",
+        )
+    ]
 
 
 def test_resolve_knockout_fixture_resolves_winner_group_placeholder():
@@ -51,6 +104,103 @@ def test_resolve_knockout_fixture_resolves_runner_up_group_placeholder():
 
     assert resolved.team_a == "Team 1"
     assert resolved.team_b == "Team 4"
+
+
+def test_resolve_knockout_fixture_resolves_compact_group_placeholders():
+    fixture = MatchFixture(
+        match_id="M73",
+        stage="round_of_32",
+        team_a=None,
+        team_b=None,
+        source_a="1A",
+        source_b="2B",
+    )
+
+    resolved = resolve_knockout_fixture(fixture, group_outcomes())
+
+    assert resolved.team_a == "Team 1"
+    assert resolved.team_b == "Team 4"
+
+
+def test_resolve_knockout_fixture_resolves_winner_and_runner_up_match_placeholders():
+    fixture = MatchFixture(
+        match_id="M103",
+        stage="third_place_playoff",
+        team_a=None,
+        team_b=None,
+        source_a="W73",
+        source_b="RU74",
+    )
+    match_results = {
+        "M73": MatchResult("Team 1", "Team 2", 2, 1, "Team 1", False, "regular_time", "M73"),
+        "M74": MatchResult("Team 3", "Team 4", 0, 1, "Team 4", False, "regular_time", "M74"),
+    }
+
+    resolved = resolve_knockout_fixture(
+        fixture,
+        group_outcomes(),
+        match_results=match_results,
+    )
+
+    assert resolved.team_a == "Team 1"
+    assert resolved.team_b == "Team 3"
+
+
+def test_resolve_knockout_fixture_resolves_best_third_from_allowed_groups():
+    fixture = MatchFixture(
+        match_id="M74",
+        stage="round_of_32",
+        team_a="Team 9",
+        team_b=None,
+        source_b="3AB",
+    )
+    used_third_place_groups: set[str] = set()
+
+    resolved = resolve_knockout_fixture(
+        fixture,
+        group_outcomes_with_standings(),
+        third_place_rankings=rank_third_place_teams(group_outcomes_with_standings()),
+        used_third_place_groups=used_third_place_groups,
+    )
+
+    assert resolved.team_b == "Team 7"
+    assert used_third_place_groups == {"B"}
+
+
+def test_resolve_knockout_fixture_resolves_third_place_from_combination_table():
+    fixture = MatchFixture(
+        match_id="M74",
+        stage="round_of_32",
+        team_a="Team 9",
+        team_b=None,
+        source_b="3AB",
+    )
+    used_third_place_groups: set[str] = set()
+
+    resolved = resolve_knockout_fixture(
+        fixture,
+        group_outcomes_with_standings(),
+        third_place_rankings=rank_third_place_teams(group_outcomes_with_standings()),
+        used_third_place_groups=used_third_place_groups,
+        third_place_placeholder_resolution={"3AB": "3A"},
+    )
+
+    assert resolved.team_b == "Team 3"
+    assert used_third_place_groups == {"A"}
+
+
+def test_build_third_place_placeholder_resolution_uses_top_eight_group_key():
+    rankings = [
+        (group, GroupStandingRow(f"Team {group}", points=12 - index))
+        for index, group in enumerate("ABCDEFGHI")
+    ]
+
+    resolution = build_third_place_placeholder_resolution(
+        rankings,
+        {"ABCDEFGH": {"3ABCDF": "3A"}},
+    )
+
+    assert resolution == {"3ABCDF": "3A"}
 
 
 def test_resolve_knockout_fixture_keeps_already_resolved_teams_and_metadata():

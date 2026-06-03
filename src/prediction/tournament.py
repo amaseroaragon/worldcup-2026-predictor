@@ -4,97 +4,109 @@ import random
 
 from src.prediction.fixtures import build_group_stage_fixtures
 from src.prediction.group_stage import simulate_group_stage
-from src.prediction.knockout import resolve_knockout_fixture, simulate_knockout_round
+from src.prediction.knockout import (
+    build_knockout_fixtures,
+    build_third_place_placeholder_resolution,
+    rank_third_place_teams,
+    resolve_knockout_fixture,
+    simulate_knockout_match,
+)
 from src.prediction.models import GroupOutcome, MatchFixture, MatchResult, TournamentOutcome
 
 
-REQUIRED_MINI_TOURNAMENT_GROUPS = ("A", "B", "C", "D")
+ROUND_OF_32 = "round_of_32"
+ROUND_OF_16 = "round_of_16"
+QUARTER_FINAL = "quarter_final"
+SEMI_FINAL = "semi_final"
+FINAL = "final"
 
 
 def simulate_tournament_once(
     groups: dict[str, list[str]],
     ratings: dict[str, float],
     rng: random.Random | None = None,
+    knockout_matches: list[dict[str, str]] | None = None,
+    third_place_combinations: dict[str, dict[str, str]] | None = None,
 ) -> TournamentOutcome:
-    _validate_mini_tournament_groups(groups)
+    if knockout_matches is None:
+        raise ValueError("knockout_matches must be provided")
+
     rng = rng or random.Random()
 
     group_fixtures = build_group_stage_fixtures(groups)
     group_outcomes = simulate_group_stage(group_fixtures, ratings, rng=rng)
+    knockout_fixtures = build_knockout_fixtures(knockout_matches)
 
-    quarterfinal_fixtures = [
-        resolve_knockout_fixture(fixture, group_outcomes)
-        for fixture in _build_quarterfinal_fixtures()
-    ]
-    quarterfinal_results, quarterfinal_winners = simulate_knockout_round(
-        quarterfinal_fixtures,
-        ratings,
-        rng=rng,
+    match_results_by_id: dict[str, MatchResult] = {}
+    knockout_results: list[MatchResult] = []
+    used_third_place_groups: set[str] = set()
+    third_place_rankings = rank_third_place_teams(group_outcomes)
+    third_place_placeholder_resolution = (
+        build_third_place_placeholder_resolution(third_place_rankings, third_place_combinations)
+        if third_place_combinations is not None
+        else None
     )
+    final_result: MatchResult | None = None
+    first_knockout_round: str | None = None
+    first_knockout_teams: set[str] = set()
+    teams_by_round: dict[str, set[str]] = {
+        ROUND_OF_32: set(),
+        ROUND_OF_16: set(),
+        QUARTER_FINAL: set(),
+        SEMI_FINAL: set(),
+    }
 
-    semifinal_fixtures = _build_semifinal_fixtures(quarterfinal_winners)
-    semifinal_results, semifinal_winners = simulate_knockout_round(
-        semifinal_fixtures,
-        ratings,
-        rng=rng,
-    )
+    for fixture in knockout_fixtures:
+        resolved_fixture = resolve_knockout_fixture(
+            fixture=fixture,
+            group_outcomes=group_outcomes,
+            match_results=match_results_by_id,
+            third_place_rankings=third_place_rankings,
+            used_third_place_groups=used_third_place_groups,
+            third_place_placeholder_resolution=third_place_placeholder_resolution,
+        )
+        if first_knockout_round is None:
+            first_knockout_round = resolved_fixture.stage
+        if resolved_fixture.stage == first_knockout_round:
+            first_knockout_teams.update({resolved_fixture.team_a, resolved_fixture.team_b})
+        if resolved_fixture.stage in teams_by_round:
+            teams_by_round[resolved_fixture.stage].update(
+                {resolved_fixture.team_a, resolved_fixture.team_b}
+            )
 
-    final_fixture = MatchFixture(
-        match_id="final",
-        stage="final",
-        team_a=semifinal_winners[0],
-        team_b=semifinal_winners[1],
-    )
-    final_results, final_winners = simulate_knockout_round([final_fixture], ratings, rng=rng)
-    champion = final_winners[0]
-    runner_up = _loser(final_results[0])
+        result = simulate_knockout_match(resolved_fixture, ratings, rng=rng)
+        knockout_results.append(result)
+        match_results_by_id[result.match_id] = result
+        if resolved_fixture.stage == FINAL:
+            final_result = result
 
-    quarterfinalists = {team for fixture in quarterfinal_fixtures for team in (fixture.team_a, fixture.team_b)}
+    if final_result is None:
+        raise ValueError("Knockout bracket must contain a final match")
+
+    champion = final_result.winner
+    runner_up = _loser(final_result)
     all_teams = {team for teams in groups.values() for team in teams}
 
     return TournamentOutcome(
         champion=champion,
         runner_up=runner_up,
-        semifinalists=set(quarterfinal_winners),
-        quarterfinalists=quarterfinalists,
-        group_stage_eliminated=all_teams - quarterfinalists,
+        semifinalists=teams_by_round[SEMI_FINAL],
+        quarterfinalists=teams_by_round[QUARTER_FINAL],
+        round_of_16=teams_by_round[ROUND_OF_16],
+        round_of_32=teams_by_round[ROUND_OF_32],
+        group_stage_eliminated=all_teams - first_knockout_teams,
         group_outcomes=group_outcomes,
         match_results=[
             *_group_match_results(group_outcomes),
-            *quarterfinal_results,
-            *semifinal_results,
-            *final_results,
+            *knockout_results,
         ],
     )
-
-
-def _validate_mini_tournament_groups(groups: dict[str, list[str]]) -> None:
-    missing = set(REQUIRED_MINI_TOURNAMENT_GROUPS) - set(groups)
-    extra = set(groups) - set(REQUIRED_MINI_TOURNAMENT_GROUPS)
-    if missing or extra:
-        raise ValueError("Mini tournament V1 requires exactly groups A, B, C and D")
-
-
-def _build_quarterfinal_fixtures() -> list[MatchFixture]:
-    return [
-        MatchFixture("quarterfinal_1", "quarterfinal", None, None, source_a="winner_group_A", source_b="runner_up_group_B"),
-        MatchFixture("quarterfinal_2", "quarterfinal", None, None, source_a="winner_group_B", source_b="runner_up_group_A"),
-        MatchFixture("quarterfinal_3", "quarterfinal", None, None, source_a="winner_group_C", source_b="runner_up_group_D"),
-        MatchFixture("quarterfinal_4", "quarterfinal", None, None, source_a="winner_group_D", source_b="runner_up_group_C"),
-    ]
-
-
-def _build_semifinal_fixtures(quarterfinal_winners: list[str]) -> list[MatchFixture]:
-    return [
-        MatchFixture("semifinal_1", "semifinal", quarterfinal_winners[0], quarterfinal_winners[1]),
-        MatchFixture("semifinal_2", "semifinal", quarterfinal_winners[2], quarterfinal_winners[3]),
-    ]
 
 
 def _group_match_results(group_outcomes: dict[str, GroupOutcome]) -> list[MatchResult]:
     return [
         result
-        for group in REQUIRED_MINI_TOURNAMENT_GROUPS
+        for group in group_outcomes
         for result in group_outcomes[group].match_results
     ]
 

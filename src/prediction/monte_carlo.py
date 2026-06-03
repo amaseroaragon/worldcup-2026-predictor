@@ -9,6 +9,8 @@ from src.prediction.tournament import simulate_tournament_once
 def run_monte_carlo(
     groups: dict[str, list[str]],
     ratings: dict[str, float],
+    knockout_matches: list[dict[str, str]],
+    third_place_combinations: dict[str, dict[str, str]] | None = None,
     simulations: int = 1000,
     seed: int | None = None,
 ) -> dict:
@@ -30,6 +32,8 @@ def run_monte_carlo(
         outcome = simulate_tournament_once(
             groups=groups,
             ratings=ratings,
+            knockout_matches=knockout_matches,
+            third_place_combinations=third_place_combinations,
             rng=rng,
         )
 
