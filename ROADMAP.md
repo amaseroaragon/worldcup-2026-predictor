@@ -62,9 +62,9 @@
 
 ### Group Stage
 
-* [ ] Simulate all group matches
-* [ ] Compute standings
-* [ ] Implement tie-breakers
+* [x] Simulate all group matches
+* [x] Compute standings
+* [x] Implement tie-breakers
 * [ ] Handle best third-placed teams
 
 ### Knockout Stage
