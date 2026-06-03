@@ -1,0 +1,50 @@
+from __future__ import annotations
+
+import random
+from collections import defaultdict
+
+from src.prediction.tournament import simulate_tournament_once
+
+
+def run_monte_carlo(
+    groups: dict[str, list[str]],
+    ratings: dict[str, float],
+    simulations: int = 1000,
+    seed: int | None = None,
+) -> dict:
+    if simulations <= 0:
+        raise ValueError("simulations must be greater than 0")
+    if not groups:
+        raise ValueError("groups must not be empty")
+    if not ratings:
+        raise ValueError("ratings must not be empty")
+
+    rng = random.Random(seed)
+    teams = [team for group_teams in groups.values() for team in group_teams]
+    counts = {
+        team: defaultdict(int)
+        for team in teams
+    }
+
+    for _ in range(simulations):
+        outcome = simulate_tournament_once(
+            groups=groups,
+            ratings=ratings,
+            rng=rng,
+        )
+
+        if outcome.champion is not None:
+            counts[outcome.champion]["champion"] += 1
+        if outcome.runner_up is not None:
+            counts[outcome.runner_up]["runner_up"] += 1
+        for team in outcome.semifinalists:
+            counts[team]["semifinal"] += 1
+
+    return {
+        team: {
+            "champion": counts[team]["champion"] / simulations,
+            "runner_up": counts[team]["runner_up"] / simulations,
+            "semifinal": counts[team]["semifinal"] / simulations,
+        }
+        for team in teams
+    }
