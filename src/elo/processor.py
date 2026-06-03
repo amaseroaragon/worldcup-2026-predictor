@@ -2,8 +2,32 @@ from collections import defaultdict
 
 import pandas as pd
 
-from src.elo.config import BASE_ELO, K_FACTOR, HOME_ADVANTAGE
+from src.elo.config import BASE_ELO, HOME_ADVANTAGE
+from src.elo.context import MatchContext, get_k_factor
 from src.elo.update import match_result, update_rating
+
+
+CONTEXT_COLUMNS = {
+    "tournament",
+    "importance",
+}
+
+
+def _row_value(row: pd.Series, *columns: str):
+    for column in columns:
+        if column in row.index and not pd.isna(row[column]):
+            return row[column]
+    return None
+
+
+def _match_context_from_row(row: pd.Series) -> MatchContext | None:
+    if not CONTEXT_COLUMNS.intersection(row.index):
+        return None
+
+    return MatchContext(
+        tournament=_row_value(row, "tournament"),
+        importance=_row_value(row, "importance"),
+    )
 
 
 def process_matches(df: pd.DataFrame) -> pd.DataFrame:
@@ -24,6 +48,9 @@ def process_matches(df: pd.DataFrame) -> pd.DataFrame:
         away_score = row["away_score"]
 
         neutral = row.get("neutral", False)
+        context = _match_context_from_row(row)
+        goal_diff = home_score - away_score
+        k_factor = get_k_factor(context)
 
         # Current ratings
         home_elo_before = ratings[home_team]
@@ -45,14 +72,16 @@ def process_matches(df: pd.DataFrame) -> pd.DataFrame:
             rating=adjusted_home_elo,
             opponent_rating=away_elo_before,
             actual_score=home_result,
-            k_factor=K_FACTOR,
+            k_factor=k_factor,
+            goal_diff=goal_diff,
         )
 
         away_elo_after = update_rating(
             rating=away_elo_before,
             opponent_rating=adjusted_home_elo,
             actual_score=away_result,
-            k_factor=K_FACTOR,
+            k_factor=k_factor,
+            goal_diff=goal_diff,
         )
 
         # Remove temporary home advantage inflation

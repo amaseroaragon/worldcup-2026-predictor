@@ -1,0 +1,1026 @@
+{
+  "_schema_version": 1,
+  "_description": "K-factor mapping by tournament for World Cup 2026 Predictor. Based on FIFA ranking importance bands. Tournament-only mapping cannot always infer stage, match calendar window, or PSO.",
+  "_fifa_importance_bands": {
+    "5": "Friendly outside International Match Calendar windows",
+    "10": "Friendly during International Match Calendar windows",
+    "15": "Group phase matches of Nations League competitions / minor competitive regional tournaments fallback",
+    "25": "Nations League play-off/final matches and qualification matches for confederation finals / FIFA World Cup",
+    "35": "Confederation final competitions up until QF stage",
+    "40": "Confederation final competitions from QF stage onwards and FIFA Confederations Cup",
+    "50": "FIFA World Cup final competition up until QF stage",
+    "60": "FIFA World Cup final competition from QF stage onwards"
+  },
+  "tournaments": {
+    "Friendly": {
+      "default_k": 10,
+      "category": "friendly",
+      "stage_sensitive": false,
+      "outside_calendar_window_k": 5,
+      "note": "Tournament name alone cannot determine FIFA window; default assumes in-window friendly."
+    },
+    "British Home Championship": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Évence Coppée Trophy": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Muratti Vase": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Copa Lipton": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Copa Newton": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Copa Premio Honor Argentino": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Olympic Games": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Copa Premio Honor Uruguayo": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Far Eastern Championship Games": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Copa Roca": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Copa América": {
+      "default_k": 35,
+      "category": "confederation_final_competition",
+      "stage_sensitive": true,
+      "qf_onwards_k": 40
+    },
+    "Inter-Allied Games": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Peace Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Open International Championship": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Soccer Ashes": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Copa Chevallier Boutell": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Nordic Championship": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Central European International Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Baltic Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Balkan Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Central American and Caribbean Games": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "FIFA World Cup": {
+      "default_k": 50,
+      "category": "fifa_world_cup_final",
+      "stage_sensitive": true,
+      "qf_onwards_k": 60
+    },
+    "Copa Rio Branco": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "FIFA World Cup qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "Bolivarian Games": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "CCCF Championship": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "NAFC Championship": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Copa Oswaldo Cruz": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Asian Games": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Pan American Championship": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Copa del Pacífico": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Copa Bernardo O'Higgins": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "AFC Asian Cup qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "Atlantic Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "AFC Asian Cup": {
+      "default_k": 35,
+      "category": "confederation_final_competition",
+      "stage_sensitive": true,
+      "qf_onwards_k": 40
+    },
+    "African Cup of Nations": {
+      "default_k": 35,
+      "category": "confederation_final_competition",
+      "stage_sensitive": true,
+      "qf_onwards_k": 40
+    },
+    "Copa Paz del Chaco": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Merdeka Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "UEFA Euro qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "Southeast Asian Peninsular Games": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "African Friendship Games": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "UEFA Euro": {
+      "default_k": 35,
+      "category": "confederation_final_competition",
+      "stage_sensitive": true,
+      "qf_onwards_k": 40
+    },
+    "Windward Islands Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "African Cup of Nations qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "Vietnam Independence Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Copa Carlos Dittborn": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Phillip Seaga Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "CONCACAF Championship": {
+      "default_k": 35,
+      "category": "confederation_final_competition",
+      "stage_sensitive": true,
+      "qf_onwards_k": 40
+    },
+    "Copa Juan Pinto Durán": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Arab Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "South Pacific Games": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Zambian Independence Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "CONCACAF Championship qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "Copa Artigas": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "All-African Games": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "GaNEFo": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Copa América qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "King's Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Gulf Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Indonesia Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Korea Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Palestine Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Brazil Independence Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Copa Ramón Castilla": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Oceania Nations Cup": {
+      "default_k": 35,
+      "category": "confederation_final_competition",
+      "stage_sensitive": true,
+      "qf_onwards_k": 40
+    },
+    "CECAFA Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Kuneitra Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Copa Félix Bogado": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Real Madrid 75th Anniversary Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Beijing International Friendship Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Southeast Asian Games": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Kirin Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "CFU Caribbean Cup qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "CFU Caribbean Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Amílcar Cabral Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "FIFA 75th Anniversary Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Indian Ocean Island Games": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Guangzhou International Friendship Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Mundialito": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "South Pacific Mini Games": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "West African Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Nehru Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Merlion Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Trans-Tasman Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Great Wall Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "South Asian Games": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "UDEAC Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Rous Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "CONMEBOL–UEFA Cup of Champions": {
+      "default_k": 40,
+      "category": "confederation_or_intercontinental_final",
+      "stage_sensitive": false
+    },
+    "Miami Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Lunar New Year Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Arab Cup qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "Tournoi de France": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Malta International Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Four Nations Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Matthews Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Tournament Burkina Faso": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Marlboro Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Melanesia Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Island Games": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "NAFU Championship": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Dynasty Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Dakar Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "UNCAF Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Scania 100 Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Gold Cup": {
+      "default_k": 35,
+      "category": "confederation_final_competition",
+      "stage_sensitive": true,
+      "qf_onwards_k": 40
+    },
+    "USA Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Jordan International Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Confederations Cup": {
+      "default_k": 40,
+      "category": "confederation_or_intercontinental_final",
+      "stage_sensitive": false
+    },
+    "East Asian Games": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "United Arab Emirates Friendship Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Joe Robbie Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Oceania Nations Cup qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "Simba Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "SAFF Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "AFF Championship": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "King Hassan II Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Cyprus International Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Dunhill Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "COSAFA Cup qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "COSAFA Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Gold Cup qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "AFF Championship qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "SKN Football Festival": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Four Nations' Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "UNIFFAC Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "WAFF Championship": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Millennium Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Cup of Ancient Civilizations": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Prime Minister's Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Unity Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "The Other Final": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "EAFF Championship": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "TIFOCO Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Afro-Asian Games": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "AFC Challenge Cup": {
+      "default_k": 35,
+      "category": "confederation_final_competition",
+      "stage_sensitive": true,
+      "qf_onwards_k": 40
+    },
+    "FIFI Wild Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "ELF Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Viva World Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "AFC Challenge Cup qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "Coupe de l'Outre-Mer": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "VFF Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Corsica Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Dragon Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "ABCS Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Nile Basin Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Nations Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Copa Confraternidad": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Pacific Games": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Superclásico de las Américas": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Palestine International Championship": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Philippine Peace Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Kirin Challenge Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "International Tournament of Peoples, Cultures and Tribes": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Tynwald Hill Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "OSN Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "CONIFA World Football Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Niamh Challenge Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "CONIFA European Football Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Benedikt Fontana Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "ConIFA Challenger Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Hungary Heritage Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "World Unity Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "AFC Solidarity Cup": {
+      "default_k": 35,
+      "category": "confederation_final_competition",
+      "stage_sensitive": true,
+      "qf_onwards_k": 40
+    },
+    "Pacific Mini Games": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Intercontinental Cup": {
+      "default_k": 40,
+      "category": "confederation_or_intercontinental_final",
+      "stage_sensitive": false
+    },
+    "UEFA Nations League": {
+      "default_k": 15,
+      "category": "nations_league",
+      "stage_sensitive": true,
+      "playoff_or_final_k": 25
+    },
+    "CONCACAF Nations League qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "Atlantic Heritage Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Inter Games": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "CONCACAF Nations League": {
+      "default_k": 15,
+      "category": "nations_league",
+      "stage_sensitive": true,
+      "playoff_or_final_k": 25
+    },
+    "CONIFA World Cup qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "Three Nations Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Mahinda Rajapaksa Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Navruz Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "CONIFA Africa Football Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "CONIFA South America Football Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "MSG Prime Minister's Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Tri Nation Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "CAFA Nations Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Mauritius Four Nations Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "CONIFA World Football Cup qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "CONIFA Asia Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "FIFA Series": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Marianas Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Tri-Nations Series": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "ASEAN Championship qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "ASEAN Championship": {
+      "default_k": 35,
+      "category": "confederation_final_competition",
+      "stage_sensitive": true,
+      "qf_onwards_k": 40
+    },
+    "EAFF Championship qualification": {
+      "default_k": 25,
+      "category": "qualification",
+      "stage_sensitive": false
+    },
+    "Mapinduzi Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Canadian Shield": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Outrigger Challenge Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "South Asian Super Cup": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "CONCACAF Series": {
+      "default_k": 15,
+      "category": "regional_competitive_fallback",
+      "stage_sensitive": false
+    },
+    "Al Ain International Cup": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Morocco, Capital of African Football": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Mukuru 4 Nations": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    },
+    "Diamond Jubilee International Football Tournament": {
+      "default_k": 10,
+      "category": "friendly_or_minor_tournament_fallback",
+      "stage_sensitive": false
+    }
+  }
+}

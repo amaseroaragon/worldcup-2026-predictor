@@ -1,6 +1,16 @@
-from src.elo.expected import expected_score
+import math
 
-def match_result(home_score: int, away_score: int) -> tuple[float, float]:
+from src.elo.expected import expected_score
+from src.elo.context import MatchContext, get_k_factor
+
+
+MAX_MARGIN_OF_VICTORY_FACTOR = 2.0
+
+
+def match_result(
+    home_score: int,
+    away_score: int,
+) -> tuple[float, float]:
     """
     Convert match result into Elo scores.
 
@@ -17,7 +27,28 @@ def match_result(home_score: int, away_score: int) -> tuple[float, float]:
     return 0.5, 0.5
 
 
-def update_rating(rating: float, opponent_rating: float, actual_score: float, k_factor: float) -> float:
+def margin_of_victory_factor(goal_diff: int | float) -> float:
+    """
+    Return a capped multiplier for the goal difference.
+    """
+
+    if goal_diff == 0:
+        return 1.0
+
+    return min(
+        max(1.0, math.log(abs(goal_diff) + 1)),
+        MAX_MARGIN_OF_VICTORY_FACTOR,
+    )
+
+
+def update_rating(
+    rating: float,
+    opponent_rating: float,
+    actual_score: float,
+    k_factor: float | None = None,
+    context: MatchContext | None = None,
+    goal_diff: int | float = 0,
+) -> float:
     """
     Update Elo rating for one team.
 
@@ -27,4 +58,10 @@ def update_rating(rating: float, opponent_rating: float, actual_score: float, k_
     - 0.0 loss
     """
     expected = expected_score(rating, opponent_rating)
-    return rating + k_factor * (actual_score - expected)
+    resolved_k_factor = k_factor if k_factor is not None else get_k_factor(context)
+    return (
+        rating
+        + resolved_k_factor
+        * margin_of_victory_factor(goal_diff)
+        * (actual_score - expected)
+    )
