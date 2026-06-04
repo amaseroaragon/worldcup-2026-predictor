@@ -1,4 +1,7 @@
 import json
+from contextlib import contextmanager
+from pathlib import Path
+from unittest.mock import mock_open, patch
 
 import pytest
 
@@ -12,36 +15,28 @@ from src.prediction.config import (
 )
 
 
-def write_groups_config(tmp_path, data):
-    path = tmp_path / "groups.json"
-    path.write_text(json.dumps(data), encoding="utf-8")
-    return path
+CONFIG_PATH = Path("config.json")
 
 
-def write_knockouts_config(tmp_path, data):
-    path = tmp_path / "knockouts.json"
-    path.write_text(json.dumps(data), encoding="utf-8")
-    return path
+@contextmanager
+def mocked_config(data):
+    with patch("pathlib.Path.exists", return_value=True), patch(
+        "pathlib.Path.open",
+        mock_open(read_data=json.dumps(data)),
+    ):
+        yield CONFIG_PATH
 
 
-def write_third_place_combinations_config(tmp_path, data):
-    path = tmp_path / "third_place_combinations.json"
-    path.write_text(json.dumps(data), encoding="utf-8")
-    return path
-
-
-def test_load_groups_config_returns_groups_from_json(tmp_path):
-    path = write_groups_config(
-        tmp_path,
+def test_load_groups_config_returns_groups_from_json():
+    with mocked_config(
         {
             "groups": {
                 "A": ["Mexico", "South Africa", "Team A3", "Team A4"],
                 "B": ["Canada", "Team B2", "Team B3", "Team B4"],
             }
-        },
-    )
-
-    groups = load_groups_config(path)
+        }
+    ) as path:
+        groups = load_groups_config(path)
 
     assert groups == {
         "A": ["Mexico", "South Africa", "Team A3", "Team A4"],
@@ -49,30 +44,28 @@ def test_load_groups_config_returns_groups_from_json(tmp_path):
     }
 
 
-def test_load_groups_config_rejects_missing_file(tmp_path):
-    with pytest.raises(FileNotFoundError, match="does not exist"):
-        load_groups_config(tmp_path / "missing.json")
+def test_load_groups_config_rejects_missing_file():
+    with patch("pathlib.Path.exists", return_value=False):
+        with pytest.raises(FileNotFoundError, match="does not exist"):
+            load_groups_config("missing.json")
 
 
-def test_load_groups_config_rejects_missing_groups_key(tmp_path):
-    path = write_groups_config(tmp_path, {"teams": {}})
-
-    with pytest.raises(ValueError, match="'groups' key"):
-        load_groups_config(path)
-
-
-def test_load_groups_config_rejects_group_without_four_teams(tmp_path):
-    path = write_groups_config(tmp_path, {"groups": {"A": ["Mexico", "Canada", "Japan"]}})
-
-    with pytest.raises(ValueError, match="exactly 4 teams"):
-        load_groups_config(path)
+def test_load_groups_config_rejects_missing_groups_key():
+    with mocked_config({"teams": {}}) as path:
+        with pytest.raises(ValueError, match="'groups' key"):
+            load_groups_config(path)
 
 
-def test_load_groups_config_rejects_non_string_team_names(tmp_path):
-    path = write_groups_config(tmp_path, {"groups": {"A": ["Mexico", "Canada", "Japan", 123]}})
+def test_load_groups_config_rejects_group_without_four_teams():
+    with mocked_config({"groups": {"A": ["Mexico", "Canada", "Japan"]}}) as path:
+        with pytest.raises(ValueError, match="exactly 4 teams"):
+            load_groups_config(path)
 
-    with pytest.raises(ValueError, match="string team names"):
-        load_groups_config(path)
+
+def test_load_groups_config_rejects_non_string_team_names():
+    with mocked_config({"groups": {"A": ["Mexico", "Canada", "Japan", 123]}}) as path:
+        with pytest.raises(ValueError, match="string team names"):
+            load_groups_config(path)
 
 
 def test_default_world_cup_2026_groups_config_is_loadable():
@@ -81,9 +74,8 @@ def test_default_world_cup_2026_groups_config_is_loadable():
     assert set(groups) == set("ABCDEFGHIJKL")
 
 
-def test_load_knockouts_config_returns_matches_from_json(tmp_path):
-    path = write_knockouts_config(
-        tmp_path,
+def test_load_knockouts_config_returns_matches_from_json():
+    with mocked_config(
         {
             "matches": [
                 {
@@ -93,10 +85,9 @@ def test_load_knockouts_config_returns_matches_from_json(tmp_path):
                     "away": "2B",
                 }
             ]
-        },
-    )
-
-    matches = load_knockouts_config(path)
+        }
+    ) as path:
+        matches = load_knockouts_config(path)
 
     assert matches == [
         {
@@ -108,18 +99,16 @@ def test_load_knockouts_config_returns_matches_from_json(tmp_path):
     ]
 
 
-def test_load_knockouts_config_rejects_missing_matches_key(tmp_path):
-    path = write_knockouts_config(tmp_path, {"rounds": []})
+def test_load_knockouts_config_rejects_missing_matches_key():
+    with mocked_config({"rounds": []}) as path:
+        with pytest.raises(ValueError, match="'matches' key"):
+            load_knockouts_config(path)
 
-    with pytest.raises(ValueError, match="'matches' key"):
-        load_knockouts_config(path)
 
-
-def test_load_knockouts_config_rejects_missing_match_fields(tmp_path):
-    path = write_knockouts_config(tmp_path, {"matches": [{"match_id": "M73"}]})
-
-    with pytest.raises(ValueError, match="missing required fields"):
-        load_knockouts_config(path)
+def test_load_knockouts_config_rejects_missing_match_fields():
+    with mocked_config({"matches": [{"match_id": "M73"}]}) as path:
+        with pytest.raises(ValueError, match="missing required fields"):
+            load_knockouts_config(path)
 
 
 def test_default_world_cup_2026_knockouts_config_is_loadable():
@@ -130,9 +119,8 @@ def test_default_world_cup_2026_knockouts_config_is_loadable():
     assert matches[-1]["match_id"] == "M104"
 
 
-def test_load_third_place_combinations_config_returns_placeholder_resolutions(tmp_path):
-    path = write_third_place_combinations_config(
-        tmp_path,
+def test_load_third_place_combinations_config_returns_placeholder_resolutions():
+    with mocked_config(
         {
             "by_best_thirds": {
                 "ABCDEFGH": {
@@ -142,10 +130,9 @@ def test_load_third_place_combinations_config_returns_placeholder_resolutions(tm
                     }
                 }
             }
-        },
-    )
-
-    combinations = load_third_place_combinations_config(path)
+        }
+    ) as path:
+        combinations = load_third_place_combinations_config(path)
 
     assert combinations == {
         "ABCDEFGH": {
@@ -155,11 +142,10 @@ def test_load_third_place_combinations_config_returns_placeholder_resolutions(tm
     }
 
 
-def test_load_third_place_combinations_config_rejects_missing_by_best_thirds(tmp_path):
-    path = write_third_place_combinations_config(tmp_path, {"combinations": {}})
-
-    with pytest.raises(ValueError, match="'by_best_thirds' key"):
-        load_third_place_combinations_config(path)
+def test_load_third_place_combinations_config_rejects_missing_by_best_thirds():
+    with mocked_config({"combinations": {}}) as path:
+        with pytest.raises(ValueError, match="'by_best_thirds' key"):
+            load_third_place_combinations_config(path)
 
 
 def test_default_world_cup_2026_third_place_combinations_config_is_loadable():

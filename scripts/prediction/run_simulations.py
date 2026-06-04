@@ -16,12 +16,9 @@ from src.prediction.config import (
     load_knockouts_config,
     load_third_place_combinations_config,
 )
-from src.prediction.export import export_probabilities
+from src.prediction.export import DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH, export_probabilities
 from src.prediction.monte_carlo import run_monte_carlo
 from src.prediction.ratings import load_ratings
-
-
-OUTPUT_PATH = Path("data/processed/world_cup_probabilities.csv")
 
 
 def parse_args() -> argparse.Namespace:
@@ -30,7 +27,12 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run V1 World Cup Monte Carlo simulations.")
     parser.add_argument("--simulations", type=int, default=1000, help="Number of tournament simulations to run.")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducible simulations.")
-    parser.add_argument("--output", type=Path, default=OUTPUT_PATH, help="CSV output path.")
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH,
+        help="JSON output path for aggregate probabilities.",
+    )
     parser.add_argument(
         "--groups-config",
         type=Path,

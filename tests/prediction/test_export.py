@@ -1,9 +1,11 @@
 import json
+from unittest.mock import mock_open, patch
 
 import pandas as pd
 import pytest
 
 from src.prediction.export import (
+    DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH,
     PROBABILITY_COLUMNS,
     build_match_predictions,
     build_predicted_bracket_predictions,
@@ -23,6 +25,12 @@ def sample_probabilities() -> dict:
     }
 
 
+def test_default_probability_output_is_json_under_predictions_outputs():
+    assert DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH.as_posix() == (
+        "outputs/predictions/world_cup_probabilities.json"
+    )
+
+
 def test_probabilities_to_dataframe_returns_expected_columns_sorted_by_champion_probability():
     df = probabilities_to_dataframe(sample_probabilities())
 
@@ -38,15 +46,20 @@ def test_probabilities_to_dataframe_exports_float_probabilities_between_zero_and
         assert df[column].between(0, 1).all()
 
 
-def test_export_probabilities_writes_csv(tmp_path):
-    output_path = tmp_path / "world_cup_probabilities.csv"
+def test_export_probabilities_writes_json():
+    output_path = "outputs/predictions/world_cup_probabilities.json"
 
-    df = export_probabilities(sample_probabilities(), output_path)
-    written = pd.read_csv(output_path)
+    with patch("pathlib.Path.mkdir"), patch(
+        "pathlib.Path.open",
+        mock_open(),
+    ) as mocked_open:
+        df = export_probabilities(sample_probabilities(), output_path)
 
-    assert output_path.exists()
-    assert written.columns.tolist() == PROBABILITY_COLUMNS
-    assert written["team"].tolist() == df["team"].tolist()
+    written = "".join(call.args[0] for call in mocked_open().write.call_args_list)
+    rows = json.loads(written)
+
+    assert rows[0]["team"] == df.loc[0, "team"]
+    assert rows[0]["champion_probability"] == df.loc[0, "champion_probability"]
 
 
 def test_build_match_predictions_returns_prediction_records():
@@ -110,8 +123,8 @@ def test_build_match_predictions_includes_knockout_round_metadata():
     assert predictions[0].group is None
 
 
-def test_export_match_predictions_json_writes_structured_file(tmp_path):
-    output_path = tmp_path / "tournament_predictions.json"
+def test_export_match_predictions_json_writes_structured_file():
+    output_path = "outputs/predictions/tournament_predictions.json"
     predictions = [
         MatchPrediction(
             match_id="group_A_1",
@@ -129,16 +142,17 @@ def test_export_match_predictions_json_writes_structured_file(tmp_path):
         )
     ]
 
-    payload = export_match_predictions_json(
-        predictions,
-        output_path,
-        metadata={"simulations": 10},
-    )
+    with patch("pathlib.Path.mkdir"), patch(
+        "pathlib.Path.open",
+        mock_open(),
+    ) as mocked_open:
+        payload = export_match_predictions_json(
+            predictions,
+            output_path,
+            metadata={"simulations": 10},
+        )
 
-    with output_path.open(encoding="utf-8") as file:
-        written = json.load(file)
-
-    assert output_path.exists()
+    written = json.loads("".join(call.args[0] for call in mocked_open().write.call_args_list))
     assert payload == written
     assert written["metadata"]["simulations"] == 10
     assert written["matches"][0]["user_home_goals"] is None

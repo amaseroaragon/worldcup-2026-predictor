@@ -18,6 +18,7 @@ from src.prediction.config import (
 )
 from src.prediction.export import (
     DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH,
+    DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH,
     build_predicted_bracket_predictions,
     export_match_predictions_json,
     export_probabilities,
@@ -27,16 +28,18 @@ from src.prediction.monte_carlo import run_monte_carlo
 from src.prediction.ratings import load_ratings
 
 
-OUTPUT_PATH = Path("data/processed/world_cup_probabilities.csv")
-
-
 def parse_args() -> argparse.Namespace:
     """Parse prediction pipeline CLI arguments."""
 
     parser = argparse.ArgumentParser(description="Run the V1 prediction pipeline end to end.")
     parser.add_argument("--simulations", type=int, default=1000, help="Number of simulations to run.")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducible simulations.")
-    parser.add_argument("--output", type=Path, default=OUTPUT_PATH, help="CSV output path.")
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH,
+        help="JSON output path for aggregate probabilities.",
+    )
     parser.add_argument(
         "--predictions-output",
         type=Path,

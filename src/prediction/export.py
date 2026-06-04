@@ -30,6 +30,9 @@ PROBABILITY_VALUE_COLUMNS = PROBABILITY_COLUMNS[1:]
 DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH = Path(
     "outputs/predictions/tournament_predictions.json"
 )
+DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH = Path(
+    "outputs/predictions/world_cup_probabilities.json"
+)
 
 
 def probabilities_to_dataframe(probabilities: dict) -> pd.DataFrame:
@@ -52,14 +55,19 @@ def probabilities_to_dataframe(probabilities: dict) -> pd.DataFrame:
     )
 
 
-def export_probabilities(probabilities: dict, output_path: str | Path) -> pd.DataFrame:
-    """Write aggregate tournament probabilities to CSV."""
+def export_probabilities(
+    probabilities: dict,
+    output_path: str | Path = DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH,
+) -> pd.DataFrame:
+    """Write aggregate tournament probabilities to JSON."""
 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     df = probabilities_to_dataframe(probabilities)
-    df.to_csv(output_path, index=False)
+    rows = df.to_dict(orient="records")
+    with output_path.open("w", encoding="utf-8") as file:
+        json.dump(rows, file, ensure_ascii=False, indent=2)
 
     return df
 
