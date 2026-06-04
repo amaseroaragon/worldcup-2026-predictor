@@ -3,8 +3,10 @@ from __future__ import annotations
 import random
 from collections import defaultdict
 
+from src.prediction import config as prediction_config
+from src.prediction.dynamic_elo import update_dynamic_elo_ratings
 from src.prediction.match import simulate_match
-from src.prediction.models import GroupOutcome, MatchFixture, SimulationConfig
+from src.prediction.models import GroupOutcome, MatchFixture, MatchResult, SimulationConfig
 from src.prediction.recent_form import RecentFormRating
 from src.prediction.standings import build_group_standings
 from src.prediction.team_strength import TeamStrengthRating
@@ -39,7 +41,6 @@ def simulate_group_stage(
             raise ValueError(f"Missing Elo rating for: {missing}")
         fixtures_by_group[fixture.group].append(fixture)
 
-    outcomes = {}
     for group, group_fixtures in fixtures_by_group.items():
         teams = {team for fixture in group_fixtures for team in (fixture.team_a, fixture.team_b)}
         if len(teams) != TEAMS_PER_GROUP or len(group_fixtures) != MATCHES_PER_GROUP:
@@ -47,18 +48,24 @@ def simulate_group_stage(
                 f"Group {group} must have {TEAMS_PER_GROUP} teams and {MATCHES_PER_GROUP} fixtures"
             )
 
-        results = [
-            simulate_match(
-                fixture=fixture,
-                ratings=ratings,
-                rng=rng,
-                knockout=False,
-                max_goals=config.max_goals,
-                team_strength_ratings=team_strength_ratings,
-                recent_form_ratings=recent_form_ratings,
-            )
-            for fixture in group_fixtures
-        ]
+    results_by_group: dict[str, list[MatchResult]] = defaultdict(list)
+    for fixture in fixtures:
+        result = simulate_match(
+            fixture=fixture,
+            ratings=ratings,
+            rng=rng,
+            knockout=False,
+            max_goals=config.max_goals,
+            team_strength_ratings=team_strength_ratings,
+            recent_form_ratings=recent_form_ratings,
+        )
+        results_by_group[fixture.group].append(result)
+        if prediction_config.USE_DYNAMIC_ELO_GROUP_STAGE:
+            update_dynamic_elo_ratings(ratings, result, importance="group")
+
+    outcomes = {}
+    for group, group_fixtures in fixtures_by_group.items():
+        results = results_by_group[group]
         standings = build_group_standings(results)
 
         outcomes[group] = GroupOutcome(

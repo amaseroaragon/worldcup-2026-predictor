@@ -2,8 +2,7 @@ from __future__ import annotations
 
 import random
 
-from src.elo.context import MatchContext
-from src.elo.update import match_result, update_rating
+from src.prediction.dynamic_elo import update_dynamic_elo_ratings
 from src.prediction.match import simulate_match
 from src.prediction.models import GroupOutcome, GroupStandingRow, MatchFixture, MatchResult
 from src.prediction.recent_form import RecentFormRating
@@ -72,6 +71,7 @@ def resolve_knockout_fixture(
         source_a=fixture.source_a,
         source_b=fixture.source_b,
         date=fixture.date,
+        matchday=fixture.matchday,
     )
 
 
@@ -176,26 +176,7 @@ def update_knockout_elo_ratings(
     if fixture.stage not in DYNAMIC_ELO_KNOCKOUT_STAGES:
         return
 
-    team_a_rating = ratings[result.team_a]
-    team_b_rating = ratings[result.team_b]
-    result_a, result_b = match_result(result.goals_a, result.goals_b)
-    goal_diff = result.goals_a - result.goals_b
-    context = MatchContext(tournament="FIFA World Cup", importance=fixture.stage)
-
-    ratings[result.team_a] = update_rating(
-        rating=team_a_rating,
-        opponent_rating=team_b_rating,
-        actual_score=result_a,
-        context=context,
-        goal_diff=goal_diff,
-    )
-    ratings[result.team_b] = update_rating(
-        rating=team_b_rating,
-        opponent_rating=team_a_rating,
-        actual_score=result_b,
-        context=context,
-        goal_diff=goal_diff,
-    )
+    update_dynamic_elo_ratings(ratings, result, importance=fixture.stage)
 
 
 def _resolve_knockout_placeholder(

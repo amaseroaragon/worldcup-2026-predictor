@@ -11,10 +11,12 @@ ROOT_DIR = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT_DIR))
 
 from src.prediction.config import (
+    DEFAULT_WORLD_CUP_2026_GROUP_MATCHES_PATH,
     DEFAULT_WORLD_CUP_2026_GROUPS_PATH,
     DEFAULT_WORLD_CUP_2026_KNOCKOUTS_PATH,
     DEFAULT_WORLD_CUP_2026_THIRD_PLACE_COMBINATIONS_PATH,
     load_groups_config,
+    load_group_matches_config,
     load_knockouts_config,
     load_third_place_combinations_config,
 )
@@ -44,6 +46,12 @@ def parse_args() -> argparse.Namespace:
         help="JSON file with tournament groups.",
     )
     parser.add_argument(
+        "--group-matches-config",
+        type=Path,
+        default=DEFAULT_WORLD_CUP_2026_GROUP_MATCHES_PATH,
+        help="JSON file with ordered group-stage matches.",
+    )
+    parser.add_argument(
         "--knockouts-config",
         type=Path,
         default=DEFAULT_WORLD_CUP_2026_KNOCKOUTS_PATH,
@@ -69,6 +77,7 @@ def main() -> None:
     team_strength_ratings = build_team_strength_ratings(results)
     recent_form_ratings = build_recent_form_ratings(results)
     groups = load_groups_config(args.groups_config)
+    group_matches = load_group_matches_config(args.group_matches_config)
     knockout_matches = load_knockouts_config(args.knockouts_config)
     third_place_combinations = load_third_place_combinations_config(args.third_place_combinations_config)
 
@@ -82,6 +91,7 @@ def main() -> None:
         seed=args.seed,
         team_strength_ratings=team_strength_ratings,
         recent_form_ratings=recent_form_ratings,
+        group_matches=group_matches,
     )
 
     df = export_probabilities(probabilities, args.output)

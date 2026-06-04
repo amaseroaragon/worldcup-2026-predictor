@@ -6,10 +6,12 @@ from unittest.mock import mock_open, patch
 import pytest
 
 from src.prediction.config import (
+    DEFAULT_WORLD_CUP_2026_GROUP_MATCHES_PATH,
     DEFAULT_WORLD_CUP_2026_GROUPS_PATH,
     DEFAULT_WORLD_CUP_2026_KNOCKOUTS_PATH,
     DEFAULT_WORLD_CUP_2026_THIRD_PLACE_COMBINATIONS_PATH,
     load_groups_config,
+    load_group_matches_config,
     load_knockouts_config,
     load_third_place_combinations_config,
 )
@@ -72,6 +74,36 @@ def test_default_world_cup_2026_groups_config_is_loadable():
     groups = load_groups_config(DEFAULT_WORLD_CUP_2026_GROUPS_PATH)
 
     assert set(groups) == set("ABCDEFGHIJKL")
+
+
+def test_load_group_matches_config_generates_ids_and_orders_by_matchday_then_id():
+    with mocked_config(
+        {
+            "matches": [
+                {"match_id": "group_A_2", "group": "A", "matchday": 2, "home": "A", "away": "B"},
+                {"match_id": "group_A_3", "group": "A", "matchday": 1, "home": "C", "away": "D"},
+                {"match_id": "group_A_1", "group": "A", "matchday": 1, "home": "A", "away": "C"},
+                {"group": "B", "home": "E", "away": "F"},
+            ]
+        }
+    ) as path:
+        matches = load_group_matches_config(path)
+
+    assert [match["match_id"] for match in matches] == [
+        "group_B_1",
+        "group_A_1",
+        "group_A_3",
+        "group_A_2",
+    ]
+
+
+def test_default_world_cup_2026_group_matches_config_is_loadable():
+    matches = load_group_matches_config(DEFAULT_WORLD_CUP_2026_GROUP_MATCHES_PATH)
+
+    assert len(matches) == 72
+    assert [match["matchday"] for match in matches] == sorted(
+        match["matchday"] for match in matches
+    )
 
 
 def test_load_knockouts_config_returns_matches_from_json():

@@ -127,13 +127,7 @@ def test_simulate_tournament_once_uses_updated_elo_in_later_round(monkeypatch):
         rng=random.Random(42),
     )
 
-    assert observed_ratings["M5"] > ratings[
-        next(
-            result_team
-            for result_team in ratings
-            if ratings[result_team] == observed_ratings["M1"]
-        )
-    ]
+    assert observed_ratings["M5"] > observed_ratings["M1"]
 
 
 def test_simulate_tournament_once_fixed_elo_keeps_later_round_rating(monkeypatch):
@@ -157,6 +151,7 @@ def test_simulate_tournament_once_fixed_elo_keeps_later_round_rating(monkeypatch
         )
 
     monkeypatch.setattr("src.prediction.config.USE_DYNAMIC_ELO_KNOCKOUT", False)
+    monkeypatch.setattr("src.prediction.config.USE_DYNAMIC_ELO_GROUP_STAGE", False)
     monkeypatch.setattr(
         "src.prediction.tournament.simulate_knockout_match",
         fake_simulate_knockout_match,
@@ -170,3 +165,46 @@ def test_simulate_tournament_once_fixed_elo_keeps_later_round_rating(monkeypatch
     )
 
     assert observed_ratings["M5"] == ratings[observed_teams["M5"]]
+
+
+def test_simulate_tournament_once_shares_local_elo_from_groups_to_knockout(monkeypatch):
+    from src.prediction.group_stage import simulate_group_stage as real_simulate_group_stage
+
+    groups = mini_groups()
+    ratings = mini_ratings(groups)
+    initial_ratings = ratings.copy()
+    group_stage_ratings_id = None
+    first_knockout_ratings = None
+
+    def fake_simulate_group_stage(fixtures, local_ratings, **kwargs):
+        nonlocal group_stage_ratings_id
+        group_stage_ratings_id = id(local_ratings)
+        local_ratings["Team 1"] += 25
+        return real_simulate_group_stage(fixtures, local_ratings, **kwargs)
+
+    def fake_simulate_knockout_match(fixture, local_ratings, **kwargs):
+        nonlocal first_knockout_ratings
+        if first_knockout_ratings is None:
+            first_knockout_ratings = (id(local_ratings), local_ratings["Team 1"])
+        return MatchResult(
+            fixture.team_a,
+            fixture.team_b,
+            1,
+            0,
+            fixture.team_a,
+            False,
+            "regular_time",
+            fixture.match_id,
+        )
+
+    monkeypatch.setattr("src.prediction.config.USE_DYNAMIC_ELO_GROUP_STAGE", False)
+    monkeypatch.setattr("src.prediction.tournament.simulate_group_stage", fake_simulate_group_stage)
+    monkeypatch.setattr(
+        "src.prediction.tournament.simulate_knockout_match",
+        fake_simulate_knockout_match,
+    )
+
+    simulate_tournament_once(groups, ratings, knockout_matches=mini_knockout_matches())
+
+    assert first_knockout_ratings == (group_stage_ratings_id, initial_ratings["Team 1"] + 25)
+    assert ratings == initial_ratings

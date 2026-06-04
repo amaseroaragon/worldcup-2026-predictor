@@ -33,6 +33,7 @@ def simulate_tournament_once(
     third_place_combinations: dict[str, dict[str, str]] | None = None,
     team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
     recent_form_ratings: dict[str, RecentFormRating] | None = None,
+    group_matches: list[dict[str, str | int]] | None = None,
 ) -> TournamentOutcome:
     """Simulate one full tournament from group stage through final."""
 
@@ -42,7 +43,7 @@ def simulate_tournament_once(
     rng = rng or random.Random()
     simulation_ratings = ratings.copy()
 
-    group_fixtures = build_group_stage_fixtures(groups)
+    group_fixtures = build_group_stage_fixtures(groups, group_matches)
     group_outcomes = simulate_group_stage(
         group_fixtures,
         simulation_ratings,

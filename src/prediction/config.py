@@ -7,6 +7,7 @@ from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_WORLD_CUP_2026_GROUPS_PATH = PROJECT_ROOT / "data/external/groups.json"
+DEFAULT_WORLD_CUP_2026_GROUP_MATCHES_PATH = PROJECT_ROOT / "data/external/group_matches.json"
 DEFAULT_WORLD_CUP_2026_KNOCKOUTS_PATH = PROJECT_ROOT / "data/external/knockouts.json"
 DEFAULT_WORLD_CUP_2026_THIRD_PLACE_COMBINATIONS_PATH = (
     PROJECT_ROOT / "data/external/third_place_combinations.json"
@@ -16,6 +17,7 @@ USE_RECENT_FORM = True
 RECENT_FORM_WEIGHT = 0.15
 RECENT_FORM_PRIMARY_WINDOW = 10
 USE_DYNAMIC_ELO_KNOCKOUT = True
+USE_DYNAMIC_ELO_GROUP_STAGE = True
 
 
 def load_groups_config(path: str | Path) -> dict[str, list[str]]:
@@ -47,6 +49,54 @@ def load_groups_config(path: str | Path) -> dict[str, list[str]]:
         loaded_groups[group] = teams
 
     return loaded_groups
+
+
+def load_group_matches_config(path: str | Path) -> list[dict[str, str | int]]:
+    """Load, normalize, and order group-stage match configuration."""
+    config_path = Path(path)
+    if not config_path.exists():
+        raise FileNotFoundError(f"Group matches config file does not exist: {config_path}")
+
+    with config_path.open(encoding="utf-8") as file:
+        data: Any = json.load(file)
+
+    if not isinstance(data, dict) or not isinstance(data.get("matches"), list):
+        raise ValueError("Group matches config must contain a 'matches' list")
+
+    group_counts: dict[str, int] = {}
+    loaded_matches: list[dict[str, str | int]] = []
+    required_fields = {"group", "home", "away"}
+    for index, match in enumerate(data["matches"], start=1):
+        if not isinstance(match, dict):
+            raise ValueError(f"Group match {index} must be an object")
+
+        missing_fields = required_fields - set(match)
+        if missing_fields:
+            missing = ", ".join(sorted(missing_fields))
+            raise ValueError(f"Group match {index} is missing required fields: {missing}")
+        if not all(isinstance(match[field], str) for field in required_fields):
+            raise ValueError(f"Group match {index} required fields must be strings")
+
+        group = match["group"]
+        group_counts[group] = group_counts.get(group, 0) + 1
+        match_id = match.get("match_id", f"group_{group}_{group_counts[group]}")
+        matchday = match.get("matchday", 0)
+        if not isinstance(match_id, str):
+            raise ValueError(f"Group match {index} match_id must be a string")
+        if not isinstance(matchday, int):
+            raise ValueError(f"Group match {index} matchday must be an integer")
+
+        loaded_matches.append(
+            {
+                "match_id": match_id,
+                "group": group,
+                "matchday": matchday,
+                "home": match["home"],
+                "away": match["away"],
+            }
+        )
+
+    return sorted(loaded_matches, key=lambda match: (match["matchday"], match["match_id"]))
 
 
 def load_knockouts_config(path: str | Path) -> list[dict[str, str]]:

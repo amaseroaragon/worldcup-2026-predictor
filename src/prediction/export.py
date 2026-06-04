@@ -100,6 +100,7 @@ def build_predicted_bracket_predictions(
     third_place_combinations: dict[str, dict[str, str]] | None = None,
     team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
     recent_form_ratings: dict[str, RecentFormRating] | None = None,
+    group_matches: list[dict[str, str | int]] | None = None,
 ) -> list[MatchPrediction]:
     """Build one frontend-ready predicted bracket from aggregate simulations."""
 
@@ -112,6 +113,7 @@ def build_predicted_bracket_predictions(
         groups,
         ratings,
         simulations_count,
+        group_matches,
     )
     group_outcomes = _build_predicted_group_outcomes(group_predictions)
     knockout_predictions = _build_knockout_stage_predictions(
@@ -215,11 +217,12 @@ def _build_group_stage_predictions(
     groups: dict[str, list[str]],
     ratings: dict[str, float],
     simulations_count: int,
+    group_matches: list[dict[str, str | int]] | None,
 ) -> list[MatchPrediction]:
     results_by_match_id = _results_by_match_id(outcomes)
     predictions = []
 
-    for fixture in build_group_stage_fixtures(groups):
+    for fixture in build_group_stage_fixtures(groups, group_matches):
         results = results_by_match_id[fixture.match_id]
         predictions.append(
             _prediction_from_results(

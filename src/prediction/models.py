@@ -15,6 +15,7 @@ class MatchFixture:
     source_a: str | None = None
     source_b: str | None = None
     date: str | None = None
+    matchday: int | None = None
 
 
 @dataclass(frozen=True)

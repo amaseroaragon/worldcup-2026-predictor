@@ -2,6 +2,7 @@ import random
 
 import pytest
 
+from src.prediction.models import MatchResult
 from src.prediction.fixtures import build_group_stage_fixtures
 from src.prediction.group_stage import simulate_group_stage
 from src.prediction.models import MatchFixture
@@ -87,3 +88,48 @@ def test_simulate_group_stage_rejects_non_group_stage_fixture():
 
     with pytest.raises(ValueError, match="stage='group'"):
         simulate_group_stage([fixture], {"Team 1": 1600.0, "Team 2": 1600.0})
+
+
+def test_simulate_group_stage_updates_elo_and_uses_it_in_later_matches(monkeypatch):
+    groups = {"A": ["Team 1", "Team 2", "Team 3", "Team 4"]}
+    fixtures = build_group_stage_fixtures(groups)
+    ratings = {team: 1500.0 for team in groups["A"]}
+    observed_team_1_ratings = []
+    observed_team_2_ratings = []
+
+    def fake_simulate_match(fixture, ratings, **kwargs):
+        if fixture.team_a == "Team 1":
+            observed_team_1_ratings.append(ratings["Team 1"])
+        if "Team 2" in {fixture.team_a, fixture.team_b}:
+            observed_team_2_ratings.append(ratings["Team 2"])
+        return MatchResult(
+            fixture.team_a,
+            fixture.team_b,
+            1,
+            0,
+            fixture.team_a,
+            False,
+            "regular_time",
+            fixture.match_id,
+        )
+
+    monkeypatch.setattr("src.prediction.group_stage.simulate_match", fake_simulate_match)
+
+    simulate_group_stage(fixtures, ratings)
+
+    assert ratings["Team 1"] > 1500.0
+    assert observed_team_1_ratings[1] > observed_team_1_ratings[0]
+    assert observed_team_2_ratings[1] < observed_team_2_ratings[0]
+
+
+def test_simulate_group_stage_fixed_elo_preserves_ratings(monkeypatch):
+    groups = {"A": ["Team 1", "Team 2", "Team 3", "Team 4"]}
+    fixtures = build_group_stage_fixtures(groups)
+    ratings = {team: 1500.0 for team in groups["A"]}
+    original_ratings = ratings.copy()
+
+    monkeypatch.setattr("src.prediction.config.USE_DYNAMIC_ELO_GROUP_STAGE", False)
+
+    simulate_group_stage(fixtures, ratings, rng=random.Random(42))
+
+    assert ratings == original_ratings

@@ -1,0 +1,436 @@
+{
+    "matches": [
+        {
+            "group": "A",
+            "matchday": 1,
+            "home": "Mexico",
+            "away": "South Africa"
+        },
+        {
+            "group": "A",
+            "matchday": 1,
+            "home": "South Korea",
+            "away": "Czech Republic"
+        },
+        {
+            "group": "A",
+            "matchday": 2,
+            "home": "Mexico",
+            "away": "South Korea"
+        },
+        {
+            "group": "A",
+            "matchday": 2,
+            "home": "South Africa",
+            "away": "Czech Republic"
+        },
+        {
+            "group": "A",
+            "matchday": 3,
+            "home": "Mexico",
+            "away": "Czech Republic"
+        },
+        {
+            "group": "A",
+            "matchday": 3,
+            "home": "South Africa",
+            "away": "South Korea"
+        },
+        {
+            "group": "B",
+            "matchday": 1,
+            "home": "Canada",
+            "away": "Bosnia and Herzegovina"
+        },
+        {
+            "group": "B",
+            "matchday": 1,
+            "home": "Qatar",
+            "away": "Switzerland"
+        },
+        {
+            "group": "B",
+            "matchday": 2,
+            "home": "Canada",
+            "away": "Qatar"
+        },
+        {
+            "group": "B",
+            "matchday": 2,
+            "home": "Bosnia and Herzegovina",
+            "away": "Switzerland"
+        },
+        {
+            "group": "B",
+            "matchday": 3,
+            "home": "Canada",
+            "away": "Switzerland"
+        },
+        {
+            "group": "B",
+            "matchday": 3,
+            "home": "Bosnia and Herzegovina",
+            "away": "Qatar"
+        },
+        {
+            "group": "C",
+            "matchday": 1,
+            "home": "Brazil",
+            "away": "Morocco"
+        },
+        {
+            "group": "C",
+            "matchday": 1,
+            "home": "Haiti",
+            "away": "Scotland"
+        },
+        {
+            "group": "C",
+            "matchday": 2,
+            "home": "Brazil",
+            "away": "Haiti"
+        },
+        {
+            "group": "C",
+            "matchday": 2,
+            "home": "Morocco",
+            "away": "Scotland"
+        },
+        {
+            "group": "C",
+            "matchday": 3,
+            "home": "Brazil",
+            "away": "Scotland"
+        },
+        {
+            "group": "C",
+            "matchday": 3,
+            "home": "Morocco",
+            "away": "Haiti"
+        },
+        {
+            "group": "D",
+            "matchday": 1,
+            "home": "United States",
+            "away": "Paraguay"
+        },
+        {
+            "group": "D",
+            "matchday": 1,
+            "home": "Australia",
+            "away": "Turkey"
+        },
+        {
+            "group": "D",
+            "matchday": 2,
+            "home": "United States",
+            "away": "Australia"
+        },
+        {
+            "group": "D",
+            "matchday": 2,
+            "home": "Paraguay",
+            "away": "Turkey"
+        },
+        {
+            "group": "D",
+            "matchday": 3,
+            "home": "United States",
+            "away": "Turkey"
+        },
+        {
+            "group": "D",
+            "matchday": 3,
+            "home": "Paraguay",
+            "away": "Australia"
+        },
+        {
+            "group": "E",
+            "matchday": 1,
+            "home": "Germany",
+            "away": "Curaçao"
+        },
+        {
+            "group": "E",
+            "matchday": 1,
+            "home": "Ivory Coast",
+            "away": "Ecuador"
+        },
+        {
+            "group": "E",
+            "matchday": 2,
+            "home": "Germany",
+            "away": "Ivory Coast"
+        },
+        {
+            "group": "E",
+            "matchday": 2,
+            "home": "Curaçao",
+            "away": "Ecuador"
+        },
+        {
+            "group": "E",
+            "matchday": 3,
+            "home": "Germany",
+            "away": "Ecuador"
+        },
+        {
+            "group": "E",
+            "matchday": 3,
+            "home": "Curaçao",
+            "away": "Ivory Coast"
+        },
+        {
+            "group": "F",
+            "matchday": 1,
+            "home": "Netherlands",
+            "away": "Japan"
+        },
+        {
+            "group": "F",
+            "matchday": 1,
+            "home": "Sweden",
+            "away": "Tunisia"
+        },
+        {
+            "group": "F",
+            "matchday": 2,
+            "home": "Netherlands",
+            "away": "Sweden"
+        },
+        {
+            "group": "F",
+            "matchday": 2,
+            "home": "Japan",
+            "away": "Tunisia"
+        },
+        {
+            "group": "F",
+            "matchday": 3,
+            "home": "Netherlands",
+            "away": "Tunisia"
+        },
+        {
+            "group": "F",
+            "matchday": 3,
+            "home": "Japan",
+            "away": "Sweden"
+        },
+        {
+            "group": "G",
+            "matchday": 1,
+            "home": "Belgium",
+            "away": "Egypt"
+        },
+        {
+            "group": "G",
+            "matchday": 1,
+            "home": "Iran",
+            "away": "New Zealand"
+        },
+        {
+            "group": "G",
+            "matchday": 2,
+            "home": "Belgium",
+            "away": "Iran"
+        },
+        {
+            "group": "G",
+            "matchday": 2,
+            "home": "Egypt",
+            "away": "New Zealand"
+        },
+        {
+            "group": "G",
+            "matchday": 3,
+            "home": "Belgium",
+            "away": "New Zealand"
+        },
+        {
+            "group": "G",
+            "matchday": 3,
+            "home": "Egypt",
+            "away": "Iran"
+        },
+        {
+            "group": "H",
+            "matchday": 1,
+            "home": "Spain",
+            "away": "Cape Verde"
+        },
+        {
+            "group": "H",
+            "matchday": 1,
+            "home": "Saudi Arabia",
+            "away": "Uruguay"
+        },
+        {
+            "group": "H",
+            "matchday": 2,
+            "home": "Spain",
+            "away": "Saudi Arabia"
+        },
+        {
+            "group": "H",
+            "matchday": 2,
+            "home": "Cape Verde",
+            "away": "Uruguay"
+        },
+        {
+            "group": "H",
+            "matchday": 3,
+            "home": "Spain",
+            "away": "Uruguay"
+        },
+        {
+            "group": "H",
+            "matchday": 3,
+            "home": "Cape Verde",
+            "away": "Saudi Arabia"
+        },
+        {
+            "group": "I",
+            "matchday": 1,
+            "home": "France",
+            "away": "Senegal"
+        },
+        {
+            "group": "I",
+            "matchday": 1,
+            "home": "Iraq",
+            "away": "Norway"
+        },
+        {
+            "group": "I",
+            "matchday": 2,
+            "home": "France",
+            "away": "Iraq"
+        },
+        {
+            "group": "I",
+            "matchday": 2,
+            "home": "Senegal",
+            "away": "Norway"
+        },
+        {
+            "group": "I",
+            "matchday": 3,
+            "home": "France",
+            "away": "Norway"
+        },
+        {
+            "group": "I",
+            "matchday": 3,
+            "home": "Senegal",
+            "away": "Iraq"
+        },
+        {
+            "group": "J",
+            "matchday": 1,
+            "home": "Argentina",
+            "away": "Algeria"
+        },
+        {
+            "group": "J",
+            "matchday": 1,
+            "home": "Austria",
+            "away": "Jordan"
+        },
+        {
+            "group": "J",
+            "matchday": 2,
+            "home": "Argentina",
+            "away": "Austria"
+        },
+        {
+            "group": "J",
+            "matchday": 2,
+            "home": "Algeria",
+            "away": "Jordan"
+        },
+        {
+            "group": "J",
+            "matchday": 3,
+            "home": "Argentina",
+            "away": "Jordan"
+        },
+        {
+            "group": "J",
+            "matchday": 3,
+            "home": "Algeria",
+            "away": "Austria"
+        },
+        {
+            "group": "K",
+            "matchday": 1,
+            "home": "Portugal",
+            "away": "DR Congo"
+        },
+        {
+            "group": "K",
+            "matchday": 1,
+            "home": "Uzbekistan",
+            "away": "Colombia"
+        },
+        {
+            "group": "K",
+            "matchday": 2,
+            "home": "Portugal",
+            "away": "Uzbekistan"
+        },
+        {
+            "group": "K",
+            "matchday": 2,
+            "home": "DR Congo",
+            "away": "Colombia"
+        },
+        {
+            "group": "K",
+            "matchday": 3,
+            "home": "Portugal",
+            "away": "Colombia"
+        },
+        {
+            "group": "K",
+            "matchday": 3,
+            "home": "DR Congo",
+            "away": "Uzbekistan"
+        },
+        {
+            "group": "L",
+            "matchday": 1,
+            "home": "England",
+            "away": "Croatia"
+        },
+        {
+            "group": "L",
+            "matchday": 1,
+            "home": "Ghana",
+            "away": "Panama"
+        },
+        {
+            "group": "L",
+            "matchday": 2,
+            "home": "England",
+            "away": "Ghana"
+        },
+        {
+            "group": "L",
+            "matchday": 2,
+            "home": "Croatia",
+            "away": "Panama"
+        },
+        {
+            "group": "L",
+            "matchday": 3,
+            "home": "England",
+            "away": "Panama"
+        },
+        {
+            "group": "L",
+            "matchday": 3,
+            "home": "Croatia",
+            "away": "Ghana"
+        }
+    ]
+}

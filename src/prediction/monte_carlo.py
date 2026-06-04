@@ -19,6 +19,7 @@ def run_monte_carlo(
     return_outcomes: bool = False,
     team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
     recent_form_ratings: dict[str, RecentFormRating] | None = None,
+    group_matches: list[dict[str, str | int]] | None = None,
 ) -> dict:
     """Run repeated tournament simulations and aggregate advancement probabilities."""
 
@@ -47,6 +48,7 @@ def run_monte_carlo(
             rng=rng,
             team_strength_ratings=team_strength_ratings,
             recent_form_ratings=recent_form_ratings,
+            group_matches=group_matches,
         )
         if sample_outcome is None:
             sample_outcome = outcome

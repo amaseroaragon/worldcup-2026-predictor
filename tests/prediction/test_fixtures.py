@@ -64,3 +64,29 @@ def test_build_group_stage_fixtures_rejects_groups_without_four_teams():
 
     with pytest.raises(ValueError, match="exactly 4 teams"):
         build_group_stage_fixtures(groups)
+
+
+def test_build_group_stage_fixtures_uses_configured_matches_in_stable_order():
+    groups = {"A": ["Team 1", "Team 2", "Team 3", "Team 4"]}
+    matches = [
+        {
+            "match_id": "group_A_2",
+            "group": "A",
+            "matchday": 2,
+            "home": "Team 1",
+            "away": "Team 3",
+        },
+        {
+            "match_id": "group_A_1",
+            "group": "A",
+            "matchday": 1,
+            "home": "Team 2",
+            "away": "Team 4",
+        },
+    ]
+
+    fixtures = build_group_stage_fixtures(groups, matches)
+
+    assert [fixture.match_id for fixture in fixtures] == ["group_A_1", "group_A_2"]
+    assert fixtures[0].team_a == "Team 2"
+    assert fixtures[0].matchday == 1
