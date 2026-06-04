@@ -2,6 +2,7 @@ import pytest
 
 from src.prediction.monte_carlo import run_monte_carlo
 from src.prediction.models import TournamentOutcome
+from src.prediction.team_strength import TeamStrengthRating
 
 
 def mini_groups() -> dict[str, list[str]]:
@@ -154,3 +155,35 @@ def test_run_monte_carlo_can_return_all_outcomes():
     assert isinstance(probabilities, dict)
     assert len(outcomes) == 5
     assert all(isinstance(outcome, TournamentOutcome) for outcome in outcomes)
+
+
+def test_run_monte_carlo_passes_team_strength_ratings_to_tournament(monkeypatch):
+    groups = mini_groups()
+    captured_strength_ratings = []
+    strength_ratings = {
+        "Team 1": TeamStrengthRating("Team 1", 1.2, 0.8, 20),
+    }
+
+    class Outcome:
+        champion = "Team 1"
+        runner_up = "Team 2"
+        semifinalists = {"Team 1", "Team 2", "Team 3", "Team 4"}
+
+    def fake_simulate_tournament_once(**kwargs):
+        captured_strength_ratings.append(kwargs["team_strength_ratings"])
+        return Outcome()
+
+    monkeypatch.setattr(
+        "src.prediction.monte_carlo.simulate_tournament_once",
+        fake_simulate_tournament_once,
+    )
+
+    run_monte_carlo(
+        groups,
+        mini_ratings(groups),
+        mini_knockout_matches(),
+        simulations=2,
+        team_strength_ratings=strength_ratings,
+    )
+
+    assert captured_strength_ratings == [strength_ratings, strength_ratings]

@@ -4,6 +4,8 @@ import argparse
 import sys
 from pathlib import Path
 
+import pandas as pd
+
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT_DIR))
@@ -19,6 +21,7 @@ from src.prediction.config import (
 from src.prediction.export import DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH, export_probabilities
 from src.prediction.monte_carlo import run_monte_carlo
 from src.prediction.ratings import load_ratings
+from src.prediction.team_strength import build_team_strength_ratings
 
 
 def parse_args() -> argparse.Namespace:
@@ -61,6 +64,9 @@ def main() -> None:
 
     print("Loading Elo rankings...")
     ratings = load_ratings()
+    team_strength_ratings = build_team_strength_ratings(
+        pd.read_csv(ROOT_DIR / "data/processed/clean_results.csv")
+    )
     groups = load_groups_config(args.groups_config)
     knockout_matches = load_knockouts_config(args.knockouts_config)
     third_place_combinations = load_third_place_combinations_config(args.third_place_combinations_config)
@@ -73,6 +79,7 @@ def main() -> None:
         third_place_combinations=third_place_combinations,
         simulations=args.simulations,
         seed=args.seed,
+        team_strength_ratings=team_strength_ratings,
     )
 
     df = export_probabilities(probabilities, args.output)

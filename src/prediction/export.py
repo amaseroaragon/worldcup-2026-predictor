@@ -18,6 +18,7 @@ from src.prediction.models import GroupOutcome, MatchPrediction, MatchResult, To
 from src.prediction.poisson import expected_goals_from_elo
 from src.prediction.probabilities import elo_win_draw_loss_probs
 from src.prediction.standings import build_group_standings
+from src.prediction.team_strength import TeamStrengthRating
 
 
 PROBABILITY_COLUMNS = [
@@ -95,6 +96,7 @@ def build_predicted_bracket_predictions(
     ratings: dict[str, float],
     knockout_matches: list[dict[str, str]],
     third_place_combinations: dict[str, dict[str, str]] | None = None,
+    team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
 ) -> list[MatchPrediction]:
     """Build one frontend-ready predicted bracket from aggregate simulations."""
 
@@ -116,6 +118,7 @@ def build_predicted_bracket_predictions(
         knockout_matches,
         third_place_combinations,
         simulations_count,
+        team_strength_ratings,
     )
 
     return [*group_predictions, *knockout_predictions]
@@ -279,6 +282,7 @@ def _build_knockout_stage_predictions(
     knockout_matches: list[dict[str, str]],
     third_place_combinations: dict[str, dict[str, str]] | None,
     simulations_count: int,
+    team_strength_ratings: dict[str, TeamStrengthRating] | None,
 ) -> list[MatchPrediction]:
     matchup_results = _knockout_results_by_matchup(outcomes)
     knockout_rounds = {
@@ -331,6 +335,7 @@ def _build_knockout_stage_predictions(
                 away_team=resolved_fixture.team_b,
                 ratings=ratings,
                 simulations_count=simulations_count,
+                team_strength_ratings=team_strength_ratings,
             )
 
         predictions.append(prediction)
@@ -406,6 +411,7 @@ def _prediction_from_direct_model(
     away_team: str,
     ratings: dict[str, float],
     simulations_count: int,
+    team_strength_ratings: dict[str, TeamStrengthRating] | None,
 ) -> MatchPrediction:
     home_elo = ratings[home_team]
     away_elo = ratings[away_team]
@@ -416,7 +422,16 @@ def _prediction_from_direct_model(
     decisive_probability = home_win_probability + away_win_probability
     home_win_probability = home_win_probability / decisive_probability
     away_win_probability = away_win_probability / decisive_probability
-    expected_home_goals, expected_away_goals = expected_goals_from_elo(home_elo, away_elo)
+    home_strength = team_strength_ratings.get(home_team) if team_strength_ratings else None
+    away_strength = team_strength_ratings.get(away_team) if team_strength_ratings else None
+    expected_home_goals, expected_away_goals = expected_goals_from_elo(
+        home_elo,
+        away_elo,
+        attack_rating_a=home_strength.attack_rating if home_strength else 1.0,
+        defense_rating_a=home_strength.defense_rating if home_strength else 1.0,
+        attack_rating_b=away_strength.attack_rating if away_strength else 1.0,
+        defense_rating_b=away_strength.defense_rating if away_strength else 1.0,
+    )
     predicted_home_goals = round(expected_home_goals)
     predicted_away_goals = round(expected_away_goals)
     predicted_winner = home_team if home_win_probability >= away_win_probability else away_team

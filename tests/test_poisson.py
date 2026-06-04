@@ -44,6 +44,39 @@ def test_expected_goals_are_bounded():
     assert 0.2 <= goals_b <= 3.5
 
 
+def test_expected_goals_include_attack_and_opponent_defense_ratings():
+    goals_a, goals_b = expected_goals_from_elo(
+        1500,
+        1500,
+        attack_rating_a=1.2,
+        defense_rating_a=0.8,
+        attack_rating_b=0.9,
+        defense_rating_b=1.1,
+    )
+
+    assert goals_a == pytest.approx(1.35 * 1.2 * 1.1)
+    assert goals_b == pytest.approx(1.35 * 0.9 * 0.8)
+
+
+def test_expected_goals_applies_bounds_after_strength_ratings():
+    goals_a, goals_b = expected_goals_from_elo(
+        1500,
+        1500,
+        attack_rating_a=10.0,
+        defense_rating_a=0.01,
+        attack_rating_b=0.01,
+        defense_rating_b=10.0,
+    )
+
+    assert goals_a == 3.5
+    assert goals_b == 0.2
+
+
+def test_expected_goals_rejects_non_positive_strength_rating():
+    with pytest.raises(ValueError, match="attack and defense ratings"):
+        expected_goals_from_elo(1500, 1500, attack_rating_a=0.0)
+
+
 def test_score_probability_valid_value():
     prob = score_probability(
         goals_a=1,

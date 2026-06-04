@@ -4,6 +4,7 @@ import random
 from collections import defaultdict
 
 from src.prediction.tournament import simulate_tournament_once
+from src.prediction.team_strength import TeamStrengthRating
 
 
 def run_monte_carlo(
@@ -15,6 +16,7 @@ def run_monte_carlo(
     seed: int | None = None,
     return_sample_outcome: bool = False,
     return_outcomes: bool = False,
+    team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
 ) -> dict:
     """Run repeated tournament simulations and aggregate advancement probabilities."""
 
@@ -41,6 +43,7 @@ def run_monte_carlo(
             knockout_matches=knockout_matches,
             third_place_combinations=third_place_combinations,
             rng=rng,
+            team_strength_ratings=team_strength_ratings,
         )
         if sample_outcome is None:
             sample_outcome = outcome

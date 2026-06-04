@@ -12,6 +12,7 @@ from src.prediction.knockout import (
     simulate_knockout_match,
 )
 from src.prediction.models import GroupOutcome, MatchFixture, MatchResult, TournamentOutcome
+from src.prediction.team_strength import TeamStrengthRating
 
 
 ROUND_OF_32 = "round_of_32"
@@ -27,6 +28,7 @@ def simulate_tournament_once(
     rng: random.Random | None = None,
     knockout_matches: list[dict[str, str]] | None = None,
     third_place_combinations: dict[str, dict[str, str]] | None = None,
+    team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
 ) -> TournamentOutcome:
     """Simulate one full tournament from group stage through final."""
 
@@ -36,7 +38,12 @@ def simulate_tournament_once(
     rng = rng or random.Random()
 
     group_fixtures = build_group_stage_fixtures(groups)
-    group_outcomes = simulate_group_stage(group_fixtures, ratings, rng=rng)
+    group_outcomes = simulate_group_stage(
+        group_fixtures,
+        ratings,
+        rng=rng,
+        team_strength_ratings=team_strength_ratings,
+    )
     knockout_fixtures = build_knockout_fixtures(knockout_matches)
 
     match_results_by_id: dict[str, MatchResult] = {}
@@ -76,7 +83,12 @@ def simulate_tournament_once(
                 {resolved_fixture.team_a, resolved_fixture.team_b}
             )
 
-        result = simulate_knockout_match(resolved_fixture, ratings, rng=rng)
+        result = simulate_knockout_match(
+            resolved_fixture,
+            ratings,
+            rng=rng,
+            team_strength_ratings=team_strength_ratings,
+        )
         knockout_results.append(result)
         match_results_by_id[result.match_id] = result
         if resolved_fixture.stage == FINAL:

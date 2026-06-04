@@ -4,6 +4,8 @@ import argparse
 import sys
 from pathlib import Path
 
+import pandas as pd
+
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT_DIR))
@@ -26,6 +28,7 @@ from src.prediction.export import (
 )
 from src.prediction.monte_carlo import run_monte_carlo
 from src.prediction.ratings import load_ratings
+from src.prediction.team_strength import build_team_strength_ratings, export_team_metrics
 
 
 def parse_args() -> argparse.Namespace:
@@ -74,6 +77,10 @@ def main() -> None:
 
     print("Loading Elo rankings...")
     ratings = load_ratings()
+    team_strength_ratings = build_team_strength_ratings(
+        pd.read_csv(ROOT_DIR / "data/processed/clean_results.csv")
+    )
+    export_team_metrics(team_strength_ratings)
     groups = load_groups_config(args.groups_config)
     knockout_matches = load_knockouts_config(args.knockouts_config)
     third_place_combinations = load_third_place_combinations_config(args.third_place_combinations_config)
@@ -87,6 +94,7 @@ def main() -> None:
         simulations=args.simulations,
         seed=args.seed,
         return_outcomes=True,
+        team_strength_ratings=team_strength_ratings,
     )
 
     df = export_probabilities(probabilities, args.output)
@@ -98,6 +106,7 @@ def main() -> None:
         ratings,
         knockout_matches,
         third_place_combinations,
+        team_strength_ratings,
     )
     export_match_predictions_json(
         match_predictions,
@@ -106,6 +115,7 @@ def main() -> None:
             "simulations": args.simulations,
             "seed": args.seed,
             "method": "aggregate_group_stage_then_predicted_bracket",
+            "team_strength_ratings": True,
         },
     )
 

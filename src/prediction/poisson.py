@@ -30,6 +30,10 @@ def expected_goals_from_elo(
     elo_sensitivity: float = 0.0015,
     min_expected_goals: float = 0.2,
     max_expected_goals: float = 3.5,
+    attack_rating_a: float = 1.0,
+    defense_rating_a: float = 1.0,
+    attack_rating_b: float = 1.0,
+    defense_rating_b: float = 1.0,
 ) -> tuple[float, float]:
     """
     Converts Elo ratings into expected goals for both teams.
@@ -41,14 +45,37 @@ def expected_goals_from_elo(
         elo_sensitivity: How strongly Elo difference affects expected goals.
         min_expected_goals: Lower bound for expected goals.
         max_expected_goals: Upper bound for expected goals.
+        attack_rating_a: Team A's goalscoring strength relative to average.
+        defense_rating_a: Team A's goals conceded relative to average.
+        attack_rating_b: Team B's goalscoring strength relative to average.
+        defense_rating_b: Team B's goals conceded relative to average.
 
     Returns:
         (expected_goals_a, expected_goals_b)
     """
+    strength_ratings = (
+        attack_rating_a,
+        defense_rating_a,
+        attack_rating_b,
+        defense_rating_b,
+    )
+    if any(rating <= 0 for rating in strength_ratings):
+        raise ValueError("attack and defense ratings must be positive")
+
     elo_diff = elo_a - elo_b
 
-    expected_goals_a = base_goals * math.exp(elo_sensitivity * elo_diff)
-    expected_goals_b = base_goals * math.exp(-elo_sensitivity * elo_diff)
+    expected_goals_a = (
+        base_goals
+        * math.exp(elo_sensitivity * elo_diff)
+        * attack_rating_a
+        * defense_rating_b
+    )
+    expected_goals_b = (
+        base_goals
+        * math.exp(-elo_sensitivity * elo_diff)
+        * attack_rating_b
+        * defense_rating_a
+    )
 
     expected_goals_a = min(max(expected_goals_a, min_expected_goals), max_expected_goals)
     expected_goals_b = min(max(expected_goals_b, min_expected_goals), max_expected_goals)

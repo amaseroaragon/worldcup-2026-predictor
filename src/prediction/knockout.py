@@ -4,6 +4,7 @@ import random
 
 from src.prediction.match import simulate_match
 from src.prediction.models import GroupOutcome, GroupStandingRow, MatchFixture, MatchResult
+from src.prediction.team_strength import TeamStrengthRating
 
 
 def build_knockout_fixtures(knockout_matches: list[dict[str, str]]) -> list[MatchFixture]:
@@ -99,6 +100,7 @@ def simulate_knockout_match(
     fixture: MatchFixture,
     ratings: dict[str, float],
     rng: random.Random | None = None,
+    team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
 ) -> MatchResult:
     """Simulate a resolved knockout fixture."""
 
@@ -118,6 +120,7 @@ def simulate_knockout_match(
         ratings=ratings,
         rng=rng,
         knockout=True,
+        team_strength_ratings=team_strength_ratings,
     )
 
 
@@ -125,6 +128,7 @@ def simulate_knockout_round(
     fixtures: list[MatchFixture],
     ratings: dict[str, float],
     rng: random.Random | None = None,
+    team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
 ) -> tuple[list[MatchResult], list[str]]:
     """Simulate a full knockout round and return results plus winners."""
 
@@ -136,6 +140,7 @@ def simulate_knockout_round(
             fixture=fixture,
             ratings=ratings,
             rng=rng,
+            team_strength_ratings=team_strength_ratings,
         )
         for fixture in fixtures
     ]

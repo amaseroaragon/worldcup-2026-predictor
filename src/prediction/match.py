@@ -4,6 +4,7 @@ import random
 
 from src.prediction.models import MatchFixture, MatchResult
 from src.prediction.poisson import expected_goals_from_elo, poisson_probability
+from src.prediction.team_strength import TeamStrengthRating
 from src.elo.expected import expected_score
 
 
@@ -35,6 +36,7 @@ def simulate_match(
     rng: random.Random | None = None,
     ratings: dict[str, float] | None = None,
     fixture: MatchFixture | None = None,
+    team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
 ) -> MatchResult:
     """
     Simulates a single football match.
@@ -60,7 +62,16 @@ def simulate_match(
 
     random_source = rng or random
 
-    expected_goals_a, expected_goals_b = expected_goals_from_elo(elo_a, elo_b)
+    strength_a = team_strength_ratings.get(team_a) if team_strength_ratings else None
+    strength_b = team_strength_ratings.get(team_b) if team_strength_ratings else None
+    expected_goals_a, expected_goals_b = expected_goals_from_elo(
+        elo_a,
+        elo_b,
+        attack_rating_a=strength_a.attack_rating if strength_a else 1.0,
+        defense_rating_a=strength_a.defense_rating if strength_a else 1.0,
+        attack_rating_b=strength_b.attack_rating if strength_b else 1.0,
+        defense_rating_b=strength_b.defense_rating if strength_b else 1.0,
+    )
 
     if rng is None:
         goals_a = sample_poisson(expected_goals_a, max_goals=max_goals)
