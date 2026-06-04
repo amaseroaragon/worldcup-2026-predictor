@@ -9,6 +9,7 @@ from src.prediction.knockout import (
     resolve_knockout_fixture,
     simulate_knockout_match,
     simulate_knockout_round,
+    update_knockout_elo_ratings,
 )
 from src.prediction.models import GroupOutcome, GroupStandingRow, MatchFixture, MatchResult
 
@@ -329,3 +330,33 @@ def test_simulate_knockout_round_returns_winners_in_fixture_order():
 def test_simulate_knockout_round_rejects_empty_fixture_list():
     with pytest.raises(ValueError, match="at least one fixture"):
         simulate_knockout_round([], {})
+
+
+def test_update_knockout_elo_ratings_rewards_winner_and_penalizes_loser():
+    fixture = MatchFixture("M1", "round_of_16", "Team 1", "Team 2")
+    result = MatchResult("Team 1", "Team 2", 2, 0, "Team 1", False, "regular_time", "M1")
+    ratings = {"Team 1": 1500.0, "Team 2": 1500.0}
+
+    update_knockout_elo_ratings(ratings, fixture, result)
+
+    assert ratings["Team 1"] > 1500.0
+    assert ratings["Team 2"] < 1500.0
+
+
+def test_update_knockout_elo_ratings_uses_same_k_factor_across_world_cup_stages():
+    round_of_16_ratings = {"Team 1": 1500.0, "Team 2": 1500.0}
+    quarter_final_ratings = round_of_16_ratings.copy()
+    result = MatchResult("Team 1", "Team 2", 1, 0, "Team 1", False, "regular_time", "M1")
+
+    update_knockout_elo_ratings(
+        round_of_16_ratings,
+        MatchFixture("M1", "round_of_16", "Team 1", "Team 2"),
+        result,
+    )
+    update_knockout_elo_ratings(
+        quarter_final_ratings,
+        MatchFixture("M1", "quarter_final", "Team 1", "Team 2"),
+        result,
+    )
+
+    assert quarter_final_ratings == round_of_16_ratings

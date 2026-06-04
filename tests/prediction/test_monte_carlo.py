@@ -195,3 +195,19 @@ def test_run_monte_carlo_passes_team_strength_ratings_to_tournament(monkeypatch)
 
     assert captured_strength_ratings == [strength_ratings, strength_ratings]
     assert captured_recent_form_ratings == [recent_form_ratings, recent_form_ratings]
+
+
+def test_run_monte_carlo_does_not_modify_original_elo_ratings():
+    groups = mini_groups()
+    ratings = mini_ratings(groups)
+    original_ratings = ratings.copy()
+
+    run_monte_carlo(
+        groups,
+        ratings,
+        mini_knockout_matches(),
+        simulations=3,
+        seed=42,
+    )
+
+    assert ratings == original_ratings

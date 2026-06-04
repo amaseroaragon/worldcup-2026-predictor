@@ -15,6 +15,7 @@ TEAMS_PER_GROUP = 4
 USE_RECENT_FORM = True
 RECENT_FORM_WEIGHT = 0.15
 RECENT_FORM_PRIMARY_WINDOW = 10
+USE_DYNAMIC_ELO_KNOCKOUT = True
 
 
 def load_groups_config(path: str | Path) -> dict[str, list[str]]:

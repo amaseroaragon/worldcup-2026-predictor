@@ -10,7 +10,9 @@ from src.prediction.knockout import (
     rank_third_place_teams,
     resolve_knockout_fixture,
     simulate_knockout_match,
+    update_knockout_elo_ratings,
 )
+from src.prediction import config
 from src.prediction.models import GroupOutcome, MatchFixture, MatchResult, TournamentOutcome
 from src.prediction.recent_form import RecentFormRating
 from src.prediction.team_strength import TeamStrengthRating
@@ -38,11 +40,12 @@ def simulate_tournament_once(
         raise ValueError("knockout_matches must be provided")
 
     rng = rng or random.Random()
+    simulation_ratings = ratings.copy()
 
     group_fixtures = build_group_stage_fixtures(groups)
     group_outcomes = simulate_group_stage(
         group_fixtures,
-        ratings,
+        simulation_ratings,
         rng=rng,
         team_strength_ratings=team_strength_ratings,
         recent_form_ratings=recent_form_ratings,
@@ -88,13 +91,15 @@ def simulate_tournament_once(
 
         result = simulate_knockout_match(
             resolved_fixture,
-            ratings,
+            simulation_ratings,
             rng=rng,
             team_strength_ratings=team_strength_ratings,
             recent_form_ratings=recent_form_ratings,
         )
         knockout_results.append(result)
         match_results_by_id[result.match_id] = result
+        if config.USE_DYNAMIC_ELO_KNOCKOUT:
+            update_knockout_elo_ratings(simulation_ratings, resolved_fixture, result)
         if resolved_fixture.stage == FINAL:
             final_result = result
 

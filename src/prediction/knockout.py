@@ -2,10 +2,22 @@ from __future__ import annotations
 
 import random
 
+from src.elo.context import MatchContext
+from src.elo.update import match_result, update_rating
 from src.prediction.match import simulate_match
 from src.prediction.models import GroupOutcome, GroupStandingRow, MatchFixture, MatchResult
 from src.prediction.recent_form import RecentFormRating
 from src.prediction.team_strength import TeamStrengthRating
+
+
+DYNAMIC_ELO_KNOCKOUT_STAGES = {
+    "round_of_32",
+    "round_of_16",
+    "quarter_final",
+    "semi_final",
+    "third_place_playoff",
+    "final",
+}
 
 
 def build_knockout_fixtures(knockout_matches: list[dict[str, str]]) -> list[MatchFixture]:
@@ -153,6 +165,37 @@ def simulate_knockout_round(
     winners = [result.winner for result in results]
 
     return results, winners
+
+
+def update_knockout_elo_ratings(
+    ratings: dict[str, float],
+    fixture: MatchFixture,
+    result: MatchResult,
+) -> None:
+    """Update both teams' Elo ratings after a supported knockout match."""
+    if fixture.stage not in DYNAMIC_ELO_KNOCKOUT_STAGES:
+        return
+
+    team_a_rating = ratings[result.team_a]
+    team_b_rating = ratings[result.team_b]
+    result_a, result_b = match_result(result.goals_a, result.goals_b)
+    goal_diff = result.goals_a - result.goals_b
+    context = MatchContext(tournament="FIFA World Cup", importance=fixture.stage)
+
+    ratings[result.team_a] = update_rating(
+        rating=team_a_rating,
+        opponent_rating=team_b_rating,
+        actual_score=result_a,
+        context=context,
+        goal_diff=goal_diff,
+    )
+    ratings[result.team_b] = update_rating(
+        rating=team_b_rating,
+        opponent_rating=team_a_rating,
+        actual_score=result_b,
+        context=context,
+        goal_diff=goal_diff,
+    )
 
 
 def _resolve_knockout_placeholder(

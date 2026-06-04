@@ -1,5 +1,5 @@
 from src.elo.config import K_FACTOR
-from src.elo.context import MatchContext, get_k_factor
+from src.elo.context import MatchContext, get_k_factor, load_tournament_k_factors
 from src.elo.update import match_result, margin_of_victory_factor, update_rating
 
 
@@ -11,6 +11,27 @@ def test_get_k_factor_uses_tournament_mapping():
     assert get_k_factor(MatchContext(tournament="Friendly")) == 10
     assert get_k_factor(MatchContext(importance="friendly")) == 10
     assert get_k_factor(MatchContext(tournament="FIFA World Cup")) == 50
+
+
+def test_get_k_factor_does_not_change_with_tournament_stage():
+    assert get_k_factor(
+        MatchContext(tournament="FIFA World Cup", importance="round_of_16")
+    ) == 50
+    assert get_k_factor(
+        MatchContext(tournament="FIFA World Cup", importance="quarter_final")
+    ) == 50
+    assert get_k_factor(
+        MatchContext(tournament="UEFA Nations League", importance="final")
+    ) == 15
+
+
+def test_tournament_configs_define_only_one_k_factor_each():
+    tournaments = load_tournament_k_factors()
+
+    assert all(
+        [key for key in tournament if key.endswith("_k")] == ["default_k"]
+        for tournament in tournaments.values()
+    )
 
 
 def test_margin_of_victory_factor_is_neutral_for_draws_and_capped():

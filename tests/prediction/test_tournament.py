@@ -1,6 +1,6 @@
 import random
 
-from src.prediction.models import TournamentOutcome
+from src.prediction.models import MatchResult, TournamentOutcome
 from src.prediction.tournament import simulate_tournament_once
 
 
@@ -95,3 +95,78 @@ def test_simulate_tournament_once_is_reproducible_with_same_seed():
     )
 
     assert outcome_a == outcome_b
+
+
+def test_simulate_tournament_once_uses_updated_elo_in_later_round(monkeypatch):
+    groups = mini_groups()
+    ratings = mini_ratings(groups)
+    observed_ratings = {}
+
+    def fake_simulate_knockout_match(fixture, current_ratings, **kwargs):
+        observed_ratings[fixture.match_id] = current_ratings[fixture.team_a]
+        return MatchResult(
+            fixture.team_a,
+            fixture.team_b,
+            1,
+            0,
+            fixture.team_a,
+            False,
+            "regular_time",
+            fixture.match_id,
+        )
+
+    monkeypatch.setattr(
+        "src.prediction.tournament.simulate_knockout_match",
+        fake_simulate_knockout_match,
+    )
+
+    simulate_tournament_once(
+        groups,
+        ratings,
+        knockout_matches=mini_knockout_matches(),
+        rng=random.Random(42),
+    )
+
+    assert observed_ratings["M5"] > ratings[
+        next(
+            result_team
+            for result_team in ratings
+            if ratings[result_team] == observed_ratings["M1"]
+        )
+    ]
+
+
+def test_simulate_tournament_once_fixed_elo_keeps_later_round_rating(monkeypatch):
+    groups = mini_groups()
+    ratings = mini_ratings(groups)
+    observed_ratings = {}
+    observed_teams = {}
+
+    def fake_simulate_knockout_match(fixture, current_ratings, **kwargs):
+        observed_ratings[fixture.match_id] = current_ratings[fixture.team_a]
+        observed_teams[fixture.match_id] = fixture.team_a
+        return MatchResult(
+            fixture.team_a,
+            fixture.team_b,
+            1,
+            0,
+            fixture.team_a,
+            False,
+            "regular_time",
+            fixture.match_id,
+        )
+
+    monkeypatch.setattr("src.prediction.config.USE_DYNAMIC_ELO_KNOCKOUT", False)
+    monkeypatch.setattr(
+        "src.prediction.tournament.simulate_knockout_match",
+        fake_simulate_knockout_match,
+    )
+
+    simulate_tournament_once(
+        groups,
+        ratings,
+        knockout_matches=mini_knockout_matches(),
+        rng=random.Random(42),
+    )
+
+    assert observed_ratings["M5"] == ratings[observed_teams["M5"]]
