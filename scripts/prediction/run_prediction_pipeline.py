@@ -28,6 +28,7 @@ from src.prediction.export import (
 )
 from src.prediction.monte_carlo import run_monte_carlo
 from src.prediction.ratings import load_ratings
+from src.prediction.recent_form import build_recent_form_ratings
 from src.prediction.team_strength import build_team_strength_ratings, export_team_metrics
 
 
@@ -77,10 +78,13 @@ def main() -> None:
 
     print("Loading Elo rankings...")
     ratings = load_ratings()
-    team_strength_ratings = build_team_strength_ratings(
-        pd.read_csv(ROOT_DIR / "data/processed/clean_results.csv")
+    results = pd.read_csv(ROOT_DIR / "data/processed/clean_results.csv")
+    team_strength_ratings = build_team_strength_ratings(results)
+    recent_form_ratings = build_recent_form_ratings(results)
+    export_team_metrics(
+        team_strength_ratings,
+        recent_form_ratings=recent_form_ratings,
     )
-    export_team_metrics(team_strength_ratings)
     groups = load_groups_config(args.groups_config)
     knockout_matches = load_knockouts_config(args.knockouts_config)
     third_place_combinations = load_third_place_combinations_config(args.third_place_combinations_config)
@@ -95,6 +99,7 @@ def main() -> None:
         seed=args.seed,
         return_outcomes=True,
         team_strength_ratings=team_strength_ratings,
+        recent_form_ratings=recent_form_ratings,
     )
 
     df = export_probabilities(probabilities, args.output)
@@ -107,6 +112,7 @@ def main() -> None:
         knockout_matches,
         third_place_combinations,
         team_strength_ratings,
+        recent_form_ratings,
     )
     export_match_predictions_json(
         match_predictions,
@@ -116,6 +122,7 @@ def main() -> None:
             "seed": args.seed,
             "method": "aggregate_group_stage_then_predicted_bracket",
             "team_strength_ratings": True,
+            "recent_form": True,
         },
     )
 

@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import math
 
+from src.prediction.config import RECENT_FORM_WEIGHT, USE_RECENT_FORM
+
 
 def poisson_probability(k: int, lambda_: float) -> float:
     """
@@ -34,6 +36,8 @@ def expected_goals_from_elo(
     defense_rating_a: float = 1.0,
     attack_rating_b: float = 1.0,
     defense_rating_b: float = 1.0,
+    form_rating_a: float | None = None,
+    form_rating_b: float | None = None,
 ) -> tuple[float, float]:
     """
     Converts Elo ratings into expected goals for both teams.
@@ -49,6 +53,8 @@ def expected_goals_from_elo(
         defense_rating_a: Team A's goals conceded relative to average.
         attack_rating_b: Team B's goalscoring strength relative to average.
         defense_rating_b: Team B's goals conceded relative to average.
+        form_rating_a: Team A's recent form rating.
+        form_rating_b: Team B's recent form rating.
 
     Returns:
         (expected_goals_a, expected_goals_b)
@@ -69,18 +75,27 @@ def expected_goals_from_elo(
         * math.exp(elo_sensitivity * elo_diff)
         * attack_rating_a
         * defense_rating_b
+        * recent_form_multiplier(form_rating_a)
     )
     expected_goals_b = (
         base_goals
         * math.exp(-elo_sensitivity * elo_diff)
         * attack_rating_b
         * defense_rating_a
+        * recent_form_multiplier(form_rating_b)
     )
 
     expected_goals_a = min(max(expected_goals_a, min_expected_goals), max_expected_goals)
     expected_goals_b = min(max(expected_goals_b, min_expected_goals), max_expected_goals)
 
     return expected_goals_a, expected_goals_b
+
+
+def recent_form_multiplier(form_rating: float | None) -> float:
+    """Convert a recent form rating into a conservative goals multiplier."""
+    if not USE_RECENT_FORM or form_rating is None:
+        return 1.0
+    return 1 + RECENT_FORM_WEIGHT * (form_rating - 1)
 
 
 def score_probability(goals_a: int, goals_b: int, expected_goals_a: float, expected_goals_b: float) -> float:

@@ -2,6 +2,7 @@ import random
 
 from src.prediction.match import MatchResult, sample_poisson, simulate_match
 from src.prediction.models import MatchFixture
+from src.prediction.recent_form import RecentFormRating
 from src.prediction.team_strength import TeamStrengthRating
 
 
@@ -124,6 +125,8 @@ def test_simulate_match_uses_team_strength_ratings(monkeypatch):
         "defense_rating_a": 0.8,
         "attack_rating_b": 1.1,
         "defense_rating_b": 0.9,
+        "form_rating_a": None,
+        "form_rating_b": None,
     }
 
 
@@ -149,3 +152,28 @@ def test_simulate_match_uses_neutral_strength_for_missing_team_rating(monkeypatc
 
     assert expected_goals_arguments["attack_rating_b"] == 1.0
     assert expected_goals_arguments["defense_rating_b"] == 1.0
+
+
+def test_simulate_match_uses_primary_recent_form_window(monkeypatch):
+    expected_goals_arguments = {}
+
+    def fake_expected_goals_from_elo(elo_a, elo_b, **kwargs):
+        expected_goals_arguments.update(kwargs)
+        return 1.0, 1.0
+
+    monkeypatch.setattr("src.prediction.match.expected_goals_from_elo", fake_expected_goals_from_elo)
+    monkeypatch.setattr("src.prediction.match.sample_poisson", lambda lambda_, max_goals=10: 1)
+
+    simulate_match(
+        team_a="Spain",
+        team_b="France",
+        elo_a=1700,
+        elo_b=1750,
+        recent_form_ratings={
+            "Spain": RecentFormRating("Spain", 0.8, 1.15, 1.0, 20),
+            "France": RecentFormRating("France", 1.2, None, None, 5),
+        },
+    )
+
+    assert expected_goals_arguments["form_rating_a"] == 1.15
+    assert expected_goals_arguments["form_rating_b"] is None

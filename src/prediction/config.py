@@ -12,6 +12,9 @@ DEFAULT_WORLD_CUP_2026_THIRD_PLACE_COMBINATIONS_PATH = (
     PROJECT_ROOT / "data/external/third_place_combinations.json"
 )
 TEAMS_PER_GROUP = 4
+USE_RECENT_FORM = True
+RECENT_FORM_WEIGHT = 0.15
+RECENT_FORM_PRIMARY_WINDOW = 10
 
 
 def load_groups_config(path: str | Path) -> dict[str, list[str]]:

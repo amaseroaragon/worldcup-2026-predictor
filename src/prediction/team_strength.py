@@ -6,8 +6,11 @@ from pathlib import Path
 
 import pandas as pd
 
+from src.prediction.recent_form import RecentFormRating
+
 
 DEFAULT_TEAM_METRICS_PATH = Path("data/processed/team_metrics.json")
+METRICS_VERSION = "v4.2"
 REQUIRED_RESULT_COLUMNS = {
     "date",
     "home_team",
@@ -110,28 +113,42 @@ def build_team_strength_ratings(
 
 def team_strength_ratings_to_records(
     ratings: dict[str, TeamStrengthRating],
-) -> list[dict[str, str | float | int]]:
+    recent_form_ratings: dict[str, RecentFormRating] | None = None,
+) -> list[dict[str, object]]:
     """Convert team strength ratings into sorted, JSON-ready metric records."""
-    return [
-        {
-            "team": rating.team,
-            "attack_rating": rating.attack_rating,
-            "defense_rating": rating.defense_rating,
-            "matches_used": rating.matches_used,
-        }
-        for rating in sorted(ratings.values(), key=lambda rating: rating.team)
-    ]
+    records = []
+    for rating in sorted(ratings.values(), key=lambda rating: rating.team):
+        recent_form = recent_form_ratings.get(rating.team) if recent_form_ratings else None
+        records.append(
+            {
+                "team": rating.team,
+                "attack_rating": rating.attack_rating,
+                "defense_rating": rating.defense_rating,
+                "matches_used": rating.matches_used,
+                "recent_form": {
+                    "form_5": recent_form.form_5 if recent_form else None,
+                    "form_10": recent_form.form_10 if recent_form else None,
+                    "form_20": recent_form.form_20 if recent_form else None,
+                    "matches_available": recent_form.matches_available if recent_form else 0,
+                },
+            }
+        )
+    return records
 
 
 def export_team_metrics(
     ratings: dict[str, TeamStrengthRating],
     output_path: str | Path = DEFAULT_TEAM_METRICS_PATH,
-) -> dict[str, list[dict[str, str | float | int]]]:
+    recent_form_ratings: dict[str, RecentFormRating] | None = None,
+) -> dict[str, object]:
     """Export current team metrics to an extensible JSON file."""
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    payload = {"teams": team_strength_ratings_to_records(ratings)}
+    payload = {
+        "metrics_version": METRICS_VERSION,
+        "teams": team_strength_ratings_to_records(ratings, recent_form_ratings),
+    }
     with output_path.open("w", encoding="utf-8") as file:
         json.dump(payload, file, ensure_ascii=False, indent=2)
     return payload

@@ -4,7 +4,9 @@ from dataclasses import FrozenInstanceError
 import pandas as pd
 import pytest
 
+from src.prediction.recent_form import RecentFormRating
 from src.prediction.team_strength import (
+    METRICS_VERSION,
     TeamStrengthRating,
     build_team_strength_ratings,
     export_team_metrics,
@@ -157,6 +159,12 @@ def test_team_strength_ratings_to_records_returns_sorted_extensible_records():
         "attack_rating": 1.2,
         "defense_rating": 0.8,
         "matches_used": 12,
+        "recent_form": {
+            "form_5": None,
+            "form_10": None,
+            "form_20": None,
+            "matches_available": 0,
+        },
     }
 
 
@@ -166,17 +174,32 @@ def test_export_team_metrics_writes_json(tmp_path):
     }
     output_path = tmp_path / "metrics" / "team_metrics.json"
 
-    exported = export_team_metrics(ratings, output_path)
+    recent_form_ratings = {
+        "A": RecentFormRating("A", 1.1, 1.05, None, 12),
+    }
+
+    exported = export_team_metrics(
+        ratings,
+        output_path,
+        recent_form_ratings=recent_form_ratings,
+    )
     loaded = json.loads(output_path.read_text(encoding="utf-8"))
 
     assert exported == loaded
     assert loaded == {
+        "metrics_version": METRICS_VERSION,
         "teams": [
             {
                 "team": "A",
                 "attack_rating": 1.2,
                 "defense_rating": 0.8,
                 "matches_used": 12,
+                "recent_form": {
+                    "form_5": 1.1,
+                    "form_10": 1.05,
+                    "form_20": None,
+                    "matches_available": 12,
+                },
             }
         ]
     }

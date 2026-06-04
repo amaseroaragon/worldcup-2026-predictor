@@ -12,6 +12,7 @@ from src.prediction.knockout import (
     simulate_knockout_match,
 )
 from src.prediction.models import GroupOutcome, MatchFixture, MatchResult, TournamentOutcome
+from src.prediction.recent_form import RecentFormRating
 from src.prediction.team_strength import TeamStrengthRating
 
 
@@ -29,6 +30,7 @@ def simulate_tournament_once(
     knockout_matches: list[dict[str, str]] | None = None,
     third_place_combinations: dict[str, dict[str, str]] | None = None,
     team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
+    recent_form_ratings: dict[str, RecentFormRating] | None = None,
 ) -> TournamentOutcome:
     """Simulate one full tournament from group stage through final."""
 
@@ -43,6 +45,7 @@ def simulate_tournament_once(
         ratings,
         rng=rng,
         team_strength_ratings=team_strength_ratings,
+        recent_form_ratings=recent_form_ratings,
     )
     knockout_fixtures = build_knockout_fixtures(knockout_matches)
 
@@ -88,6 +91,7 @@ def simulate_tournament_once(
             ratings,
             rng=rng,
             team_strength_ratings=team_strength_ratings,
+            recent_form_ratings=recent_form_ratings,
         )
         knockout_results.append(result)
         match_results_by_id[result.match_id] = result

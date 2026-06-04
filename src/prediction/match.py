@@ -4,7 +4,9 @@ import random
 
 from src.prediction.models import MatchFixture, MatchResult
 from src.prediction.poisson import expected_goals_from_elo, poisson_probability
+from src.prediction.recent_form import RecentFormRating
 from src.prediction.team_strength import TeamStrengthRating
+from src.prediction.config import RECENT_FORM_PRIMARY_WINDOW
 from src.elo.expected import expected_score
 
 
@@ -37,6 +39,7 @@ def simulate_match(
     ratings: dict[str, float] | None = None,
     fixture: MatchFixture | None = None,
     team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
+    recent_form_ratings: dict[str, RecentFormRating] | None = None,
 ) -> MatchResult:
     """
     Simulates a single football match.
@@ -64,6 +67,8 @@ def simulate_match(
 
     strength_a = team_strength_ratings.get(team_a) if team_strength_ratings else None
     strength_b = team_strength_ratings.get(team_b) if team_strength_ratings else None
+    recent_form_a = recent_form_ratings.get(team_a) if recent_form_ratings else None
+    recent_form_b = recent_form_ratings.get(team_b) if recent_form_ratings else None
     expected_goals_a, expected_goals_b = expected_goals_from_elo(
         elo_a,
         elo_b,
@@ -71,6 +76,12 @@ def simulate_match(
         defense_rating_a=strength_a.defense_rating if strength_a else 1.0,
         attack_rating_b=strength_b.attack_rating if strength_b else 1.0,
         defense_rating_b=strength_b.defense_rating if strength_b else 1.0,
+        form_rating_a=(
+            recent_form_a.for_window(RECENT_FORM_PRIMARY_WINDOW) if recent_form_a else None
+        ),
+        form_rating_b=(
+            recent_form_b.for_window(RECENT_FORM_PRIMARY_WINDOW) if recent_form_b else None
+        ),
     )
 
     if rng is None:
