@@ -1,6 +1,13 @@
 import random
 
-from src.prediction.match import MatchResult, sample_poisson, simulate_match
+import pytest
+
+from src.prediction.match import (
+    MatchResult,
+    knockout_tiebreaker_probability,
+    sample_poisson,
+    simulate_match,
+)
 from src.prediction.models import MatchFixture
 from src.prediction.recent_form import RecentFormRating
 from src.prediction.squad_strength import SquadStrengthRating
@@ -78,6 +85,61 @@ def test_knockout_tiebreaker_when_score_is_draw(monkeypatch):
     assert result.decided_by == "tiebreaker"
 
 
+def test_knockout_tiebreaker_uses_expected_goals_advantage(monkeypatch):
+    class FixedRandom:
+        def random(self):
+            return 0.53
+
+    def fake_expected_goals_from_elo(elo_a, elo_b, **kwargs):
+        return 2.0, 1.0
+
+    def fake_sample_poisson(lambda_, max_goals=10, rng=None):
+        return 1
+
+    monkeypatch.setattr("src.prediction.match.expected_goals_from_elo", fake_expected_goals_from_elo)
+    monkeypatch.setattr("src.prediction.match.sample_poisson", fake_sample_poisson)
+
+    result = simulate_match(
+        team_a="Spain",
+        team_b="France",
+        elo_a=1500,
+        elo_b=1500,
+        knockout=True,
+        rng=FixedRandom(),
+    )
+
+    assert result.winner == "Spain"
+    assert result.decided_by == "tiebreaker"
+
+
+def test_knockout_tiebreaker_can_use_elo_only_when_disabled(monkeypatch):
+    class FixedRandom:
+        def random(self):
+            return 0.53
+
+    def fake_expected_goals_from_elo(elo_a, elo_b, **kwargs):
+        return 2.0, 1.0
+
+    def fake_sample_poisson(lambda_, max_goals=10, rng=None):
+        return 1
+
+    monkeypatch.setattr("src.prediction.match.USE_MODEL_BASED_KNOCKOUT_TIEBREAKER", False)
+    monkeypatch.setattr("src.prediction.match.expected_goals_from_elo", fake_expected_goals_from_elo)
+    monkeypatch.setattr("src.prediction.match.sample_poisson", fake_sample_poisson)
+
+    result = simulate_match(
+        team_a="Spain",
+        team_b="France",
+        elo_a=1500,
+        elo_b=1500,
+        knockout=True,
+        rng=FixedRandom(),
+    )
+
+    assert result.winner == "France"
+    assert result.decided_by == "tiebreaker"
+
+
 def test_simulate_match_accepts_fixture_and_injected_rng():
     fixture = MatchFixture(
         match_id="A1",
@@ -98,6 +160,30 @@ def test_simulate_match_accepts_fixture_and_injected_rng():
     assert result.is_real is False
     assert result.team_a == "Spain"
     assert result.team_b == "France"
+
+
+def test_knockout_tiebreaker_probability_blends_elo_and_expected_goals():
+    probability = knockout_tiebreaker_probability(
+        elo_a=1500,
+        elo_b=1500,
+        expected_goals_a=2.0,
+        expected_goals_b=1.0,
+    )
+
+    assert probability == pytest.approx((0.65 * 0.5) + (0.35 * (2 / 3)))
+
+
+def test_knockout_tiebreaker_probability_falls_back_to_elo(monkeypatch):
+    monkeypatch.setattr("src.prediction.match.USE_MODEL_BASED_KNOCKOUT_TIEBREAKER", False)
+
+    probability = knockout_tiebreaker_probability(
+        elo_a=1500,
+        elo_b=1500,
+        expected_goals_a=2.0,
+        expected_goals_b=1.0,
+    )
+
+    assert probability == 0.5
 
 
 def test_simulate_match_uses_team_strength_ratings(monkeypatch):

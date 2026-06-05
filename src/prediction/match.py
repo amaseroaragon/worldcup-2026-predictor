@@ -7,7 +7,11 @@ from src.prediction.poisson import expected_goals_from_elo, poisson_probability
 from src.prediction.recent_form import RecentFormRating
 from src.prediction.squad_strength import SquadStrengthRating
 from src.prediction.team_strength import TeamStrengthRating
-from src.prediction.config import RECENT_FORM_PRIMARY_WINDOW
+from src.prediction.config import (
+    RECENT_FORM_PRIMARY_WINDOW,
+    TIEBREAKER_EXPECTED_GOALS_WEIGHT,
+    USE_MODEL_BASED_KNOCKOUT_TIEBREAKER,
+)
 from src.elo.expected import expected_score
 
 
@@ -47,7 +51,7 @@ def simulate_match(
     Simulates a single football match.
 
     In group-stage mode, draws are allowed.
-    In knockout mode, draws are resolved by an Elo-weighted tiebreaker.
+    In knockout mode, draws are resolved by a model-weighted tiebreaker.
     """
     if fixture is None and isinstance(team_a, MatchFixture):
         fixture = team_a
@@ -130,7 +134,12 @@ def simulate_match(
     if not knockout:
         return MatchResult(team_a, team_b, goals_a, goals_b, None, True, "draw", match_id, False)
 
-    prob_a_advances = expected_score(elo_a, elo_b)
+    prob_a_advances = knockout_tiebreaker_probability(
+        elo_a,
+        elo_b,
+        expected_goals_a,
+        expected_goals_b,
+    )
     winner = team_a if random_source.random() < prob_a_advances else team_b
 
     return MatchResult(
@@ -144,3 +153,23 @@ def simulate_match(
         match_id,
         False,
     )
+
+
+def knockout_tiebreaker_probability(
+    elo_a: float,
+    elo_b: float,
+    expected_goals_a: float,
+    expected_goals_b: float,
+) -> float:
+    """Calculate team A's probability of advancing after a knockout draw."""
+    elo_probability = expected_score(elo_a, elo_b)
+    if not USE_MODEL_BASED_KNOCKOUT_TIEBREAKER:
+        return elo_probability
+
+    total_expected_goals = expected_goals_a + expected_goals_b
+    if total_expected_goals <= 0:
+        return elo_probability
+
+    expected_goals_probability = expected_goals_a / total_expected_goals
+    weight = min(max(TIEBREAKER_EXPECTED_GOALS_WEIGHT, 0.0), 1.0)
+    return (1 - weight) * elo_probability + weight * expected_goals_probability
