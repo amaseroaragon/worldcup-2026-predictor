@@ -1,13 +1,10 @@
-from pathlib import Path
-
 import pandas as pd
 
 from src.data.validation import CLEAN_RESULTS_REQUIRED_COLUMNS, validate_clean_results_dataframe
+from src.prediction.settings import DEFAULT_CLEAN_RESULTS_PATH
 
 
-ROOT_DIR = Path(__file__).resolve().parents[2]
-
-CLEAN_RESULTS_PATH = ROOT_DIR / "data" / "processed" / "clean_results.csv"
+CLEAN_RESULTS_PATH = DEFAULT_CLEAN_RESULTS_PATH
 
 
 def main() -> None:

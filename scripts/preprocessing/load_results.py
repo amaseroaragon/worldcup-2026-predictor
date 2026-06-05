@@ -1,12 +1,10 @@
-from pathlib import Path
-
 import pandas as pd
 
+from src.prediction.settings import PATH_SETTINGS
 
-ROOT_DIR = Path(__file__).resolve().parents[2]
 
-RAW_DATA_DIR = ROOT_DIR / "data" / "raw"
-RESULTS_PATH = RAW_DATA_DIR / "results.csv"
+RAW_DATA_DIR = PATH_SETTINGS.raw_data_dir
+RESULTS_PATH = PATH_SETTINGS.raw_results_path
 
 
 def main() -> None:

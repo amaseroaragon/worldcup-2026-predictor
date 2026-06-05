@@ -2,9 +2,11 @@ from pathlib import Path
 
 import pandas as pd
 
+from src.prediction.settings import PATH_SETTINGS
 
-ELO_HISTORY_PATH = Path("data/processed/elo_history.csv")
-ELO_RANKINGS_PATH = Path("data/processed/elo_rankings.csv")
+
+ELO_HISTORY_PATH = PATH_SETTINGS.elo_history_path
+ELO_RANKINGS_PATH = PATH_SETTINGS.elo_rankings_path
 
 
 def validate_file_exists(path: Path) -> None:

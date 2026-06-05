@@ -13,7 +13,7 @@ from src.prediction.config import (
 )
 from src.prediction.ratings import load_ratings
 from src.prediction.metrics.recent_form import RecentFormRating, build_recent_form_ratings
-from src.prediction.settings import DEFAULT_CLEAN_RESULTS_PATH, PROJECT_ROOT
+from src.prediction.settings import PATH_SETTINGS, PROJECT_ROOT, PathSettings
 from src.prediction.metrics.squad_strength import (
     SquadStrengthRating,
     build_squad_strength_ratings,
@@ -37,26 +37,29 @@ class PredictionInputs:
 
 def load_prediction_inputs(
     *,
-    groups_config: str | Path,
-    group_matches_config: str | Path,
-    knockouts_config: str | Path,
-    third_place_combinations_config: str | Path,
-    squad_values_config: str | Path,
-    clean_results_path: str | Path = DEFAULT_CLEAN_RESULTS_PATH,
+    groups_config: str | Path | None = None,
+    group_matches_config: str | Path | None = None,
+    knockouts_config: str | Path | None = None,
+    third_place_combinations_config: str | Path | None = None,
+    squad_values_config: str | Path | None = None,
+    clean_results_path: str | Path | None = None,
+    path_settings: PathSettings = PATH_SETTINGS,
 ) -> PredictionInputs:
     """Load and derive the reusable inputs shared by prediction scripts."""
 
-    ratings = load_ratings()
-    results = pd.read_csv(clean_results_path)
+    ratings = load_ratings(path_settings.elo_rankings_path)
+    results = pd.read_csv(clean_results_path or path_settings.clean_results_path)
     team_strength_ratings = build_team_strength_ratings(results)
     recent_form_ratings = build_recent_form_ratings(results)
-    squad_values = load_squad_values(squad_values_config)
+    squad_values = load_squad_values(squad_values_config or path_settings.squad_values_path)
     squad_strength_ratings = build_squad_strength_ratings(squad_values)
-    groups = load_groups_config(groups_config)
-    group_matches = load_group_matches_config(group_matches_config)
-    knockout_matches = load_knockouts_config(knockouts_config)
+    groups = load_groups_config(groups_config or path_settings.groups_path)
+    group_matches = load_group_matches_config(
+        group_matches_config or path_settings.group_matches_path
+    )
+    knockout_matches = load_knockouts_config(knockouts_config or path_settings.knockouts_path)
     third_place_combinations = load_third_place_combinations_config(
-        third_place_combinations_config
+        third_place_combinations_config or path_settings.third_place_combinations_path
     )
 
     return PredictionInputs(

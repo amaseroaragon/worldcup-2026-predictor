@@ -1,13 +1,14 @@
 import pandas as pd
 
 from src.elo.export import get_latest_ratings
+from src.prediction.settings import PATH_SETTINGS
 
 
 def main() -> None:
     """Export the latest Elo rating per team."""
 
-    input_path = "data/processed/elo_history.csv"
-    output_path = "data/processed/elo_rankings.csv"
+    input_path = PATH_SETTINGS.elo_history_path
+    output_path = PATH_SETTINGS.elo_rankings_path
 
     elo_history = pd.read_csv(input_path, parse_dates=["date"])
 

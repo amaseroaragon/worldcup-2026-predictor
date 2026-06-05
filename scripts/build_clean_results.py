@@ -1,15 +1,12 @@
-from pathlib import Path
-
 import pandas as pd
 
 from src.data.normalization import normalize_teams_in_dataframe
+from src.prediction.settings import PATH_SETTINGS
 
 
-ROOT_DIR = Path(__file__).resolve().parents[1]
-
-RAW_RESULTS_PATH = ROOT_DIR / "data" / "raw" / "results.csv"
-PROCESSED_DIR = ROOT_DIR / "data" / "processed"
-CLEAN_RESULTS_PATH = PROCESSED_DIR / "clean_results.csv"
+RAW_RESULTS_PATH = PATH_SETTINGS.raw_results_path
+PROCESSED_DIR = PATH_SETTINGS.processed_data_dir
+CLEAN_RESULTS_PATH = PATH_SETTINGS.clean_results_path
 
 
 def build_clean_results() -> pd.DataFrame:

@@ -1,13 +1,14 @@
 import pandas as pd
 
 from src.elo.processor import process_matches
+from src.prediction.settings import PATH_SETTINGS
 
 
 def main() -> None:
     """Build chronological Elo history from clean match results."""
 
-    input_path = "data/processed/clean_results.csv"
-    output_path = "data/processed/elo_history.csv"
+    input_path = PATH_SETTINGS.clean_results_path
+    output_path = PATH_SETTINGS.elo_history_path
 
     df = pd.read_csv(input_path)
 

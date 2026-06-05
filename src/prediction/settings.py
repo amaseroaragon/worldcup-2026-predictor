@@ -10,67 +10,121 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 @dataclass(frozen=True)
 class PathSettings:
     project_root: Path = PROJECT_ROOT
+    data_dir: Path | None = None
+    raw_data_dir: Path | None = None
+    external_data_dir: Path | None = None
+    processed_data_dir: Path | None = None
     predictions_output_dir: Path = Path("outputs/predictions")
+    raw_results_path: Path | None = None
+    clean_results_path: Path | None = None
+    former_names_path: Path | None = None
+    elo_history_path: Path | None = None
+    elo_rankings_path: Path | None = None
+    groups_path: Path | None = None
+    group_matches_path: Path | None = None
+    knockouts_path: Path | None = None
+    third_place_combinations_path: Path | None = None
+    squad_values_path: Path | None = None
+    tournament_k_factors_path: Path | None = None
+    team_metrics_path: Path | None = None
+    tournament_predictions_path: Path | None = None
+    world_cup_probabilities_path: Path | None = None
 
-    @property
-    def data_dir(self) -> Path:
-        return self.project_root / "data"
+    def __post_init__(self) -> None:
+        uses_default_processed_dir = self.data_dir is None and self.processed_data_dir is None
+        data_dir = self.data_dir or self.project_root / "data"
+        raw_data_dir = self.raw_data_dir or data_dir / "raw"
+        external_data_dir = self.external_data_dir or data_dir / "external"
+        processed_data_dir = self.processed_data_dir or data_dir / "processed"
+        default_elo_history_path = (
+            Path("data/processed/elo_history.csv")
+            if uses_default_processed_dir
+            else processed_data_dir / "elo_history.csv"
+        )
+        default_elo_rankings_path = (
+            Path("data/processed/elo_rankings.csv")
+            if uses_default_processed_dir
+            else processed_data_dir / "elo_rankings.csv"
+        )
 
-    @property
-    def external_data_dir(self) -> Path:
-        return self.data_dir / "external"
-
-    @property
-    def processed_data_dir(self) -> Path:
-        return self.data_dir / "processed"
-
-    @property
-    def raw_data_dir(self) -> Path:
-        return self.data_dir / "raw"
-
-    @property
-    def groups_path(self) -> Path:
-        return self.external_data_dir / "groups.json"
-
-    @property
-    def group_matches_path(self) -> Path:
-        return self.external_data_dir / "group_matches.json"
-
-    @property
-    def knockouts_path(self) -> Path:
-        return self.external_data_dir / "knockouts.json"
-
-    @property
-    def third_place_combinations_path(self) -> Path:
-        return self.external_data_dir / "third_place_combinations.json"
-
-    @property
-    def squad_values_path(self) -> Path:
-        return self.external_data_dir / "teams_value.json"
-
-    @property
-    def tournament_k_factors_path(self) -> Path:
-        return self.external_data_dir / "tournament_k_factors.json"
-
-    @property
-    def elo_rankings_path(self) -> Path:
-        return Path("data/processed/elo_rankings.csv")
-
-    @property
-    def clean_results_path(self) -> Path:
-        return self.processed_data_dir / "clean_results.csv"
-
-    @property
-    def team_metrics_path(self) -> Path:
-        return self.predictions_output_dir / "team_metrics.json"
-
-    @property
-    def tournament_predictions_path(self) -> Path:
-        return self.predictions_output_dir / "tournament_predictions.json"
-
-    @property
-    def world_cup_probabilities_path(self) -> Path:
-        return self.predictions_output_dir / "world_cup_probabilities.json"
+        object.__setattr__(self, "data_dir", data_dir)
+        object.__setattr__(self, "raw_data_dir", raw_data_dir)
+        object.__setattr__(self, "external_data_dir", external_data_dir)
+        object.__setattr__(self, "processed_data_dir", processed_data_dir)
+        object.__setattr__(
+            self,
+            "raw_results_path",
+            self.raw_results_path or raw_data_dir / "results.csv",
+        )
+        object.__setattr__(
+            self,
+            "clean_results_path",
+            self.clean_results_path or processed_data_dir / "clean_results.csv",
+        )
+        object.__setattr__(
+            self,
+            "former_names_path",
+            self.former_names_path or external_data_dir / "former_names.csv",
+        )
+        object.__setattr__(
+            self,
+            "elo_history_path",
+            self.elo_history_path or default_elo_history_path,
+        )
+        object.__setattr__(
+            self,
+            "elo_rankings_path",
+            self.elo_rankings_path or default_elo_rankings_path,
+        )
+        object.__setattr__(
+            self,
+            "groups_path",
+            self.groups_path or external_data_dir / "groups.json",
+        )
+        object.__setattr__(
+            self,
+            "group_matches_path",
+            self.group_matches_path or external_data_dir / "group_matches.json",
+        )
+        object.__setattr__(
+            self,
+            "knockouts_path",
+            self.knockouts_path or external_data_dir / "knockouts.json",
+        )
+        object.__setattr__(
+            self,
+            "third_place_combinations_path",
+            self.third_place_combinations_path
+            or external_data_dir / "third_place_combinations.json",
+        )
+        object.__setattr__(
+            self,
+            "squad_values_path",
+            self.squad_values_path or external_data_dir / "teams_value.json",
+        )
+        object.__setattr__(
+            self,
+            "tournament_k_factors_path",
+            self.tournament_k_factors_path
+            or external_data_dir / "tournament_k_factors.json",
+        )
+        object.__setattr__(
+            self,
+            "team_metrics_path",
+            self.team_metrics_path or self.predictions_output_dir / "team_metrics.json",
+        )
+        object.__setattr__(
+            self,
+            "tournament_predictions_path",
+            self.tournament_predictions_path
+            or self.predictions_output_dir / "tournament_predictions.json",
+        )
+        object.__setattr__(
+            self,
+            "world_cup_probabilities_path",
+            self.world_cup_probabilities_path
+            or self.predictions_output_dir / "world_cup_probabilities.json",
+        )
 
 
 @dataclass(frozen=True)
@@ -170,8 +224,11 @@ DEFAULT_WORLD_CUP_2026_THIRD_PLACE_COMBINATIONS_PATH = (
 )
 DEFAULT_SQUAD_VALUES_PATH = PATH_SETTINGS.squad_values_path
 DEFAULT_TOURNAMENT_K_FACTORS_PATH = PATH_SETTINGS.tournament_k_factors_path
+DEFAULT_RAW_RESULTS_PATH = PATH_SETTINGS.raw_results_path
 DEFAULT_ELO_RANKINGS_PATH = PATH_SETTINGS.elo_rankings_path
+DEFAULT_ELO_HISTORY_PATH = PATH_SETTINGS.elo_history_path
 DEFAULT_CLEAN_RESULTS_PATH = PATH_SETTINGS.clean_results_path
+DEFAULT_FORMER_NAMES_PATH = PATH_SETTINGS.former_names_path
 DEFAULT_TEAM_METRICS_PATH = PATH_SETTINGS.team_metrics_path
 DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH = PATH_SETTINGS.tournament_predictions_path
 DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH = PATH_SETTINGS.world_cup_probabilities_path

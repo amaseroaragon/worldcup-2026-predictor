@@ -1,11 +1,9 @@
-from pathlib import Path
-
 import pandas as pd
 
+from src.prediction.settings import DEFAULT_FORMER_NAMES_PATH
 
-ROOT_DIR = Path(__file__).resolve().parents[2]
 
-FORMER_NAMES_PATH = ROOT_DIR / "data" / "external" / "former_names.csv"
+FORMER_NAMES_PATH = DEFAULT_FORMER_NAMES_PATH
 
 
 def load_team_name_mapping() -> dict:
