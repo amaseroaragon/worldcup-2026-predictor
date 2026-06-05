@@ -13,6 +13,7 @@ from src.prediction.config import (
     TIEBREAKER_EXPECTED_GOALS_WEIGHT,
     USE_MODEL_BASED_KNOCKOUT_TIEBREAKER,
 )
+from src.prediction.settings import DEFAULT_MAX_GOALS
 from src.elo.expected import expected_score
 
 
@@ -25,7 +26,11 @@ class MatchSimulationInput:
     match_id: str | None
 
 
-def sample_poisson(lambda_: float, max_goals: int = 10, rng: random.Random | None = None) -> int:
+def sample_poisson(
+    lambda_: float,
+    max_goals: int = DEFAULT_MAX_GOALS,
+    rng: random.Random | None = None,
+) -> int:
     """
     Samples a goal count from a truncated Poisson distribution.
 
@@ -49,7 +54,7 @@ def simulate_match(
     elo_a: float | None = None,
     elo_b: float | None = None,
     knockout: bool = False,
-    max_goals: int = 10,
+    max_goals: int = DEFAULT_MAX_GOALS,
     rng: random.Random | None = None,
     ratings: dict[str, float] | None = None,
     fixture: MatchFixture | None = None,

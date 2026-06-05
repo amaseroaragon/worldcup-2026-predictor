@@ -1,10 +1,8 @@
 import math
 
 from src.elo.expected import expected_score
+from src.elo.config import MAX_MARGIN_OF_VICTORY_FACTOR
 from src.elo.context import MatchContext, get_k_factor
-
-
-MAX_MARGIN_OF_VICTORY_FACTOR = 2.0
 
 
 def match_result(

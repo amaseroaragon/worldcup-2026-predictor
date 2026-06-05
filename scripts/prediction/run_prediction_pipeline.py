@@ -15,6 +15,7 @@ from src.prediction.config import (
     DEFAULT_WORLD_CUP_2026_KNOCKOUTS_PATH,
     DEFAULT_WORLD_CUP_2026_THIRD_PLACE_COMBINATIONS_PATH,
 )
+from src.prediction.settings import DEFAULT_CLI_SEED, DEFAULT_N_SIMULATIONS
 from src.prediction.io.exports import (
     DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH,
     DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH,
@@ -32,8 +33,18 @@ def parse_args() -> argparse.Namespace:
     """Parse prediction pipeline CLI arguments."""
 
     parser = argparse.ArgumentParser(description="Run the V1 prediction pipeline end to end.")
-    parser.add_argument("--simulations", type=int, default=1000, help="Number of simulations to run.")
-    parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducible simulations.")
+    parser.add_argument(
+        "--simulations",
+        type=int,
+        default=DEFAULT_N_SIMULATIONS,
+        help="Number of simulations to run.",
+    )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=DEFAULT_CLI_SEED,
+        help="Random seed for reproducible simulations.",
+    )
     parser.add_argument(
         "--output",
         type=Path,

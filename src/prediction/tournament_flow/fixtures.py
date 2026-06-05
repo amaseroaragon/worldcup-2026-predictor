@@ -3,9 +3,7 @@ from __future__ import annotations
 from itertools import combinations
 
 from src.prediction.core.models import MatchFixture
-
-
-TEAMS_PER_GROUP = 4
+from src.prediction.settings import TEAMS_PER_GROUP
 
 
 def build_group_stage_fixtures(

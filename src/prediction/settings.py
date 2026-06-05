@@ -1,43 +1,217 @@
 from __future__ import annotations
 
+from dataclasses import dataclass, field
 from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
-DATA_DIR = PROJECT_ROOT / "data"
-EXTERNAL_DATA_DIR = DATA_DIR / "external"
-PROCESSED_DATA_DIR = DATA_DIR / "processed"
-RAW_DATA_DIR = DATA_DIR / "raw"
-PREDICTIONS_OUTPUT_DIR = Path("outputs/predictions")
 
-DEFAULT_WORLD_CUP_2026_GROUPS_PATH = EXTERNAL_DATA_DIR / "groups.json"
-DEFAULT_WORLD_CUP_2026_GROUP_MATCHES_PATH = EXTERNAL_DATA_DIR / "group_matches.json"
-DEFAULT_WORLD_CUP_2026_KNOCKOUTS_PATH = EXTERNAL_DATA_DIR / "knockouts.json"
+@dataclass(frozen=True)
+class PathSettings:
+    project_root: Path = PROJECT_ROOT
+    predictions_output_dir: Path = Path("outputs/predictions")
+
+    @property
+    def data_dir(self) -> Path:
+        return self.project_root / "data"
+
+    @property
+    def external_data_dir(self) -> Path:
+        return self.data_dir / "external"
+
+    @property
+    def processed_data_dir(self) -> Path:
+        return self.data_dir / "processed"
+
+    @property
+    def raw_data_dir(self) -> Path:
+        return self.data_dir / "raw"
+
+    @property
+    def groups_path(self) -> Path:
+        return self.external_data_dir / "groups.json"
+
+    @property
+    def group_matches_path(self) -> Path:
+        return self.external_data_dir / "group_matches.json"
+
+    @property
+    def knockouts_path(self) -> Path:
+        return self.external_data_dir / "knockouts.json"
+
+    @property
+    def third_place_combinations_path(self) -> Path:
+        return self.external_data_dir / "third_place_combinations.json"
+
+    @property
+    def squad_values_path(self) -> Path:
+        return self.external_data_dir / "teams_value.json"
+
+    @property
+    def tournament_k_factors_path(self) -> Path:
+        return self.external_data_dir / "tournament_k_factors.json"
+
+    @property
+    def elo_rankings_path(self) -> Path:
+        return Path("data/processed/elo_rankings.csv")
+
+    @property
+    def clean_results_path(self) -> Path:
+        return self.processed_data_dir / "clean_results.csv"
+
+    @property
+    def team_metrics_path(self) -> Path:
+        return self.predictions_output_dir / "team_metrics.json"
+
+    @property
+    def tournament_predictions_path(self) -> Path:
+        return self.predictions_output_dir / "tournament_predictions.json"
+
+    @property
+    def world_cup_probabilities_path(self) -> Path:
+        return self.predictions_output_dir / "world_cup_probabilities.json"
+
+
+@dataclass(frozen=True)
+class EloSettings:
+    base_elo: int = 1500
+    k_factor: int = 20
+    home_advantage: int = 80
+    expected_score_scale: int = 400
+    max_margin_of_victory_factor: float = 2.0
+
+
+@dataclass(frozen=True)
+class ModelWeights:
+    use_recent_form: bool = True
+    recent_form_weight: float = 0.15
+    recent_form_primary_window: int = 10
+    use_squad_strength: bool = True
+    squad_strength_weight: float = 0.10
+    use_model_based_knockout_tiebreaker: bool = True
+    tiebreaker_expected_goals_weight: float = 0.35
+    base_goals: float = 1.35
+    elo_sensitivity: float = 0.0015
+    min_expected_goals: float = 0.2
+    max_expected_goals: float = 3.5
+    base_draw_probability: float = 0.26
+    draw_probability_decay: float = 0.0008
+    min_draw_probability: float = 0.08
+
+
+@dataclass(frozen=True)
+class SimulationSettings:
+    n_simulations: int = 1000
+    random_seed: int | None = None
+    cli_seed: int = 42
+    fixed_elo: bool = True
+    max_goals: int = 10
+    use_dynamic_elo_knockout: bool = True
+    use_dynamic_elo_group_stage: bool = True
+    teams_per_group: int = 4
+    matches_per_group: int = 6
+
+
+@dataclass(frozen=True)
+class TeamMetricSettings:
+    metrics_version: str = "v4.5"
+    squad_values_source: str = "data/external/teams_value.json"
+    squad_value_unit: str = "million_eur"
+    start_year: int | None = 2018
+    min_matches: int = 5
+    min_rating: float = 0.65
+    max_rating: float = 1.45
+    squad_min_rating: float = 0.85
+    squad_max_rating: float = 1.15
+    form_windows: tuple[int, ...] = (5, 10, 20)
+
+
+@dataclass(frozen=True)
+class OutputSettings:
+    probability_columns: tuple[str, ...] = (
+        "team",
+        "champion_probability",
+        "runner_up_probability",
+        "semifinal_probability",
+    )
+
+
+@dataclass(frozen=True)
+class PredictionSettings:
+    paths: PathSettings = field(default_factory=PathSettings)
+    elo: EloSettings = field(default_factory=EloSettings)
+    weights: ModelWeights = field(default_factory=ModelWeights)
+    simulation: SimulationSettings = field(default_factory=SimulationSettings)
+    team_metrics: TeamMetricSettings = field(default_factory=TeamMetricSettings)
+    outputs: OutputSettings = field(default_factory=OutputSettings)
+
+
+PREDICTION_SETTINGS = PredictionSettings()
+PATH_SETTINGS = PREDICTION_SETTINGS.paths
+ELO_SETTINGS = PREDICTION_SETTINGS.elo
+MODEL_WEIGHTS = PREDICTION_SETTINGS.weights
+SIMULATION_SETTINGS = PREDICTION_SETTINGS.simulation
+TEAM_METRIC_SETTINGS = PREDICTION_SETTINGS.team_metrics
+OUTPUT_SETTINGS = PREDICTION_SETTINGS.outputs
+
+# Public aliases kept for backwards compatibility.
+DATA_DIR = PATH_SETTINGS.data_dir
+EXTERNAL_DATA_DIR = PATH_SETTINGS.external_data_dir
+PROCESSED_DATA_DIR = PATH_SETTINGS.processed_data_dir
+RAW_DATA_DIR = PATH_SETTINGS.raw_data_dir
+PREDICTIONS_OUTPUT_DIR = PATH_SETTINGS.predictions_output_dir
+
+DEFAULT_WORLD_CUP_2026_GROUPS_PATH = PATH_SETTINGS.groups_path
+DEFAULT_WORLD_CUP_2026_GROUP_MATCHES_PATH = PATH_SETTINGS.group_matches_path
+DEFAULT_WORLD_CUP_2026_KNOCKOUTS_PATH = PATH_SETTINGS.knockouts_path
 DEFAULT_WORLD_CUP_2026_THIRD_PLACE_COMBINATIONS_PATH = (
-    EXTERNAL_DATA_DIR / "third_place_combinations.json"
+    PATH_SETTINGS.third_place_combinations_path
 )
-DEFAULT_SQUAD_VALUES_PATH = EXTERNAL_DATA_DIR / "teams_value.json"
-DEFAULT_TOURNAMENT_K_FACTORS_PATH = EXTERNAL_DATA_DIR / "tournament_k_factors.json"
-DEFAULT_ELO_RANKINGS_PATH = Path("data/processed/elo_rankings.csv")
-DEFAULT_CLEAN_RESULTS_PATH = PROCESSED_DATA_DIR / "clean_results.csv"
-DEFAULT_TEAM_METRICS_PATH = PREDICTIONS_OUTPUT_DIR / "team_metrics.json"
-DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH = (
-    PREDICTIONS_OUTPUT_DIR / "tournament_predictions.json"
-)
-DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH = (
-    PREDICTIONS_OUTPUT_DIR / "world_cup_probabilities.json"
-)
+DEFAULT_SQUAD_VALUES_PATH = PATH_SETTINGS.squad_values_path
+DEFAULT_TOURNAMENT_K_FACTORS_PATH = PATH_SETTINGS.tournament_k_factors_path
+DEFAULT_ELO_RANKINGS_PATH = PATH_SETTINGS.elo_rankings_path
+DEFAULT_CLEAN_RESULTS_PATH = PATH_SETTINGS.clean_results_path
+DEFAULT_TEAM_METRICS_PATH = PATH_SETTINGS.team_metrics_path
+DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH = PATH_SETTINGS.tournament_predictions_path
+DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH = PATH_SETTINGS.world_cup_probabilities_path
 
-TEAMS_PER_GROUP = 4
-MATCHES_PER_GROUP = 6
+BASE_ELO = ELO_SETTINGS.base_elo
+K_FACTOR = ELO_SETTINGS.k_factor
+HOME_ADVANTAGE = ELO_SETTINGS.home_advantage
+ELO_EXPECTED_SCORE_SCALE = ELO_SETTINGS.expected_score_scale
+MAX_MARGIN_OF_VICTORY_FACTOR = ELO_SETTINGS.max_margin_of_victory_factor
 
-USE_RECENT_FORM = True
-RECENT_FORM_WEIGHT = 0.15
-RECENT_FORM_PRIMARY_WINDOW = 10
-USE_SQUAD_STRENGTH = True
-SQUAD_STRENGTH_WEIGHT = 0.10
-USE_MODEL_BASED_KNOCKOUT_TIEBREAKER = True
-TIEBREAKER_EXPECTED_GOALS_WEIGHT = 0.35
-USE_DYNAMIC_ELO_KNOCKOUT = True
-USE_DYNAMIC_ELO_GROUP_STAGE = True
+TEAMS_PER_GROUP = SIMULATION_SETTINGS.teams_per_group
+MATCHES_PER_GROUP = SIMULATION_SETTINGS.matches_per_group
+DEFAULT_N_SIMULATIONS = SIMULATION_SETTINGS.n_simulations
+DEFAULT_CLI_SEED = SIMULATION_SETTINGS.cli_seed
+DEFAULT_FIXED_ELO = SIMULATION_SETTINGS.fixed_elo
+DEFAULT_MAX_GOALS = SIMULATION_SETTINGS.max_goals
+
+USE_RECENT_FORM = MODEL_WEIGHTS.use_recent_form
+RECENT_FORM_WEIGHT = MODEL_WEIGHTS.recent_form_weight
+RECENT_FORM_PRIMARY_WINDOW = MODEL_WEIGHTS.recent_form_primary_window
+USE_SQUAD_STRENGTH = MODEL_WEIGHTS.use_squad_strength
+SQUAD_STRENGTH_WEIGHT = MODEL_WEIGHTS.squad_strength_weight
+USE_MODEL_BASED_KNOCKOUT_TIEBREAKER = MODEL_WEIGHTS.use_model_based_knockout_tiebreaker
+TIEBREAKER_EXPECTED_GOALS_WEIGHT = MODEL_WEIGHTS.tiebreaker_expected_goals_weight
+BASE_DRAW_PROBABILITY = MODEL_WEIGHTS.base_draw_probability
+DRAW_PROBABILITY_DECAY = MODEL_WEIGHTS.draw_probability_decay
+MIN_DRAW_PROBABILITY = MODEL_WEIGHTS.min_draw_probability
+USE_DYNAMIC_ELO_KNOCKOUT = SIMULATION_SETTINGS.use_dynamic_elo_knockout
+USE_DYNAMIC_ELO_GROUP_STAGE = SIMULATION_SETTINGS.use_dynamic_elo_group_stage
+
+METRICS_VERSION = TEAM_METRIC_SETTINGS.metrics_version
+SQUAD_VALUES_SOURCE = TEAM_METRIC_SETTINGS.squad_values_source
+SQUAD_VALUE_UNIT = TEAM_METRIC_SETTINGS.squad_value_unit
+TEAM_STRENGTH_START_YEAR = TEAM_METRIC_SETTINGS.start_year
+TEAM_STRENGTH_MIN_MATCHES = TEAM_METRIC_SETTINGS.min_matches
+TEAM_STRENGTH_MIN_RATING = TEAM_METRIC_SETTINGS.min_rating
+TEAM_STRENGTH_MAX_RATING = TEAM_METRIC_SETTINGS.max_rating
+SQUAD_STRENGTH_MIN_RATING = TEAM_METRIC_SETTINGS.squad_min_rating
+SQUAD_STRENGTH_MAX_RATING = TEAM_METRIC_SETTINGS.squad_max_rating
+FORM_WINDOWS = TEAM_METRIC_SETTINGS.form_windows
+
+PROBABILITY_COLUMNS = list(OUTPUT_SETTINGS.probability_columns)
+PROBABILITY_VALUE_COLUMNS = PROBABILITY_COLUMNS[1:]

@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from src.prediction.settings import SIMULATION_SETTINGS
+
 
 @dataclass(frozen=True)
 class MatchFixture:
@@ -114,7 +116,7 @@ class TournamentOutcome:
 class SimulationConfig:
     """Runtime options for match and tournament simulation."""
 
-    n_simulations: int = 1000
-    random_seed: int | None = None
-    fixed_elo: bool = True
-    max_goals: int = 10
+    n_simulations: int = SIMULATION_SETTINGS.n_simulations
+    random_seed: int | None = SIMULATION_SETTINGS.random_seed
+    fixed_elo: bool = SIMULATION_SETTINGS.fixed_elo
+    max_goals: int = SIMULATION_SETTINGS.max_goals

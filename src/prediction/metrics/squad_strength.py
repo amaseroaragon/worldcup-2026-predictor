@@ -6,6 +6,11 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from src.prediction.settings import (
+    SQUAD_STRENGTH_MAX_RATING,
+    SQUAD_STRENGTH_MIN_RATING,
+)
+
 
 @dataclass(frozen=True)
 class SquadStrengthRating:
@@ -45,8 +50,8 @@ def load_squad_values(path: str | Path) -> dict[str, float]:
 def build_squad_strength_ratings(
     squad_values: dict[str, float],
     *,
-    min_rating: float = 0.85,
-    max_rating: float = 1.15,
+    min_rating: float = SQUAD_STRENGTH_MIN_RATING,
+    max_rating: float = SQUAD_STRENGTH_MAX_RATING,
 ) -> dict[str, SquadStrengthRating]:
     """Build normalized squad strength ratings from market values.
 

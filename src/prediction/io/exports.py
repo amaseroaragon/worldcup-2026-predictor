@@ -10,16 +10,9 @@ from src.prediction.core.models import MatchPrediction
 from src.prediction.settings import (
     DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH,
     DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH,
+    PROBABILITY_COLUMNS,
+    PROBABILITY_VALUE_COLUMNS,
 )
-
-
-PROBABILITY_COLUMNS = [
-    "team",
-    "champion_probability",
-    "runner_up_probability",
-    "semifinal_probability",
-]
-PROBABILITY_VALUE_COLUMNS = PROBABILITY_COLUMNS[1:]
 
 
 def probabilities_to_dataframe(probabilities: dict) -> pd.DataFrame:

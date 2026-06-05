@@ -4,8 +4,9 @@ from dataclasses import dataclass
 
 import pandas as pd
 
+from src.prediction.settings import FORM_WINDOWS
 
-FORM_WINDOWS = (5, 10, 20)
+
 REQUIRED_RESULT_COLUMNS = {
     "date",
     "home_team",

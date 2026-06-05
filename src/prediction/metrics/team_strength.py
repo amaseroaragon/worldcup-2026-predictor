@@ -8,12 +8,18 @@ import pandas as pd
 
 from src.prediction.metrics.recent_form import RecentFormRating
 from src.prediction.metrics.squad_strength import SquadStrengthRating
-from src.prediction.settings import DEFAULT_TEAM_METRICS_PATH
+from src.prediction.settings import (
+    DEFAULT_TEAM_METRICS_PATH,
+    METRICS_VERSION,
+    SQUAD_VALUE_UNIT,
+    SQUAD_VALUES_SOURCE,
+    TEAM_STRENGTH_MAX_RATING,
+    TEAM_STRENGTH_MIN_MATCHES,
+    TEAM_STRENGTH_MIN_RATING,
+    TEAM_STRENGTH_START_YEAR,
+)
 
 
-METRICS_VERSION = "v4.5"
-SQUAD_VALUES_SOURCE = "data/external/teams_value.json"
-SQUAD_VALUE_UNIT = "million_eur"
 REQUIRED_RESULT_COLUMNS = {
     "date",
     "home_team",
@@ -36,10 +42,10 @@ class TeamStrengthRating:
 def build_team_strength_ratings(
     results: pd.DataFrame,
     *,
-    start_year: int | None = 2018,
-    min_matches: int = 5,
-    min_rating: float = 0.65,
-    max_rating: float = 1.45,
+    start_year: int | None = TEAM_STRENGTH_START_YEAR,
+    min_matches: int = TEAM_STRENGTH_MIN_MATCHES,
+    min_rating: float = TEAM_STRENGTH_MIN_RATING,
+    max_rating: float = TEAM_STRENGTH_MAX_RATING,
 ) -> dict[str, TeamStrengthRating]:
     """Build attack and defense ratings from normalized historical results.
 

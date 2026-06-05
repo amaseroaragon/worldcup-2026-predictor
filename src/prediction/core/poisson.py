@@ -8,6 +8,7 @@ from src.prediction.config import (
     USE_RECENT_FORM,
     USE_SQUAD_STRENGTH,
 )
+from src.prediction.settings import DEFAULT_MAX_GOALS, MODEL_WEIGHTS
 
 
 def poisson_probability(k: int, lambda_: float) -> float:
@@ -33,10 +34,10 @@ def poisson_probability(k: int, lambda_: float) -> float:
 def expected_goals_from_elo(
     elo_a: float,
     elo_b: float,
-    base_goals: float = 1.35,
-    elo_sensitivity: float = 0.0015,
-    min_expected_goals: float = 0.2,
-    max_expected_goals: float = 3.5,
+    base_goals: float = MODEL_WEIGHTS.base_goals,
+    elo_sensitivity: float = MODEL_WEIGHTS.elo_sensitivity,
+    min_expected_goals: float = MODEL_WEIGHTS.min_expected_goals,
+    max_expected_goals: float = MODEL_WEIGHTS.max_expected_goals,
     attack_rating_a: float = 1.0,
     defense_rating_a: float = 1.0,
     attack_rating_b: float = 1.0,
@@ -128,7 +129,11 @@ def score_probability(goals_a: int, goals_b: int, expected_goals_a: float, expec
     )
 
 
-def score_matrix(expected_goals_a: float, expected_goals_b: float, max_goals: int = 10) -> list[list[float]]:
+def score_matrix(
+    expected_goals_a: float,
+    expected_goals_b: float,
+    max_goals: int = DEFAULT_MAX_GOALS,
+) -> list[list[float]]:
     """
     Returns a matrix of scoreline probabilities.
 

@@ -11,10 +11,7 @@ from src.prediction.metrics.recent_form import RecentFormRating
 from src.prediction.metrics.squad_strength import SquadStrengthRating
 from src.prediction.core.standings import build_group_standings
 from src.prediction.metrics.team_strength import TeamStrengthRating
-
-
-TEAMS_PER_GROUP = 4
-MATCHES_PER_GROUP = 6
+from src.prediction.settings import MATCHES_PER_GROUP, TEAMS_PER_GROUP
 
 
 def simulate_group_stage(
