@@ -16,7 +16,7 @@ from src.prediction.settings import (
     TEAM_STRENGTH_MAX_RATING,
     TEAM_STRENGTH_MIN_MATCHES,
     TEAM_STRENGTH_MIN_RATING,
-    TEAM_STRENGTH_START_YEAR,
+    TEAM_STRENGTH_RECENT_MATCHES,
 )
 
 
@@ -42,7 +42,7 @@ class TeamStrengthRating:
 def build_team_strength_ratings(
     results: pd.DataFrame,
     *,
-    start_year: int | None = TEAM_STRENGTH_START_YEAR,
+    recent_matches: int | None = TEAM_STRENGTH_RECENT_MATCHES,
     min_matches: int = TEAM_STRENGTH_MIN_MATCHES,
     min_rating: float = TEAM_STRENGTH_MIN_RATING,
     max_rating: float = TEAM_STRENGTH_MAX_RATING,
@@ -50,8 +50,10 @@ def build_team_strength_ratings(
     """Build attack and defense ratings from normalized historical results.
 
     Ratings compare each team's goals scored and conceded per match with the
-    global goals-per-team-match average. Teams below ``min_matches`` are
-    excluded, and final ratings are clipped to the configured bounds.
+    global goals-per-team-match average. By default, each team is measured on
+    its most recent matches in the provided dataset. Teams below
+    ``min_matches`` are excluded, and final ratings are clipped to the
+    configured bounds.
     """
     missing_columns = REQUIRED_RESULT_COLUMNS - set(results.columns)
     if missing_columns:
@@ -61,28 +63,48 @@ def build_team_strength_ratings(
     if min_matches < 0:
         raise ValueError("min_matches must be non-negative")
 
+    if recent_matches is not None and recent_matches <= 0:
+        raise ValueError("recent_matches must be positive")
+
     if min_rating <= 0 or max_rating <= 0:
         raise ValueError("rating bounds must be positive")
 
     if min_rating > max_rating:
         raise ValueError("min_rating must not exceed max_rating")
 
-    filtered_results = results
-    if start_year is not None:
-        match_years = pd.to_datetime(results["date"]).dt.year
-        filtered_results = results.loc[match_years >= start_year]
-
-    if filtered_results.empty:
+    if results.empty:
         return {}
 
-    home_results = filtered_results.loc[:, ["home_team", "home_score", "away_score"]].rename(
+    ordered_results = results.copy()
+    ordered_results["_match_order"] = range(len(ordered_results))
+    ordered_results["_parsed_date"] = pd.to_datetime(ordered_results["date"])
+
+    home_results = ordered_results.loc[
+        :,
+        [
+            "_parsed_date",
+            "_match_order",
+            "home_team",
+            "home_score",
+            "away_score",
+        ],
+    ].rename(
         columns={
             "home_team": "team",
             "home_score": "goals_scored",
             "away_score": "goals_conceded",
         }
     )
-    away_results = filtered_results.loc[:, ["away_team", "away_score", "home_score"]].rename(
+    away_results = ordered_results.loc[
+        :,
+        [
+            "_parsed_date",
+            "_match_order",
+            "away_team",
+            "away_score",
+            "home_score",
+        ],
+    ].rename(
         columns={
             "away_team": "team",
             "away_score": "goals_scored",
@@ -90,6 +112,9 @@ def build_team_strength_ratings(
         }
     )
     team_results = pd.concat([home_results, away_results], ignore_index=True)
+    team_results = team_results.sort_values(["team", "_parsed_date", "_match_order"])
+    if recent_matches is not None:
+        team_results = team_results.groupby("team", sort=False).tail(recent_matches)
 
     team_stats = team_results.groupby("team", sort=False).agg(
         matches_played=("team", "size"),

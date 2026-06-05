@@ -231,6 +231,9 @@ def test_team_metric_settings_match_legacy_aliases():
         TEAM_METRIC_SETTINGS.squad_values_source
     ) == "data/external/teams_value.json"
     assert team_strength.SQUAD_VALUE_UNIT == TEAM_METRIC_SETTINGS.squad_value_unit
+    assert team_strength.TEAM_STRENGTH_RECENT_MATCHES == (
+        TEAM_METRIC_SETTINGS.recent_matches
+    ) == 20
 
 
 def test_output_settings_match_export_aliases():

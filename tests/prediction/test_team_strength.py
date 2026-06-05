@@ -46,7 +46,7 @@ def _results() -> pd.DataFrame:
 def test_build_team_strength_ratings_calculates_attack_and_defense_for_both_venues():
     ratings = build_team_strength_ratings(
         _results(),
-        start_year=2018,
+        recent_matches=2,
         min_matches=2,
         min_rating=0.01,
         max_rating=10.0,
@@ -66,10 +66,10 @@ def test_build_team_strength_ratings_calculates_attack_and_defense_for_both_venu
     )
 
 
-def test_build_team_strength_ratings_can_include_results_before_default_start_year():
+def test_build_team_strength_ratings_can_use_all_available_results():
     ratings = build_team_strength_ratings(
         _results(),
-        start_year=None,
+        recent_matches=None,
         min_matches=3,
         min_rating=0.01,
         max_rating=10.0,
@@ -79,14 +79,63 @@ def test_build_team_strength_ratings_can_include_results_before_default_start_ye
     assert ratings["B"].matches_used == 3
 
 
+def test_build_team_strength_ratings_uses_recent_matches_per_team():
+    results = pd.DataFrame(
+        [
+            {
+                "date": "2017-06-01",
+                "home_team": "A",
+                "away_team": "B",
+                "home_score": 10,
+                "away_score": 0,
+            },
+            {
+                "date": "2018-06-01",
+                "home_team": "A",
+                "away_team": "B",
+                "home_score": 0,
+                "away_score": 2,
+            },
+            {
+                "date": "2019-06-01",
+                "home_team": "B",
+                "away_team": "A",
+                "home_score": 2,
+                "away_score": 0,
+            },
+        ]
+    )
+
+    ratings = build_team_strength_ratings(
+        results,
+        recent_matches=2,
+        min_matches=2,
+        min_rating=0.01,
+        max_rating=10.0,
+    )
+
+    assert ratings["A"] == TeamStrengthRating(
+        team="A",
+        attack_rating=0.01,
+        defense_rating=2.0,
+        matches_used=2,
+    )
+    assert ratings["B"] == TeamStrengthRating(
+        team="B",
+        attack_rating=2.0,
+        defense_rating=0.01,
+        matches_used=2,
+    )
+
+
 def test_build_team_strength_ratings_excludes_teams_below_minimum_matches():
-    ratings = build_team_strength_ratings(_results(), start_year=2018, min_matches=3)
+    ratings = build_team_strength_ratings(_results(), recent_matches=2, min_matches=3)
 
     assert ratings == {}
 
 
 def test_build_team_strength_ratings_clips_extreme_ratings():
-    ratings = build_team_strength_ratings(_results(), start_year=2018, min_matches=2)
+    ratings = build_team_strength_ratings(_results(), recent_matches=2, min_matches=2)
 
     assert ratings["A"].attack_rating == 1.45
     assert ratings["A"].defense_rating == 0.65
@@ -94,8 +143,8 @@ def test_build_team_strength_ratings_clips_extreme_ratings():
     assert ratings["B"].defense_rating == 1.45
 
 
-def test_build_team_strength_ratings_returns_empty_mapping_without_filtered_results():
-    ratings = build_team_strength_ratings(_results(), start_year=2020)
+def test_build_team_strength_ratings_returns_empty_mapping_without_results():
+    ratings = build_team_strength_ratings(pd.DataFrame(columns=_results().columns))
 
     assert ratings == {}
 
@@ -137,6 +186,7 @@ def test_build_team_strength_ratings_rejects_missing_columns():
     ("kwargs", "message"),
     [
         ({"min_matches": -1}, "min_matches"),
+        ({"recent_matches": 0}, "recent_matches"),
         ({"min_rating": 0.0}, "rating bounds"),
         ({"min_rating": 2.0, "max_rating": 1.0}, "min_rating"),
     ],

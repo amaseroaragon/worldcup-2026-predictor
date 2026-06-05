@@ -172,7 +172,7 @@ class TeamMetricSettings:
     metrics_version: str = "v4.5"
     squad_values_source: str = "data/external/teams_value.json"
     squad_value_unit: str = "million_eur"
-    start_year: int | None = 2018
+    recent_matches: int | None = 20
     min_matches: int = 5
     min_rating: float = 0.65
     max_rating: float = 1.45
@@ -262,7 +262,7 @@ USE_DYNAMIC_ELO_GROUP_STAGE = SIMULATION_SETTINGS.use_dynamic_elo_group_stage
 METRICS_VERSION = TEAM_METRIC_SETTINGS.metrics_version
 SQUAD_VALUES_SOURCE = TEAM_METRIC_SETTINGS.squad_values_source
 SQUAD_VALUE_UNIT = TEAM_METRIC_SETTINGS.squad_value_unit
-TEAM_STRENGTH_START_YEAR = TEAM_METRIC_SETTINGS.start_year
+TEAM_STRENGTH_RECENT_MATCHES = TEAM_METRIC_SETTINGS.recent_matches
 TEAM_STRENGTH_MIN_MATCHES = TEAM_METRIC_SETTINGS.min_matches
 TEAM_STRENGTH_MIN_RATING = TEAM_METRIC_SETTINGS.min_rating
 TEAM_STRENGTH_MAX_RATING = TEAM_METRIC_SETTINGS.max_rating
