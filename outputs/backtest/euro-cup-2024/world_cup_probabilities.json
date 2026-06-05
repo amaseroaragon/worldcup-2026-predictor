@@ -1,0 +1,146 @@
+[
+  {
+    "team": "France",
+    "champion_probability": 0.2,
+    "runner_up_probability": 0.146,
+    "semifinal_probability": 0.554
+  },
+  {
+    "team": "Spain",
+    "champion_probability": 0.136,
+    "runner_up_probability": 0.128,
+    "semifinal_probability": 0.48
+  },
+  {
+    "team": "England",
+    "champion_probability": 0.136,
+    "runner_up_probability": 0.094,
+    "semifinal_probability": 0.485
+  },
+  {
+    "team": "Belgium",
+    "champion_probability": 0.129,
+    "runner_up_probability": 0.095,
+    "semifinal_probability": 0.372
+  },
+  {
+    "team": "Netherlands",
+    "champion_probability": 0.122,
+    "runner_up_probability": 0.121,
+    "semifinal_probability": 0.419
+  },
+  {
+    "team": "Portugal",
+    "champion_probability": 0.117,
+    "runner_up_probability": 0.112,
+    "semifinal_probability": 0.414
+  },
+  {
+    "team": "Italy",
+    "champion_probability": 0.072,
+    "runner_up_probability": 0.104,
+    "semifinal_probability": 0.371
+  },
+  {
+    "team": "Denmark",
+    "champion_probability": 0.024,
+    "runner_up_probability": 0.045,
+    "semifinal_probability": 0.174
+  },
+  {
+    "team": "Germany",
+    "champion_probability": 0.02,
+    "runner_up_probability": 0.047,
+    "semifinal_probability": 0.161
+  },
+  {
+    "team": "Croatia",
+    "champion_probability": 0.013,
+    "runner_up_probability": 0.03,
+    "semifinal_probability": 0.149
+  },
+  {
+    "team": "Switzerland",
+    "champion_probability": 0.008,
+    "runner_up_probability": 0.018,
+    "semifinal_probability": 0.087
+  },
+  {
+    "team": "Serbia",
+    "champion_probability": 0.007,
+    "runner_up_probability": 0.015,
+    "semifinal_probability": 0.06
+  },
+  {
+    "team": "Ukraine",
+    "champion_probability": 0.005,
+    "runner_up_probability": 0.003,
+    "semifinal_probability": 0.039
+  },
+  {
+    "team": "Austria",
+    "champion_probability": 0.005,
+    "runner_up_probability": 0.014,
+    "semifinal_probability": 0.05
+  },
+  {
+    "team": "Slovakia",
+    "champion_probability": 0.002,
+    "runner_up_probability": 0.003,
+    "semifinal_probability": 0.019
+  },
+  {
+    "team": "Hungary",
+    "champion_probability": 0.001,
+    "runner_up_probability": 0.006,
+    "semifinal_probability": 0.032
+  },
+  {
+    "team": "Turkey",
+    "champion_probability": 0.001,
+    "runner_up_probability": 0.003,
+    "semifinal_probability": 0.031
+  },
+  {
+    "team": "Slovenia",
+    "champion_probability": 0.001,
+    "runner_up_probability": 0.003,
+    "semifinal_probability": 0.025
+  },
+  {
+    "team": "Romania",
+    "champion_probability": 0.001,
+    "runner_up_probability": 0.001,
+    "semifinal_probability": 0.017
+  },
+  {
+    "team": "Scotland",
+    "champion_probability": 0.0,
+    "runner_up_probability": 0.0,
+    "semifinal_probability": 0.009
+  },
+  {
+    "team": "Albania",
+    "champion_probability": 0.0,
+    "runner_up_probability": 0.0,
+    "semifinal_probability": 0.0
+  },
+  {
+    "team": "Poland",
+    "champion_probability": 0.0,
+    "runner_up_probability": 0.007,
+    "semifinal_probability": 0.031
+  },
+  {
+    "team": "Georgia",
+    "champion_probability": 0.0,
+    "runner_up_probability": 0.002,
+    "semifinal_probability": 0.006
+  },
+  {
+    "team": "Czech Republic",
+    "champion_probability": 0.0,
+    "runner_up_probability": 0.003,
+    "semifinal_probability": 0.015
+  }
+]

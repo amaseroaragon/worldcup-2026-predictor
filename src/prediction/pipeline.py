@@ -44,6 +44,7 @@ def load_prediction_inputs(
     squad_values_config: str | Path | None = None,
     clean_results_path: str | Path | None = None,
     path_settings: PathSettings = PATH_SETTINGS,
+    allow_missing_third_place_combinations: bool = False,
 ) -> PredictionInputs:
     """Load and derive the reusable inputs shared by prediction scripts."""
 
@@ -58,9 +59,18 @@ def load_prediction_inputs(
         group_matches_config or path_settings.group_matches_path
     )
     knockout_matches = load_knockouts_config(knockouts_config or path_settings.knockouts_path)
-    third_place_combinations = load_third_place_combinations_config(
+    third_place_combinations_path = (
         third_place_combinations_config or path_settings.third_place_combinations_path
     )
+    if (
+        allow_missing_third_place_combinations
+        and not Path(third_place_combinations_path).exists()
+    ):
+        third_place_combinations = {}
+    else:
+        third_place_combinations = load_third_place_combinations_config(
+            third_place_combinations_path
+        )
 
     return PredictionInputs(
         ratings=ratings,

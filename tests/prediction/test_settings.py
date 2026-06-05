@@ -152,6 +152,37 @@ def test_prediction_input_loader_accepts_path_settings(monkeypatch, tmp_path):
     assert calls["third_place_combinations_path"] == settings.third_place_combinations_path
 
 
+def test_prediction_input_loader_can_allow_missing_third_place_combinations(
+    monkeypatch,
+    tmp_path,
+):
+    settings = PathSettings(data_dir=tmp_path / "backtest" / "world_cup_2018")
+    calls = {}
+
+    monkeypatch.setattr(pipeline, "load_ratings", lambda path: {})
+    monkeypatch.setattr(pipeline.pd, "read_csv", lambda path: calls.setdefault("results", path))
+    monkeypatch.setattr(pipeline, "build_team_strength_ratings", lambda results: {})
+    monkeypatch.setattr(pipeline, "build_recent_form_ratings", lambda results: {})
+    monkeypatch.setattr(pipeline, "load_squad_values", lambda path: {})
+    monkeypatch.setattr(pipeline, "build_squad_strength_ratings", lambda squad_values: {})
+    monkeypatch.setattr(pipeline, "load_groups_config", lambda path: {})
+    monkeypatch.setattr(pipeline, "load_group_matches_config", lambda path: [])
+    monkeypatch.setattr(pipeline, "load_knockouts_config", lambda path: [])
+    monkeypatch.setattr(
+        pipeline,
+        "load_third_place_combinations_config",
+        lambda path: calls.setdefault("third_place_combinations", path),
+    )
+
+    inputs = pipeline.load_prediction_inputs(
+        path_settings=settings,
+        allow_missing_third_place_combinations=True,
+    )
+
+    assert inputs.third_place_combinations == {}
+    assert "third_place_combinations" not in calls
+
+
 def test_elo_settings_match_legacy_elo_config_aliases():
     assert elo_config.BASE_ELO == ELO_SETTINGS.base_elo == 1500
     assert elo_config.K_FACTOR == ELO_SETTINGS.k_factor == 20

@@ -1,0 +1,3355 @@
+{
+  "metrics_version": "v4.5",
+  "squad_values_source": "data/backtest/euro-cup-2024/external/teams_value.json",
+  "squad_value_unit": "million_eur",
+  "teams": [
+    {
+      "team": "Abkhazia",
+      "attack_rating": 1.4060892718342237,
+      "defense_rating": 0.65,
+      "matches_used": 11,
+      "recent_form": {
+        "form_5": 0.9866666666666667,
+        "form_10": 1.0521212121212122,
+        "form_20": 1.0323809523809524,
+        "matches_available": 33
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Afghanistan",
+      "attack_rating": 0.65,
+      "defense_rating": 1.3067342695233568,
+      "matches_used": 31,
+      "recent_form": {
+        "form_5": 0.9333333333333333,
+        "form_10": 0.9503030303030303,
+        "form_20": 0.9371428571428572,
+        "matches_available": 137
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Albania",
+      "attack_rating": 0.8434375739650759,
+      "defense_rating": 0.8553169764152881,
+      "matches_used": 62,
+      "recent_form": {
+        "form_5": 1.048888888888889,
+        "form_10": 1.0327272727272727,
+        "form_20": 1.02984126984127,
+        "matches_available": 375
+      },
+      "squad_strength": {
+        "squad_value": 139.0,
+        "squad_strength_rating": 0.85
+      }
+    },
+    {
+      "team": "Alderney",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 7,
+      "recent_form": {
+        "form_5": 0.88,
+        "form_10": 0.88,
+        "form_20": 0.8590476190476191,
+        "matches_available": 135
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Algeria",
+      "attack_rating": 1.45,
+      "defense_rating": 0.65,
+      "matches_used": 81,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 1.0084848484848485,
+        "form_20": 1.0463492063492064,
+        "matches_available": 587
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "American Samoa",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 9,
+      "recent_form": {
+        "form_5": 0.8,
+        "form_10": 0.816969696969697,
+        "form_20": 0.8622222222222222,
+        "matches_available": 52
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Andorra",
+      "attack_rating": 0.65,
+      "defense_rating": 1.3444466582541896,
+      "matches_used": 63,
+      "recent_form": {
+        "form_5": 0.8177777777777778,
+        "form_10": 0.8193939393939395,
+        "form_20": 0.8330158730158731,
+        "matches_available": 208
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Angola",
+      "attack_rating": 0.8331161259345634,
+      "defense_rating": 0.65,
+      "matches_used": 61,
+      "recent_form": {
+        "form_5": 0.9777777777777779,
+        "form_10": 1.0084848484848485,
+        "form_20": 1.0031746031746032,
+        "matches_available": 396
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Anguilla",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 28,
+      "recent_form": {
+        "form_5": 0.8444444444444444,
+        "form_10": 0.8363636363636364,
+        "form_20": 0.8342857142857143,
+        "matches_available": 79
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Antigua and Barbuda",
+      "attack_rating": 0.9964722290589877,
+      "defense_rating": 1.45,
+      "matches_used": 34,
+      "recent_form": {
+        "form_5": 0.8444444444444444,
+        "form_10": 0.8727272727272728,
+        "form_20": 0.9092063492063492,
+        "matches_available": 221
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Argentina",
+      "attack_rating": 1.45,
+      "defense_rating": 0.65,
+      "matches_used": 77,
+      "recent_form": {
+        "form_5": 1.1733333333333333,
+        "form_10": 1.1563636363636365,
+        "form_20": 1.1523809523809525,
+        "matches_available": 1042
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Armenia",
+      "attack_rating": 0.8553169764152881,
+      "defense_rating": 1.3898900866748434,
+      "matches_used": 62,
+      "recent_form": {
+        "form_5": 0.9333333333333333,
+        "form_10": 0.8872727272727273,
+        "form_20": 0.8990476190476191,
+        "matches_available": 253
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Artsakh",
+      "attack_rating": 1.3257413134436966,
+      "defense_rating": 1.1784367230610637,
+      "matches_used": 5,
+      "recent_form": {
+        "form_5": 1.0933333333333335,
+        "form_10": 1.073939393939394,
+        "form_20": null,
+        "matches_available": 11
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Aruba",
+      "attack_rating": 1.0016712146019042,
+      "defense_rating": 1.45,
+      "matches_used": 25,
+      "recent_form": {
+        "form_5": 0.9244444444444445,
+        "form_10": 0.9915151515151516,
+        "form_20": 0.9733333333333334,
+        "matches_available": 138
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Australia",
+      "attack_rating": 1.45,
+      "defense_rating": 0.65,
+      "matches_used": 62,
+      "recent_form": {
+        "form_5": 1.1733333333333333,
+        "form_10": 1.136969696969697,
+        "form_20": 1.1098412698412699,
+        "matches_available": 561
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Austria",
+      "attack_rating": 1.227538253188608,
+      "defense_rating": 0.7685456889528676,
+      "matches_used": 69,
+      "recent_form": {
+        "form_5": 1.1111111111111112,
+        "form_10": 1.124848484848485,
+        "form_20": 1.1060317460317461,
+        "matches_available": 837
+      },
+      "squad_strength": {
+        "squad_value": 268.0,
+        "squad_strength_rating": 0.928010971467697
+      }
+    },
+    {
+      "team": "Azerbaijan",
+      "attack_rating": 0.702529584901788,
+      "defense_rating": 1.0651254996898074,
+      "matches_used": 65,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 1.0157575757575759,
+        "form_20": 1.0126984126984127,
+        "matches_available": 290
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Bahamas",
+      "attack_rating": 0.8127149814214232,
+      "defense_rating": 1.45,
+      "matches_used": 29,
+      "recent_form": {
+        "form_5": 0.8177777777777778,
+        "form_10": 0.8242424242424243,
+        "form_20": 0.8482539682539683,
+        "matches_available": 57
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Bahrain",
+      "attack_rating": 1.1047844278697472,
+      "defense_rating": 0.7022660704288315,
+      "matches_used": 86,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 1.0206060606060607,
+        "form_20": 1.0044444444444445,
+        "matches_available": 560
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Bangladesh",
+      "attack_rating": 0.65,
+      "defense_rating": 1.0854022449246639,
+      "matches_used": 57,
+      "recent_form": {
+        "form_5": 0.8088888888888889,
+        "form_10": 0.8581818181818183,
+        "form_20": 0.914920634920635,
+        "matches_available": 291
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Barawa",
+      "attack_rating": 1.0311321326784306,
+      "defense_rating": 1.45,
+      "matches_used": 10,
+      "recent_form": {
+        "form_5": 0.8266666666666667,
+        "form_10": 0.88,
+        "form_20": null,
+        "matches_available": 12
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Barbados",
+      "attack_rating": 0.7365229519131647,
+      "defense_rating": 1.45,
+      "matches_used": 44,
+      "recent_form": {
+        "form_5": 0.8,
+        "form_10": 0.8145454545454546,
+        "form_20": 0.834920634920635,
+        "matches_available": 288
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Belarus",
+      "attack_rating": 0.6780687493803739,
+      "defense_rating": 1.1223206886295845,
+      "matches_used": 63,
+      "recent_form": {
+        "form_5": 0.8533333333333334,
+        "form_10": 0.9187878787878788,
+        "form_20": 0.9263492063492064,
+        "matches_available": 295
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Belgium",
+      "attack_rating": 1.45,
+      "defense_rating": 0.65,
+      "matches_used": 78,
+      "recent_form": {
+        "form_5": 1.1111111111111112,
+        "form_10": 1.107878787878788,
+        "form_20": 1.0996825396825398,
+        "matches_available": 829
+      },
+      "squad_strength": {
+        "squad_value": 669.0,
+        "squad_strength_rating": 1.0793809906795004
+      }
+    },
+    {
+      "team": "Belize",
+      "attack_rating": 0.7365229519131647,
+      "defense_rating": 1.1147374407334387,
+      "matches_used": 37,
+      "recent_form": {
+        "form_5": 0.8977777777777778,
+        "form_10": 0.9357575757575758,
+        "form_20": 0.9117460317460317,
+        "matches_available": 107
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Benin",
+      "attack_rating": 0.7518671800780223,
+      "defense_rating": 0.76721140824288,
+      "matches_used": 48,
+      "recent_form": {
+        "form_5": 1.0666666666666667,
+        "form_10": 0.9793939393939395,
+        "form_20": 0.9346031746031747,
+        "matches_available": 303
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Bermuda",
+      "attack_rating": 1.2341735950977355,
+      "defense_rating": 1.45,
+      "matches_used": 37,
+      "recent_form": {
+        "form_5": 0.888888888888889,
+        "form_10": 0.9430303030303031,
+        "form_20": 0.928888888888889,
+        "matches_available": 180
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Bhutan",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 19,
+      "recent_form": {
+        "form_5": 0.9066666666666667,
+        "form_10": 0.9066666666666667,
+        "form_20": 0.8857142857142858,
+        "matches_available": 101
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Bolivia",
+      "attack_rating": 0.7014504303934902,
+      "defense_rating": 1.4262825418000968,
+      "matches_used": 63,
+      "recent_form": {
+        "form_5": 0.88,
+        "form_10": 0.8945454545454545,
+        "form_20": 0.881904761904762,
+        "matches_available": 507
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Bonaire",
+      "attack_rating": 1.2404597084853302,
+      "defense_rating": 1.45,
+      "matches_used": 19,
+      "recent_form": {
+        "form_5": 0.9777777777777779,
+        "form_10": 0.9721212121212122,
+        "form_20": 0.994920634920635,
+        "matches_available": 32
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Bosnia and Herzegovina",
+      "attack_rating": 0.7135066096658784,
+      "defense_rating": 0.978194545509672,
+      "matches_used": 64,
+      "recent_form": {
+        "form_5": 0.8,
+        "form_10": 0.8436363636363637,
+        "form_20": 0.8971428571428572,
+        "matches_available": 263
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Botswana",
+      "attack_rating": 0.6683263822915755,
+      "defense_rating": 0.7501622658374827,
+      "matches_used": 54,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 0.993939393939394,
+        "form_20": 0.973968253968254,
+        "matches_available": 315
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Brazil",
+      "attack_rating": 1.45,
+      "defense_rating": 0.65,
+      "matches_used": 77,
+      "recent_form": {
+        "form_5": 1.031111111111111,
+        "form_10": 0.9890909090909091,
+        "form_20": 0.9968253968253968,
+        "matches_available": 1035
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "British Virgin Islands",
+      "attack_rating": 0.6776011157601116,
+      "defense_rating": 1.45,
+      "matches_used": 25,
+      "recent_form": {
+        "form_5": 0.8444444444444444,
+        "form_10": 0.88,
+        "form_20": 0.8774603174603175,
+        "matches_available": 109
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Brunei",
+      "attack_rating": 0.7014504303934902,
+      "defense_rating": 1.45,
+      "matches_used": 21,
+      "recent_form": {
+        "form_5": 1.12,
+        "form_10": 0.9963636363636365,
+        "form_20": 0.9447619047619048,
+        "matches_available": 126
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Bulgaria",
+      "attack_rating": 0.6780687493803739,
+      "defense_rating": 1.0521756455902354,
+      "matches_used": 63,
+      "recent_form": {
+        "form_5": 0.9688888888888889,
+        "form_10": 0.9430303030303031,
+        "form_20": 0.928888888888889,
+        "matches_available": 716
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Burkina Faso",
+      "attack_rating": 0.9028345862161374,
+      "defense_rating": 0.7246435494629524,
+      "matches_used": 62,
+      "recent_form": {
+        "form_5": 0.8444444444444444,
+        "form_10": 0.8945454545454545,
+        "form_20": 0.940952380952381,
+        "matches_available": 436
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Burundi",
+      "attack_rating": 0.935583209186993,
+      "defense_rating": 1.1147374407334387,
+      "matches_used": 37,
+      "recent_form": {
+        "form_5": 0.9955555555555556,
+        "form_10": 0.9745454545454546,
+        "form_20": 0.9587301587301588,
+        "matches_available": 203
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Cambodia",
+      "attack_rating": 0.7845570574727191,
+      "defense_rating": 1.45,
+      "matches_used": 46,
+      "recent_form": {
+        "form_5": 0.9066666666666667,
+        "form_10": 0.913939393939394,
+        "form_20": 0.921904761904762,
+        "matches_available": 281
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Cameroon",
+      "attack_rating": 0.9469580810312119,
+      "defense_rating": 0.65,
+      "matches_used": 63,
+      "recent_form": {
+        "form_5": 1.0044444444444445,
+        "form_10": 0.9842424242424244,
+        "form_20": 0.9707936507936509,
+        "matches_available": 594
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Canada",
+      "attack_rating": 1.45,
+      "defense_rating": 0.7135066096658784,
+      "matches_used": 64,
+      "recent_form": {
+        "form_5": 0.9511111111111111,
+        "form_10": 0.9648484848484848,
+        "form_20": 0.9784126984126984,
+        "matches_available": 440
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Cape Verde",
+      "attack_rating": 0.8893862060838216,
+      "defense_rating": 0.680936314032926,
+      "matches_used": 53,
+      "recent_form": {
+        "form_5": 1.0755555555555556,
+        "form_10": 1.0787878787878789,
+        "form_20": 1.0457142857142858,
+        "matches_available": 214
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Cascadia",
+      "attack_rating": 1.45,
+      "defense_rating": 1.45,
+      "matches_used": 7,
+      "recent_form": {
+        "form_5": 1.0755555555555556,
+        "form_10": null,
+        "form_20": null,
+        "matches_available": 7
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Cayman Islands",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 24,
+      "recent_form": {
+        "form_5": 0.9600000000000001,
+        "form_10": 0.9357575757575758,
+        "form_20": 0.921904761904762,
+        "matches_available": 106
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Central African Republic",
+      "attack_rating": 0.9303447813639976,
+      "defense_rating": 1.1435487937599136,
+      "matches_used": 38,
+      "recent_form": {
+        "form_5": 1.048888888888889,
+        "form_10": 1.010909090909091,
+        "form_20": 0.9746031746031747,
+        "matches_available": 123
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Chad",
+      "attack_rating": 0.65,
+      "defense_rating": 1.1784367230610637,
+      "matches_used": 20,
+      "recent_form": {
+        "form_5": 0.9333333333333333,
+        "form_10": 0.9163636363636364,
+        "form_20": 0.8895238095238096,
+        "matches_available": 122
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Chagos Islands",
+      "attack_rating": 0.8838275422957977,
+      "defense_rating": 1.45,
+      "matches_used": 5,
+      "recent_form": {
+        "form_5": 0.8,
+        "form_10": 0.8363636363636364,
+        "form_20": null,
+        "matches_available": 16
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Chameria",
+      "attack_rating": 1.45,
+      "defense_rating": 0.8417405164721883,
+      "matches_used": 7,
+      "recent_form": {
+        "form_5": 1.0044444444444445,
+        "form_10": null,
+        "form_20": null,
+        "matches_available": 7
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Chile",
+      "attack_rating": 0.8539396543920751,
+      "defense_rating": 0.896636637111679,
+      "matches_used": 69,
+      "recent_form": {
+        "form_5": 1.0222222222222224,
+        "form_10": 0.9842424242424244,
+        "form_20": 0.9853968253968255,
+        "matches_available": 812
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "China PR",
+      "attack_rating": 1.0504507674827104,
+      "defense_rating": 0.8331161259345634,
+      "matches_used": 61,
+      "recent_form": {
+        "form_5": 0.9333333333333333,
+        "form_10": 0.9260606060606061,
+        "form_20": 0.9453968253968255,
+        "matches_available": 687
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Colombia",
+      "attack_rating": 1.0311321326784306,
+      "defense_rating": 0.65,
+      "matches_used": 70,
+      "recent_form": {
+        "form_5": 1.2,
+        "form_10": 1.1563636363636365,
+        "form_20": 1.133968253968254,
+        "matches_available": 611
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Comoros",
+      "attack_rating": 0.8814127129452628,
+      "defense_rating": 1.014228327224686,
+      "matches_used": 61,
+      "recent_form": {
+        "form_5": 1.04,
+        "form_10": 1.0593939393939396,
+        "form_20": 1.008888888888889,
+        "matches_available": 126
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Congo",
+      "attack_rating": 0.6918851972517609,
+      "defense_rating": 1.227538253188608,
+      "matches_used": 33,
+      "recent_form": {
+        "form_5": 0.8533333333333334,
+        "form_10": 0.8872727272727273,
+        "form_20": 0.8895238095238096,
+        "matches_available": 397
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Cook Islands",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 9,
+      "recent_form": {
+        "form_5": 0.9333333333333333,
+        "form_10": 0.9090909090909092,
+        "form_20": 0.9168253968253969,
+        "matches_available": 52
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Costa Rica",
+      "attack_rating": 0.8154361253324325,
+      "defense_rating": 0.9644943417910491,
+      "matches_used": 84,
+      "recent_form": {
+        "form_5": 1.0933333333333335,
+        "form_10": 1.044848484848485,
+        "form_20": 0.9942857142857143,
+        "matches_available": 696
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Croatia",
+      "attack_rating": 1.2093525012895174,
+      "defense_rating": 0.854730339257253,
+      "matches_used": 81,
+      "recent_form": {
+        "form_5": 1.1644444444444444,
+        "form_10": 1.1151515151515152,
+        "form_20": 1.0844444444444445,
+        "matches_available": 373
+      },
+      "squad_strength": {
+        "squad_value": 396.0,
+        "squad_strength_rating": 0.9925728324946266
+      }
+    },
+    {
+      "team": "Cuba",
+      "attack_rating": 0.9387057230265825,
+      "defense_rating": 1.343071265253418,
+      "matches_used": 51,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 0.9793939393939395,
+        "form_20": 0.9638095238095239,
+        "matches_available": 380
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Curaçao",
+      "attack_rating": 1.2464234570838173,
+      "defense_rating": 0.9253749908652583,
+      "matches_used": 39,
+      "recent_form": {
+        "form_5": 1.1111111111111112,
+        "form_10": 1.0254545454545454,
+        "form_20": 0.9517460317460318,
+        "matches_available": 363
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Cyprus",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 62,
+      "recent_form": {
+        "form_5": 0.9777777777777779,
+        "form_10": 0.9333333333333333,
+        "form_20": 0.9028571428571429,
+        "matches_available": 406
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Czech Republic",
+      "attack_rating": 1.1848412704690041,
+      "defense_rating": 0.9393336198312825,
+      "matches_used": 69,
+      "recent_form": {
+        "form_5": 1.2,
+        "form_10": 1.1393939393939394,
+        "form_20": 1.0863492063492064,
+        "matches_available": 337
+      },
+      "squad_strength": {
+        "squad_value": 266.0,
+        "squad_strength_rating": 0.9267731082997541
+      }
+    },
+    {
+      "team": "DR Congo",
+      "attack_rating": 0.7242475693812787,
+      "defense_rating": 0.7242475693812787,
+      "matches_used": 60,
+      "recent_form": {
+        "form_5": 1.0222222222222224,
+        "form_10": 0.9915151515151516,
+        "form_20": 0.973968253968254,
+        "matches_available": 500
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Denmark",
+      "attack_rating": 1.3664438976283715,
+      "defense_rating": 0.65,
+      "matches_used": 76,
+      "recent_form": {
+        "form_5": 1.1377777777777778,
+        "form_10": 1.1224242424242425,
+        "form_20": 1.09015873015873,
+        "matches_available": 850
+      },
+      "squad_strength": {
+        "squad_value": 464.0,
+        "squad_strength_rating": 1.018797523734942
+      }
+    },
+    {
+      "team": "Djibouti",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 23,
+      "recent_form": {
+        "form_5": 0.88,
+        "form_10": 0.8945454545454545,
+        "form_20": 0.8863492063492064,
+        "matches_available": 104
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Dominica",
+      "attack_rating": 0.8781619811272349,
+      "defense_rating": 1.1614400395553752,
+      "matches_used": 26,
+      "recent_form": {
+        "form_5": 0.9422222222222223,
+        "form_10": 0.9672727272727273,
+        "form_20": 0.9822222222222223,
+        "matches_available": 201
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Dominican Republic",
+      "attack_rating": 1.1331122337125612,
+      "defense_rating": 0.8876045830748396,
+      "matches_used": 39,
+      "recent_form": {
+        "form_5": 0.9955555555555556,
+        "form_10": 1.0036363636363637,
+        "form_20": 0.987936507936508,
+        "matches_available": 139
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Ecuador",
+      "attack_rating": 0.9343947897405822,
+      "defense_rating": 0.7804944714303687,
+      "matches_used": 67,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 1.0254545454545454,
+        "form_20": 1.0330158730158732,
+        "matches_available": 566
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Egypt",
+      "attack_rating": 1.1391554989590282,
+      "defense_rating": 0.65,
+      "matches_used": 75,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 1.006060606060606,
+        "form_20": 1.041904761904762,
+        "matches_available": 728
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "El Salvador",
+      "attack_rating": 0.7554081558083741,
+      "defense_rating": 0.8781619811272349,
+      "matches_used": 78,
+      "recent_form": {
+        "form_5": 1.0044444444444445,
+        "form_10": 0.9503030303030303,
+        "form_20": 0.9092063492063492,
+        "matches_available": 590
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Ellan Vannin",
+      "attack_rating": 1.3257413134436966,
+      "defense_rating": 0.7365229519131647,
+      "matches_used": 5,
+      "recent_form": {
+        "form_5": 1.048888888888889,
+        "form_10": 1.0254545454545454,
+        "form_20": 1.0057142857142858,
+        "matches_available": 22
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "England",
+      "attack_rating": 1.45,
+      "defense_rating": 0.65,
+      "matches_used": 81,
+      "recent_form": {
+        "form_5": 0.9422222222222223,
+        "form_10": 1.0036363636363637,
+        "form_20": 1.0558730158730159,
+        "matches_available": 1063
+      },
+      "squad_strength": {
+        "squad_value": 1688.0,
+        "squad_strength_rating": 1.15
+      }
+    },
+    {
+      "team": "Equatorial Guinea",
+      "attack_rating": 0.7512534109514281,
+      "defense_rating": 0.7659838699896914,
+      "matches_used": 50,
+      "recent_form": {
+        "form_5": 0.9866666666666667,
+        "form_10": 1.0012121212121212,
+        "form_20": 0.994920634920635,
+        "matches_available": 158
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Estonia",
+      "attack_rating": 0.65,
+      "defense_rating": 1.3418842822527521,
+      "matches_used": 73,
+      "recent_form": {
+        "form_5": 0.9511111111111111,
+        "form_10": 0.8945454545454545,
+        "form_20": 0.874920634920635,
+        "matches_available": 530
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Eswatini",
+      "attack_rating": 0.6643148193726585,
+      "defense_rating": 1.010913855567089,
+      "matches_used": 51,
+      "recent_form": {
+        "form_5": 0.88,
+        "form_10": 0.8824242424242424,
+        "form_20": 0.8939682539682541,
+        "matches_available": 262
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Ethiopia",
+      "attack_rating": 0.7528901286223462,
+      "defense_rating": 0.8674603655866163,
+      "matches_used": 45,
+      "recent_form": {
+        "form_5": 0.9600000000000001,
+        "form_10": 0.9430303030303031,
+        "form_20": 0.9434920634920636,
+        "matches_available": 395
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Faroe Islands",
+      "attack_rating": 0.65,
+      "defense_rating": 1.3780106842246307,
+      "matches_used": 62,
+      "recent_form": {
+        "form_5": 0.8622222222222222,
+        "form_10": 0.8654545454545455,
+        "form_20": 0.8634920634920635,
+        "matches_available": 268
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Fiji",
+      "attack_rating": 1.45,
+      "defense_rating": 0.9083783073595699,
+      "matches_used": 30,
+      "recent_form": {
+        "form_5": 1.0222222222222224,
+        "form_10": 0.9963636363636365,
+        "form_20": 0.9904761904761905,
+        "matches_available": 249
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Finland",
+      "attack_rating": 0.9308831753346943,
+      "defense_rating": 0.8388178063455487,
+      "matches_used": 72,
+      "recent_form": {
+        "form_5": 0.9511111111111111,
+        "form_10": 0.9696969696969697,
+        "form_20": 0.9873015873015873,
+        "matches_available": 798
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "France",
+      "attack_rating": 1.45,
+      "defense_rating": 0.65,
+      "matches_used": 82,
+      "recent_form": {
+        "form_5": 1.04,
+        "form_10": 1.0569696969696971,
+        "form_20": 1.0876190476190477,
+        "matches_available": 909
+      },
+      "squad_strength": {
+        "squad_value": 1409.0,
+        "squad_strength_rating": 1.15
+      }
+    },
+    {
+      "team": "French Guiana",
+      "attack_rating": 1.1836976012890148,
+      "defense_rating": 0.8417405164721883,
+      "matches_used": 28,
+      "recent_form": {
+        "form_5": 1.0666666666666667,
+        "form_10": 1.0278787878787878,
+        "form_20": 1.02984126984127,
+        "matches_available": 173
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Gabon",
+      "attack_rating": 0.8392935963661645,
+      "defense_rating": 0.8050367148818313,
+      "matches_used": 43,
+      "recent_form": {
+        "form_5": 0.9866666666666667,
+        "form_10": 0.9818181818181819,
+        "form_20": 0.9968253968253968,
+        "matches_available": 385
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Gambia",
+      "attack_rating": 0.8486025315521246,
+      "defense_rating": 0.8486025315521246,
+      "matches_used": 46,
+      "recent_form": {
+        "form_5": 0.9066666666666667,
+        "form_10": 0.8945454545454545,
+        "form_20": 0.9276190476190477,
+        "matches_available": 249
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Georgia",
+      "attack_rating": 1.1166638303199594,
+      "defense_rating": 0.8434375739650759,
+      "matches_used": 62,
+      "recent_form": {
+        "form_5": 1.057777777777778,
+        "form_10": 1.0327272727272727,
+        "form_20": 1.0247619047619048,
+        "matches_available": 283
+      },
+      "squad_strength": {
+        "squad_value": 198.0,
+        "squad_strength_rating": 0.8780157937328332
+      }
+    },
+    {
+      "team": "Germany",
+      "attack_rating": 1.45,
+      "defense_rating": 0.9455362220506844,
+      "matches_used": 74,
+      "recent_form": {
+        "form_5": 1.1022222222222222,
+        "form_10": 1.0496969696969698,
+        "form_20": 1.0063492063492063,
+        "matches_available": 1006
+      },
+      "squad_strength": {
+        "squad_value": 942.0,
+        "squad_strength_rating": 1.136074450197226
+      }
+    },
+    {
+      "team": "Ghana",
+      "attack_rating": 0.9112911099942548,
+      "defense_rating": 0.7989401512278398,
+      "matches_used": 59,
+      "recent_form": {
+        "form_5": 1.0666666666666667,
+        "form_10": 0.993939393939394,
+        "form_20": 0.9847619047619048,
+        "matches_available": 651
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Gibraltar",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 59,
+      "recent_form": {
+        "form_5": 0.8444444444444444,
+        "form_10": 0.8242424242424243,
+        "form_20": 0.8342857142857143,
+        "matches_available": 141
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Greece",
+      "attack_rating": 0.9091455187678128,
+      "defense_rating": 0.6674739251713055,
+      "matches_used": 64,
+      "recent_form": {
+        "form_5": 1.0222222222222224,
+        "form_10": 1.0303030303030303,
+        "form_20": 1.0203174603174603,
+        "matches_available": 613
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Grenada",
+      "attack_rating": 0.773349099508823,
+      "defense_rating": 1.45,
+      "matches_used": 40,
+      "recent_form": {
+        "form_5": 0.8355555555555556,
+        "form_10": 0.8460606060606061,
+        "form_20": 0.8774603174603175,
+        "matches_available": 243
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Guadeloupe",
+      "attack_rating": 1.45,
+      "defense_rating": 0.8034795839052706,
+      "matches_used": 33,
+      "recent_form": {
+        "form_5": 1.1466666666666667,
+        "form_10": 1.1103030303030303,
+        "form_20": 1.0723809523809524,
+        "matches_available": 260
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Guam",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 20,
+      "recent_form": {
+        "form_5": 0.8355555555555556,
+        "form_10": 0.8218181818181819,
+        "form_20": 0.8253968253968255,
+        "matches_available": 117
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Guatemala",
+      "attack_rating": 1.2312025464817082,
+      "defense_rating": 0.659572792758058,
+      "matches_used": 67,
+      "recent_form": {
+        "form_5": 1.0844444444444445,
+        "form_10": 0.9866666666666667,
+        "form_20": 0.9695238095238096,
+        "matches_available": 527
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Guernsey",
+      "attack_rating": 1.420437121546818,
+      "defense_rating": 0.65,
+      "matches_used": 14,
+      "recent_form": {
+        "form_5": 1.0666666666666667,
+        "form_10": 1.0327272727272727,
+        "form_20": 1.0361904761904763,
+        "matches_available": 240
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Guinea",
+      "attack_rating": 0.8331161259345634,
+      "defense_rating": 0.8693385661925879,
+      "matches_used": 61,
+      "recent_form": {
+        "form_5": 1.04,
+        "form_10": 1.044848484848485,
+        "form_20": 1.0336507936507937,
+        "matches_available": 522
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Guinea-Bissau",
+      "attack_rating": 0.7685456889528676,
+      "defense_rating": 1.02472758527049,
+      "matches_used": 46,
+      "recent_form": {
+        "form_5": 0.88,
+        "form_10": 0.8896969696969698,
+        "form_20": 0.933968253968254,
+        "matches_available": 174
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Guyana",
+      "attack_rating": 1.3502920785074688,
+      "defense_rating": 1.2450745139484451,
+      "matches_used": 42,
+      "recent_form": {
+        "form_5": 0.9600000000000001,
+        "form_10": 0.9890909090909091,
+        "form_20": 1.0063492063492063,
+        "matches_available": 299
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Haiti",
+      "attack_rating": 1.45,
+      "defense_rating": 0.9559127673766606,
+      "matches_used": 47,
+      "recent_form": {
+        "form_5": 1.0666666666666667,
+        "form_10": 0.9987878787878789,
+        "form_20": 1.0215873015873016,
+        "matches_available": 488
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Honduras",
+      "attack_rating": 0.8340039308428483,
+      "defense_rating": 1.0397971085832916,
+      "matches_used": 68,
+      "recent_form": {
+        "form_5": 1.0666666666666667,
+        "form_10": 1.0206060606060607,
+        "form_20": 0.9980952380952381,
+        "matches_available": 595
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Hong Kong",
+      "attack_rating": 0.6738401474950231,
+      "defense_rating": 1.2849974905719046,
+      "matches_used": 47,
+      "recent_form": {
+        "form_5": 0.8444444444444444,
+        "form_10": 0.8315151515151515,
+        "form_20": 0.8685714285714285,
+        "matches_available": 426
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Hungary",
+      "attack_rating": 1.0553164684128928,
+      "defense_rating": 0.7914873513096696,
+      "matches_used": 67,
+      "recent_form": {
+        "form_5": 1.0933333333333335,
+        "form_10": 1.0812121212121213,
+        "form_20": 1.085079365079365,
+        "matches_available": 983
+      },
+      "squad_strength": {
+        "squad_value": 225.0,
+        "squad_strength_rating": 0.8991198310764908
+      }
+    },
+    {
+      "team": "Iceland",
+      "attack_rating": 0.9161626962822293,
+      "defense_rating": 1.221550261709639,
+      "matches_used": 82,
+      "recent_form": {
+        "form_5": 0.9866666666666667,
+        "form_10": 1.0133333333333334,
+        "form_20": 0.9917460317460318,
+        "matches_available": 501
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "India",
+      "attack_rating": 0.8934868596979376,
+      "defense_rating": 0.857264419439913,
+      "matches_used": 61,
+      "recent_form": {
+        "form_5": 0.8533333333333334,
+        "form_10": 0.8533333333333334,
+        "form_20": 0.9022222222222223,
+        "matches_available": 519
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Indonesia",
+      "attack_rating": 1.2915837272680135,
+      "defense_rating": 1.227538253188608,
+      "matches_used": 69,
+      "recent_form": {
+        "form_5": 1.04,
+        "form_10": 1.0084848484848485,
+        "form_20": 0.9726984126984127,
+        "matches_available": 706
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Iran",
+      "attack_rating": 1.45,
+      "defense_rating": 0.65,
+      "matches_used": 73,
+      "recent_form": {
+        "form_5": 1.0844444444444445,
+        "form_10": 1.0884848484848486,
+        "form_20": 1.1161904761904762,
+        "matches_available": 594
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Iraq",
+      "attack_rating": 1.020483608072457,
+      "defense_rating": 0.6566590173683637,
+      "matches_used": 83,
+      "recent_form": {
+        "form_5": 1.1733333333333333,
+        "form_10": 1.1418181818181818,
+        "form_20": 1.0952380952380953,
+        "matches_available": 628
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Isle of Man",
+      "attack_rating": 1.45,
+      "defense_rating": 0.9206536898914559,
+      "matches_used": 8,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 1.04,
+        "form_20": 1.0831746031746032,
+        "matches_available": 53
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Israel",
+      "attack_rating": 1.2190724721321349,
+      "defense_rating": 1.2190724721321349,
+      "matches_used": 58,
+      "recent_form": {
+        "form_5": 0.9866666666666667,
+        "form_10": 0.9696969696969697,
+        "form_20": 0.9828571428571429,
+        "matches_available": 480
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Italy",
+      "attack_rating": 1.4326884818036905,
+      "defense_rating": 0.65,
+      "matches_used": 73,
+      "recent_form": {
+        "form_5": 1.1111111111111112,
+        "form_10": 1.0933333333333335,
+        "form_20": 1.067936507936508,
+        "matches_available": 869
+      },
+      "squad_strength": {
+        "squad_value": 873.0,
+        "squad_strength_rating": 1.123470447851451
+      }
+    },
+    {
+      "team": "Ivory Coast",
+      "attack_rating": 1.2751740659989121,
+      "defense_rating": 0.65,
+      "matches_used": 67,
+      "recent_form": {
+        "form_5": 1.0755555555555556,
+        "form_10": 1.0812121212121213,
+        "form_20": 1.073015873015873,
+        "matches_available": 612
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Jamaica",
+      "attack_rating": 1.148975804984537,
+      "defense_rating": 0.8838275422957977,
+      "matches_used": 75,
+      "recent_form": {
+        "form_5": 1.128888888888889,
+        "form_10": 1.0884848484848486,
+        "form_20": 1.073015873015873,
+        "matches_available": 631
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Japan",
+      "attack_rating": 1.45,
+      "defense_rating": 0.65,
+      "matches_used": 90,
+      "recent_form": {
+        "form_5": 1.1466666666666667,
+        "form_10": 1.12,
+        "form_20": 1.1314285714285715,
+        "matches_available": 771
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Jersey",
+      "attack_rating": 1.45,
+      "defense_rating": 0.65,
+      "matches_used": 15,
+      "recent_form": {
+        "form_5": 1.2,
+        "form_10": 1.1927272727272729,
+        "form_20": 1.1631746031746033,
+        "matches_available": 232
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Jordan",
+      "attack_rating": 1.1047844278697472,
+      "defense_rating": 0.781432888005431,
+      "matches_used": 82,
+      "recent_form": {
+        "form_5": 1.1733333333333333,
+        "form_10": 1.136969696969697,
+        "form_20": 1.0736507936507937,
+        "matches_available": 454
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Kabylia",
+      "attack_rating": 0.9820306025508863,
+      "defense_rating": 1.45,
+      "matches_used": 6,
+      "recent_form": {
+        "form_5": 0.9422222222222223,
+        "form_10": null,
+        "form_20": null,
+        "matches_available": 6
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Kazakhstan",
+      "attack_rating": 0.8693385661925879,
+      "defense_rating": 1.147043941504109,
+      "matches_used": 61,
+      "recent_form": {
+        "form_5": 0.8533333333333334,
+        "form_10": 0.9309090909090909,
+        "form_20": 0.9720634920634921,
+        "matches_available": 248
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Kenya",
+      "attack_rating": 0.8347260121682534,
+      "defense_rating": 0.8347260121682534,
+      "matches_used": 45,
+      "recent_form": {
+        "form_5": 0.9688888888888889,
+        "form_10": 0.9624242424242425,
+        "form_20": 0.9657142857142857,
+        "matches_available": 685
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Kosovo",
+      "attack_rating": 1.0311321326784306,
+      "defense_rating": 0.8951586646329233,
+      "matches_used": 65,
+      "recent_form": {
+        "form_5": 0.888888888888889,
+        "form_10": 0.9430303030303031,
+        "form_20": 0.9460317460317461,
+        "matches_available": 84
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Kuwait",
+      "attack_rating": 0.9373928478894824,
+      "defense_rating": 0.9262334092241314,
+      "matches_used": 66,
+      "recent_form": {
+        "form_5": 0.9688888888888889,
+        "form_10": 0.9309090909090909,
+        "form_20": 0.9644444444444445,
+        "matches_available": 661
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Kyrgyzstan",
+      "attack_rating": 1.118948330791154,
+      "defense_rating": 1.0906205249483403,
+      "matches_used": 52,
+      "recent_form": {
+        "form_5": 1.0222222222222224,
+        "form_10": 1.0036363636363637,
+        "form_20": 0.9707936507936509,
+        "matches_available": 177
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Kárpátalja",
+      "attack_rating": 1.45,
+      "defense_rating": 0.65,
+      "matches_used": 6,
+      "recent_form": {
+        "form_5": 1.1111111111111112,
+        "form_10": 1.0909090909090908,
+        "form_20": null,
+        "matches_available": 11
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Laos",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 29,
+      "recent_form": {
+        "form_5": 0.888888888888889,
+        "form_10": 0.8848484848484849,
+        "form_20": 0.888888888888889,
+        "matches_available": 212
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Latvia",
+      "attack_rating": 0.692551432395961,
+      "defense_rating": 1.1652452672059024,
+      "matches_used": 67,
+      "recent_form": {
+        "form_5": 0.9777777777777779,
+        "form_10": 0.9309090909090909,
+        "form_20": 0.9003174603174604,
+        "matches_available": 443
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Lebanon",
+      "attack_rating": 0.65,
+      "defense_rating": 0.8934868596979376,
+      "matches_used": 61,
+      "recent_form": {
+        "form_5": 0.9688888888888889,
+        "form_10": 0.913939393939394,
+        "form_20": 0.9161904761904762,
+        "matches_available": 319
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Lesotho",
+      "attack_rating": 0.65,
+      "defense_rating": 0.9820306025508863,
+      "matches_used": 54,
+      "recent_form": {
+        "form_5": 0.9688888888888889,
+        "form_10": 0.947878787878788,
+        "form_20": 0.9326984126984128,
+        "matches_available": 281
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Liberia",
+      "attack_rating": 0.65,
+      "defense_rating": 0.9995668633107236,
+      "matches_used": 42,
+      "recent_form": {
+        "form_5": 1.0755555555555556,
+        "form_10": 1.0084848484848485,
+        "form_20": 0.9415873015873016,
+        "matches_available": 285
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Libya",
+      "attack_rating": 0.8806252685918274,
+      "defense_rating": 0.9766934797109358,
+      "matches_used": 46,
+      "recent_form": {
+        "form_5": 1.0666666666666667,
+        "form_10": 1.0981818181818181,
+        "form_20": 1.057777777777778,
+        "matches_available": 369
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Liechtenstein",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 59,
+      "recent_form": {
+        "form_5": 0.8711111111111112,
+        "form_10": 0.8436363636363637,
+        "form_20": 0.8241269841269842,
+        "matches_available": 239
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Lithuania",
+      "attack_rating": 0.65,
+      "defense_rating": 1.4070886245505236,
+      "matches_used": 67,
+      "recent_form": {
+        "form_5": 1.0844444444444445,
+        "form_10": 1.0327272727272727,
+        "form_20": 0.9720634920634921,
+        "matches_available": 413
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Luxembourg",
+      "attack_rating": 0.7365229519131647,
+      "defense_rating": 1.1897678453981892,
+      "matches_used": 65,
+      "recent_form": {
+        "form_5": 0.88,
+        "form_10": 0.9260606060606061,
+        "form_20": 0.9568253968253969,
+        "matches_available": 449
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Macau",
+      "attack_rating": 0.65,
+      "defense_rating": 1.420437121546818,
+      "matches_used": 14,
+      "recent_form": {
+        "form_5": 0.8444444444444444,
+        "form_10": 0.8581818181818183,
+        "form_20": 0.8736507936507937,
+        "matches_available": 142
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Madagascar",
+      "attack_rating": 0.7628273430529208,
+      "defense_rating": 0.9469580810312119,
+      "matches_used": 56,
+      "recent_form": {
+        "form_5": 1.057777777777778,
+        "form_10": 1.04,
+        "form_20": 1.017777777777778,
+        "matches_available": 303
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Malawi",
+      "attack_rating": 0.65,
+      "defense_rating": 0.805571978655024,
+      "matches_used": 64,
+      "recent_form": {
+        "form_5": 0.9688888888888889,
+        "form_10": 0.9963636363636365,
+        "form_20": 0.9955555555555556,
+        "matches_available": 627
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Malaysia",
+      "attack_rating": 1.45,
+      "defense_rating": 0.9104242044482176,
+      "matches_used": 72,
+      "recent_form": {
+        "form_5": 0.9777777777777779,
+        "form_10": 0.9381818181818182,
+        "form_20": 0.9834920634920635,
+        "matches_available": 817
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Maldives",
+      "attack_rating": 0.8876045830748396,
+      "defense_rating": 1.3219642726646548,
+      "matches_used": 39,
+      "recent_form": {
+        "form_5": 0.8622222222222222,
+        "form_10": 0.9236363636363637,
+        "form_20": 0.9593650793650794,
+        "matches_available": 220
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Mali",
+      "attack_rating": 1.1428804426238763,
+      "defense_rating": 0.65,
+      "matches_used": 58,
+      "recent_form": {
+        "form_5": 0.9511111111111111,
+        "form_10": 0.9866666666666667,
+        "form_20": 1.041904761904762,
+        "matches_available": 548
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Malta",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 64,
+      "recent_form": {
+        "form_5": 0.8444444444444444,
+        "form_10": 0.850909090909091,
+        "form_20": 0.8768253968253968,
+        "matches_available": 441
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Martinique",
+      "attack_rating": 1.0065813676146584,
+      "defense_rating": 1.2029874881248357,
+      "matches_used": 30,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 0.9987878787878789,
+        "form_20": 0.9682539682539684,
+        "matches_available": 321
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Matabeleland",
+      "attack_rating": 0.65,
+      "defense_rating": 1.2889151658480384,
+      "matches_used": 8,
+      "recent_form": {
+        "form_5": 0.9955555555555556,
+        "form_10": null,
+        "form_20": null,
+        "matches_available": 8
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Mauritania",
+      "attack_rating": 0.6520039246444409,
+      "defense_rating": 0.8934868596979376,
+      "matches_used": 61,
+      "recent_form": {
+        "form_5": 0.8266666666666667,
+        "form_10": 0.863030303030303,
+        "form_20": 0.907936507936508,
+        "matches_available": 253
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Mauritius",
+      "attack_rating": 0.6680091889444982,
+      "defense_rating": 0.959192681561331,
+      "matches_used": 43,
+      "recent_form": {
+        "form_5": 0.9422222222222223,
+        "form_10": 0.9333333333333333,
+        "form_20": 0.9453968253968255,
+        "matches_available": 316
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Mayotte",
+      "attack_rating": 0.8417405164721883,
+      "defense_rating": 0.65,
+      "matches_used": 7,
+      "recent_form": {
+        "form_5": 0.9866666666666667,
+        "form_10": 0.9987878787878789,
+        "form_20": 1.0107936507936508,
+        "matches_available": 38
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Mexico",
+      "attack_rating": 1.160371065749986,
+      "defense_rating": 0.7434712816481948,
+      "matches_used": 106,
+      "recent_form": {
+        "form_5": 0.9066666666666667,
+        "form_10": 0.9430303030303031,
+        "form_20": 0.9892063492063493,
+        "matches_available": 971
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Moldova",
+      "attack_rating": 0.65,
+      "defense_rating": 1.4188898044209497,
+      "matches_used": 68,
+      "recent_form": {
+        "form_5": 0.9422222222222223,
+        "form_10": 0.9454545454545455,
+        "form_20": 0.954920634920635,
+        "matches_available": 279
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Mongolia",
+      "attack_rating": 0.7811607065745687,
+      "defense_rating": 1.45,
+      "matches_used": 33,
+      "recent_form": {
+        "form_5": 0.9333333333333333,
+        "form_10": 0.8945454545454545,
+        "form_20": 0.886984126984127,
+        "matches_available": 97
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Montenegro",
+      "attack_rating": 0.7825556364077376,
+      "defense_rating": 0.9897027166333151,
+      "matches_used": 64,
+      "recent_form": {
+        "form_5": 0.9333333333333333,
+        "form_10": 0.9842424242424244,
+        "form_20": 0.9765079365079365,
+        "matches_available": 150
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Montserrat",
+      "attack_rating": 0.9732624721709677,
+      "defense_rating": 1.3152195569877942,
+      "matches_used": 28,
+      "recent_form": {
+        "form_5": 0.9333333333333333,
+        "form_10": 0.9357575757575758,
+        "form_20": 0.9473015873015873,
+        "matches_available": 58
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Morocco",
+      "attack_rating": 1.1946043000542794,
+      "defense_rating": 0.65,
+      "matches_used": 82,
+      "recent_form": {
+        "form_5": 1.12,
+        "form_10": 1.0981818181818181,
+        "form_20": 1.0806349206349206,
+        "matches_available": 583
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Mozambique",
+      "attack_rating": 0.7715954734328393,
+      "defense_rating": 0.9001947190049793,
+      "matches_used": 63,
+      "recent_form": {
+        "form_5": 1.0755555555555556,
+        "form_10": 1.0278787878787878,
+        "form_20": 1.0095238095238095,
+        "matches_available": 355
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Myanmar",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 53,
+      "recent_form": {
+        "form_5": 0.8177777777777778,
+        "form_10": 0.8654545454545455,
+        "form_20": 0.9022222222222223,
+        "matches_available": 497
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Namibia",
+      "attack_rating": 0.7499142783115859,
+      "defense_rating": 0.8436535631005342,
+      "matches_used": 55,
+      "recent_form": {
+        "form_5": 0.8977777777777778,
+        "form_10": 0.947878787878788,
+        "form_20": 0.9638095238095239,
+        "matches_available": 263
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Nepal",
+      "attack_rating": 0.65,
+      "defense_rating": 1.3391326398421177,
+      "matches_used": 55,
+      "recent_form": {
+        "form_5": 0.8444444444444444,
+        "form_10": 0.863030303030303,
+        "form_20": 0.9053968253968254,
+        "matches_available": 257
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Netherlands",
+      "attack_rating": 1.45,
+      "defense_rating": 0.6950287011011554,
+      "matches_used": 71,
+      "recent_form": {
+        "form_5": 1.12,
+        "form_10": 1.12,
+        "form_20": 1.08,
+        "matches_available": 853
+      },
+      "squad_strength": {
+        "squad_value": 1056.0,
+        "squad_strength_rating": 1.15
+      }
+    },
+    {
+      "team": "New Caledonia",
+      "attack_rating": 1.45,
+      "defense_rating": 0.8838275422957977,
+      "matches_used": 25,
+      "recent_form": {
+        "form_5": 1.0844444444444445,
+        "form_10": 1.0787878787878789,
+        "form_20": 1.0317460317460319,
+        "matches_available": 258
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "New Zealand",
+      "attack_rating": 0.8635096677602621,
+      "defense_rating": 0.7619202950825843,
+      "matches_used": 29,
+      "recent_form": {
+        "form_5": 0.8711111111111112,
+        "form_10": 0.8824242424242424,
+        "form_20": 0.9092063492063492,
+        "matches_available": 392
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Nicaragua",
+      "attack_rating": 1.2404597084853302,
+      "defense_rating": 0.9045018707705532,
+      "matches_used": 57,
+      "recent_form": {
+        "form_5": 1.0666666666666667,
+        "form_10": 1.0424242424242425,
+        "form_20": 1.0285714285714287,
+        "matches_available": 204
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Niger",
+      "attack_rating": 0.7211787237483072,
+      "defense_rating": 1.3196036221777536,
+      "matches_used": 48,
+      "recent_form": {
+        "form_5": 0.888888888888889,
+        "form_10": 0.9090909090909092,
+        "form_20": 0.8914285714285715,
+        "matches_available": 240
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Nigeria",
+      "attack_rating": 1.056328970507039,
+      "defense_rating": 0.7462140433857064,
+      "matches_used": 76,
+      "recent_form": {
+        "form_5": 0.9244444444444445,
+        "form_10": 0.9987878787878789,
+        "form_20": 1.0171428571428571,
+        "matches_available": 632
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "North Korea",
+      "attack_rating": 1.0016712146019042,
+      "defense_rating": 1.1784367230610637,
+      "matches_used": 25,
+      "recent_form": {
+        "form_5": 1.0933333333333335,
+        "form_10": 1.0303030303030303,
+        "form_20": 1.0203174603174603,
+        "matches_available": 377
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "North Macedonia",
+      "attack_rating": 1.0601466732083433,
+      "defense_rating": 1.0043494798815882,
+      "matches_used": 66,
+      "recent_form": {
+        "form_5": 0.8266666666666667,
+        "form_10": 0.8775757575757577,
+        "form_20": 0.9111111111111112,
+        "matches_available": 286
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Northern Cyprus",
+      "attack_rating": 1.45,
+      "defense_rating": 0.7365229519131647,
+      "matches_used": 6,
+      "recent_form": {
+        "form_5": 1.0755555555555556,
+        "form_10": 1.0642424242424244,
+        "form_20": 1.0653968253968253,
+        "matches_available": 34
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Northern Ireland",
+      "attack_rating": 0.7365229519131647,
+      "defense_rating": 0.9780058869666614,
+      "matches_used": 61,
+      "recent_form": {
+        "form_5": 1.057777777777778,
+        "form_10": 1.0133333333333334,
+        "form_20": 0.9650793650793652,
+        "matches_available": 687
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Northern Mariana Islands",
+      "attack_rating": 0.818358835459072,
+      "defense_rating": 1.45,
+      "matches_used": 9,
+      "recent_form": {
+        "form_5": 1.0222222222222224,
+        "form_10": 0.9551515151515152,
+        "form_20": 0.9066666666666667,
+        "matches_available": 30
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Norway",
+      "attack_rating": 1.3327558177476315,
+      "defense_rating": 0.7248321114066065,
+      "matches_used": 63,
+      "recent_form": {
+        "form_5": 0.9422222222222223,
+        "form_10": 0.9793939393939395,
+        "form_20": 0.9968253968253968,
+        "matches_available": 852
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Oman",
+      "attack_rating": 0.9022406160936269,
+      "defense_rating": 0.65,
+      "matches_used": 80,
+      "recent_form": {
+        "form_5": 1.0933333333333335,
+        "form_10": 1.0545454545454547,
+        "form_20": 1.0438095238095237,
+        "matches_available": 516
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Orkney",
+      "attack_rating": 0.9469580810312119,
+      "defense_rating": 1.45,
+      "matches_used": 7,
+      "recent_form": {
+        "form_5": 0.9600000000000001,
+        "form_10": 0.9575757575757576,
+        "form_20": 0.9447619047619048,
+        "matches_available": 24
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Padania",
+      "attack_rating": 1.45,
+      "defense_rating": 0.6695663199210589,
+      "matches_used": 11,
+      "recent_form": {
+        "form_5": 0.9600000000000001,
+        "form_10": 0.9842424242424244,
+        "form_20": 1.0215873015873016,
+        "matches_available": 45
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Pakistan",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 24,
+      "recent_form": {
+        "form_5": 0.8,
+        "form_10": 0.8363636363636364,
+        "form_20": 0.834920634920635,
+        "matches_available": 243
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Palestine",
+      "attack_rating": 0.8022839297625544,
+      "defense_rating": 0.9075014943215781,
+      "matches_used": 56,
+      "recent_form": {
+        "form_5": 0.9688888888888889,
+        "form_10": 0.9818181818181819,
+        "form_20": 0.9517460317460318,
+        "matches_available": 230
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Panama",
+      "attack_rating": 1.0178912706215648,
+      "defense_rating": 1.0344423481926472,
+      "matches_used": 89,
+      "recent_form": {
+        "form_5": 1.12,
+        "form_10": 1.1006060606060606,
+        "form_20": 1.086984126984127,
+        "matches_available": 508
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Panjab",
+      "attack_rating": 1.45,
+      "defense_rating": 1.1457023696427007,
+      "matches_used": 9,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 0.9842424242424244,
+        "form_20": null,
+        "matches_available": 19
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Papua New Guinea",
+      "attack_rating": 1.227538253188608,
+      "defense_rating": 1.1223206886295845,
+      "matches_used": 21,
+      "recent_form": {
+        "form_5": 0.8977777777777778,
+        "form_10": 0.9236363636363637,
+        "form_20": 0.9504761904761905,
+        "matches_available": 143
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Paraguay",
+      "attack_rating": 0.65,
+      "defense_rating": 0.9303447813639976,
+      "matches_used": 57,
+      "recent_form": {
+        "form_5": 0.88,
+        "form_10": 0.9042424242424243,
+        "form_20": 0.9212698412698413,
+        "matches_available": 760
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Peru",
+      "attack_rating": 0.7856244820407091,
+      "defense_rating": 0.8347260121682534,
+      "matches_used": 75,
+      "recent_form": {
+        "form_5": 1.048888888888889,
+        "form_10": 0.9696969696969697,
+        "form_20": 0.9682539682539684,
+        "matches_available": 691
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Philippines",
+      "attack_rating": 0.8664975904860762,
+      "defense_rating": 1.2564215062048105,
+      "matches_used": 51,
+      "recent_form": {
+        "form_5": 0.8088888888888889,
+        "form_10": 0.8533333333333334,
+        "form_20": 0.8895238095238096,
+        "matches_available": 324
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Poland",
+      "attack_rating": 1.210722660679175,
+      "defense_rating": 0.8172377959584431,
+      "matches_used": 73,
+      "recent_form": {
+        "form_5": 1.1466666666666667,
+        "form_10": 1.103030303030303,
+        "form_20": 1.0603174603174603,
+        "matches_available": 869
+      },
+      "squad_strength": {
+        "squad_value": 219.0,
+        "squad_strength_rating": 0.8946566139720337
+      }
+    },
+    {
+      "team": "Portugal",
+      "attack_rating": 1.45,
+      "defense_rating": 0.65,
+      "matches_used": 78,
+      "recent_form": {
+        "form_5": 1.04,
+        "form_10": 1.0836363636363637,
+        "form_20": 1.1161904761904762,
+        "matches_available": 670
+      },
+      "squad_strength": {
+        "squad_value": 1215.0,
+        "squad_strength_rating": 1.15
+      }
+    },
+    {
+      "team": "Puerto Rico",
+      "attack_rating": 1.45,
+      "defense_rating": 0.997869805817836,
+      "matches_used": 31,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 1.0133333333333334,
+        "form_20": 1.0336507936507937,
+        "matches_available": 148
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Qatar",
+      "attack_rating": 1.2325486134057044,
+      "defense_rating": 0.8041628148439656,
+      "matches_used": 98,
+      "recent_form": {
+        "form_5": 1.128888888888889,
+        "form_10": 1.136969696969697,
+        "form_20": 1.1123809523809525,
+        "matches_available": 611
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Raetia",
+      "attack_rating": 1.45,
+      "defense_rating": 1.45,
+      "matches_used": 7,
+      "recent_form": {
+        "form_5": 1.0844444444444445,
+        "form_10": 0.9890909090909091,
+        "form_20": 0.9371428571428572,
+        "matches_available": 26
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Republic of Ireland",
+      "attack_rating": 0.7715954734328393,
+      "defense_rating": 0.7365229519131647,
+      "matches_used": 63,
+      "recent_form": {
+        "form_5": 0.9333333333333333,
+        "form_10": 0.9260606060606061,
+        "form_20": 0.9384126984126985,
+        "matches_available": 612
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Romania",
+      "attack_rating": 1.0817680856224607,
+      "defense_rating": 0.7825556364077376,
+      "matches_used": 64,
+      "recent_form": {
+        "form_5": 0.9244444444444445,
+        "form_10": 0.9963636363636365,
+        "form_20": 1.022857142857143,
+        "matches_available": 742
+      },
+      "squad_strength": {
+        "squad_value": 91.0,
+        "squad_strength_rating": 0.85
+      }
+    },
+    {
+      "team": "Russia",
+      "attack_rating": 1.3841552027333615,
+      "defense_rating": 0.8000163098367135,
+      "matches_used": 58,
+      "recent_form": {
+        "form_5": 1.128888888888889,
+        "form_10": 1.0884848484848486,
+        "form_20": 1.0755555555555556,
+        "matches_available": 731
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Rwanda",
+      "attack_rating": 0.7176377480179554,
+      "defense_rating": 0.6609821363323274,
+      "matches_used": 39,
+      "recent_form": {
+        "form_5": 1.04,
+        "form_10": 0.9866666666666667,
+        "form_20": 0.9574603174603176,
+        "matches_available": 264
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Réunion",
+      "attack_rating": 1.0638664860967935,
+      "defense_rating": 0.65,
+      "matches_used": 9,
+      "recent_form": {
+        "form_5": 0.9600000000000001,
+        "form_10": 0.9963636363636365,
+        "form_20": 1.0558730158730159,
+        "matches_available": 124
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Saint Barthélemy",
+      "attack_rating": 1.45,
+      "defense_rating": 1.45,
+      "matches_used": 8,
+      "recent_form": {
+        "form_5": 1.0044444444444445,
+        "form_10": 0.9915151515151516,
+        "form_20": null,
+        "matches_available": 10
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Saint Helena",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 8,
+      "recent_form": {
+        "form_5": 0.8,
+        "form_10": null,
+        "form_20": null,
+        "matches_available": 8
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Saint Kitts and Nevis",
+      "attack_rating": 0.9820306025508863,
+      "defense_rating": 1.227538253188608,
+      "matches_used": 39,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 0.976969696969697,
+        "form_20": 0.9473015873015873,
+        "matches_available": 209
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Saint Lucia",
+      "attack_rating": 0.9206536898914559,
+      "defense_rating": 0.8943492987517,
+      "matches_used": 28,
+      "recent_form": {
+        "form_5": 0.8622222222222222,
+        "form_10": 0.9357575757575758,
+        "form_20": 0.994920634920635,
+        "matches_available": 219
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Saint Martin",
+      "attack_rating": 1.45,
+      "defense_rating": 1.45,
+      "matches_used": 22,
+      "recent_form": {
+        "form_5": 1.1733333333333333,
+        "form_10": 1.1054545454545455,
+        "form_20": 1.0412698412698413,
+        "matches_available": 56
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Saint Vincent and the Grenadines",
+      "attack_rating": 0.9109625984189144,
+      "defense_rating": 1.45,
+      "matches_used": 38,
+      "recent_form": {
+        "form_5": 0.9333333333333333,
+        "form_10": 0.947878787878788,
+        "form_20": 0.9396825396825398,
+        "matches_available": 216
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Samoa",
+      "attack_rating": 1.45,
+      "defense_rating": 1.45,
+      "matches_used": 9,
+      "recent_form": {
+        "form_5": 1.1466666666666667,
+        "form_10": 1.061818181818182,
+        "form_20": 0.994920634920635,
+        "matches_available": 63
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "San Marino",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 58,
+      "recent_form": {
+        "form_5": 0.8266666666666667,
+        "form_10": 0.8193939393939395,
+        "form_20": 0.8165079365079365,
+        "matches_available": 205
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Saudi Arabia",
+      "attack_rating": 0.8949149845826626,
+      "defense_rating": 0.7444425535466397,
+      "matches_used": 93,
+      "recent_form": {
+        "form_5": 0.9955555555555556,
+        "form_10": 1.0303030303030303,
+        "form_20": 1.0361904761904763,
+        "matches_available": 706
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Scotland",
+      "attack_rating": 1.0333307086542909,
+      "defense_rating": 0.967373429378485,
+      "matches_used": 67,
+      "recent_form": {
+        "form_5": 0.9600000000000001,
+        "form_10": 0.9236363636363637,
+        "form_20": 0.9746031746031747,
+        "matches_available": 828
+      },
+      "squad_strength": {
+        "squad_value": 200.0,
+        "squad_strength_rating": 0.8796745365026426
+      }
+    },
+    {
+      "team": "Senegal",
+      "attack_rating": 1.1496943639620134,
+      "defense_rating": 0.65,
+      "matches_used": 82,
+      "recent_form": {
+        "form_5": 1.1111111111111112,
+        "form_10": 1.1224242424242425,
+        "form_20": 1.1073015873015875,
+        "matches_available": 611
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Serbia",
+      "attack_rating": 1.327816025984297,
+      "defense_rating": 0.8506321416461903,
+      "matches_used": 71,
+      "recent_form": {
+        "form_5": 1.031111111111111,
+        "form_10": 1.0084848484848485,
+        "form_20": 1.022857142857143,
+        "matches_available": 325
+      },
+      "squad_strength": {
+        "squad_value": 371.0,
+        "squad_strength_rating": 0.9817840569479228
+      }
+    },
+    {
+      "team": "Seychelles",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 44,
+      "recent_form": {
+        "form_5": 0.8,
+        "form_10": 0.8072727272727274,
+        "form_20": 0.8330158730158731,
+        "matches_available": 170
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Shetland",
+      "attack_rating": 1.45,
+      "defense_rating": 1.45,
+      "matches_used": 8,
+      "recent_form": {
+        "form_5": 1.12,
+        "form_10": 1.0181818181818183,
+        "form_20": 0.9796825396825397,
+        "matches_available": 55
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Sierra Leone",
+      "attack_rating": 0.6977585860229981,
+      "defense_rating": 1.1435487937599136,
+      "matches_used": 38,
+      "recent_form": {
+        "form_5": 0.9511111111111111,
+        "form_10": 0.9381818181818182,
+        "form_20": 0.9352380952380953,
+        "matches_available": 286
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Singapore",
+      "attack_rating": 1.0031950551920692,
+      "defense_rating": 1.3079631732251031,
+      "matches_used": 58,
+      "recent_form": {
+        "form_5": 0.8177777777777778,
+        "form_10": 0.8824242424242424,
+        "form_20": 0.9377777777777778,
+        "matches_available": 676
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Sint Maarten",
+      "attack_rating": 1.2373585592141167,
+      "defense_rating": 1.45,
+      "matches_used": 25,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 0.9672727272727273,
+        "form_20": 0.9511111111111111,
+        "matches_available": 50
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Slovakia",
+      "attack_rating": 1.0663093482921937,
+      "defense_rating": 0.8244659909475724,
+      "matches_used": 67,
+      "recent_form": {
+        "form_5": 1.0933333333333335,
+        "form_10": 1.0812121212121213,
+        "form_20": 1.0615873015873016,
+        "matches_available": 343
+      },
+      "squad_strength": {
+        "squad_value": 161.0,
+        "squad_strength_rating": 0.85
+      }
+    },
+    {
+      "team": "Slovenia",
+      "attack_rating": 1.0702599144988176,
+      "defense_rating": 0.7250147807895215,
+      "matches_used": 64,
+      "recent_form": {
+        "form_5": 1.0755555555555556,
+        "form_10": 1.0884848484848486,
+        "form_20": 1.0946031746031748,
+        "matches_available": 293
+      },
+      "squad_strength": {
+        "squad_value": 226.0,
+        "squad_strength_rating": 0.8998521629269287
+      }
+    },
+    {
+      "team": "Solomon Islands",
+      "attack_rating": 1.45,
+      "defense_rating": 0.932929072423342,
+      "matches_used": 30,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 1.0836363636363637,
+        "form_20": 1.0774603174603175,
+        "matches_available": 200
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Somalia",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 14,
+      "recent_form": {
+        "form_5": 0.8266666666666667,
+        "form_10": 0.8193939393939395,
+        "form_20": 0.8247619047619048,
+        "matches_available": 116
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "South Africa",
+      "attack_rating": 0.9442601947604677,
+      "defense_rating": 0.65,
+      "matches_used": 78,
+      "recent_form": {
+        "form_5": 1.0222222222222224,
+        "form_10": 1.0012121212121212,
+        "form_20": 0.9911111111111112,
+        "matches_available": 456
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "South Korea",
+      "attack_rating": 1.309374136734515,
+      "defense_rating": 0.65,
+      "matches_used": 90,
+      "recent_form": {
+        "form_5": 1.1377777777777778,
+        "form_10": 1.0787878787878789,
+        "form_20": 1.0838095238095238,
+        "matches_available": 987
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "South Ossetia",
+      "attack_rating": 1.2626107747082824,
+      "defense_rating": 0.8417405164721883,
+      "matches_used": 7,
+      "recent_form": {
+        "form_5": 1.0133333333333334,
+        "form_10": 1.0206060606060607,
+        "form_20": null,
+        "matches_available": 17
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "South Sudan",
+      "attack_rating": 0.65,
+      "defense_rating": 1.1866203114156544,
+      "matches_used": 36,
+      "recent_form": {
+        "form_5": 0.888888888888889,
+        "form_10": 0.9018181818181819,
+        "form_20": 0.9104761904761905,
+        "matches_available": 65
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Spain",
+      "attack_rating": 1.45,
+      "defense_rating": 0.65,
+      "matches_used": 77,
+      "recent_form": {
+        "form_5": 1.0933333333333335,
+        "form_10": 1.1103030303030303,
+        "form_20": 1.0946031746031748,
+        "matches_available": 756
+      },
+      "squad_strength": {
+        "squad_value": 1070.0,
+        "squad_strength_rating": 1.15
+      }
+    },
+    {
+      "team": "Sri Lanka",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 34,
+      "recent_form": {
+        "form_5": 0.9066666666666667,
+        "form_10": 0.8921212121212122,
+        "form_20": 0.8901587301587301,
+        "matches_available": 236
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Sudan",
+      "attack_rating": 0.6787564458807597,
+      "defense_rating": 0.9820306025508863,
+      "matches_used": 51,
+      "recent_form": {
+        "form_5": 1.1644444444444444,
+        "form_10": 1.0836363636363637,
+        "form_20": 1.0126984126984127,
+        "matches_available": 446
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Suriname",
+      "attack_rating": 1.4284081491649256,
+      "defense_rating": 0.7365229519131647,
+      "matches_used": 33,
+      "recent_form": {
+        "form_5": 1.128888888888889,
+        "form_10": 1.0472727272727274,
+        "form_20": 1.0,
+        "matches_available": 379
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Sweden",
+      "attack_rating": 1.0508925045590278,
+      "defense_rating": 0.8443067985346034,
+      "matches_used": 82,
+      "recent_form": {
+        "form_5": 0.9066666666666667,
+        "form_10": 0.9600000000000001,
+        "form_20": 0.9993650793650795,
+        "matches_available": 1081
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Switzerland",
+      "attack_rating": 1.3373706232107465,
+      "defense_rating": 0.814051683693498,
+      "matches_used": 76,
+      "recent_form": {
+        "form_5": 1.048888888888889,
+        "form_10": 1.010909090909091,
+        "form_20": 1.0196825396825397,
+        "matches_available": 859
+      },
+      "squad_strength": {
+        "squad_value": 409.0,
+        "squad_strength_rating": 0.9979174029655381
+      }
+    },
+    {
+      "team": "Syria",
+      "attack_rating": 0.8475058624754225,
+      "defense_rating": 1.0291142615772988,
+      "matches_used": 73,
+      "recent_form": {
+        "form_5": 0.9066666666666667,
+        "form_10": 0.9406060606060607,
+        "form_20": 0.9466666666666668,
+        "matches_available": 466
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Székely Land",
+      "attack_rating": 1.45,
+      "defense_rating": 1.4163902921407014,
+      "matches_used": 13,
+      "recent_form": {
+        "form_5": 1.048888888888889,
+        "form_10": 0.9672727272727273,
+        "form_20": 0.9714285714285715,
+        "matches_available": 27
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Sápmi",
+      "attack_rating": 0.7365229519131647,
+      "defense_rating": 1.45,
+      "matches_used": 6,
+      "recent_form": {
+        "form_5": 0.9066666666666667,
+        "form_10": 0.9163636363636364,
+        "form_20": 0.9282539682539683,
+        "matches_available": 29
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "São Tomé and Príncipe",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 25,
+      "recent_form": {
+        "form_5": 0.8444444444444444,
+        "form_10": 0.8387878787878789,
+        "form_20": 0.8342857142857143,
+        "matches_available": 65
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Tahiti",
+      "attack_rating": 1.45,
+      "defense_rating": 0.814051683693498,
+      "matches_used": 19,
+      "recent_form": {
+        "form_5": 1.1644444444444444,
+        "form_10": 1.1224242424242425,
+        "form_20": 1.062857142857143,
+        "matches_available": 233
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Taiwan",
+      "attack_rating": 0.6956050101402111,
+      "defense_rating": 1.45,
+      "matches_used": 36,
+      "recent_form": {
+        "form_5": 0.8,
+        "form_10": 0.8533333333333334,
+        "form_20": 0.8984126984126984,
+        "matches_available": 235
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Tajikistan",
+      "attack_rating": 0.819902908733523,
+      "defense_rating": 0.8615928871437022,
+      "matches_used": 53,
+      "recent_form": {
+        "form_5": 0.9600000000000001,
+        "form_10": 0.9454545454545455,
+        "form_20": 0.9650793650793652,
+        "matches_available": 186
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Tamil Eelam",
+      "attack_rating": 1.1784367230610637,
+      "defense_rating": 1.45,
+      "matches_used": 10,
+      "recent_form": {
+        "form_5": 1.1733333333333333,
+        "form_10": 1.0836363636363637,
+        "form_20": 1.0495238095238095,
+        "matches_available": 25
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Tanzania",
+      "attack_rating": 0.65,
+      "defense_rating": 0.8073424665201999,
+      "matches_used": 52,
+      "recent_form": {
+        "form_5": 1.057777777777778,
+        "form_10": 0.9866666666666667,
+        "form_20": 0.9733333333333334,
+        "matches_available": 577
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Thailand",
+      "attack_rating": 1.1645025050518958,
+      "defense_rating": 0.8261000676863876,
+      "matches_used": 74,
+      "recent_form": {
+        "form_5": 0.9866666666666667,
+        "form_10": 0.9624242424242425,
+        "form_20": 0.9606349206349207,
+        "matches_available": 840
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Tibet",
+      "attack_rating": 1.1047844278697472,
+      "defense_rating": 1.45,
+      "matches_used": 8,
+      "recent_form": {
+        "form_5": 0.8444444444444444,
+        "form_10": 0.850909090909091,
+        "form_20": null,
+        "matches_available": 19
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Timor-Leste",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 20,
+      "recent_form": {
+        "form_5": 0.88,
+        "form_10": 0.8581818181818183,
+        "form_20": 0.8380952380952381,
+        "matches_available": 72
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Togo",
+      "attack_rating": 0.7365229519131647,
+      "defense_rating": 0.8392935963661645,
+      "matches_used": 43,
+      "recent_form": {
+        "form_5": 0.9244444444444445,
+        "form_10": 0.9745454545454546,
+        "form_20": 0.9765079365079365,
+        "matches_available": 431
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Tonga",
+      "attack_rating": 0.6546870683672575,
+      "defense_rating": 1.45,
+      "matches_used": 9,
+      "recent_form": {
+        "form_5": 0.88,
+        "form_10": 0.8581818181818183,
+        "form_20": 0.8387301587301588,
+        "matches_available": 66
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Trinidad and Tobago",
+      "attack_rating": 1.092905025419535,
+      "defense_rating": 1.0335080131684733,
+      "matches_used": 62,
+      "recent_form": {
+        "form_5": 1.1022222222222222,
+        "form_10": 1.0375757575757576,
+        "form_20": 1.0234920634920637,
+        "matches_available": 727
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Tunisia",
+      "attack_rating": 0.9934495630456641,
+      "defense_rating": 0.65,
+      "matches_used": 86,
+      "recent_form": {
+        "form_5": 1.0044444444444445,
+        "form_10": 0.9866666666666667,
+        "form_20": 1.0126984126984127,
+        "matches_available": 650
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Turkey",
+      "attack_rating": 1.2863217751722877,
+      "defense_rating": 0.9439942059732113,
+      "matches_used": 71,
+      "recent_form": {
+        "form_5": 0.8444444444444444,
+        "form_10": 0.9260606060606061,
+        "form_20": 0.9873015873015873,
+        "matches_available": 617
+      },
+      "squad_strength": {
+        "squad_value": 372.0,
+        "squad_strength_rating": 0.9822293535769298
+      }
+    },
+    {
+      "team": "Turkmenistan",
+      "attack_rating": 0.7135066096658784,
+      "defense_rating": 1.334947850342611,
+      "matches_used": 32,
+      "recent_form": {
+        "form_5": 0.9244444444444445,
+        "form_10": 0.896969696969697,
+        "form_20": 0.881904761904762,
+        "matches_available": 170
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Turks and Caicos Islands",
+      "attack_rating": 0.8729160911563434,
+      "defense_rating": 1.45,
+      "matches_used": 27,
+      "recent_form": {
+        "form_5": 0.8977777777777778,
+        "form_10": 0.9284848484848486,
+        "form_20": 0.9307936507936508,
+        "matches_available": 46
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Tuvalu",
+      "attack_rating": 0.7365229519131647,
+      "defense_rating": 1.45,
+      "matches_used": 14,
+      "recent_form": {
+        "form_5": 1.04,
+        "form_10": 0.947878787878788,
+        "form_20": 0.900952380952381,
+        "matches_available": 39
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Uganda",
+      "attack_rating": 0.65,
+      "defense_rating": 0.6857282655743258,
+      "matches_used": 58,
+      "recent_form": {
+        "form_5": 0.9866666666666667,
+        "form_10": 0.9745454545454546,
+        "form_20": 0.9473015873015873,
+        "matches_available": 666
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Ukraine",
+      "attack_rating": 1.0831219881075953,
+      "defense_rating": 0.8664975904860762,
+      "matches_used": 68,
+      "recent_form": {
+        "form_5": 1.04,
+        "form_10": 1.0521212121212122,
+        "form_20": 1.0425396825396827,
+        "matches_available": 315
+      },
+      "squad_strength": {
+        "squad_value": 534.0,
+        "squad_strength_rating": 1.0420577704977299
+      }
+    },
+    {
+      "team": "United Arab Emirates",
+      "attack_rating": 1.1142270298173518,
+      "defense_rating": 0.7742933597035835,
+      "matches_used": 78,
+      "recent_form": {
+        "form_5": 1.0933333333333335,
+        "form_10": 1.0521212121212122,
+        "form_20": 1.0641269841269843,
+        "matches_available": 588
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "United Koreans in Japan",
+      "attack_rating": 0.8592767772320257,
+      "defense_rating": 0.65,
+      "matches_used": 6,
+      "recent_form": {
+        "form_5": 0.9511111111111111,
+        "form_10": 0.9648484848484848,
+        "form_20": null,
+        "matches_available": 12
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "United States",
+      "attack_rating": 1.4260338005127233,
+      "defense_rating": 0.65,
+      "matches_used": 94,
+      "recent_form": {
+        "form_5": 0.9777777777777779,
+        "form_10": 0.9915151515151516,
+        "form_20": 1.026031746031746,
+        "matches_available": 759
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "United States Virgin Islands",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 26,
+      "recent_form": {
+        "form_5": 0.88,
+        "form_10": 0.8581818181818183,
+        "form_20": 0.8590476190476191,
+        "matches_available": 70
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Uruguay",
+      "attack_rating": 1.1314700420694994,
+      "defense_rating": 0.65,
+      "matches_used": 69,
+      "recent_form": {
+        "form_5": 1.0222222222222224,
+        "form_10": 1.0375757575757576,
+        "form_20": 1.053968253968254,
+        "matches_available": 945
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Uzbekistan",
+      "attack_rating": 1.2382124988685088,
+      "defense_rating": 0.68315172351366,
+      "matches_used": 69,
+      "recent_form": {
+        "form_5": 1.0933333333333335,
+        "form_10": 1.0933333333333335,
+        "form_20": 1.0838095238095238,
+        "matches_available": 334
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Vanuatu",
+      "attack_rating": 1.45,
+      "defense_rating": 1.3391326398421177,
+      "matches_used": 22,
+      "recent_form": {
+        "form_5": 0.8088888888888889,
+        "form_10": 0.88,
+        "form_20": 0.914920634920635,
+        "matches_available": 200
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Venezuela",
+      "attack_rating": 0.8613573505425147,
+      "defense_rating": 0.8863242302683847,
+      "matches_used": 59,
+      "recent_form": {
+        "form_5": 0.9155555555555557,
+        "form_10": 0.9672727272727273,
+        "form_20": 1.0133333333333334,
+        "matches_available": 436
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Vietnam",
+      "attack_rating": 1.0460760766302921,
+      "defense_rating": 0.8005684259925704,
+      "matches_used": 69,
+      "recent_form": {
+        "form_5": 0.9066666666666667,
+        "form_10": 0.8727272727272728,
+        "form_20": 0.8977777777777778,
+        "matches_available": 279
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Wales",
+      "attack_rating": 0.8432654087121741,
+      "defense_rating": 0.7792199346327685,
+      "matches_used": 69,
+      "recent_form": {
+        "form_5": 0.9244444444444445,
+        "form_10": 0.9866666666666667,
+        "form_20": 0.979047619047619,
+        "matches_available": 706
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Western Armenia",
+      "attack_rating": 1.3391326398421177,
+      "defense_rating": 0.8704362158973766,
+      "matches_used": 11,
+      "recent_form": {
+        "form_5": 0.9155555555555557,
+        "form_10": 0.9503030303030303,
+        "form_20": null,
+        "matches_available": 16
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Western Isles",
+      "attack_rating": 0.7365229519131647,
+      "defense_rating": 1.380980534837184,
+      "matches_used": 8,
+      "recent_form": {
+        "form_5": 1.0666666666666667,
+        "form_10": 0.993939393939394,
+        "form_20": 0.9619047619047619,
+        "matches_available": 32
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Yemen",
+      "attack_rating": 0.65,
+      "defense_rating": 1.45,
+      "matches_used": 37,
+      "recent_form": {
+        "form_5": 0.9066666666666667,
+        "form_10": 0.9212121212121213,
+        "form_20": 0.8946031746031746,
+        "matches_available": 255
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Ynys Môn",
+      "attack_rating": 1.45,
+      "defense_rating": 0.9574798374871142,
+      "matches_used": 10,
+      "recent_form": {
+        "form_5": 1.0666666666666667,
+        "form_10": 1.1272727272727274,
+        "form_20": 1.1034920634920635,
+        "matches_available": 65
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Yorkshire",
+      "attack_rating": 1.45,
+      "defense_rating": 1.157393210149259,
+      "matches_used": 7,
+      "recent_form": {
+        "form_5": 1.1466666666666667,
+        "form_10": null,
+        "form_20": null,
+        "matches_available": 7
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Zambia",
+      "attack_rating": 1.037356270300232,
+      "defense_rating": 1.0166091448942274,
+      "matches_used": 71,
+      "recent_form": {
+        "form_5": 0.8266666666666667,
+        "form_10": 0.88,
+        "form_20": 0.9587301587301588,
+        "matches_available": 777
+      },
+      "squad_strength": null
+    },
+    {
+      "team": "Zimbabwe",
+      "attack_rating": 0.65,
+      "defense_rating": 0.8646139000719761,
+      "matches_used": 46,
+      "recent_form": {
+        "form_5": 0.8711111111111112,
+        "form_10": 0.8921212121212122,
+        "form_20": 0.8793650793650793,
+        "matches_available": 474
+      },
+      "squad_strength": null
+    }
+  ]
+}

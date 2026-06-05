@@ -21,9 +21,10 @@ class MatchContext:
 
 
 @lru_cache(maxsize=1)
-def load_tournament_k_factors(path: Path = TOURNAMENT_K_FACTORS_PATH) -> dict:
+def load_tournament_k_factors(path: Path | None = None) -> dict:
     """Load tournament-specific Elo K factors from JSON."""
 
+    path = path or TOURNAMENT_K_FACTORS_PATH
     with path.open(encoding="utf-8") as file:
         return json.load(file)["tournaments"]
 

@@ -1,0 +1,194 @@
+[
+  {
+    "team": "Brazil",
+    "champion_probability": 0.217,
+    "runner_up_probability": 0.105,
+    "semifinal_probability": 0.506
+  },
+  {
+    "team": "Argentina",
+    "champion_probability": 0.145,
+    "runner_up_probability": 0.106,
+    "semifinal_probability": 0.451
+  },
+  {
+    "team": "Spain",
+    "champion_probability": 0.105,
+    "runner_up_probability": 0.062,
+    "semifinal_probability": 0.291
+  },
+  {
+    "team": "France",
+    "champion_probability": 0.094,
+    "runner_up_probability": 0.101,
+    "semifinal_probability": 0.334
+  },
+  {
+    "team": "Belgium",
+    "champion_probability": 0.088,
+    "runner_up_probability": 0.089,
+    "semifinal_probability": 0.315
+  },
+  {
+    "team": "Netherlands",
+    "champion_probability": 0.066,
+    "runner_up_probability": 0.056,
+    "semifinal_probability": 0.246
+  },
+  {
+    "team": "England",
+    "champion_probability": 0.049,
+    "runner_up_probability": 0.068,
+    "semifinal_probability": 0.24
+  },
+  {
+    "team": "Portugal",
+    "champion_probability": 0.048,
+    "runner_up_probability": 0.06,
+    "semifinal_probability": 0.229
+  },
+  {
+    "team": "Denmark",
+    "champion_probability": 0.034,
+    "runner_up_probability": 0.045,
+    "semifinal_probability": 0.179
+  },
+  {
+    "team": "Iran",
+    "champion_probability": 0.028,
+    "runner_up_probability": 0.039,
+    "semifinal_probability": 0.135
+  },
+  {
+    "team": "Japan",
+    "champion_probability": 0.021,
+    "runner_up_probability": 0.034,
+    "semifinal_probability": 0.122
+  },
+  {
+    "team": "United States",
+    "champion_probability": 0.016,
+    "runner_up_probability": 0.022,
+    "semifinal_probability": 0.106
+  },
+  {
+    "team": "Germany",
+    "champion_probability": 0.014,
+    "runner_up_probability": 0.028,
+    "semifinal_probability": 0.114
+  },
+  {
+    "team": "Australia",
+    "champion_probability": 0.014,
+    "runner_up_probability": 0.024,
+    "semifinal_probability": 0.092
+  },
+  {
+    "team": "Mexico",
+    "champion_probability": 0.013,
+    "runner_up_probability": 0.02,
+    "semifinal_probability": 0.096
+  },
+  {
+    "team": "Uruguay",
+    "champion_probability": 0.012,
+    "runner_up_probability": 0.024,
+    "semifinal_probability": 0.085
+  },
+  {
+    "team": "Switzerland",
+    "champion_probability": 0.01,
+    "runner_up_probability": 0.016,
+    "semifinal_probability": 0.077
+  },
+  {
+    "team": "Canada",
+    "champion_probability": 0.008,
+    "runner_up_probability": 0.023,
+    "semifinal_probability": 0.069
+  },
+  {
+    "team": "South Korea",
+    "champion_probability": 0.007,
+    "runner_up_probability": 0.025,
+    "semifinal_probability": 0.071
+  },
+  {
+    "team": "Senegal",
+    "champion_probability": 0.004,
+    "runner_up_probability": 0.009,
+    "semifinal_probability": 0.041
+  },
+  {
+    "team": "Morocco",
+    "champion_probability": 0.002,
+    "runner_up_probability": 0.012,
+    "semifinal_probability": 0.043
+  },
+  {
+    "team": "Croatia",
+    "champion_probability": 0.002,
+    "runner_up_probability": 0.003,
+    "semifinal_probability": 0.023
+  },
+  {
+    "team": "Saudi Arabia",
+    "champion_probability": 0.001,
+    "runner_up_probability": 0.0,
+    "semifinal_probability": 0.008
+  },
+  {
+    "team": "Qatar",
+    "champion_probability": 0.001,
+    "runner_up_probability": 0.005,
+    "semifinal_probability": 0.023
+  },
+  {
+    "team": "Serbia",
+    "champion_probability": 0.001,
+    "runner_up_probability": 0.01,
+    "semifinal_probability": 0.04
+  },
+  {
+    "team": "Poland",
+    "champion_probability": 0.0,
+    "runner_up_probability": 0.004,
+    "semifinal_probability": 0.018
+  },
+  {
+    "team": "Ecuador",
+    "champion_probability": 0.0,
+    "runner_up_probability": 0.002,
+    "semifinal_probability": 0.014
+  },
+  {
+    "team": "Wales",
+    "champion_probability": 0.0,
+    "runner_up_probability": 0.001,
+    "semifinal_probability": 0.004
+  },
+  {
+    "team": "Tunisia",
+    "champion_probability": 0.0,
+    "runner_up_probability": 0.004,
+    "semifinal_probability": 0.013
+  },
+  {
+    "team": "Costa Rica",
+    "champion_probability": 0.0,
+    "runner_up_probability": 0.001,
+    "semifinal_probability": 0.002
+  },
+  {
+    "team": "Cameroon",
+    "champion_probability": 0.0,
+    "runner_up_probability": 0.0,
+    "semifinal_probability": 0.008
+  },
+  {
+    "team": "Ghana",
+    "champion_probability": 0.0,
+    "runner_up_probability": 0.002,
+    "semifinal_probability": 0.005
+  }
+]
