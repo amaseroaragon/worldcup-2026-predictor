@@ -124,7 +124,7 @@ Scripts accept `--seed`. With the same configuration, seed, and number of simula
 Example:
 
 ```bash
-python scripts/prediction/run_simulations.py --simulations 1000 --seed 42
+python scripts/prediction/run_prediction_pipeline.py --simulations 1000 --seed 42
 ```
 
 ## Cost and Optimization

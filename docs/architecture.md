@@ -138,8 +138,7 @@ Scripts are operational entry points.
 
 ### Prediction
 
-- `scripts/prediction/run_simulations.py`: runs Monte Carlo and exports aggregate probabilities.
-- `scripts/prediction/run_prediction_pipeline.py`: runs the full prediction pipeline, including team metrics and match predictions.
+- `scripts/prediction/run_prediction_pipeline.py`: runs the full prediction pipeline, including team metrics, Monte Carlo probabilities, and match predictions.
 
 ## Data Flow
 
