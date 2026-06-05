@@ -1,40 +1,92 @@
 # World Cup 2026 Predictor
 
-Dynamic FIFA World Cup 2026 prediction system based on Elo ratings, momentum tracking and Monte Carlo tournament simulations.
+World Cup 2026 Predictor is a Python backend for simulating the FIFA World Cup 2026. It combines Elo ratings, Poisson score simulation, team strength metrics, tournament bracket logic, and Monte Carlo aggregation to estimate match outcomes and tournament probabilities.
 
-## Overview
+## What It Does
 
-This project aims to build a continuously updating prediction engine for the 2026 FIFA World Cup.
+- Builds historical Elo ratings from international match results.
+- Computes team metrics such as attack/defense ratings, recent form, and squad strength.
+- Simulates group-stage and knockout-stage matches.
+- Resolves the World Cup 2026 bracket, including best third-place teams.
+- Runs Monte Carlo tournament simulations.
+- Exports probability and match prediction JSON files.
 
-Unlike static predictors, team ratings evolve after every match depending not only on the final result, but also on performance quality, upset factor and recent form ("momentum").
+## Project Structure
 
-The system predicts:
+```text
+data/                 Raw, processed, and external data files
+src/data/             Data normalization and validation
+src/elo/              Historical Elo calculation
+src/prediction/core/     Match engine, Poisson, standings, and core models
+src/prediction/metrics/ Team strength, recent form, and squad strength
+src/prediction/tournament_flow/ Tournament, knockout, and Monte Carlo logic
+src/prediction/io/       JSON export and output validation
+scripts/                 Operational entry points
+tests/                   Unit and contract tests
+docs/                    Detailed documentation
+```
 
-* Match outcomes
-* Score probabilities
-* Group stage standings
-* Knockout brackets
-* Tournament winner probabilities
-* Dynamic team rankings
+## Main Pipeline
 
-The project will also include full tournament simulations using Monte Carlo methods in order to estimate how likely each team is to reach every stage of the competition.
+```text
+Historical results
+-> cleaned results
+-> Elo history
+-> current Elo rankings
+-> team metrics
+-> match simulation
+-> tournament simulation
+-> Monte Carlo aggregation
+-> JSON outputs
+```
 
-## Core Features
+## Run
 
-Each national team will have a dynamic strength value composed of multiple components:
+Install the package and dependencies in your own environment:
 
-* Base Elo rating
-* Offensive strength
-* Defensive performance
-* Recent form
-* Tournament momentum
-* Opponent-adjusted performance
-* Contextual adjustments such as host advantage
+```bash
+python -m pip install -e .
+```
 
-After every match, ratings will be updated depending not only on the result itself, but also on how expected or unexpected the performance was.
+The project requires Python 3.11 or newer.
 
-## Tech Stack
+Build clean results:
 
-The backend will be developed in Python using pandas, numpy and scikit-learn, while the frontend and visualizations will initially be built with Streamlit in order to iterate quickly during the tournament.
+```bash
+python scripts/build_clean_results.py
+```
 
-Data will be will be dynamically ingested from automated football data APIs, ensuring the predictor updates in near real-time as the tournament progresses.
+Build Elo history and rankings:
+
+```bash
+python scripts/elo/build_elo_ratings.py
+python scripts/elo/export_elo_ratings.py
+```
+
+Run the full prediction pipeline:
+
+```bash
+python scripts/prediction/run_prediction_pipeline.py --simulations 1000 --seed 42
+```
+
+Run tests:
+
+```bash
+python -m pytest -q
+```
+
+## Outputs
+
+- `outputs/predictions/team_metrics.json`
+- `outputs/predictions/world_cup_probabilities.json`
+- `outputs/predictions/tournament_predictions.json`
+
+## Documentation
+
+- [Architecture](docs/architecture.md)
+- [Model](docs/model.md)
+- [Monte Carlo](docs/monte_carlo.md)
+
+## Current Status
+
+The project is currently in V5: architecture cleanup, data validation, documentation, and preparation for Monte Carlo optimization. The frontend is planned for V6 and is not implemented yet.

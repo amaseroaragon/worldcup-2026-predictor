@@ -21,7 +21,7 @@ DEFAULT_SQUAD_VALUES_PATH = EXTERNAL_DATA_DIR / "teams_value.json"
 DEFAULT_TOURNAMENT_K_FACTORS_PATH = EXTERNAL_DATA_DIR / "tournament_k_factors.json"
 DEFAULT_ELO_RANKINGS_PATH = Path("data/processed/elo_rankings.csv")
 DEFAULT_CLEAN_RESULTS_PATH = PROCESSED_DATA_DIR / "clean_results.csv"
-DEFAULT_TEAM_METRICS_PATH = Path("data/processed/team_metrics.json")
+DEFAULT_TEAM_METRICS_PATH = PREDICTIONS_OUTPUT_DIR / "team_metrics.json"
 DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH = (
     PREDICTIONS_OUTPUT_DIR / "tournament_predictions.json"
 )
