@@ -5,6 +5,7 @@ from collections import defaultdict
 
 from src.prediction.tournament import simulate_tournament_once
 from src.prediction.recent_form import RecentFormRating
+from src.prediction.squad_strength import SquadStrengthRating
 from src.prediction.team_strength import TeamStrengthRating
 
 
@@ -20,6 +21,7 @@ def run_monte_carlo(
     team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
     recent_form_ratings: dict[str, RecentFormRating] | None = None,
     group_matches: list[dict[str, str | int]] | None = None,
+    squad_strength_ratings: dict[str, SquadStrengthRating] | None = None,
 ) -> dict:
     """Run repeated tournament simulations and aggregate advancement probabilities."""
 
@@ -48,6 +50,7 @@ def run_monte_carlo(
             rng=rng,
             team_strength_ratings=team_strength_ratings,
             recent_form_ratings=recent_form_ratings,
+            squad_strength_ratings=squad_strength_ratings,
             group_matches=group_matches,
         )
         if sample_outcome is None:

@@ -1,5 +1,7 @@
 {
-  "metrics_version": "v4.2",
+  "metrics_version": "v4.5",
+  "squad_values_source": "data/external/teams_value.json",
+  "squad_value_unit": "million_eur",
   "teams": [
     {
       "team": "Abkhazia",
@@ -11,7 +13,8 @@
         "form_10": 1.0521212121212122,
         "form_20": 1.0323809523809524,
         "matches_available": 33
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Afghanistan",
@@ -23,7 +26,8 @@
         "form_10": 0.9163636363636364,
         "form_20": 0.9174603174603175,
         "matches_available": 145
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Albania",
@@ -35,7 +39,8 @@
         "form_10": 0.9890909090909091,
         "form_20": 0.9987301587301588,
         "matches_available": 396
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Alderney",
@@ -47,7 +52,8 @@
         "form_10": 0.88,
         "form_20": 0.8590476190476191,
         "matches_available": 135
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Algeria",
@@ -59,6 +65,10 @@
         "form_10": 1.0787878787878789,
         "form_20": 1.099047619047619,
         "matches_available": 615
+      },
+      "squad_strength": {
+        "squad_value": 278.0,
+        "squad_strength_rating": 1.0476277361774282
       }
     },
     {
@@ -71,7 +81,8 @@
         "form_10": 0.8024242424242425,
         "form_20": 0.8412698412698413,
         "matches_available": 55
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Andorra",
@@ -83,7 +94,8 @@
         "form_10": 0.8387878787878789,
         "form_20": 0.8431746031746032,
         "matches_available": 227
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Angola",
@@ -95,7 +107,8 @@
         "form_10": 0.9406060606060607,
         "form_20": 0.9657142857142857,
         "matches_available": 413
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Anguilla",
@@ -107,7 +120,8 @@
         "form_10": 0.9163636363636364,
         "form_20": 0.8926984126984128,
         "matches_available": 91
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Antigua and Barbuda",
@@ -119,7 +133,8 @@
         "form_10": 0.8363636363636364,
         "form_20": 0.8412698412698413,
         "matches_available": 231
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Argentina",
@@ -131,6 +146,10 @@
         "form_10": 1.1490909090909092,
         "form_20": 1.1212698412698412,
         "matches_available": 1066
+      },
+      "squad_strength": {
+        "squad_value": 884.0,
+        "squad_strength_rating": 1.15
       }
     },
     {
@@ -143,7 +162,8 @@
         "form_10": 0.8436363636363637,
         "form_20": 0.8711111111111112,
         "matches_available": 270
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Artsakh",
@@ -155,7 +175,8 @@
         "form_10": 1.073939393939394,
         "form_20": null,
         "matches_available": 11
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Aruba",
@@ -167,7 +188,8 @@
         "form_10": 1.0545454545454547,
         "form_20": 0.979047619047619,
         "matches_available": 151
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Australia",
@@ -179,6 +201,10 @@
         "form_10": 0.9963636363636365,
         "form_20": 1.04,
         "matches_available": 580
+      },
+      "squad_strength": {
+        "squad_value": 79.0,
+        "squad_strength_rating": 0.85
       }
     },
     {
@@ -191,6 +217,10 @@
         "form_10": 1.1296969696969699,
         "form_20": 1.1034920634920635,
         "matches_available": 860
+      },
+      "squad_strength": {
+        "squad_value": 293.0,
+        "squad_strength_rating": 1.05737024919972
       }
     },
     {
@@ -203,7 +233,8 @@
         "form_10": 0.9018181818181819,
         "form_20": 0.873015873015873,
         "matches_available": 308
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Bahamas",
@@ -215,7 +246,8 @@
         "form_10": 0.8242424242424243,
         "form_20": 0.8380952380952381,
         "matches_available": 67
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Bahrain",
@@ -227,7 +259,8 @@
         "form_10": 0.9309090909090909,
         "form_20": 0.926984126984127,
         "matches_available": 583
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Bangladesh",
@@ -239,7 +272,8 @@
         "form_10": 0.947878787878788,
         "form_20": 0.9403174603174604,
         "matches_available": 304
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Barawa",
@@ -251,7 +285,8 @@
         "form_10": 0.88,
         "form_20": null,
         "matches_available": 12
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Barbados",
@@ -263,7 +298,8 @@
         "form_10": 0.88,
         "form_20": 0.9238095238095239,
         "matches_available": 302
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Basque Country",
@@ -275,7 +311,8 @@
         "form_10": 1.0933333333333335,
         "form_20": 1.086984126984127,
         "matches_available": 64
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Belarus",
@@ -287,7 +324,8 @@
         "form_10": 0.9818181818181819,
         "form_20": 0.9752380952380952,
         "matches_available": 313
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Belgium",
@@ -299,6 +337,10 @@
         "form_10": 1.0884848484848486,
         "form_20": 1.0438095238095237,
         "matches_available": 851
+      },
+      "squad_strength": {
+        "squad_value": 586.0,
+        "squad_strength_rating": 1.15
       }
     },
     {
@@ -311,7 +353,8 @@
         "form_10": 0.9212121212121213,
         "form_20": 0.9714285714285715,
         "matches_available": 121
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Benin",
@@ -323,7 +366,8 @@
         "form_10": 1.0036363636363637,
         "form_20": 0.9885714285714287,
         "matches_available": 323
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Bermuda",
@@ -335,7 +379,8 @@
         "form_10": 0.8581818181818183,
         "form_20": 0.9104761904761905,
         "matches_available": 197
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Bhutan",
@@ -347,7 +392,8 @@
         "form_10": 0.8412121212121213,
         "form_20": 0.873015873015873,
         "matches_available": 109
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Bolivia",
@@ -359,7 +405,8 @@
         "form_10": 0.9600000000000001,
         "form_20": 0.954920634920635,
         "matches_available": 532
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Bonaire",
@@ -371,7 +418,8 @@
         "form_10": 0.8872727272727273,
         "form_20": 0.9034920634920636,
         "matches_available": 43
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Bosnia and Herzegovina",
@@ -383,6 +431,10 @@
         "form_10": 0.9866666666666667,
         "form_20": 0.9955555555555556,
         "matches_available": 282
+      },
+      "squad_strength": {
+        "squad_value": 161.0,
+        "squad_strength_rating": 0.9464937988072206
       }
     },
     {
@@ -395,7 +447,8 @@
         "form_10": 0.8921212121212122,
         "form_20": 0.9104761904761905,
         "matches_available": 332
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Brazil",
@@ -407,6 +460,10 @@
         "form_10": 1.0496969696969698,
         "form_20": 1.0374603174603174,
         "matches_available": 1058
+      },
+      "squad_strength": {
+        "squad_value": 985.0,
+        "squad_strength_rating": 1.15
       }
     },
     {
@@ -419,7 +476,8 @@
         "form_10": 1.010909090909091,
         "form_20": 0.9371428571428572,
         "matches_available": 121
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Brunei",
@@ -431,7 +489,8 @@
         "form_10": 0.8654545454545455,
         "form_20": 0.9263492063492064,
         "matches_available": 137
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Bulgaria",
@@ -443,7 +502,8 @@
         "form_10": 0.9745454545454546,
         "form_20": 0.9352380952380953,
         "matches_available": 735
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Burkina Faso",
@@ -455,7 +515,8 @@
         "form_10": 1.0496969696969698,
         "form_20": 1.0749206349206348,
         "matches_available": 462
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Burundi",
@@ -467,7 +528,8 @@
         "form_10": 0.863030303030303,
         "form_20": 0.8926984126984128,
         "matches_available": 218
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Cambodia",
@@ -479,7 +541,8 @@
         "form_10": 0.8751515151515152,
         "form_20": 0.9022222222222223,
         "matches_available": 293
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Cameroon",
@@ -491,7 +554,8 @@
         "form_10": 1.0206060606060607,
         "form_20": 1.031111111111111,
         "matches_available": 616
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Canada",
@@ -503,6 +567,10 @@
         "form_10": 1.0303030303030303,
         "form_20": 1.045079365079365,
         "matches_available": 468
+      },
+      "squad_strength": {
+        "squad_value": 219.0,
+        "squad_strength_rating": 1.0034276875201686
       }
     },
     {
@@ -515,6 +583,10 @@
         "form_10": 1.010909090909091,
         "form_20": 1.0234920634920637,
         "matches_available": 234
+      },
+      "squad_strength": {
+        "squad_value": 60.0,
+        "squad_strength_rating": 0.85
       }
     },
     {
@@ -527,7 +599,8 @@
         "form_10": null,
         "form_20": null,
         "matches_available": 7
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Cayman Islands",
@@ -539,7 +612,8 @@
         "form_10": 0.9648484848484848,
         "form_20": 0.954920634920635,
         "matches_available": 118
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Central African Republic",
@@ -551,7 +625,8 @@
         "form_10": 0.9284848484848486,
         "form_20": 0.9238095238095239,
         "matches_available": 136
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Chad",
@@ -563,7 +638,8 @@
         "form_10": 0.8436363636363637,
         "form_20": 0.8495238095238096,
         "matches_available": 138
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Chagos Islands",
@@ -575,7 +651,8 @@
         "form_10": 0.8363636363636364,
         "form_20": null,
         "matches_available": 16
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Chameria",
@@ -587,7 +664,8 @@
         "form_10": null,
         "form_20": null,
         "matches_available": 7
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Chile",
@@ -599,7 +677,8 @@
         "form_10": 1.0327272727272727,
         "form_20": 0.987936507936508,
         "matches_available": 833
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "China PR",
@@ -611,7 +690,8 @@
         "form_10": 0.9575757575757576,
         "form_20": 0.9415873015873016,
         "matches_available": 700
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Colombia",
@@ -623,6 +703,10 @@
         "form_10": 1.0472727272727274,
         "form_20": 1.0203174603174603,
         "matches_available": 637
+      },
+      "squad_strength": {
+        "squad_value": 329.0,
+        "squad_strength_rating": 1.0788602071560935
       }
     },
     {
@@ -635,7 +719,8 @@
         "form_10": 0.8703030303030304,
         "form_20": 0.9085714285714286,
         "matches_available": 150
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Congo",
@@ -647,7 +732,8 @@
         "form_10": 0.8460606060606061,
         "form_20": 0.8723809523809525,
         "matches_available": 406
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Cook Islands",
@@ -659,7 +745,8 @@
         "form_10": 0.8945454545454545,
         "form_20": 0.9047619047619049,
         "matches_available": 53
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Costa Rica",
@@ -671,7 +758,8 @@
         "form_10": 0.896969696969697,
         "form_20": 0.9644444444444445,
         "matches_available": 723
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Croatia",
@@ -683,6 +771,10 @@
         "form_10": 1.103030303030303,
         "form_20": 1.0831746031746032,
         "matches_available": 394
+      },
+      "squad_strength": {
+        "squad_value": 416.0,
+        "squad_strength_rating": 1.1223922497658265
       }
     },
     {
@@ -695,7 +787,8 @@
         "form_10": 0.9696969696969697,
         "form_20": 0.9485714285714286,
         "matches_available": 397
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Curaçao",
@@ -707,6 +800,10 @@
         "form_10": 0.9284848484848486,
         "form_20": 0.9765079365079365,
         "matches_available": 384
+      },
+      "squad_strength": {
+        "squad_value": 28.0,
+        "squad_strength_rating": 0.85
       }
     },
     {
@@ -719,7 +816,8 @@
         "form_10": 0.9406060606060607,
         "form_20": 0.933968253968254,
         "matches_available": 424
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Czech Republic",
@@ -731,6 +829,10 @@
         "form_10": 1.04,
         "form_20": 1.0495238095238095,
         "matches_available": 359
+      },
+      "squad_strength": {
+        "squad_value": 205.5,
+        "squad_strength_rating": 0.9916463401742658
       }
     },
     {
@@ -743,6 +845,10 @@
         "form_10": 1.0933333333333335,
         "form_20": 1.0952380952380953,
         "matches_available": 522
+      },
+      "squad_strength": {
+        "squad_value": 161.0,
+        "squad_strength_rating": 0.9464937988072206
       }
     },
     {
@@ -755,7 +861,8 @@
         "form_10": 1.044848484848485,
         "form_20": 1.0374603174603174,
         "matches_available": 872
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Djibouti",
@@ -767,7 +874,8 @@
         "form_10": 0.8096969696969697,
         "form_20": 0.8419047619047619,
         "matches_available": 111
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Dominica",
@@ -779,7 +887,8 @@
         "form_10": 0.8824242424242424,
         "form_20": 0.8958730158730159,
         "matches_available": 215
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Dominican Republic",
@@ -791,7 +900,8 @@
         "form_10": 0.9333333333333333,
         "form_20": 0.973968253968254,
         "matches_available": 158
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "East Turkestan",
@@ -803,7 +913,8 @@
         "form_10": null,
         "form_20": null,
         "matches_available": 5
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Ecuador",
@@ -815,6 +926,10 @@
         "form_10": 1.0303030303030303,
         "form_20": 1.026031746031746,
         "matches_available": 590
+      },
+      "squad_strength": {
+        "squad_value": 406.0,
+        "squad_strength_rating": 1.1178765065984153
       }
     },
     {
@@ -827,6 +942,10 @@
         "form_10": 1.0642424242424244,
         "form_20": 1.0425396825396827,
         "matches_available": 755
+      },
+      "squad_strength": {
+        "squad_value": 145.0,
+        "squad_strength_rating": 0.9271476061251013
       }
     },
     {
@@ -839,7 +958,8 @@
         "form_10": 0.9163636363636364,
         "form_20": 0.9390476190476191,
         "matches_available": 612
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Ellan Vannin",
@@ -851,7 +971,8 @@
         "form_10": 1.0254545454545454,
         "form_20": 1.0057142857142858,
         "matches_available": 22
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "England",
@@ -863,6 +984,10 @@
         "form_10": 1.069090909090909,
         "form_20": 1.1015873015873017,
         "matches_available": 1088
+      },
+      "squad_strength": {
+        "squad_value": 1412.5,
+        "squad_strength_rating": 1.15
       }
     },
     {
@@ -875,7 +1000,8 @@
         "form_10": 0.9066666666666667,
         "form_20": 0.9212698412698413,
         "matches_available": 178
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Estonia",
@@ -887,7 +1013,8 @@
         "form_10": 0.9042424242424243,
         "form_20": 0.9015873015873016,
         "matches_available": 548
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Eswatini",
@@ -899,7 +1026,8 @@
         "form_10": 0.8581818181818183,
         "form_20": 0.860952380952381,
         "matches_available": 274
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Ethiopia",
@@ -911,7 +1039,8 @@
         "form_10": 0.9381818181818182,
         "form_20": 0.9238095238095239,
         "matches_available": 407
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Faroe Islands",
@@ -923,7 +1052,8 @@
         "form_10": 1.0909090909090908,
         "form_20": 1.0165079365079366,
         "matches_available": 285
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Fiji",
@@ -935,7 +1065,8 @@
         "form_10": 0.8606060606060606,
         "form_20": 0.926984126984127,
         "matches_available": 267
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Finland",
@@ -947,7 +1078,8 @@
         "form_10": 0.9672727272727273,
         "form_20": 0.947936507936508,
         "matches_available": 817
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "France",
@@ -959,6 +1091,10 @@
         "form_10": 1.1636363636363636,
         "form_20": 1.121904761904762,
         "matches_available": 933
+      },
+      "squad_strength": {
+        "squad_value": 1650.0,
+        "squad_strength_rating": 1.15
       }
     },
     {
@@ -971,7 +1107,8 @@
         "form_10": 0.8896969696969698,
         "form_20": 0.935873015873016,
         "matches_available": 179
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Frøya",
@@ -983,7 +1120,8 @@
         "form_10": 0.8460606060606061,
         "form_20": 0.8469841269841271,
         "matches_available": 37
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Gabon",
@@ -995,7 +1133,8 @@
         "form_10": 0.8872727272727273,
         "form_20": 0.9650793650793652,
         "matches_available": 405
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Gambia",
@@ -1007,7 +1146,8 @@
         "form_10": 0.9575757575757576,
         "form_20": 0.9771428571428572,
         "matches_available": 266
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Georgia",
@@ -1019,7 +1159,8 @@
         "form_10": 0.9357575757575758,
         "form_20": 0.9612698412698413,
         "matches_available": 305
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Germany",
@@ -1031,6 +1172,10 @@
         "form_10": 1.1781818181818182,
         "form_20": 1.1111111111111112,
         "matches_available": 1030
+      },
+      "squad_strength": {
+        "squad_value": 1078.0,
+        "squad_strength_rating": 1.15
       }
     },
     {
@@ -1043,6 +1188,10 @@
         "form_10": 0.8993939393939394,
         "form_20": 0.9511111111111111,
         "matches_available": 670
+      },
+      "squad_strength": {
+        "squad_value": 249.5,
+        "squad_strength_rating": 1.0275814494241842
       }
     },
     {
@@ -1055,7 +1204,8 @@
         "form_10": 0.8,
         "form_20": 0.8463492063492064,
         "matches_available": 157
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Gozo",
@@ -1067,7 +1217,8 @@
         "form_10": 0.9600000000000001,
         "form_20": null,
         "matches_available": 14
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Greece",
@@ -1079,7 +1230,8 @@
         "form_10": 0.9381818181818182,
         "form_20": 0.9974603174603175,
         "matches_available": 631
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Grenada",
@@ -1091,7 +1243,8 @@
         "form_10": 0.9454545454545455,
         "form_20": 0.9676190476190477,
         "matches_available": 260
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Guadeloupe",
@@ -1103,7 +1256,8 @@
         "form_10": 0.9745454545454546,
         "form_20": 1.0146031746031747,
         "matches_available": 271
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Guam",
@@ -1115,7 +1269,8 @@
         "form_10": 0.9357575757575758,
         "form_20": 0.881904761904762,
         "matches_available": 121
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Guatemala",
@@ -1127,7 +1282,8 @@
         "form_10": 0.9551515151515152,
         "form_20": 0.9682539682539684,
         "matches_available": 552
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Guernsey",
@@ -1139,7 +1295,8 @@
         "form_10": 1.0327272727272727,
         "form_20": 1.0361904761904763,
         "matches_available": 240
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Guinea",
@@ -1151,7 +1308,8 @@
         "form_10": 0.976969696969697,
         "form_20": 0.9923809523809525,
         "matches_available": 538
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Guinea-Bissau",
@@ -1163,7 +1321,8 @@
         "form_10": 0.88,
         "form_20": 0.8774603174603175,
         "matches_available": 190
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Guyana",
@@ -1175,7 +1334,8 @@
         "form_10": 1.1345454545454547,
         "form_20": 1.0603174603174603,
         "matches_available": 313
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Haiti",
@@ -1187,6 +1347,10 @@
         "form_10": 0.9890909090909091,
         "form_20": 1.0006349206349208,
         "matches_available": 508
+      },
+      "squad_strength": {
+        "squad_value": 60.0,
+        "squad_strength_rating": 0.85
       }
     },
     {
@@ -1199,7 +1363,8 @@
         "form_10": 0.9890909090909091,
         "form_20": 0.9587301587301588,
         "matches_available": 23
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Honduras",
@@ -1211,7 +1376,8 @@
         "form_10": 0.9696969696969697,
         "form_20": 1.0063492063492063,
         "matches_available": 619
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Hong Kong",
@@ -1223,7 +1389,8 @@
         "form_10": 0.9842424242424244,
         "form_20": 1.0431746031746032,
         "matches_available": 445
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Hungary",
@@ -1235,7 +1402,8 @@
         "form_10": 1.0133333333333334,
         "form_20": 0.9771428571428572,
         "matches_available": 1004
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Iceland",
@@ -1247,7 +1415,8 @@
         "form_10": 0.8945454545454545,
         "form_20": 0.9123809523809524,
         "matches_available": 521
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "India",
@@ -1259,7 +1428,8 @@
         "form_10": 0.8387878787878789,
         "form_20": 0.866031746031746,
         "matches_available": 532
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Indonesia",
@@ -1271,7 +1441,8 @@
         "form_10": 0.9527272727272728,
         "form_20": 0.9561904761904763,
         "matches_available": 726
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Iran",
@@ -1283,6 +1454,10 @@
         "form_10": 1.0303030303030303,
         "form_20": 1.048888888888889,
         "matches_available": 611
+      },
+      "squad_strength": {
+        "squad_value": 35.0,
+        "squad_strength_rating": 0.85
       }
     },
     {
@@ -1295,6 +1470,10 @@
         "form_10": 1.0666666666666667,
         "form_20": 1.0571428571428572,
         "matches_available": 653
+      },
+      "squad_strength": {
+        "squad_value": 22.0,
+        "squad_strength_rating": 0.85
       }
     },
     {
@@ -1307,7 +1486,8 @@
         "form_10": 1.0836363636363637,
         "form_20": 1.0895238095238096,
         "matches_available": 58
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Israel",
@@ -1319,7 +1499,8 @@
         "form_10": 0.9745454545454546,
         "form_20": 0.9815873015873017,
         "matches_available": 497
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Italy",
@@ -1331,7 +1512,8 @@
         "form_10": 1.0860606060606062,
         "form_20": 1.062857142857143,
         "matches_available": 891
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Ivory Coast",
@@ -1343,6 +1525,10 @@
         "form_10": 1.103030303030303,
         "form_20": 1.0863492063492064,
         "matches_available": 635
+      },
+      "squad_strength": {
+        "squad_value": 573.0,
+        "squad_strength_rating": 1.15
       }
     },
     {
@@ -1355,7 +1541,8 @@
         "form_10": 1.010909090909091,
         "form_20": 1.031111111111111,
         "matches_available": 662
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Japan",
@@ -1367,6 +1554,10 @@
         "form_10": 1.1490909090909092,
         "form_20": 1.1053968253968254,
         "matches_available": 790
+      },
+      "squad_strength": {
+        "squad_value": 301.0,
+        "squad_strength_rating": 1.0623648977527715
       }
     },
     {
@@ -1379,7 +1570,8 @@
         "form_10": 1.0836363636363637,
         "form_20": 1.1161904761904762,
         "matches_available": 235
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Jordan",
@@ -1391,6 +1583,10 @@
         "form_10": 0.9866666666666667,
         "form_20": 0.9847619047619048,
         "matches_available": 484
+      },
+      "squad_strength": {
+        "squad_value": 21.0,
+        "squad_strength_rating": 0.85
       }
     },
     {
@@ -1403,7 +1599,8 @@
         "form_10": null,
         "form_20": null,
         "matches_available": 6
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Kazakhstan",
@@ -1415,7 +1612,8 @@
         "form_10": 1.006060606060606,
         "form_20": 0.9593650793650794,
         "matches_available": 267
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Kenya",
@@ -1427,7 +1625,8 @@
         "form_10": 1.0012121212121212,
         "form_20": 0.979047619047619,
         "matches_available": 705
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Kosovo",
@@ -1439,7 +1638,8 @@
         "form_10": 0.993939393939394,
         "form_20": 1.0501587301587303,
         "matches_available": 103
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Kuwait",
@@ -1451,7 +1651,8 @@
         "form_10": 0.9284848484848486,
         "form_20": 0.9193650793650794,
         "matches_available": 683
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Kyrgyzstan",
@@ -1463,7 +1664,8 @@
         "form_10": 0.8945454545454545,
         "form_20": 0.9104761904761905,
         "matches_available": 189
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Kárpátalja",
@@ -1475,7 +1677,8 @@
         "form_10": 1.0909090909090908,
         "form_20": null,
         "matches_available": 11
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Laos",
@@ -1487,7 +1690,8 @@
         "form_10": 0.863030303030303,
         "form_20": 0.8704761904761905,
         "matches_available": 224
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Latvia",
@@ -1499,7 +1703,8 @@
         "form_10": 0.863030303030303,
         "form_20": 0.886984126984127,
         "matches_available": 459
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Lebanon",
@@ -1511,7 +1716,8 @@
         "form_10": 1.0327272727272727,
         "form_20": 1.0285714285714287,
         "matches_available": 333
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Lesotho",
@@ -1523,7 +1729,8 @@
         "form_10": 0.9187878787878788,
         "form_20": 0.9231746031746032,
         "matches_available": 295
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Liberia",
@@ -1535,7 +1742,8 @@
         "form_10": 0.9187878787878788,
         "form_20": 0.9307936507936508,
         "matches_available": 300
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Libya",
@@ -1547,7 +1755,8 @@
         "form_10": 0.9963636363636365,
         "form_20": 0.9930158730158731,
         "matches_available": 384
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Liechtenstein",
@@ -1559,7 +1768,8 @@
         "form_10": 0.8654545454545455,
         "form_20": 0.8533333333333334,
         "matches_available": 257
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Lithuania",
@@ -1571,7 +1781,8 @@
         "form_10": 0.8921212121212122,
         "form_20": 0.8717460317460318,
         "matches_available": 431
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Luxembourg",
@@ -1583,7 +1794,8 @@
         "form_10": 0.816969696969697,
         "form_20": 0.8476190476190477,
         "matches_available": 465
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Macau",
@@ -1595,7 +1807,8 @@
         "form_10": 0.8096969696969697,
         "form_20": 0.8355555555555556,
         "matches_available": 148
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Madagascar",
@@ -1607,7 +1820,8 @@
         "form_10": 1.0642424242424244,
         "form_20": 1.0101587301587303,
         "matches_available": 319
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Malawi",
@@ -1619,7 +1833,8 @@
         "form_10": 0.976969696969697,
         "form_20": 0.9536507936507936,
         "matches_available": 642
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Malaysia",
@@ -1631,7 +1846,8 @@
         "form_10": 1.1515151515151516,
         "form_20": 1.093968253968254,
         "matches_available": 835
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Maldives",
@@ -1643,7 +1859,8 @@
         "form_10": 0.850909090909091,
         "form_20": 0.8736507936507937,
         "matches_available": 232
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Mali",
@@ -1655,7 +1872,8 @@
         "form_10": 0.9527272727272728,
         "form_20": 1.0,
         "matches_available": 568
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Malta",
@@ -1667,7 +1885,8 @@
         "form_10": 0.9090909090909092,
         "form_20": 0.926984126984127,
         "matches_available": 457
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Martinique",
@@ -1679,7 +1898,8 @@
         "form_10": 0.8775757575757577,
         "form_20": 0.9168253968253969,
         "matches_available": 331
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Matabeleland",
@@ -1691,7 +1911,8 @@
         "form_10": null,
         "form_20": null,
         "matches_available": 8
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Mauritania",
@@ -1703,7 +1924,8 @@
         "form_10": 0.8654545454545455,
         "form_20": 0.8926984126984128,
         "matches_available": 271
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Mauritius",
@@ -1715,7 +1937,8 @@
         "form_10": 0.850909090909091,
         "form_20": 0.8723809523809525,
         "matches_available": 325
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Mayotte",
@@ -1727,7 +1950,8 @@
         "form_10": 0.9987878787878789,
         "form_20": 1.0107936507936508,
         "matches_available": 38
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Mexico",
@@ -1739,6 +1963,10 @@
         "form_10": 1.0909090909090908,
         "form_20": 1.0558730158730159,
         "matches_available": 1002
+      },
+      "squad_strength": {
+        "squad_value": 210.0,
+        "squad_strength_rating": 0.9956569274868992
       }
     },
     {
@@ -1751,7 +1979,8 @@
         "form_10": 0.8145454545454546,
         "form_20": 0.8533333333333334,
         "matches_available": 297
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Mongolia",
@@ -1763,7 +1992,8 @@
         "form_10": 0.8872727272727273,
         "form_20": 0.8850793650793651,
         "matches_available": 102
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Montenegro",
@@ -1775,7 +2005,8 @@
         "form_10": 1.0133333333333334,
         "form_20": 0.9841269841269842,
         "matches_available": 169
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Montserrat",
@@ -1787,7 +2018,8 @@
         "form_10": 0.9018181818181819,
         "form_20": 0.9168253968253969,
         "matches_available": 66
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Morocco",
@@ -1799,6 +2031,10 @@
         "form_10": 1.1224242424242425,
         "form_20": 1.133968253968254,
         "matches_available": 615
+      },
+      "squad_strength": {
+        "squad_value": 527.0,
+        "squad_strength_rating": 1.15
       }
     },
     {
@@ -1811,7 +2047,8 @@
         "form_10": 0.9163636363636364,
         "form_20": 0.9434920634920636,
         "matches_available": 374
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Myanmar",
@@ -1823,7 +2060,8 @@
         "form_10": 0.9503030303030303,
         "form_20": 0.9333333333333333,
         "matches_available": 510
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Namibia",
@@ -1835,7 +2073,8 @@
         "form_10": 0.8654545454545455,
         "form_20": 0.8850793650793651,
         "matches_available": 279
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Nepal",
@@ -1847,7 +2086,8 @@
         "form_10": 0.8678787878787879,
         "form_20": 0.8876190476190476,
         "matches_available": 268
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Netherlands",
@@ -1859,6 +2099,10 @@
         "form_10": 1.103030303030303,
         "form_20": 1.0755555555555556,
         "matches_available": 877
+      },
+      "squad_strength": {
+        "squad_value": 904.0,
+        "squad_strength_rating": 1.15
       }
     },
     {
@@ -1871,7 +2115,8 @@
         "form_10": 1.0254545454545454,
         "form_20": 1.0431746031746032,
         "matches_available": 265
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "New Zealand",
@@ -1883,6 +2128,10 @@
         "form_10": 0.8945454545454545,
         "form_20": 0.9631746031746032,
         "matches_available": 414
+      },
+      "squad_strength": {
+        "squad_value": 38.0,
+        "squad_strength_rating": 0.85
       }
     },
     {
@@ -1895,7 +2144,8 @@
         "form_10": 0.8896969696969698,
         "form_20": 0.914920634920635,
         "matches_available": 221
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Niger",
@@ -1907,7 +2157,8 @@
         "form_10": 0.9624242424242425,
         "form_20": 0.987936507936508,
         "matches_available": 258
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Nigeria",
@@ -1919,7 +2170,8 @@
         "form_10": 1.107878787878788,
         "form_20": 1.1136507936507938,
         "matches_available": 659
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "North Korea",
@@ -1931,7 +2183,8 @@
         "form_10": 0.8436363636363637,
         "form_20": 0.8755555555555556,
         "matches_available": 390
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "North Macedonia",
@@ -1943,7 +2196,8 @@
         "form_10": 0.8848484848484849,
         "form_20": 0.954920634920635,
         "matches_available": 306
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Northern Cyprus",
@@ -1955,7 +2209,8 @@
         "form_10": 1.0642424242424244,
         "form_20": 1.0653968253968253,
         "matches_available": 34
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Northern Ireland",
@@ -1967,7 +2222,8 @@
         "form_10": 0.9551515151515152,
         "form_20": 0.9714285714285715,
         "matches_available": 705
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Northern Mariana Islands",
@@ -1979,7 +2235,8 @@
         "form_10": 0.9551515151515152,
         "form_20": 0.9066666666666667,
         "matches_available": 30
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Norway",
@@ -1991,6 +2248,10 @@
         "form_10": 1.073939393939394,
         "form_20": 1.1085714285714285,
         "matches_available": 871
+      },
+      "squad_strength": {
+        "squad_value": 649.0,
+        "squad_strength_rating": 1.15
       }
     },
     {
@@ -2003,7 +2264,8 @@
         "form_10": 0.9600000000000001,
         "form_20": 0.9688888888888889,
         "matches_available": 542
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Orkney",
@@ -2015,7 +2277,8 @@
         "form_10": 1.0424242424242425,
         "form_20": 1.0050793650793652,
         "matches_available": 28
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Padania",
@@ -2027,7 +2290,8 @@
         "form_10": 0.9842424242424244,
         "form_20": 1.0215873015873016,
         "matches_available": 45
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Pakistan",
@@ -2039,7 +2303,8 @@
         "form_10": 0.8412121212121213,
         "form_20": 0.8457142857142858,
         "matches_available": 248
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Palestine",
@@ -2051,7 +2316,8 @@
         "form_10": 0.9357575757575758,
         "form_20": 0.933968253968254,
         "matches_available": 247
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Panama",
@@ -2063,6 +2329,10 @@
         "form_10": 0.9890909090909091,
         "form_20": 1.0241269841269842,
         "matches_available": 537
+      },
+      "squad_strength": {
+        "squad_value": 37.0,
+        "squad_strength_rating": 0.85
       }
     },
     {
@@ -2075,7 +2345,8 @@
         "form_10": 0.9842424242424244,
         "form_20": null,
         "matches_available": 19
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Papua New Guinea",
@@ -2087,7 +2358,8 @@
         "form_10": 1.069090909090909,
         "form_20": 1.0133333333333334,
         "matches_available": 155
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Paraguay",
@@ -2099,6 +2371,10 @@
         "form_10": 0.9793939393939395,
         "form_20": 1.001904761904762,
         "matches_available": 782
+      },
+      "squad_strength": {
+        "squad_value": 169.0,
+        "squad_strength_rating": 0.955461292974191
       }
     },
     {
@@ -2111,7 +2387,8 @@
         "form_10": 0.8533333333333334,
         "form_20": 0.8780952380952382,
         "matches_available": 712
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Philippines",
@@ -2123,7 +2400,8 @@
         "form_10": 1.1151515151515152,
         "form_20": 1.0412698412698413,
         "matches_available": 340
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Poland",
@@ -2135,7 +2413,8 @@
         "form_10": 1.0157575757575759,
         "form_20": 1.0234920634920637,
         "matches_available": 891
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Portugal",
@@ -2147,6 +2426,10 @@
         "form_10": 1.0666666666666667,
         "form_20": 1.0692063492063493,
         "matches_available": 693
+      },
+      "squad_strength": {
+        "squad_value": 1100.0,
+        "squad_strength_rating": 1.15
       }
     },
     {
@@ -2159,7 +2442,8 @@
         "form_10": 1.0157575757575759,
         "form_20": 1.001904761904762,
         "matches_available": 162
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Qatar",
@@ -2171,6 +2455,10 @@
         "form_10": 0.8727272727272728,
         "form_20": 0.9041269841269842,
         "matches_available": 634
+      },
+      "squad_strength": {
+        "squad_value": 21.5,
+        "squad_strength_rating": 0.85
       }
     },
     {
@@ -2183,7 +2471,8 @@
         "form_10": 0.9890909090909091,
         "form_20": 0.9371428571428572,
         "matches_available": 26
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Republic of Ireland",
@@ -2195,7 +2484,8 @@
         "form_10": 1.0860606060606062,
         "form_20": 1.045079365079365,
         "matches_available": 632
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Romania",
@@ -2207,7 +2497,8 @@
         "form_10": 0.9624242424242425,
         "form_20": 0.9987301587301588,
         "matches_available": 764
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Russia",
@@ -2219,7 +2510,8 @@
         "form_10": 0.993939393939394,
         "form_20": 1.0546031746031748,
         "matches_available": 747
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Rwanda",
@@ -2231,7 +2523,8 @@
         "form_10": 0.9866666666666667,
         "form_20": 0.9657142857142857,
         "matches_available": 280
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Réunion",
@@ -2243,7 +2536,8 @@
         "form_10": 0.9963636363636365,
         "form_20": 1.0558730158730159,
         "matches_available": 124
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Saint Barthélemy",
@@ -2255,7 +2549,8 @@
         "form_10": 0.9915151515151516,
         "form_20": null,
         "matches_available": 10
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Saint Helena",
@@ -2267,7 +2562,8 @@
         "form_10": null,
         "form_20": null,
         "matches_available": 8
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Saint Kitts and Nevis",
@@ -2279,7 +2575,8 @@
         "form_10": 0.976969696969697,
         "form_20": 0.9834920634920635,
         "matches_available": 226
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Saint Lucia",
@@ -2291,7 +2588,8 @@
         "form_10": 0.8727272727272728,
         "form_20": 0.921904761904762,
         "matches_available": 230
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Saint Martin",
@@ -2303,7 +2601,8 @@
         "form_10": 1.0327272727272727,
         "form_20": 1.0126984126984127,
         "matches_available": 68
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Saint Vincent and the Grenadines",
@@ -2315,7 +2614,8 @@
         "form_10": 1.044848484848485,
         "form_20": 1.0463492063492064,
         "matches_available": 236
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Samoa",
@@ -2327,7 +2627,8 @@
         "form_10": 0.9163636363636364,
         "form_20": 0.9504761904761905,
         "matches_available": 71
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "San Marino",
@@ -2339,7 +2640,8 @@
         "form_10": 0.8242424242424243,
         "form_20": 0.8380952380952381,
         "matches_available": 223
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Saudi Arabia",
@@ -2351,6 +2653,10 @@
         "form_10": 0.9018181818181819,
         "form_20": 0.9555555555555556,
         "matches_available": 739
+      },
+      "squad_strength": {
+        "squad_value": 40.0,
+        "squad_strength_rating": 0.85
       }
     },
     {
@@ -2363,6 +2669,10 @@
         "form_10": 1.023030303030303,
         "form_20": 1.0222222222222224,
         "matches_available": 850
+      },
+      "squad_strength": {
+        "squad_value": 190.0,
+        "squad_strength_rating": 0.9771302402392757
       }
     },
     {
@@ -2375,6 +2685,10 @@
         "form_10": 1.0666666666666667,
         "form_20": 1.0920634920634922,
         "matches_available": 637
+      },
+      "squad_strength": {
+        "squad_value": 511.0,
+        "squad_strength_rating": 1.15
       }
     },
     {
@@ -2387,7 +2701,8 @@
         "form_10": 0.9745454545454546,
         "form_20": 0.9873015873015873,
         "matches_available": 347
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Seychelles",
@@ -2399,7 +2714,8 @@
         "form_10": 0.8,
         "form_20": 0.8114285714285715,
         "matches_available": 176
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Shetland",
@@ -2411,7 +2727,8 @@
         "form_10": 0.9721212121212122,
         "form_20": 0.9555555555555556,
         "matches_available": 58
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Sierra Leone",
@@ -2423,7 +2740,8 @@
         "form_10": 0.9963636363636365,
         "form_20": 0.9707936507936509,
         "matches_available": 299
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Singapore",
@@ -2435,7 +2753,8 @@
         "form_10": 1.0545454545454547,
         "form_20": 1.0063492063492063,
         "matches_available": 695
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Sint Maarten",
@@ -2447,7 +2766,8 @@
         "form_10": 1.0375757575757576,
         "form_20": 1.013968253968254,
         "matches_available": 60
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Slovakia",
@@ -2459,7 +2779,8 @@
         "form_10": 1.0545454545454547,
         "form_20": 1.020952380952381,
         "matches_available": 366
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Slovenia",
@@ -2471,7 +2792,8 @@
         "form_10": 0.947878787878788,
         "form_20": 0.973968253968254,
         "matches_available": 315
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Solomon Islands",
@@ -2483,7 +2805,8 @@
         "form_10": 0.850909090909091,
         "form_20": 0.874920634920635,
         "matches_available": 214
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Somalia",
@@ -2495,7 +2818,8 @@
         "form_10": 0.896969696969697,
         "form_20": 0.8634920634920635,
         "matches_available": 124
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "South Africa",
@@ -2507,6 +2831,10 @@
         "form_10": 0.9551515151515152,
         "form_20": 1.006984126984127,
         "matches_available": 478
+      },
+      "squad_strength": {
+        "squad_value": 49.5,
+        "squad_strength_rating": 0.85
       }
     },
     {
@@ -2519,6 +2847,10 @@
         "form_10": 1.0327272727272727,
         "form_20": 1.0533333333333335,
         "matches_available": 1006
+      },
+      "squad_strength": {
+        "squad_value": 153.0,
+        "squad_strength_rating": 0.937072064867865
       }
     },
     {
@@ -2531,7 +2863,8 @@
         "form_10": 1.0206060606060607,
         "form_20": null,
         "matches_available": 17
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "South Sudan",
@@ -2543,7 +2876,8 @@
         "form_10": 0.8654545454545455,
         "form_20": 0.8685714285714285,
         "matches_available": 78
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Spain",
@@ -2555,6 +2889,10 @@
         "form_10": 1.103030303030303,
         "form_20": 1.1085714285714285,
         "matches_available": 781
+      },
+      "squad_strength": {
+        "squad_value": 1362.5,
+        "squad_strength_rating": 1.15
       }
     },
     {
@@ -2567,7 +2905,8 @@
         "form_10": 0.9551515151515152,
         "form_20": 0.9638095238095239,
         "matches_available": 251
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Sudan",
@@ -2579,7 +2918,8 @@
         "form_10": 0.8896969696969698,
         "form_20": 0.8920634920634921,
         "matches_available": 469
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Suriname",
@@ -2591,7 +2931,8 @@
         "form_10": 0.9430303030303031,
         "form_20": 0.9644444444444445,
         "matches_available": 399
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Sweden",
@@ -2603,6 +2944,10 @@
         "form_10": 0.9527272727272728,
         "form_20": 0.9923809523809525,
         "matches_available": 1100
+      },
+      "squad_strength": {
+        "squad_value": 462.0,
+        "squad_strength_rating": 1.1418595762469392
       }
     },
     {
@@ -2615,6 +2960,10 @@
         "form_10": 1.04,
         "form_20": 1.045079365079365,
         "matches_available": 883
+      },
+      "squad_strength": {
+        "squad_value": 360.0,
+        "squad_strength_rating": 1.095563818791061
       }
     },
     {
@@ -2627,7 +2976,8 @@
         "form_10": 1.0278787878787878,
         "form_20": 1.0406349206349206,
         "matches_available": 483
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Székely Land",
@@ -2639,7 +2989,8 @@
         "form_10": 0.9672727272727273,
         "form_20": 0.9714285714285715,
         "matches_available": 27
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Sápmi",
@@ -2651,7 +3002,8 @@
         "form_10": 0.9163636363636364,
         "form_20": 0.9282539682539683,
         "matches_available": 29
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "São Tomé and Príncipe",
@@ -2663,7 +3015,8 @@
         "form_10": 0.88,
         "form_20": 0.8571428571428572,
         "matches_available": 71
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Tahiti",
@@ -2675,7 +3028,8 @@
         "form_10": 0.9963636363636365,
         "form_20": 1.0304761904761905,
         "matches_available": 242
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Taiwan",
@@ -2687,7 +3041,8 @@
         "form_10": 0.8363636363636364,
         "form_20": 0.8615873015873017,
         "matches_available": 245
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Tajikistan",
@@ -2699,7 +3054,8 @@
         "form_10": 1.1296969696969699,
         "form_20": 1.0514285714285716,
         "matches_available": 199
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Tamil Eelam",
@@ -2711,7 +3067,8 @@
         "form_10": 1.170909090909091,
         "form_20": 1.0971428571428572,
         "matches_available": 28
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Tanzania",
@@ -2723,7 +3080,8 @@
         "form_10": 0.9042424242424243,
         "form_20": 0.8844444444444445,
         "matches_available": 599
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Thailand",
@@ -2735,7 +3093,8 @@
         "form_10": 1.1272727272727274,
         "form_20": 1.0895238095238096,
         "matches_available": 863
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Tibet",
@@ -2747,7 +3106,8 @@
         "form_10": 0.8266666666666667,
         "form_20": 0.8387301587301588,
         "matches_available": 21
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Timor-Leste",
@@ -2759,7 +3119,8 @@
         "form_10": 0.850909090909091,
         "form_20": 0.8768253968253968,
         "matches_available": 86
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Togo",
@@ -2771,7 +3132,8 @@
         "form_10": 0.9793939393939395,
         "form_20": 0.9453968253968255,
         "matches_available": 445
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Tonga",
@@ -2783,7 +3145,8 @@
         "form_10": 0.9090909090909092,
         "form_20": 0.8666666666666667,
         "matches_available": 68
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Trinidad and Tobago",
@@ -2795,7 +3158,8 @@
         "form_10": 0.8824242424242424,
         "form_20": 0.9060317460317461,
         "matches_available": 752
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Tunisia",
@@ -2807,6 +3171,10 @@
         "form_10": 0.9672727272727273,
         "form_20": 1.0025396825396826,
         "matches_available": 677
+      },
+      "squad_strength": {
+        "squad_value": 75.0,
+        "squad_strength_rating": 0.85
       }
     },
     {
@@ -2819,6 +3187,10 @@
         "form_10": 1.136969696969697,
         "form_20": 1.1073015873015875,
         "matches_available": 641
+      },
+      "squad_strength": {
+        "squad_value": 510.0,
+        "squad_strength_rating": 1.15
       }
     },
     {
@@ -2831,7 +3203,8 @@
         "form_10": 1.0666666666666667,
         "form_20": 0.9834920634920635,
         "matches_available": 175
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Turks and Caicos Islands",
@@ -2843,7 +3216,8 @@
         "form_10": 0.9648484848484848,
         "form_20": 0.9504761904761905,
         "matches_available": 52
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Tuvalu",
@@ -2855,7 +3229,8 @@
         "form_10": 0.947878787878788,
         "form_20": 0.900952380952381,
         "matches_available": 39
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Uganda",
@@ -2867,7 +3242,8 @@
         "form_10": 0.9333333333333333,
         "form_20": 0.9784126984126984,
         "matches_available": 685
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Ukraine",
@@ -2879,7 +3255,8 @@
         "form_10": 1.069090909090909,
         "form_20": 1.034920634920635,
         "matches_available": 337
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "United Arab Emirates",
@@ -2891,7 +3268,8 @@
         "form_10": 0.9284848484848486,
         "form_20": 0.9638095238095239,
         "matches_available": 612
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "United Koreans in Japan",
@@ -2903,7 +3281,8 @@
         "form_10": 0.9648484848484848,
         "form_20": null,
         "matches_available": 12
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "United States",
@@ -2915,6 +3294,10 @@
         "form_10": 1.0351515151515152,
         "form_20": 1.02984126984127,
         "matches_available": 789
+      },
+      "squad_strength": {
+        "squad_value": 408.0,
+        "squad_strength_rating": 1.1187884666811958
       }
     },
     {
@@ -2927,7 +3310,8 @@
         "form_10": 0.9551515151515152,
         "form_20": 0.9130158730158731,
         "matches_available": 78
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Uruguay",
@@ -2939,6 +3323,10 @@
         "form_10": 0.9890909090909091,
         "form_20": 0.986031746031746,
         "matches_available": 970
+      },
+      "squad_strength": {
+        "squad_value": 438.0,
+        "squad_strength_rating": 1.1319571333598688
       }
     },
     {
@@ -2951,6 +3339,10 @@
         "form_10": 0.9866666666666667,
         "form_20": 1.0146031746031747,
         "matches_available": 353
+      },
+      "squad_strength": {
+        "squad_value": 78.0,
+        "squad_strength_rating": 0.85
       }
     },
     {
@@ -2963,7 +3355,8 @@
         "form_10": 0.976969696969697,
         "form_20": 0.9580952380952381,
         "matches_available": 213
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Venezuela",
@@ -2975,7 +3368,8 @@
         "form_10": 0.9624242424242425,
         "form_20": 0.9384126984126985,
         "matches_available": 458
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Vietnam",
@@ -2987,7 +3381,8 @@
         "form_10": 1.1563636363636365,
         "form_20": 1.135873015873016,
         "matches_available": 297
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Wales",
@@ -2999,7 +3394,8 @@
         "form_10": 0.9842424242424244,
         "form_20": 1.0050793650793652,
         "matches_available": 724
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Western Armenia",
@@ -3011,7 +3407,8 @@
         "form_10": 0.9503030303030303,
         "form_20": null,
         "matches_available": 16
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Western Isles",
@@ -3023,7 +3420,8 @@
         "form_10": 0.9624242424242425,
         "form_20": 0.9504761904761905,
         "matches_available": 34
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Yemen",
@@ -3035,7 +3433,8 @@
         "form_10": 1.061818181818182,
         "form_20": 1.008888888888889,
         "matches_available": 266
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Ynys Môn",
@@ -3047,7 +3446,8 @@
         "form_10": 1.1418181818181818,
         "form_20": 1.1250793650793651,
         "matches_available": 67
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Yorkshire",
@@ -3059,7 +3459,8 @@
         "form_10": null,
         "form_20": null,
         "matches_available": 7
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Zambia",
@@ -3071,7 +3472,8 @@
         "form_10": 0.8581818181818183,
         "form_20": 0.914920634920635,
         "matches_available": 793
-      }
+      },
+      "squad_strength": null
     },
     {
       "team": "Zimbabwe",
@@ -3083,7 +3485,8 @@
         "form_10": 0.976969696969697,
         "form_20": 0.935873015873016,
         "matches_available": 496
-      }
+      },
+      "squad_strength": null
     }
   ]
 }

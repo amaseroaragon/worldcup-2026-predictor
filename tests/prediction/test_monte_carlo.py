@@ -3,6 +3,7 @@ import pytest
 from src.prediction.monte_carlo import run_monte_carlo
 from src.prediction.models import TournamentOutcome
 from src.prediction.recent_form import RecentFormRating
+from src.prediction.squad_strength import SquadStrengthRating
 from src.prediction.team_strength import TeamStrengthRating
 
 
@@ -167,7 +168,11 @@ def test_run_monte_carlo_passes_team_strength_ratings_to_tournament(monkeypatch)
     recent_form_ratings = {
         "Team 1": RecentFormRating("Team 1", 1.1, 1.05, 1.0, 20),
     }
+    squad_strength_ratings = {
+        "Team 1": SquadStrengthRating("Team 1", 210.0, 0.97),
+    }
     captured_recent_form_ratings = []
+    captured_squad_strength_ratings = []
 
     class Outcome:
         champion = "Team 1"
@@ -177,6 +182,7 @@ def test_run_monte_carlo_passes_team_strength_ratings_to_tournament(monkeypatch)
     def fake_simulate_tournament_once(**kwargs):
         captured_strength_ratings.append(kwargs["team_strength_ratings"])
         captured_recent_form_ratings.append(kwargs["recent_form_ratings"])
+        captured_squad_strength_ratings.append(kwargs["squad_strength_ratings"])
         return Outcome()
 
     monkeypatch.setattr(
@@ -191,10 +197,15 @@ def test_run_monte_carlo_passes_team_strength_ratings_to_tournament(monkeypatch)
         simulations=2,
         team_strength_ratings=strength_ratings,
         recent_form_ratings=recent_form_ratings,
+        squad_strength_ratings=squad_strength_ratings,
     )
 
     assert captured_strength_ratings == [strength_ratings, strength_ratings]
     assert captured_recent_form_ratings == [recent_form_ratings, recent_form_ratings]
+    assert captured_squad_strength_ratings == [
+        squad_strength_ratings,
+        squad_strength_ratings,
+    ]
 
 
 def test_run_monte_carlo_does_not_modify_original_elo_ratings():

@@ -6,6 +6,7 @@ from src.prediction.poisson import (
     recent_form_multiplier,
     score_matrix,
     score_probability,
+    squad_strength_multiplier,
 )
 
 
@@ -90,6 +91,18 @@ def test_expected_goals_include_recent_form_multiplier():
     assert goals_b == pytest.approx(1.35 * (1 + 0.15 * -0.2))
 
 
+def test_expected_goals_include_squad_strength_multiplier():
+    goals_a, goals_b = expected_goals_from_elo(
+        1500,
+        1500,
+        squad_strength_rating_a=1.15,
+        squad_strength_rating_b=0.85,
+    )
+
+    assert goals_a == pytest.approx(1.35 * (1 + 0.10 * 0.15))
+    assert goals_b == pytest.approx(1.35 * (1 + 0.10 * -0.15))
+
+
 def test_recent_form_multiplier_uses_neutral_fallback():
     assert recent_form_multiplier(None) == 1.0
 
@@ -98,6 +111,16 @@ def test_recent_form_multiplier_can_be_disabled(monkeypatch):
     monkeypatch.setattr("src.prediction.poisson.USE_RECENT_FORM", False)
 
     assert recent_form_multiplier(1.2) == 1.0
+
+
+def test_squad_strength_multiplier_uses_neutral_fallback():
+    assert squad_strength_multiplier(None) == 1.0
+
+
+def test_squad_strength_multiplier_can_be_disabled(monkeypatch):
+    monkeypatch.setattr("src.prediction.poisson.USE_SQUAD_STRENGTH", False)
+
+    assert squad_strength_multiplier(1.15) == 1.0
 
 
 def test_score_probability_valid_value():

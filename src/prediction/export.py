@@ -19,6 +19,7 @@ from src.prediction.models import GroupOutcome, MatchPrediction, MatchResult, To
 from src.prediction.poisson import expected_goals_from_elo
 from src.prediction.probabilities import elo_win_draw_loss_probs
 from src.prediction.recent_form import RecentFormRating
+from src.prediction.squad_strength import SquadStrengthRating
 from src.prediction.standings import build_group_standings
 from src.prediction.team_strength import TeamStrengthRating
 
@@ -101,6 +102,7 @@ def build_predicted_bracket_predictions(
     team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
     recent_form_ratings: dict[str, RecentFormRating] | None = None,
     group_matches: list[dict[str, str | int]] | None = None,
+    squad_strength_ratings: dict[str, SquadStrengthRating] | None = None,
 ) -> list[MatchPrediction]:
     """Build one frontend-ready predicted bracket from aggregate simulations."""
 
@@ -125,6 +127,7 @@ def build_predicted_bracket_predictions(
         simulations_count,
         team_strength_ratings,
         recent_form_ratings,
+        squad_strength_ratings,
     )
 
     return [*group_predictions, *knockout_predictions]
@@ -291,6 +294,7 @@ def _build_knockout_stage_predictions(
     simulations_count: int,
     team_strength_ratings: dict[str, TeamStrengthRating] | None,
     recent_form_ratings: dict[str, RecentFormRating] | None,
+    squad_strength_ratings: dict[str, SquadStrengthRating] | None,
 ) -> list[MatchPrediction]:
     matchup_results = _knockout_results_by_matchup(outcomes)
     knockout_rounds = {
@@ -345,6 +349,7 @@ def _build_knockout_stage_predictions(
                 simulations_count=simulations_count,
                 team_strength_ratings=team_strength_ratings,
                 recent_form_ratings=recent_form_ratings,
+                squad_strength_ratings=squad_strength_ratings,
             )
 
         predictions.append(prediction)
@@ -422,6 +427,7 @@ def _prediction_from_direct_model(
     simulations_count: int,
     team_strength_ratings: dict[str, TeamStrengthRating] | None,
     recent_form_ratings: dict[str, RecentFormRating] | None,
+    squad_strength_ratings: dict[str, SquadStrengthRating] | None,
 ) -> MatchPrediction:
     home_elo = ratings[home_team]
     away_elo = ratings[away_team]
@@ -436,6 +442,8 @@ def _prediction_from_direct_model(
     away_strength = team_strength_ratings.get(away_team) if team_strength_ratings else None
     home_form = recent_form_ratings.get(home_team) if recent_form_ratings else None
     away_form = recent_form_ratings.get(away_team) if recent_form_ratings else None
+    home_squad_strength = squad_strength_ratings.get(home_team) if squad_strength_ratings else None
+    away_squad_strength = squad_strength_ratings.get(away_team) if squad_strength_ratings else None
     expected_home_goals, expected_away_goals = expected_goals_from_elo(
         home_elo,
         away_elo,
@@ -445,6 +453,12 @@ def _prediction_from_direct_model(
         defense_rating_b=away_strength.defense_rating if away_strength else 1.0,
         form_rating_a=home_form.for_window(RECENT_FORM_PRIMARY_WINDOW) if home_form else None,
         form_rating_b=away_form.for_window(RECENT_FORM_PRIMARY_WINDOW) if away_form else None,
+        squad_strength_rating_a=(
+            home_squad_strength.squad_strength_rating if home_squad_strength else None
+        ),
+        squad_strength_rating_b=(
+            away_squad_strength.squad_strength_rating if away_squad_strength else None
+        ),
     )
     predicted_home_goals = round(expected_home_goals)
     predicted_away_goals = round(expected_away_goals)

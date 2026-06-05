@@ -8,6 +8,7 @@ from src.prediction.dynamic_elo import update_dynamic_elo_ratings
 from src.prediction.match import simulate_match
 from src.prediction.models import GroupOutcome, MatchFixture, MatchResult, SimulationConfig
 from src.prediction.recent_form import RecentFormRating
+from src.prediction.squad_strength import SquadStrengthRating
 from src.prediction.standings import build_group_standings
 from src.prediction.team_strength import TeamStrengthRating
 
@@ -23,6 +24,7 @@ def simulate_group_stage(
     config: SimulationConfig | None = None,
     team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
     recent_form_ratings: dict[str, RecentFormRating] | None = None,
+    squad_strength_ratings: dict[str, SquadStrengthRating] | None = None,
 ) -> dict[str, GroupOutcome]:
     """Simulate all group-stage fixtures and return outcomes by group."""
 
@@ -58,6 +60,7 @@ def simulate_group_stage(
             max_goals=config.max_goals,
             team_strength_ratings=team_strength_ratings,
             recent_form_ratings=recent_form_ratings,
+            squad_strength_ratings=squad_strength_ratings,
         )
         results_by_group[fixture.group].append(result)
         if prediction_config.USE_DYNAMIC_ELO_GROUP_STAGE:

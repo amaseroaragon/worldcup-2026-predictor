@@ -11,6 +11,7 @@ ROOT_DIR = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT_DIR))
 
 from src.prediction.config import (
+    DEFAULT_SQUAD_VALUES_PATH,
     DEFAULT_WORLD_CUP_2026_GROUP_MATCHES_PATH,
     DEFAULT_WORLD_CUP_2026_GROUPS_PATH,
     DEFAULT_WORLD_CUP_2026_KNOCKOUTS_PATH,
@@ -31,6 +32,7 @@ from src.prediction.export import (
 from src.prediction.monte_carlo import run_monte_carlo
 from src.prediction.ratings import load_ratings
 from src.prediction.recent_form import build_recent_form_ratings
+from src.prediction.squad_strength import build_squad_strength_ratings, load_squad_values
 from src.prediction.team_strength import build_team_strength_ratings, export_team_metrics
 
 
@@ -76,6 +78,12 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_WORLD_CUP_2026_THIRD_PLACE_COMBINATIONS_PATH,
         help="JSON file with official third-place matchup combinations.",
     )
+    parser.add_argument(
+        "--squad-values-config",
+        type=Path,
+        default=DEFAULT_SQUAD_VALUES_PATH,
+        help="JSON file with squad market values.",
+    )
     return parser.parse_args()
 
 
@@ -89,9 +97,15 @@ def main() -> None:
     results = pd.read_csv(ROOT_DIR / "data/processed/clean_results.csv")
     team_strength_ratings = build_team_strength_ratings(results)
     recent_form_ratings = build_recent_form_ratings(results)
+    squad_values = load_squad_values(args.squad_values_config)
+    squad_strength_ratings = build_squad_strength_ratings(squad_values)
     export_team_metrics(
         team_strength_ratings,
         recent_form_ratings=recent_form_ratings,
+        squad_strength_ratings=squad_strength_ratings,
+        squad_values_source=str(args.squad_values_config.relative_to(ROOT_DIR))
+        if args.squad_values_config.is_relative_to(ROOT_DIR)
+        else str(args.squad_values_config),
     )
     groups = load_groups_config(args.groups_config)
     group_matches = load_group_matches_config(args.group_matches_config)
@@ -109,6 +123,7 @@ def main() -> None:
         return_outcomes=True,
         team_strength_ratings=team_strength_ratings,
         recent_form_ratings=recent_form_ratings,
+        squad_strength_ratings=squad_strength_ratings,
         group_matches=group_matches,
     )
 
@@ -116,14 +131,15 @@ def main() -> None:
     validate_probability_output(df)
 
     match_predictions = build_predicted_bracket_predictions(
-        outcomes,
-        groups,
-        ratings,
-        knockout_matches,
-        third_place_combinations,
-        team_strength_ratings,
-        recent_form_ratings,
-        group_matches,
+        outcomes=outcomes,
+        groups=groups,
+        ratings=ratings,
+        knockout_matches=knockout_matches,
+        third_place_combinations=third_place_combinations,
+        team_strength_ratings=team_strength_ratings,
+        recent_form_ratings=recent_form_ratings,
+        group_matches=group_matches,
+        squad_strength_ratings=squad_strength_ratings,
     )
     export_match_predictions_json(
         match_predictions,
@@ -134,6 +150,7 @@ def main() -> None:
             "method": "aggregate_group_stage_then_predicted_bracket",
             "team_strength_ratings": True,
             "recent_form": True,
+            "squad_strength": True,
         },
     )
 

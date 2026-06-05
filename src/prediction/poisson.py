@@ -2,7 +2,12 @@ from __future__ import annotations
 
 import math
 
-from src.prediction.config import RECENT_FORM_WEIGHT, USE_RECENT_FORM
+from src.prediction.config import (
+    RECENT_FORM_WEIGHT,
+    SQUAD_STRENGTH_WEIGHT,
+    USE_RECENT_FORM,
+    USE_SQUAD_STRENGTH,
+)
 
 
 def poisson_probability(k: int, lambda_: float) -> float:
@@ -38,6 +43,8 @@ def expected_goals_from_elo(
     defense_rating_b: float = 1.0,
     form_rating_a: float | None = None,
     form_rating_b: float | None = None,
+    squad_strength_rating_a: float | None = None,
+    squad_strength_rating_b: float | None = None,
 ) -> tuple[float, float]:
     """
     Converts Elo ratings into expected goals for both teams.
@@ -55,6 +62,8 @@ def expected_goals_from_elo(
         defense_rating_b: Team B's goals conceded relative to average.
         form_rating_a: Team A's recent form rating.
         form_rating_b: Team B's recent form rating.
+        squad_strength_rating_a: Team A's squad strength rating.
+        squad_strength_rating_b: Team B's squad strength rating.
 
     Returns:
         (expected_goals_a, expected_goals_b)
@@ -76,6 +85,7 @@ def expected_goals_from_elo(
         * attack_rating_a
         * defense_rating_b
         * recent_form_multiplier(form_rating_a)
+        * squad_strength_multiplier(squad_strength_rating_a)
     )
     expected_goals_b = (
         base_goals
@@ -83,6 +93,7 @@ def expected_goals_from_elo(
         * attack_rating_b
         * defense_rating_a
         * recent_form_multiplier(form_rating_b)
+        * squad_strength_multiplier(squad_strength_rating_b)
     )
 
     expected_goals_a = min(max(expected_goals_a, min_expected_goals), max_expected_goals)
@@ -96,6 +107,13 @@ def recent_form_multiplier(form_rating: float | None) -> float:
     if not USE_RECENT_FORM or form_rating is None:
         return 1.0
     return 1 + RECENT_FORM_WEIGHT * (form_rating - 1)
+
+
+def squad_strength_multiplier(squad_strength_rating: float | None) -> float:
+    """Convert a squad strength rating into a conservative goals multiplier."""
+    if not USE_SQUAD_STRENGTH or squad_strength_rating is None:
+        return 1.0
+    return 1 + SQUAD_STRENGTH_WEIGHT * (squad_strength_rating - 1)
 
 
 def score_probability(goals_a: int, goals_b: int, expected_goals_a: float, expected_goals_b: float) -> float:

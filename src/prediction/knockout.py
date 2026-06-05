@@ -6,6 +6,7 @@ from src.prediction.dynamic_elo import update_dynamic_elo_ratings
 from src.prediction.match import simulate_match
 from src.prediction.models import GroupOutcome, GroupStandingRow, MatchFixture, MatchResult
 from src.prediction.recent_form import RecentFormRating
+from src.prediction.squad_strength import SquadStrengthRating
 from src.prediction.team_strength import TeamStrengthRating
 
 
@@ -115,6 +116,7 @@ def simulate_knockout_match(
     rng: random.Random | None = None,
     team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
     recent_form_ratings: dict[str, RecentFormRating] | None = None,
+    squad_strength_ratings: dict[str, SquadStrengthRating] | None = None,
 ) -> MatchResult:
     """Simulate a resolved knockout fixture."""
 
@@ -136,6 +138,7 @@ def simulate_knockout_match(
         knockout=True,
         team_strength_ratings=team_strength_ratings,
         recent_form_ratings=recent_form_ratings,
+        squad_strength_ratings=squad_strength_ratings,
     )
 
 
@@ -145,6 +148,7 @@ def simulate_knockout_round(
     rng: random.Random | None = None,
     team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
     recent_form_ratings: dict[str, RecentFormRating] | None = None,
+    squad_strength_ratings: dict[str, SquadStrengthRating] | None = None,
 ) -> tuple[list[MatchResult], list[str]]:
     """Simulate a full knockout round and return results plus winners."""
 
@@ -158,6 +162,7 @@ def simulate_knockout_round(
             rng=rng,
             team_strength_ratings=team_strength_ratings,
             recent_form_ratings=recent_form_ratings,
+            squad_strength_ratings=squad_strength_ratings,
         )
         for fixture in fixtures
     ]

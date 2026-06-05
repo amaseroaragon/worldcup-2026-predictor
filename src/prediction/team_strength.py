@@ -7,10 +7,13 @@ from pathlib import Path
 import pandas as pd
 
 from src.prediction.recent_form import RecentFormRating
+from src.prediction.squad_strength import SquadStrengthRating
 
 
 DEFAULT_TEAM_METRICS_PATH = Path("data/processed/team_metrics.json")
-METRICS_VERSION = "v4.2"
+METRICS_VERSION = "v4.5"
+SQUAD_VALUES_SOURCE = "data/external/teams_value.json"
+SQUAD_VALUE_UNIT = "million_eur"
 REQUIRED_RESULT_COLUMNS = {
     "date",
     "home_team",
@@ -114,11 +117,15 @@ def build_team_strength_ratings(
 def team_strength_ratings_to_records(
     ratings: dict[str, TeamStrengthRating],
     recent_form_ratings: dict[str, RecentFormRating] | None = None,
+    squad_strength_ratings: dict[str, SquadStrengthRating] | None = None,
 ) -> list[dict[str, object]]:
     """Convert team strength ratings into sorted, JSON-ready metric records."""
     records = []
     for rating in sorted(ratings.values(), key=lambda rating: rating.team):
         recent_form = recent_form_ratings.get(rating.team) if recent_form_ratings else None
+        squad_strength = (
+            squad_strength_ratings.get(rating.team) if squad_strength_ratings else None
+        )
         records.append(
             {
                 "team": rating.team,
@@ -131,6 +138,12 @@ def team_strength_ratings_to_records(
                     "form_20": recent_form.form_20 if recent_form else None,
                     "matches_available": recent_form.matches_available if recent_form else 0,
                 },
+                "squad_strength": {
+                    "squad_value": squad_strength.squad_value,
+                    "squad_strength_rating": squad_strength.squad_strength_rating,
+                }
+                if squad_strength
+                else None,
             }
         )
     return records
@@ -140,6 +153,8 @@ def export_team_metrics(
     ratings: dict[str, TeamStrengthRating],
     output_path: str | Path = DEFAULT_TEAM_METRICS_PATH,
     recent_form_ratings: dict[str, RecentFormRating] | None = None,
+    squad_strength_ratings: dict[str, SquadStrengthRating] | None = None,
+    squad_values_source: str = SQUAD_VALUES_SOURCE,
 ) -> dict[str, object]:
     """Export current team metrics to an extensible JSON file."""
     output_path = Path(output_path)
@@ -147,7 +162,13 @@ def export_team_metrics(
 
     payload = {
         "metrics_version": METRICS_VERSION,
-        "teams": team_strength_ratings_to_records(ratings, recent_form_ratings),
+        "squad_values_source": squad_values_source,
+        "squad_value_unit": SQUAD_VALUE_UNIT,
+        "teams": team_strength_ratings_to_records(
+            ratings,
+            recent_form_ratings,
+            squad_strength_ratings,
+        ),
     }
     with output_path.open("w", encoding="utf-8") as file:
         json.dump(payload, file, ensure_ascii=False, indent=2)

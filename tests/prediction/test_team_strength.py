@@ -5,6 +5,7 @@ import pandas as pd
 import pytest
 
 from src.prediction.recent_form import RecentFormRating
+from src.prediction.squad_strength import SquadStrengthRating
 from src.prediction.team_strength import (
     METRICS_VERSION,
     TeamStrengthRating,
@@ -165,6 +166,7 @@ def test_team_strength_ratings_to_records_returns_sorted_extensible_records():
             "form_20": None,
             "matches_available": 0,
         },
+        "squad_strength": None,
     }
 
 
@@ -177,17 +179,23 @@ def test_export_team_metrics_writes_json(tmp_path):
     recent_form_ratings = {
         "A": RecentFormRating("A", 1.1, 1.05, None, 12),
     }
+    squad_strength_ratings = {
+        "A": SquadStrengthRating("A", 210.0, 0.97),
+    }
 
     exported = export_team_metrics(
         ratings,
         output_path,
         recent_form_ratings=recent_form_ratings,
+        squad_strength_ratings=squad_strength_ratings,
     )
     loaded = json.loads(output_path.read_text(encoding="utf-8"))
 
     assert exported == loaded
     assert loaded == {
         "metrics_version": METRICS_VERSION,
+        "squad_values_source": "data/external/teams_value.json",
+        "squad_value_unit": "million_eur",
         "teams": [
             {
                 "team": "A",
@@ -199,6 +207,10 @@ def test_export_team_metrics_writes_json(tmp_path):
                     "form_10": 1.05,
                     "form_20": None,
                     "matches_available": 12,
+                },
+                "squad_strength": {
+                    "squad_value": 210.0,
+                    "squad_strength_rating": 0.97,
                 },
             }
         ]
