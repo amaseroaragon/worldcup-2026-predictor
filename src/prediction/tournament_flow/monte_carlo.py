@@ -3,10 +3,10 @@ from __future__ import annotations
 import random
 from collections import defaultdict
 
-from src.prediction.tournament import simulate_tournament_once
-from src.prediction.recent_form import RecentFormRating
-from src.prediction.squad_strength import SquadStrengthRating
-from src.prediction.team_strength import TeamStrengthRating
+from src.prediction.tournament_flow.simulation import simulate_tournament_once
+from src.prediction.metrics.recent_form import RecentFormRating
+from src.prediction.metrics.squad_strength import SquadStrengthRating
+from src.prediction.metrics.team_strength import TeamStrengthRating
 
 
 def run_monte_carlo(

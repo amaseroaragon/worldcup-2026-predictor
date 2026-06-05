@@ -2,12 +2,13 @@ from __future__ import annotations
 
 import random
 
-from src.prediction.dynamic_elo import update_dynamic_elo_ratings
-from src.prediction.match import simulate_match
-from src.prediction.models import GroupOutcome, GroupStandingRow, MatchFixture, MatchResult
-from src.prediction.recent_form import RecentFormRating
-from src.prediction.squad_strength import SquadStrengthRating
-from src.prediction.team_strength import TeamStrengthRating
+from src.prediction.core.dynamic_elo import update_dynamic_elo_ratings
+from src.prediction.core.match import simulate_match
+from src.prediction.core.models import GroupOutcome, GroupStandingRow, MatchFixture, MatchResult
+from src.prediction.metrics.recent_form import RecentFormRating
+from src.prediction.core.results import loser
+from src.prediction.metrics.squad_strength import SquadStrengthRating
+from src.prediction.metrics.team_strength import TeamStrengthRating
 
 
 DYNAMIC_ELO_KNOCKOUT_STAGES = {
@@ -218,7 +219,7 @@ def _resolve_knockout_placeholder(
 
     if placeholder.startswith("RU"):
         result = _get_match_result(placeholder.removeprefix("RU"), match_results)
-        return _loser(result)
+        return loser(result)
 
     raise ValueError(f"Invalid knockout placeholder: {placeholder}")
 
@@ -304,8 +305,3 @@ def _get_group_outcome(
         raise ValueError(f"Unknown group in knockout placeholder: {group}")
     return group_outcomes[group]
 
-
-def _loser(result: MatchResult) -> str:
-    if result.winner == result.team_a:
-        return result.team_b
-    return result.team_a

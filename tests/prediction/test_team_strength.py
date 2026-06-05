@@ -4,9 +4,9 @@ from dataclasses import FrozenInstanceError
 import pandas as pd
 import pytest
 
-from src.prediction.recent_form import RecentFormRating
-from src.prediction.squad_strength import SquadStrengthRating
-from src.prediction.team_strength import (
+from src.prediction.metrics.recent_form import RecentFormRating
+from src.prediction.metrics.squad_strength import SquadStrengthRating
+from src.prediction.metrics.team_strength import (
     METRICS_VERSION,
     TeamStrengthRating,
     build_team_strength_ratings,

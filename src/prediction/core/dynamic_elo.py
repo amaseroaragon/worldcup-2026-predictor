@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from src.elo.context import MatchContext
 from src.elo.update import match_result, update_rating
-from src.prediction.models import MatchResult
+from src.prediction.core.models import MatchResult
 
 
 def update_dynamic_elo_ratings(

@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import random
 
-from src.prediction.fixtures import build_group_stage_fixtures
-from src.prediction.group_stage import simulate_group_stage
-from src.prediction.knockout import (
+from src.prediction.tournament_flow.fixtures import build_group_stage_fixtures
+from src.prediction.tournament_flow.group_stage import simulate_group_stage
+from src.prediction.tournament_flow.knockout import (
     build_knockout_fixtures,
     build_third_place_placeholder_resolution,
     rank_third_place_teams,
@@ -13,10 +13,11 @@ from src.prediction.knockout import (
     update_knockout_elo_ratings,
 )
 from src.prediction import config
-from src.prediction.models import GroupOutcome, MatchFixture, MatchResult, TournamentOutcome
-from src.prediction.recent_form import RecentFormRating
-from src.prediction.squad_strength import SquadStrengthRating
-from src.prediction.team_strength import TeamStrengthRating
+from src.prediction.core.models import GroupOutcome, MatchFixture, MatchResult, TournamentOutcome
+from src.prediction.metrics.recent_form import RecentFormRating
+from src.prediction.core.results import loser
+from src.prediction.metrics.squad_strength import SquadStrengthRating
+from src.prediction.metrics.team_strength import TeamStrengthRating
 
 
 ROUND_OF_32 = "round_of_32"
@@ -112,7 +113,7 @@ def simulate_tournament_once(
         raise ValueError("Knockout bracket must contain a final match")
 
     champion = final_result.winner
-    runner_up = _loser(final_result)
+    runner_up = loser(final_result)
     all_teams = {team for teams in groups.values() for team in teams}
 
     return TournamentOutcome(
@@ -137,9 +138,3 @@ def _group_match_results(group_outcomes: dict[str, GroupOutcome]) -> list[MatchR
         for group in group_outcomes
         for result in group_outcomes[group].match_results
     ]
-
-
-def _loser(result: MatchResult) -> str:
-    if result.winner == result.team_a:
-        return result.team_b
-    return result.team_a

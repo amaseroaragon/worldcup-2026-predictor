@@ -4,11 +4,10 @@ from functools import lru_cache
 from pathlib import Path
 
 from src.elo.config import K_FACTOR
+from src.prediction.settings import DEFAULT_TOURNAMENT_K_FACTORS_PATH
 
 
-TOURNAMENT_K_FACTORS_PATH = (
-    Path(__file__).resolve().parents[2] / "data" / "external" / "tournament_k_factors.json"
-)
+TOURNAMENT_K_FACTORS_PATH = DEFAULT_TOURNAMENT_K_FACTORS_PATH
 
 
 @dataclass(frozen=True)

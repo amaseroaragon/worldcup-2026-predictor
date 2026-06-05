@@ -2,16 +2,16 @@ import random
 
 import pytest
 
-from src.prediction.match import (
+from src.prediction.core.match import (
     MatchResult,
     knockout_tiebreaker_probability,
     sample_poisson,
     simulate_match,
 )
-from src.prediction.models import MatchFixture
-from src.prediction.recent_form import RecentFormRating
-from src.prediction.squad_strength import SquadStrengthRating
-from src.prediction.team_strength import TeamStrengthRating
+from src.prediction.core.models import MatchFixture
+from src.prediction.metrics.recent_form import RecentFormRating
+from src.prediction.metrics.squad_strength import SquadStrengthRating
+from src.prediction.metrics.team_strength import TeamStrengthRating
 
 
 def test_sample_poisson_returns_integer_in_range():
@@ -69,7 +69,7 @@ def test_knockout_match_always_has_winner():
 
 
 def test_knockout_tiebreaker_when_score_is_draw(monkeypatch):
-    monkeypatch.setattr("src.prediction.match.sample_poisson", lambda lambda_, max_goals=10: 1)
+    monkeypatch.setattr("src.prediction.core.match.sample_poisson", lambda lambda_, max_goals=10: 1)
 
     result = simulate_match(
         team_a="Spain",
@@ -96,8 +96,8 @@ def test_knockout_tiebreaker_uses_expected_goals_advantage(monkeypatch):
     def fake_sample_poisson(lambda_, max_goals=10, rng=None):
         return 1
 
-    monkeypatch.setattr("src.prediction.match.expected_goals_from_elo", fake_expected_goals_from_elo)
-    monkeypatch.setattr("src.prediction.match.sample_poisson", fake_sample_poisson)
+    monkeypatch.setattr("src.prediction.core.match.expected_goals_from_elo", fake_expected_goals_from_elo)
+    monkeypatch.setattr("src.prediction.core.match.sample_poisson", fake_sample_poisson)
 
     result = simulate_match(
         team_a="Spain",
@@ -123,9 +123,9 @@ def test_knockout_tiebreaker_can_use_elo_only_when_disabled(monkeypatch):
     def fake_sample_poisson(lambda_, max_goals=10, rng=None):
         return 1
 
-    monkeypatch.setattr("src.prediction.match.USE_MODEL_BASED_KNOCKOUT_TIEBREAKER", False)
-    monkeypatch.setattr("src.prediction.match.expected_goals_from_elo", fake_expected_goals_from_elo)
-    monkeypatch.setattr("src.prediction.match.sample_poisson", fake_sample_poisson)
+    monkeypatch.setattr("src.prediction.core.match.USE_MODEL_BASED_KNOCKOUT_TIEBREAKER", False)
+    monkeypatch.setattr("src.prediction.core.match.expected_goals_from_elo", fake_expected_goals_from_elo)
+    monkeypatch.setattr("src.prediction.core.match.sample_poisson", fake_sample_poisson)
 
     result = simulate_match(
         team_a="Spain",
@@ -174,7 +174,7 @@ def test_knockout_tiebreaker_probability_blends_elo_and_expected_goals():
 
 
 def test_knockout_tiebreaker_probability_falls_back_to_elo(monkeypatch):
-    monkeypatch.setattr("src.prediction.match.USE_MODEL_BASED_KNOCKOUT_TIEBREAKER", False)
+    monkeypatch.setattr("src.prediction.core.match.USE_MODEL_BASED_KNOCKOUT_TIEBREAKER", False)
 
     probability = knockout_tiebreaker_probability(
         elo_a=1500,
@@ -193,8 +193,8 @@ def test_simulate_match_uses_team_strength_ratings(monkeypatch):
         expected_goals_arguments.update(kwargs)
         return 1.0, 1.0
 
-    monkeypatch.setattr("src.prediction.match.expected_goals_from_elo", fake_expected_goals_from_elo)
-    monkeypatch.setattr("src.prediction.match.sample_poisson", lambda lambda_, max_goals=10: 1)
+    monkeypatch.setattr("src.prediction.core.match.expected_goals_from_elo", fake_expected_goals_from_elo)
+    monkeypatch.setattr("src.prediction.core.match.sample_poisson", lambda lambda_, max_goals=10: 1)
 
     simulate_match(
         team_a="Spain",
@@ -226,8 +226,8 @@ def test_simulate_match_uses_neutral_strength_for_missing_team_rating(monkeypatc
         expected_goals_arguments.update(kwargs)
         return 1.0, 1.0
 
-    monkeypatch.setattr("src.prediction.match.expected_goals_from_elo", fake_expected_goals_from_elo)
-    monkeypatch.setattr("src.prediction.match.sample_poisson", lambda lambda_, max_goals=10: 1)
+    monkeypatch.setattr("src.prediction.core.match.expected_goals_from_elo", fake_expected_goals_from_elo)
+    monkeypatch.setattr("src.prediction.core.match.sample_poisson", lambda lambda_, max_goals=10: 1)
 
     simulate_match(
         team_a="Spain",
@@ -250,8 +250,8 @@ def test_simulate_match_uses_primary_recent_form_window(monkeypatch):
         expected_goals_arguments.update(kwargs)
         return 1.0, 1.0
 
-    monkeypatch.setattr("src.prediction.match.expected_goals_from_elo", fake_expected_goals_from_elo)
-    monkeypatch.setattr("src.prediction.match.sample_poisson", lambda lambda_, max_goals=10: 1)
+    monkeypatch.setattr("src.prediction.core.match.expected_goals_from_elo", fake_expected_goals_from_elo)
+    monkeypatch.setattr("src.prediction.core.match.sample_poisson", lambda lambda_, max_goals=10: 1)
 
     simulate_match(
         team_a="Spain",
@@ -275,8 +275,8 @@ def test_simulate_match_uses_squad_strength_ratings(monkeypatch):
         expected_goals_arguments.update(kwargs)
         return 1.0, 1.0
 
-    monkeypatch.setattr("src.prediction.match.expected_goals_from_elo", fake_expected_goals_from_elo)
-    monkeypatch.setattr("src.prediction.match.sample_poisson", lambda lambda_, max_goals=10: 1)
+    monkeypatch.setattr("src.prediction.core.match.expected_goals_from_elo", fake_expected_goals_from_elo)
+    monkeypatch.setattr("src.prediction.core.match.sample_poisson", lambda lambda_, max_goals=10: 1)
 
     simulate_match(
         team_a="Spain",

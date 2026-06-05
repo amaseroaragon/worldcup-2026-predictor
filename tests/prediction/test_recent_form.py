@@ -3,7 +3,7 @@ from dataclasses import FrozenInstanceError
 import pandas as pd
 import pytest
 
-from src.prediction.recent_form import RecentFormRating, build_recent_form_ratings
+from src.prediction.metrics.recent_form import RecentFormRating, build_recent_form_ratings
 
 
 def _team_a_results(points: list[int]) -> pd.DataFrame:

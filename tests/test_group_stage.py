@@ -1,7 +1,7 @@
 import random
 
-from src.prediction.group_stage import simulate_group_stage
-from src.prediction.models import MatchFixture, SimulationConfig
+from src.prediction.tournament_flow.group_stage import simulate_group_stage
+from src.prediction.core.models import MatchFixture, SimulationConfig
 
 
 def test_simulate_group_stage_returns_group_outcome_for_four_team_group():

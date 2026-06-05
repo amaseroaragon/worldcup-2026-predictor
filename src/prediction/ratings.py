@@ -4,8 +4,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from src.prediction.settings import DEFAULT_ELO_RANKINGS_PATH
 
-DEFAULT_ELO_RANKINGS_PATH = Path("data/processed/elo_rankings.csv")
 REQUIRED_RATING_COLUMNS = {"team", "elo"}
 
 

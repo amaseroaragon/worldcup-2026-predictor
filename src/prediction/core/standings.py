@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from src.prediction.models import GroupStandingRow, MatchResult
+from src.prediction.core.models import GroupStandingRow, MatchResult
 
 
 def build_group_standings(results: list[MatchResult]) -> list[GroupStandingRow]:

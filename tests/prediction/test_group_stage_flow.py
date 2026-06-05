@@ -2,10 +2,10 @@ import random
 
 import pytest
 
-from src.prediction.models import MatchResult
-from src.prediction.fixtures import build_group_stage_fixtures
-from src.prediction.group_stage import simulate_group_stage
-from src.prediction.models import MatchFixture
+from src.prediction.core.models import MatchResult
+from src.prediction.tournament_flow.fixtures import build_group_stage_fixtures
+from src.prediction.tournament_flow.group_stage import simulate_group_stage
+from src.prediction.core.models import MatchFixture
 
 
 def test_group_stage_flow_builds_fixtures_and_simulates_groups():
@@ -113,7 +113,7 @@ def test_simulate_group_stage_updates_elo_and_uses_it_in_later_matches(monkeypat
             fixture.match_id,
         )
 
-    monkeypatch.setattr("src.prediction.group_stage.simulate_match", fake_simulate_match)
+    monkeypatch.setattr("src.prediction.tournament_flow.group_stage.simulate_match", fake_simulate_match)
 
     simulate_group_stage(fixtures, ratings)
 

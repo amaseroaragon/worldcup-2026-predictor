@@ -1,7 +1,7 @@
 import pytest
 
-from src.prediction.fixtures import build_group_stage_fixtures
-from src.prediction.models import MatchFixture
+from src.prediction.tournament_flow.fixtures import build_group_stage_fixtures
+from src.prediction.core.models import MatchFixture
 
 
 def test_build_group_stage_fixtures_creates_six_matches_per_group():

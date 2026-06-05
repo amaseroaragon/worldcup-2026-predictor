@@ -4,18 +4,18 @@ from unittest.mock import mock_open, patch
 import pandas as pd
 import pytest
 
-from src.prediction.export import (
+from src.prediction.io.exports import (
     DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH,
     PROBABILITY_COLUMNS,
-    build_match_predictions,
-    build_predicted_bracket_predictions,
     export_match_predictions_json,
     export_probabilities,
     probabilities_to_dataframe,
     validate_probability_output,
 )
-from src.prediction.models import MatchPrediction, MatchResult
-from src.prediction.tournament import simulate_tournament_once
+from src.prediction.core.models import MatchPrediction, MatchResult
+from src.prediction.tournament_flow.bracket_predictions import build_predicted_bracket_predictions
+from src.prediction.tournament_flow.match_predictions import build_match_predictions
+from src.prediction.tournament_flow.simulation import simulate_tournament_once
 
 
 def sample_probabilities() -> dict:

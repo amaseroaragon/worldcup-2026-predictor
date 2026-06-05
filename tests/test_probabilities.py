@@ -1,6 +1,6 @@
 import pytest
 
-from src.prediction.probabilities import (
+from src.prediction.core.probabilities import (
     draw_probability_from_elo_diff,
     elo_win_draw_loss_probs,
 )

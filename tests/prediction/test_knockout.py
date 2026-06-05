@@ -2,7 +2,7 @@ import random
 
 import pytest
 
-from src.prediction.knockout import (
+from src.prediction.tournament_flow.knockout import (
     build_knockout_fixtures,
     build_third_place_placeholder_resolution,
     rank_third_place_teams,
@@ -11,7 +11,7 @@ from src.prediction.knockout import (
     simulate_knockout_round,
     update_knockout_elo_ratings,
 )
-from src.prediction.models import GroupOutcome, GroupStandingRow, MatchFixture, MatchResult
+from src.prediction.core.models import GroupOutcome, GroupStandingRow, MatchFixture, MatchResult
 
 
 def knockout_fixture() -> MatchFixture:
@@ -277,7 +277,7 @@ def test_simulate_knockout_match_rejects_missing_elo_rating():
 
 
 def test_simulate_knockout_match_uses_injected_rng_for_tiebreaker(monkeypatch):
-    monkeypatch.setattr("src.prediction.match.sample_poisson", lambda lambda_, max_goals=10, rng=None: 1)
+    monkeypatch.setattr("src.prediction.core.match.sample_poisson", lambda lambda_, max_goals=10, rng=None: 1)
 
     ratings = {"Team 1": 1600.0, "Team 2": 1600.0}
 

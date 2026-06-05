@@ -3,7 +3,7 @@ from dataclasses import FrozenInstanceError
 
 import pytest
 
-from src.prediction.squad_strength import (
+from src.prediction.metrics.squad_strength import (
     SquadStrengthRating,
     build_squad_strength_ratings,
     load_squad_values,

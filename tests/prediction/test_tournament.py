@@ -1,7 +1,7 @@
 import random
 
-from src.prediction.models import MatchResult, TournamentOutcome
-from src.prediction.tournament import simulate_tournament_once
+from src.prediction.core.models import MatchResult, TournamentOutcome
+from src.prediction.tournament_flow.simulation import simulate_tournament_once
 
 
 def mini_groups() -> dict[str, list[str]]:
@@ -116,7 +116,7 @@ def test_simulate_tournament_once_uses_updated_elo_in_later_round(monkeypatch):
         )
 
     monkeypatch.setattr(
-        "src.prediction.tournament.simulate_knockout_match",
+        "src.prediction.tournament_flow.simulation.simulate_knockout_match",
         fake_simulate_knockout_match,
     )
 
@@ -153,7 +153,7 @@ def test_simulate_tournament_once_fixed_elo_keeps_later_round_rating(monkeypatch
     monkeypatch.setattr("src.prediction.config.USE_DYNAMIC_ELO_KNOCKOUT", False)
     monkeypatch.setattr("src.prediction.config.USE_DYNAMIC_ELO_GROUP_STAGE", False)
     monkeypatch.setattr(
-        "src.prediction.tournament.simulate_knockout_match",
+        "src.prediction.tournament_flow.simulation.simulate_knockout_match",
         fake_simulate_knockout_match,
     )
 
@@ -168,7 +168,7 @@ def test_simulate_tournament_once_fixed_elo_keeps_later_round_rating(monkeypatch
 
 
 def test_simulate_tournament_once_shares_local_elo_from_groups_to_knockout(monkeypatch):
-    from src.prediction.group_stage import simulate_group_stage as real_simulate_group_stage
+    from src.prediction.tournament_flow.group_stage import simulate_group_stage as real_simulate_group_stage
 
     groups = mini_groups()
     ratings = mini_ratings(groups)
@@ -198,9 +198,9 @@ def test_simulate_tournament_once_shares_local_elo_from_groups_to_knockout(monke
         )
 
     monkeypatch.setattr("src.prediction.config.USE_DYNAMIC_ELO_GROUP_STAGE", False)
-    monkeypatch.setattr("src.prediction.tournament.simulate_group_stage", fake_simulate_group_stage)
+    monkeypatch.setattr("src.prediction.tournament_flow.simulation.simulate_group_stage", fake_simulate_group_stage)
     monkeypatch.setattr(
-        "src.prediction.tournament.simulate_knockout_match",
+        "src.prediction.tournament_flow.simulation.simulate_knockout_match",
         fake_simulate_knockout_match,
     )
 

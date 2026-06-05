@@ -1,5 +1,5 @@
-from src.prediction.models import MatchResult
-from src.prediction.standings import build_group_standings
+from src.prediction.core.models import MatchResult
+from src.prediction.core.standings import build_group_standings
 
 
 def test_build_group_standings_calculates_points_and_goals():

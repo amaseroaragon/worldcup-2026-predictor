@@ -4,13 +4,13 @@ import random
 from collections import defaultdict
 
 from src.prediction import config as prediction_config
-from src.prediction.dynamic_elo import update_dynamic_elo_ratings
-from src.prediction.match import simulate_match
-from src.prediction.models import GroupOutcome, MatchFixture, MatchResult, SimulationConfig
-from src.prediction.recent_form import RecentFormRating
-from src.prediction.squad_strength import SquadStrengthRating
-from src.prediction.standings import build_group_standings
-from src.prediction.team_strength import TeamStrengthRating
+from src.prediction.core.dynamic_elo import update_dynamic_elo_ratings
+from src.prediction.core.match import simulate_match
+from src.prediction.core.models import GroupOutcome, MatchFixture, MatchResult, SimulationConfig
+from src.prediction.metrics.recent_form import RecentFormRating
+from src.prediction.metrics.squad_strength import SquadStrengthRating
+from src.prediction.core.standings import build_group_standings
+from src.prediction.metrics.team_strength import TeamStrengthRating
 
 
 TEAMS_PER_GROUP = 4

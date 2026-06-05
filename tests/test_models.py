@@ -1,4 +1,4 @@
-from src.prediction.models import MatchFixture, SimulationConfig, TournamentOutcome
+from src.prediction.core.models import MatchFixture, SimulationConfig, TournamentOutcome
 
 
 def test_match_fixture_stores_basic_match_metadata():

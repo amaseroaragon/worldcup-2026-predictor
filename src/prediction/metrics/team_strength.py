@@ -6,11 +6,11 @@ from pathlib import Path
 
 import pandas as pd
 
-from src.prediction.recent_form import RecentFormRating
-from src.prediction.squad_strength import SquadStrengthRating
+from src.prediction.metrics.recent_form import RecentFormRating
+from src.prediction.metrics.squad_strength import SquadStrengthRating
+from src.prediction.settings import DEFAULT_TEAM_METRICS_PATH
 
 
-DEFAULT_TEAM_METRICS_PATH = Path("data/processed/team_metrics.json")
 METRICS_VERSION = "v4.5"
 SQUAD_VALUES_SOURCE = "data/external/teams_value.json"
 SQUAD_VALUE_UNIT = "million_eur"

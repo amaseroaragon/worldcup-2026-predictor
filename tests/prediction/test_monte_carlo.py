@@ -1,10 +1,10 @@
 import pytest
 
-from src.prediction.monte_carlo import run_monte_carlo
-from src.prediction.models import TournamentOutcome
-from src.prediction.recent_form import RecentFormRating
-from src.prediction.squad_strength import SquadStrengthRating
-from src.prediction.team_strength import TeamStrengthRating
+from src.prediction.tournament_flow.monte_carlo import run_monte_carlo
+from src.prediction.core.models import TournamentOutcome
+from src.prediction.metrics.recent_form import RecentFormRating
+from src.prediction.metrics.squad_strength import SquadStrengthRating
+from src.prediction.metrics.team_strength import TeamStrengthRating
 
 
 def mini_groups() -> dict[str, list[str]]:
@@ -186,7 +186,7 @@ def test_run_monte_carlo_passes_team_strength_ratings_to_tournament(monkeypatch)
         return Outcome()
 
     monkeypatch.setattr(
-        "src.prediction.monte_carlo.simulate_tournament_once",
+        "src.prediction.tournament_flow.monte_carlo.simulate_tournament_once",
         fake_simulate_tournament_once,
     )
 

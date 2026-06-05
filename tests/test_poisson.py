@@ -1,6 +1,6 @@
 import pytest
 
-from src.prediction.poisson import (
+from src.prediction.core.poisson import (
     expected_goals_from_elo,
     poisson_probability,
     recent_form_multiplier,
@@ -108,7 +108,7 @@ def test_recent_form_multiplier_uses_neutral_fallback():
 
 
 def test_recent_form_multiplier_can_be_disabled(monkeypatch):
-    monkeypatch.setattr("src.prediction.poisson.USE_RECENT_FORM", False)
+    monkeypatch.setattr("src.prediction.core.poisson.USE_RECENT_FORM", False)
 
     assert recent_form_multiplier(1.2) == 1.0
 
@@ -118,7 +118,7 @@ def test_squad_strength_multiplier_uses_neutral_fallback():
 
 
 def test_squad_strength_multiplier_can_be_disabled(monkeypatch):
-    monkeypatch.setattr("src.prediction.poisson.USE_SQUAD_STRENGTH", False)
+    monkeypatch.setattr("src.prediction.core.poisson.USE_SQUAD_STRENGTH", False)
 
     assert squad_strength_multiplier(1.15) == 1.0
 

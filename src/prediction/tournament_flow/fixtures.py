@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from itertools import combinations
 
-from src.prediction.models import MatchFixture
+from src.prediction.core.models import MatchFixture
 
 
 TEAMS_PER_GROUP = 4

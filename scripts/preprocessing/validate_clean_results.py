@@ -2,6 +2,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from src.data.validation import CLEAN_RESULTS_REQUIRED_COLUMNS, validate_clean_results_dataframe
+
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
 
@@ -45,17 +47,7 @@ def main() -> None:
     print("\nSample teams:")
     print(sorted(list(teams))[:50])
 
-    critical_columns = [
-        "date",
-        "home_team",
-        "away_team",
-        "home_score",
-        "away_score",
-        "tournament",
-        "neutral",
-    ]
-
-    critical_nulls = df[critical_columns].isnull().sum()
+    critical_nulls = df[CLEAN_RESULTS_REQUIRED_COLUMNS].isnull().sum()
 
     if critical_nulls.sum() > 0:
         raise ValueError(
@@ -65,8 +57,10 @@ def main() -> None:
     if (df["home_score"] < 0).any() or (df["away_score"] < 0).any():
         raise ValueError("Negative scores found.")
 
-    if df["home_team"].equals(df["away_team"]):
+    if (df["home_team"] == df["away_team"]).any():
         raise ValueError("Some matches have the same home and away team.")
+
+    validate_clean_results_dataframe(df)
 
     print("\nValidation passed successfully.")
 
