@@ -1,0 +1,237 @@
+{
+  "metadata": {
+    "competition": "UEFA Euro 2024",
+    "source": "UEFA Euro 2024 regulations, combinations for four best third-placed teams",
+    "description": "Lookup table for resolving Round of 16 third-place placeholders based on the set of four best third-placed groups.",
+    "key_format": "Sorted concatenation of the four third-placed groups that qualify, e.g. ABCD.",
+    "columns": ["1B", "1C", "1E", "1F"],
+    "total_combinations": 15
+  },
+  "by_best_thirds": {
+    "ABCD": {
+      "option": 1,
+      "assignments_by_group_winner": {
+        "1B": "3A",
+        "1C": "3D",
+        "1E": "3B",
+        "1F": "3C"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3A",
+        "3DEF": "3D",
+        "3ABCD": "3B",
+        "3ABC": "3C"
+      }
+    },
+    "ABCE": {
+      "option": 2,
+      "assignments_by_group_winner": {
+        "1B": "3A",
+        "1C": "3E",
+        "1E": "3B",
+        "1F": "3C"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3A",
+        "3DEF": "3E",
+        "3ABCD": "3B",
+        "3ABC": "3C"
+      }
+    },
+    "ABCF": {
+      "option": 3,
+      "assignments_by_group_winner": {
+        "1B": "3A",
+        "1C": "3F",
+        "1E": "3B",
+        "1F": "3C"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3A",
+        "3DEF": "3F",
+        "3ABCD": "3B",
+        "3ABC": "3C"
+      }
+    },
+    "ABDE": {
+      "option": 4,
+      "assignments_by_group_winner": {
+        "1B": "3D",
+        "1C": "3E",
+        "1E": "3A",
+        "1F": "3B"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3D",
+        "3DEF": "3E",
+        "3ABCD": "3A",
+        "3ABC": "3B"
+      }
+    },
+    "ABDF": {
+      "option": 5,
+      "assignments_by_group_winner": {
+        "1B": "3D",
+        "1C": "3F",
+        "1E": "3A",
+        "1F": "3B"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3D",
+        "3DEF": "3F",
+        "3ABCD": "3A",
+        "3ABC": "3B"
+      }
+    },
+    "ABEF": {
+      "option": 6,
+      "assignments_by_group_winner": {
+        "1B": "3E",
+        "1C": "3F",
+        "1E": "3B",
+        "1F": "3A"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3E",
+        "3DEF": "3F",
+        "3ABCD": "3B",
+        "3ABC": "3A"
+      }
+    },
+    "ACDE": {
+      "option": 7,
+      "assignments_by_group_winner": {
+        "1B": "3E",
+        "1C": "3D",
+        "1E": "3C",
+        "1F": "3A"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3E",
+        "3DEF": "3D",
+        "3ABCD": "3C",
+        "3ABC": "3A"
+      }
+    },
+    "ACDF": {
+      "option": 8,
+      "assignments_by_group_winner": {
+        "1B": "3F",
+        "1C": "3D",
+        "1E": "3C",
+        "1F": "3A"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3F",
+        "3DEF": "3D",
+        "3ABCD": "3C",
+        "3ABC": "3A"
+      }
+    },
+    "ACEF": {
+      "option": 9,
+      "assignments_by_group_winner": {
+        "1B": "3E",
+        "1C": "3F",
+        "1E": "3C",
+        "1F": "3A"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3E",
+        "3DEF": "3F",
+        "3ABCD": "3C",
+        "3ABC": "3A"
+      }
+    },
+    "ADEF": {
+      "option": 10,
+      "assignments_by_group_winner": {
+        "1B": "3E",
+        "1C": "3F",
+        "1E": "3D",
+        "1F": "3A"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3E",
+        "3DEF": "3F",
+        "3ABCD": "3D",
+        "3ABC": "3A"
+      }
+    },
+    "BCDE": {
+      "option": 11,
+      "assignments_by_group_winner": {
+        "1B": "3E",
+        "1C": "3D",
+        "1E": "3B",
+        "1F": "3C"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3E",
+        "3DEF": "3D",
+        "3ABCD": "3B",
+        "3ABC": "3C"
+      }
+    },
+    "BCDF": {
+      "option": 12,
+      "assignments_by_group_winner": {
+        "1B": "3F",
+        "1C": "3D",
+        "1E": "3C",
+        "1F": "3B"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3F",
+        "3DEF": "3D",
+        "3ABCD": "3C",
+        "3ABC": "3B"
+      }
+    },
+    "BCEF": {
+      "option": 13,
+      "assignments_by_group_winner": {
+        "1B": "3F",
+        "1C": "3E",
+        "1E": "3C",
+        "1F": "3B"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3F",
+        "3DEF": "3E",
+        "3ABCD": "3C",
+        "3ABC": "3B"
+      }
+    },
+    "BDEF": {
+      "option": 14,
+      "assignments_by_group_winner": {
+        "1B": "3F",
+        "1C": "3E",
+        "1E": "3D",
+        "1F": "3B"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3F",
+        "3DEF": "3E",
+        "3ABCD": "3D",
+        "3ABC": "3B"
+      }
+    },
+    "CDEF": {
+      "option": 15,
+      "assignments_by_group_winner": {
+        "1B": "3F",
+        "1C": "3E",
+        "1E": "3D",
+        "1F": "3C"
+      },
+      "placeholder_resolution": {
+        "3ADEF": "3F",
+        "3DEF": "3E",
+        "3ABCD": "3D",
+        "3ABC": "3C"
+      }
+    }
+  }
+}

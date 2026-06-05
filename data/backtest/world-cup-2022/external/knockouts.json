@@ -1,0 +1,104 @@
+{
+  "matches": [
+    {
+      "match_id": "M49",
+      "round": "round_of_16",
+      "home": "1A",
+      "away": "2B"
+    },
+    {
+      "match_id": "M50",
+      "round": "round_of_16",
+      "home": "1C",
+      "away": "2D"
+    },
+    {
+      "match_id": "M51",
+      "round": "round_of_16",
+      "home": "1D",
+      "away": "2C"
+    },
+    {
+      "match_id": "M52",
+      "round": "round_of_16",
+      "home": "1B",
+      "away": "2A"
+    },
+    {
+      "match_id": "M53",
+      "round": "round_of_16",
+      "home": "1E",
+      "away": "2F"
+    },
+    {
+      "match_id": "M54",
+      "round": "round_of_16",
+      "home": "1G",
+      "away": "2H"
+    },
+    {
+      "match_id": "M55",
+      "round": "round_of_16",
+      "home": "1F",
+      "away": "2E"
+    },
+    {
+      "match_id": "M56",
+      "round": "round_of_16",
+      "home": "1H",
+      "away": "2G"
+    },
+
+    {
+      "match_id": "M57",
+      "round": "quarter_final",
+      "home": "W53",
+      "away": "W54"
+    },
+    {
+      "match_id": "M58",
+      "round": "quarter_final",
+      "home": "W49",
+      "away": "W50"
+    },
+    {
+      "match_id": "M59",
+      "round": "quarter_final",
+      "home": "W55",
+      "away": "W56"
+    },
+    {
+      "match_id": "M60",
+      "round": "quarter_final",
+      "home": "W51",
+      "away": "W52"
+    },
+
+    {
+      "match_id": "M61",
+      "round": "semi_final",
+      "home": "W57",
+      "away": "W58"
+    },
+    {
+      "match_id": "M62",
+      "round": "semi_final",
+      "home": "W59",
+      "away": "W60"
+    },
+
+    {
+      "match_id": "M63",
+      "round": "third_place_playoff",
+      "home": "RU61",
+      "away": "RU62"
+    },
+
+    {
+      "match_id": "M64",
+      "round": "final",
+      "home": "W61",
+      "away": "W62"
+    }
+  ]
+}

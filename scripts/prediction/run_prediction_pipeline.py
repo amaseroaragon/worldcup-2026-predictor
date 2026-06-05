@@ -8,14 +8,15 @@ from pathlib import Path
 ROOT_DIR = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT_DIR))
 
-from src.prediction.config import (
+from src.prediction.settings import (
+    DEFAULT_CLI_SEED,
+    DEFAULT_N_SIMULATIONS,
     DEFAULT_SQUAD_VALUES_PATH,
     DEFAULT_WORLD_CUP_2026_GROUP_MATCHES_PATH,
     DEFAULT_WORLD_CUP_2026_GROUPS_PATH,
     DEFAULT_WORLD_CUP_2026_KNOCKOUTS_PATH,
     DEFAULT_WORLD_CUP_2026_THIRD_PLACE_COMBINATIONS_PATH,
 )
-from src.prediction.settings import DEFAULT_CLI_SEED, DEFAULT_N_SIMULATIONS
 from src.prediction.io.exports import (
     DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH,
     DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH,

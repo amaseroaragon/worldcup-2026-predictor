@@ -24,6 +24,30 @@ from src.prediction.settings import (
 )
 
 
+__all__ = [
+    "DEFAULT_SQUAD_VALUES_PATH",
+    "DEFAULT_WORLD_CUP_2026_GROUP_MATCHES_PATH",
+    "DEFAULT_WORLD_CUP_2026_GROUPS_PATH",
+    "DEFAULT_WORLD_CUP_2026_KNOCKOUTS_PATH",
+    "DEFAULT_WORLD_CUP_2026_THIRD_PLACE_COMBINATIONS_PATH",
+    "PROJECT_ROOT",
+    "RECENT_FORM_PRIMARY_WINDOW",
+    "RECENT_FORM_WEIGHT",
+    "SQUAD_STRENGTH_WEIGHT",
+    "TEAMS_PER_GROUP",
+    "TIEBREAKER_EXPECTED_GOALS_WEIGHT",
+    "USE_DYNAMIC_ELO_GROUP_STAGE",
+    "USE_DYNAMIC_ELO_KNOCKOUT",
+    "USE_MODEL_BASED_KNOCKOUT_TIEBREAKER",
+    "USE_RECENT_FORM",
+    "USE_SQUAD_STRENGTH",
+    "load_group_matches_config",
+    "load_groups_config",
+    "load_knockouts_config",
+    "load_third_place_combinations_config",
+]
+
+
 def load_groups_config(path: str | Path) -> dict[str, list[str]]:
     """Load and validate World Cup group configuration."""
 

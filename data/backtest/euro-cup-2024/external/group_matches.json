@@ -1,0 +1,225 @@
+{
+  "matches": [
+    {
+      "group": "A",
+      "matchday": 1,
+      "home": "Germany",
+      "away": "Scotland"
+    },
+    {
+      "group": "A",
+      "matchday": 1,
+      "home": "Hungary",
+      "away": "Switzerland"
+    },
+    {
+      "group": "A",
+      "matchday": 2,
+      "home": "Germany",
+      "away": "Hungary"
+    },
+    {
+      "group": "A",
+      "matchday": 2,
+      "home": "Scotland",
+      "away": "Switzerland"
+    },
+    {
+      "group": "A",
+      "matchday": 3,
+      "home": "Switzerland",
+      "away": "Germany"
+    },
+    {
+      "group": "A",
+      "matchday": 3,
+      "home": "Scotland",
+      "away": "Hungary"
+    },
+
+    {
+      "group": "B",
+      "matchday": 1,
+      "home": "Spain",
+      "away": "Croatia"
+    },
+    {
+      "group": "B",
+      "matchday": 1,
+      "home": "Italy",
+      "away": "Albania"
+    },
+    {
+      "group": "B",
+      "matchday": 2,
+      "home": "Croatia",
+      "away": "Albania"
+    },
+    {
+      "group": "B",
+      "matchday": 2,
+      "home": "Spain",
+      "away": "Italy"
+    },
+    {
+      "group": "B",
+      "matchday": 3,
+      "home": "Albania",
+      "away": "Spain"
+    },
+    {
+      "group": "B",
+      "matchday": 3,
+      "home": "Croatia",
+      "away": "Italy"
+    },
+
+    {
+      "group": "C",
+      "matchday": 1,
+      "home": "Slovenia",
+      "away": "Denmark"
+    },
+    {
+      "group": "C",
+      "matchday": 1,
+      "home": "Serbia",
+      "away": "England"
+    },
+    {
+      "group": "C",
+      "matchday": 2,
+      "home": "Slovenia",
+      "away": "Serbia"
+    },
+    {
+      "group": "C",
+      "matchday": 2,
+      "home": "Denmark",
+      "away": "England"
+    },
+    {
+      "group": "C",
+      "matchday": 3,
+      "home": "England",
+      "away": "Slovenia"
+    },
+    {
+      "group": "C",
+      "matchday": 3,
+      "home": "Denmark",
+      "away": "Serbia"
+    },
+
+    {
+      "group": "D",
+      "matchday": 1,
+      "home": "Poland",
+      "away": "Netherlands"
+    },
+    {
+      "group": "D",
+      "matchday": 1,
+      "home": "Austria",
+      "away": "France"
+    },
+    {
+      "group": "D",
+      "matchday": 2,
+      "home": "Poland",
+      "away": "Austria"
+    },
+    {
+      "group": "D",
+      "matchday": 2,
+      "home": "Netherlands",
+      "away": "France"
+    },
+    {
+      "group": "D",
+      "matchday": 3,
+      "home": "Netherlands",
+      "away": "Austria"
+    },
+    {
+      "group": "D",
+      "matchday": 3,
+      "home": "France",
+      "away": "Poland"
+    },
+
+    {
+      "group": "E",
+      "matchday": 1,
+      "home": "Belgium",
+      "away": "Slovakia"
+    },
+    {
+      "group": "E",
+      "matchday": 1,
+      "home": "Romania",
+      "away": "Ukraine"
+    },
+    {
+      "group": "E",
+      "matchday": 2,
+      "home": "Slovakia",
+      "away": "Ukraine"
+    },
+    {
+      "group": "E",
+      "matchday": 2,
+      "home": "Belgium",
+      "away": "Romania"
+    },
+    {
+      "group": "E",
+      "matchday": 3,
+      "home": "Slovakia",
+      "away": "Romania"
+    },
+    {
+      "group": "E",
+      "matchday": 3,
+      "home": "Ukraine",
+      "away": "Belgium"
+    },
+
+    {
+      "group": "F",
+      "matchday": 1,
+      "home": "Turkey",
+      "away": "Georgia"
+    },
+    {
+      "group": "F",
+      "matchday": 1,
+      "home": "Portugal",
+      "away": "Czech Republic"
+    },
+    {
+      "group": "F",
+      "matchday": 2,
+      "home": "Georgia",
+      "away": "Czech Republic"
+    },
+    {
+      "group": "F",
+      "matchday": 2,
+      "home": "Turkey",
+      "away": "Portugal"
+    },
+    {
+      "group": "F",
+      "matchday": 3,
+      "home": "Georgia",
+      "away": "Portugal"
+    },
+    {
+      "group": "F",
+      "matchday": 3,
+      "home": "Czech Republic",
+      "away": "Turkey"
+    }
+  ]
+}
