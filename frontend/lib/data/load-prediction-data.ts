@@ -1,7 +1,7 @@
 import type {
   GroupResults,
   TeamMetric,
-  TournamentPredictionMatch,
+  TournamentPredictions,
   WorldCupProbability,
 } from "@/lib/types";
 
@@ -10,11 +10,6 @@ import { loadPublicJson } from "./load-public-json";
 type TeamMetricsPayload = {
   metadata: { source: string; scope: string };
   teams: TeamMetric[];
-};
-
-type TournamentPredictionsPayload = {
-  metadata: Record<string, unknown>;
-  matches: TournamentPredictionMatch[];
 };
 
 export function loadWorldCupProbabilities(): Promise<WorldCupProbability[]> {
@@ -29,6 +24,6 @@ export function loadGroupResults(): Promise<GroupResults> {
   return loadPublicJson("/data/group_results.json");
 }
 
-export function loadTournamentPredictions(): Promise<TournamentPredictionsPayload> {
+export function loadTournamentPredictions(): Promise<TournamentPredictions> {
   return loadPublicJson("/data/tournament_predictions.json");
 }

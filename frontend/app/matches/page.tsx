@@ -1,13 +1,11 @@
 import { PageContainer } from "@/components/layout/page-container";
-import { SectionCard } from "@/components/layout/section-card";
-import { MatchesTable } from "@/components/matches/matches-table";
-import { RoundFilters } from "@/components/matches/round-filters";
-import { loadTournamentData } from "@/lib/data/load-tournament-data";
+import { MatchesExplorer } from "@/components/matches/matches-explorer";
+import { loadTournamentPredictions } from "@/lib/data/load-prediction-data";
 
 export const metadata = { title: "Matches" };
 
 export default async function MatchesPage() {
-  const { matches } = await loadTournamentData();
+  const { matches, metadata } = await loadTournamentPredictions();
 
   return (
     <PageContainer
@@ -16,12 +14,10 @@ export default async function MatchesPage() {
       description="Browse projected fixtures, probabilities and expected results."
     >
       <p className="rounded-xl border border-dashed bg-card/60 px-4 py-3 text-sm text-muted-foreground">
-        Mock data until Python-generated JSON is connected.
+        Loaded from the latest synchronized tournament predictions
+        {typeof metadata.simulations === "number" ? ` · ${metadata.simulations.toLocaleString("en")} simulations` : ""}.
       </p>
-      <RoundFilters />
-      <SectionCard title="Projected fixtures" description="Filters are visual placeholders in this first iteration.">
-        <MatchesTable matches={matches} />
-      </SectionCard>
+      <MatchesExplorer matches={matches} />
     </PageContainer>
   );
 }

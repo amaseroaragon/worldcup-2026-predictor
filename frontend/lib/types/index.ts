@@ -122,12 +122,12 @@ export type TournamentPredictionMatch = {
   round: string | null;
   home_team: string;
   away_team: string;
-  predicted_home_goals: number;
-  predicted_away_goals: number;
+  predicted_home_goals: number | null;
+  predicted_away_goals: number | null;
   predicted_winner: string | null;
-  home_win_probability: number;
-  draw_probability: number;
-  away_win_probability: number;
+  home_win_probability: number | null;
+  draw_probability: number | null;
+  away_win_probability: number | null;
   simulations_count: number | null;
   appearance_count: number | null;
   appearance_probability: number | null;
@@ -140,4 +140,9 @@ export type TournamentPredictionMatch = {
   real_home_goals: number | null;
   real_away_goals: number | null;
   prediction_correct: boolean | null;
+};
+
+export type TournamentPredictions = {
+  metadata: Record<string, unknown>;
+  matches: TournamentPredictionMatch[];
 };
