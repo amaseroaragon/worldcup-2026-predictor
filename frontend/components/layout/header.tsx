@@ -5,6 +5,7 @@ const navigation = [
   { href: "/", label: "Overview" },
   { href: "/groups", label: "Groups" },
   { href: "/bracket", label: "Bracket" },
+  { href: "/matches", label: "Matches" },
   { href: "/compare", label: "Compare" },
 ];
 

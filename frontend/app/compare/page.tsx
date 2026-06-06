@@ -11,7 +11,7 @@ export default async function ComparePage() {
     <PageContainer
       eyebrow="Team analysis"
       title="Compare contenders"
-      description="Compare the simulated probability of reaching each tournament milestone."
+      description="Mock probability comparison until Python-generated JSON is connected."
     >
       <CompareTable probabilities={probabilities} />
     </PageContainer>

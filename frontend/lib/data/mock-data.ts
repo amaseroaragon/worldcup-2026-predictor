@@ -1,4 +1,4 @@
-import type { Bracket, Group, Team, TournamentProbabilities } from "@/lib/types";
+import type { Bracket, Group, PredictedMatch, Team, TournamentProbabilities } from "@/lib/types";
 
 const team = (name: string, code: string, group: string): Team => ({
   id: code.toLowerCase(),
@@ -44,3 +44,14 @@ export const mockBracket: Bracket = {
     { name: "Final", matches: [{ id: "f-1", round: "Final", homeTeam: argentina, awayTeam: spain, status: "scheduled" }] },
   ],
 };
+
+export const mockMatches: PredictedMatch[] = [
+  { id: "m-1", matchNumber: 1, round: "Group stage", homeTeam: argentina, awayTeam: japan, status: "scheduled", homeWinProbability: .61, drawProbability: .23, awayWinProbability: .16, predictedHomeScore: 2, predictedAwayScore: 1 },
+  { id: "m-2", matchNumber: 2, round: "Group stage", homeTeam: france, awayTeam: canada, status: "scheduled", homeWinProbability: .72, drawProbability: .18, awayWinProbability: .10, predictedHomeScore: 2, predictedAwayScore: 0 },
+  { id: "m-3", matchNumber: 3, round: "Group stage", homeTeam: spain, awayTeam: morocco, status: "scheduled", homeWinProbability: .54, drawProbability: .27, awayWinProbability: .19, predictedHomeScore: 1, predictedAwayScore: 0 },
+  { id: "m-4", matchNumber: 4, round: "Round of 32", homeTeam: brazil, awayTeam: mexico, status: "scheduled", homeWinProbability: .64, drawProbability: .21, awayWinProbability: .15, predictedHomeScore: 2, predictedAwayScore: 1 },
+  { id: "m-5", matchNumber: 5, round: "Round of 16", homeTeam: england, awayTeam: portugal, status: "scheduled", homeWinProbability: .39, drawProbability: .29, awayWinProbability: .32, predictedHomeScore: 1, predictedAwayScore: 1 },
+  { id: "m-6", matchNumber: 6, round: "Quarter-final", homeTeam: argentina, awayTeam: usa, status: "scheduled", homeWinProbability: .68, drawProbability: .20, awayWinProbability: .12, predictedHomeScore: 2, predictedAwayScore: 0 },
+  { id: "m-7", matchNumber: 7, round: "Semi-final", homeTeam: brazil, awayTeam: france, status: "scheduled", homeWinProbability: .34, drawProbability: .30, awayWinProbability: .36, predictedHomeScore: 1, predictedAwayScore: 1 },
+  { id: "m-8", matchNumber: 8, round: "Final", homeTeam: argentina, awayTeam: spain, status: "scheduled", homeWinProbability: .35, drawProbability: .29, awayWinProbability: .36, predictedHomeScore: 1, predictedAwayScore: 1 },
+];

@@ -13,7 +13,7 @@ Open [http://localhost:3000](http://localhost:3000). Use `npm run lint` and `npm
 
 ## Structure
 
-- `app/`: App Router pages and global layout.
+- `app/`: App Router pages and global layout, including Overview, Groups, Bracket, Matches and Compare.
 - `components/`: feature components grouped by domain, plus shadcn/ui primitives.
 - `lib/types/`: shared TypeScript contracts for Python-generated prediction data.
 - `lib/data/`: the data-access boundary and temporary mock dataset.

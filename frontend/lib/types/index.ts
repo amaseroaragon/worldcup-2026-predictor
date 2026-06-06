@@ -14,7 +14,7 @@ export type Group = {
 };
 
 export type MatchStatus = "scheduled" | "completed";
-export type TournamentRound = "Group" | "Round of 16" | "Quarter-final" | "Semi-final" | "Final";
+export type TournamentRound = "Group stage" | "Round of 32" | "Round of 16" | "Quarter-final" | "Semi-final" | "Final";
 
 export type Match = {
   id: string;
@@ -27,8 +27,17 @@ export type Match = {
   awayScore?: number;
 };
 
+export type PredictedMatch = Match & {
+  matchNumber: number;
+  homeWinProbability: number;
+  drawProbability: number;
+  awayWinProbability: number;
+  predictedHomeScore: number;
+  predictedAwayScore: number;
+};
+
 export type BracketRound = {
-  name: Exclude<TournamentRound, "Group">;
+  name: Exclude<TournamentRound, "Group stage">;
   matches: Match[];
 };
 
@@ -48,5 +57,6 @@ export type TournamentProbabilities = {
 export type TournamentData = {
   groups: Group[];
   bracket: Bracket;
+  matches: PredictedMatch[];
   probabilities: TournamentProbabilities[];
 };

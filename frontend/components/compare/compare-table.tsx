@@ -6,7 +6,7 @@ import type { TournamentProbabilities } from "@/lib/types";
 
 export function CompareTable({ probabilities }: { probabilities: TournamentProbabilities[] }) {
   return (
-    <SectionCard title="Probability comparison" description="Temporary mock simulation results">
+    <SectionCard title="Probability comparison" description="Mock data until Python-generated JSON is connected.">
       <div className="overflow-x-auto">
         <table className="w-full min-w-3xl text-left text-sm">
           <thead className="border-b text-xs uppercase tracking-wide text-muted-foreground">

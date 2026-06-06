@@ -28,7 +28,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
     <PageContainer
       eyebrow={`Team profile · Group ${prediction.team.group}`}
       title={prediction.team.name}
-      description="Mock tournament outlook prepared for future Python prediction exports."
+      description="Mock data until Python-generated JSON is connected."
     >
       <SectionCard title="Tournament probabilities">
         <div className="mb-7">

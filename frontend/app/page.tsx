@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, GitCompareArrows, Trophy } from "lucide-react";
+import { ArrowRight, BarChart3, CalendarDays, GitCompareArrows, Trophy } from "lucide-react";
 
-import { ProbabilityChart } from "@/components/charts/probability-chart";
 import { ProbabilityBar } from "@/components/dashboard/probability-bar";
 import { PageContainer } from "@/components/layout/page-container";
 import { SectionCard } from "@/components/layout/section-card";
@@ -18,9 +17,13 @@ export default async function HomePage() {
     <PageContainer
       eyebrow="Tournament overview"
       title="World Cup 2026 Predictor"
-      description="Explore simulated outcomes, group projections and the road to the final."
+      description="Explore the dashboard structure that will present Python-generated tournament projections."
     >
-      <section className="grid gap-4 md:grid-cols-3">
+      <p className="rounded-xl border border-dashed bg-card/60 px-4 py-3 text-sm text-muted-foreground">
+        Mock data until Python-generated JSON is connected.
+      </p>
+
+      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <SectionCard title="Groups" icon={<BarChart3 className="size-5" />}>
           <p className="text-sm text-muted-foreground">
             Review projected group standings and qualification chances.
@@ -37,6 +40,14 @@ export default async function HomePage() {
             View bracket <ArrowRight />
           </Link>
         </SectionCard>
+        <SectionCard title="Matches" icon={<CalendarDays className="size-5" />}>
+          <p className="text-sm text-muted-foreground">
+            Browse projected fixtures, probabilities and expected results.
+          </p>
+          <Link href="/matches" className={cn(buttonVariants({ variant: "outline" }), "mt-5 w-full")}>
+            Browse matches <ArrowRight />
+          </Link>
+        </SectionCard>
         <SectionCard title="Compare" icon={<GitCompareArrows className="size-5" />}>
           <p className="text-sm text-muted-foreground">
             Compare tournament probabilities across leading teams.
@@ -48,7 +59,7 @@ export default async function HomePage() {
       </section>
 
       <section className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
-        <SectionCard title="Top contenders" description="Mock Monte Carlo probabilities">
+        <SectionCard title="Top contenders" description="Mock data until Python-generated JSON is connected.">
           <div className="space-y-5">
             {favorites.map((item) => (
               <div key={item.team.id}>
@@ -63,8 +74,8 @@ export default async function HomePage() {
             ))}
           </div>
         </SectionCard>
-        <SectionCard title="Title probability" description="Initial Recharts integration">
-          <ProbabilityChart data={favorites} />
+        <SectionCard title="Bracket preview">
+          <div className="min-h-64" aria-label="Bracket preview placeholder" />
         </SectionCard>
       </section>
     </PageContainer>

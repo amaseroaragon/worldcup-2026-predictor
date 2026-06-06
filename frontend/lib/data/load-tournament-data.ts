@@ -1,6 +1,6 @@
 import type { TournamentData } from "@/lib/types";
 
-import { mockBracket, mockGroups, mockProbabilities } from "./mock-data";
+import { mockBracket, mockGroups, mockMatches, mockProbabilities } from "./mock-data";
 
 /**
  * Data access boundary for the frontend.
@@ -12,6 +12,7 @@ export async function loadTournamentData(): Promise<TournamentData> {
   return {
     groups: mockGroups,
     bracket: mockBracket,
+    matches: mockMatches,
     probabilities: mockProbabilities,
   };
 }

@@ -11,7 +11,7 @@ export default async function GroupsPage() {
     <PageContainer
       eyebrow="Group stage"
       title="Projected groups"
-      description="A first view of the teams in each group. Standings and qualification odds will come from Python-generated JSON."
+      description="Mock group composition until Python-generated JSON is connected."
     >
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {groups.map((group) => <GroupCard key={group.id} group={group} />)}

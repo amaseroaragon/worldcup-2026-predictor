@@ -11,7 +11,7 @@ export default async function BracketPage() {
     <PageContainer
       eyebrow="Knockout stage"
       title="Most likely bracket"
-      description="A placeholder bracket ready to receive simulated knockout matchups."
+      description="Mock knockout path until Python-generated JSON is connected."
     >
       <BracketSummary bracket={bracket} />
     </PageContainer>
