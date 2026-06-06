@@ -4,14 +4,16 @@ import { ArrowRight, BarChart3, CalendarDays, GitCompareArrows, Trophy } from "l
 import { ProbabilityBar } from "@/components/dashboard/probability-bar";
 import { PageContainer } from "@/components/layout/page-container";
 import { SectionCard } from "@/components/layout/section-card";
-import { TeamBadge } from "@/components/teams/team-badge";
 import { buttonVariants } from "@/components/ui/button";
-import { loadTournamentData } from "@/lib/data/load-tournament-data";
+import { loadWorldCupProbabilities } from "@/lib/data/load-prediction-data";
+import { formatPercent } from "@/lib/formatters";
 import { cn } from "@/lib/utils";
 
 export default async function HomePage() {
-  const { probabilities } = await loadTournamentData();
-  const favorites = probabilities.slice(0, 5);
+  const probabilities = await loadWorldCupProbabilities();
+  const favorites = probabilities
+    .toSorted((a, b) => b.champion_probability - a.champion_probability)
+    .slice(0, 5);
 
   return (
     <PageContainer
@@ -20,7 +22,7 @@ export default async function HomePage() {
       description="Explore the dashboard structure that will present Python-generated tournament projections."
     >
       <p className="rounded-xl border border-dashed bg-card/60 px-4 py-3 text-sm text-muted-foreground">
-        Mock data until Python-generated JSON is connected.
+        Overview probabilities loaded from the latest synchronized Python prediction exports.
       </p>
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -59,17 +61,21 @@ export default async function HomePage() {
       </section>
 
       <section className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
-        <SectionCard title="Top contenders" description="Mock data until Python-generated JSON is connected.">
+        <SectionCard title="Top contenders" description="Ranked by champion probability.">
           <div className="space-y-5">
             {favorites.map((item) => (
-              <div key={item.team.id}>
+              <div key={item.team}>
                 <div className="mb-2 flex items-center justify-between gap-3">
-                  <TeamBadge team={item.team} href={`/teams/${item.team.slug}`} />
-                  <span className="text-sm font-semibold">
-                    {Math.round(item.winTournament * 100)}%
+                  <span className="font-semibold">{item.team}</span>
+                  <span className="text-sm font-bold text-primary">
+                    {formatPercent(item.champion_probability, 1)}
                   </span>
                 </div>
-                <ProbabilityBar value={item.winTournament} />
+                <ProbabilityBar value={item.champion_probability} />
+                <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
+                  <span>Runner-up {formatPercent(item.runner_up_probability, 1)}</span>
+                  <span>Semi-final {formatPercent(item.semifinal_probability, 1)}</span>
+                </div>
               </div>
             ))}
           </div>

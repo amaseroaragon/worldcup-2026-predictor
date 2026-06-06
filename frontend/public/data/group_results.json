@@ -1,0 +1,561 @@
+{
+  "metadata": {
+    "source": "monte_carlo",
+    "scope": "world_cup_2026_group_results",
+    "simulations": 10000
+  },
+  "groups": {
+    "A": [
+      {
+        "position": 1,
+        "team": "South Korea",
+        "expected_position": 2.0586,
+        "expected_played": 3.0,
+        "expected_points": 5.0618,
+        "expected_goals_for": 3.9057,
+        "expected_goals_against": 2.5478,
+        "expected_goal_difference": 1.3579,
+        "qualification_probability": 0.8301
+      },
+      {
+        "position": 2,
+        "team": "Mexico",
+        "expected_position": 2.2288,
+        "expected_played": 3.0,
+        "expected_points": 4.6523,
+        "expected_goals_for": 3.2442,
+        "expected_goals_against": 2.461,
+        "expected_goal_difference": 0.7832,
+        "qualification_probability": 0.786
+      },
+      {
+        "position": 3,
+        "team": "Czech Republic",
+        "expected_position": 2.7965,
+        "expected_played": 3.0,
+        "expected_points": 3.3641,
+        "expected_goals_for": 2.9698,
+        "expected_goals_against": 3.9697,
+        "expected_goal_difference": -0.9999,
+        "qualification_probability": 0.5847
+      },
+      {
+        "position": 4,
+        "team": "South Africa",
+        "expected_position": 2.9161,
+        "expected_played": 3.0,
+        "expected_points": 3.1787,
+        "expected_goals_for": 2.4995,
+        "expected_goals_against": 3.6407,
+        "expected_goal_difference": -1.1412,
+        "qualification_probability": 0.5423
+      }
+    ],
+    "B": [
+      {
+        "position": 1,
+        "team": "Switzerland",
+        "expected_position": 1.5227,
+        "expected_played": 3.0,
+        "expected_points": 6.765,
+        "expected_goals_for": 7.8976,
+        "expected_goals_against": 2.6631,
+        "expected_goal_difference": 5.2345,
+        "qualification_probability": 0.9849
+      },
+      {
+        "position": 2,
+        "team": "Canada",
+        "expected_position": 1.7221,
+        "expected_played": 3.0,
+        "expected_points": 6.2866,
+        "expected_goals_for": 6.0511,
+        "expected_goals_against": 2.4632,
+        "expected_goal_difference": 3.5879,
+        "qualification_probability": 0.9656
+      },
+      {
+        "position": 3,
+        "team": "Bosnia and Herzegovina",
+        "expected_position": 3.1416,
+        "expected_played": 3.0,
+        "expected_points": 2.5781,
+        "expected_goals_for": 3.0738,
+        "expected_goals_against": 6.1865,
+        "expected_goal_difference": -3.1127,
+        "qualification_probability": 0.4503
+      },
+      {
+        "position": 4,
+        "team": "Qatar",
+        "expected_position": 3.6136,
+        "expected_played": 3.0,
+        "expected_points": 1.3771,
+        "expected_goals_for": 2.1969,
+        "expected_goals_against": 7.9066,
+        "expected_goal_difference": -5.7097,
+        "qualification_probability": 0.1744
+      }
+    ],
+    "C": [
+      {
+        "position": 1,
+        "team": "Brazil",
+        "expected_position": 1.6754,
+        "expected_played": 3.0,
+        "expected_points": 6.1734,
+        "expected_goals_for": 5.7071,
+        "expected_goals_against": 2.4848,
+        "expected_goal_difference": 3.2223,
+        "qualification_probability": 0.9389
+      },
+      {
+        "position": 2,
+        "team": "Morocco",
+        "expected_position": 1.8671,
+        "expected_played": 3.0,
+        "expected_points": 5.6902,
+        "expected_goals_for": 5.3587,
+        "expected_goals_against": 2.8598,
+        "expected_goal_difference": 2.4989,
+        "qualification_probability": 0.9192
+      },
+      {
+        "position": 3,
+        "team": "Haiti",
+        "expected_position": 3.0963,
+        "expected_played": 3.0,
+        "expected_points": 2.7346,
+        "expected_goals_for": 3.0646,
+        "expected_goals_against": 5.4039,
+        "expected_goal_difference": -2.3393,
+        "qualification_probability": 0.4799
+      },
+      {
+        "position": 4,
+        "team": "Scotland",
+        "expected_position": 3.3612,
+        "expected_played": 3.0,
+        "expected_points": 2.121,
+        "expected_goals_for": 2.488,
+        "expected_goals_against": 5.8699,
+        "expected_goal_difference": -3.3819,
+        "qualification_probability": 0.3367
+      }
+    ],
+    "D": [
+      {
+        "position": 1,
+        "team": "Turkey",
+        "expected_position": 1.92,
+        "expected_played": 3.0,
+        "expected_points": 5.4664,
+        "expected_goals_for": 5.2533,
+        "expected_goals_against": 3.1915,
+        "expected_goal_difference": 2.0618,
+        "qualification_probability": 0.872
+      },
+      {
+        "position": 2,
+        "team": "Australia",
+        "expected_position": 2.1843,
+        "expected_played": 3.0,
+        "expected_points": 4.8002,
+        "expected_goals_for": 3.948,
+        "expected_goals_against": 2.992,
+        "expected_goal_difference": 0.956,
+        "qualification_probability": 0.8068
+      },
+      {
+        "position": 3,
+        "team": "United States",
+        "expected_position": 2.8243,
+        "expected_played": 3.0,
+        "expected_points": 3.3967,
+        "expected_goals_for": 3.6787,
+        "expected_goals_against": 4.9412,
+        "expected_goal_difference": -1.2625,
+        "qualification_probability": 0.5804
+      },
+      {
+        "position": 4,
+        "team": "Paraguay",
+        "expected_position": 3.0714,
+        "expected_played": 3.0,
+        "expected_points": 2.8021,
+        "expected_goals_for": 2.4227,
+        "expected_goals_against": 4.178,
+        "expected_goal_difference": -1.7553,
+        "qualification_probability": 0.4656
+      }
+    ],
+    "E": [
+      {
+        "position": 1,
+        "team": "Germany",
+        "expected_position": 1.5444,
+        "expected_played": 3.0,
+        "expected_points": 6.3918,
+        "expected_goals_for": 5.8437,
+        "expected_goals_against": 2.3552,
+        "expected_goal_difference": 3.4885,
+        "qualification_probability": 0.9481
+      },
+      {
+        "position": 2,
+        "team": "Ivory Coast",
+        "expected_position": 2.469,
+        "expected_played": 3.0,
+        "expected_points": 4.1515,
+        "expected_goals_for": 3.4299,
+        "expected_goals_against": 3.3837,
+        "expected_goal_difference": 0.0462,
+        "qualification_probability": 0.7335
+      },
+      {
+        "position": 3,
+        "team": "Ecuador",
+        "expected_position": 2.7401,
+        "expected_played": 3.0,
+        "expected_points": 3.506,
+        "expected_goals_for": 2.3868,
+        "expected_goals_against": 3.0899,
+        "expected_goal_difference": -0.7031,
+        "qualification_probability": 0.6218
+      },
+      {
+        "position": 4,
+        "team": "Curaçao",
+        "expected_position": 3.2465,
+        "expected_played": 3.0,
+        "expected_points": 2.3677,
+        "expected_goals_for": 2.3778,
+        "expected_goals_against": 5.2094,
+        "expected_goal_difference": -2.8316,
+        "qualification_probability": 0.3779
+      }
+    ],
+    "F": [
+      {
+        "position": 1,
+        "team": "Netherlands",
+        "expected_position": 1.7749,
+        "expected_played": 3.0,
+        "expected_points": 5.9632,
+        "expected_goals_for": 6.3511,
+        "expected_goals_against": 3.2395,
+        "expected_goal_difference": 3.1116,
+        "qualification_probability": 0.927
+      },
+      {
+        "position": 2,
+        "team": "Japan",
+        "expected_position": 1.8149,
+        "expected_played": 3.0,
+        "expected_points": 5.8376,
+        "expected_goals_for": 6.0269,
+        "expected_goals_against": 3.1584,
+        "expected_goal_difference": 2.8685,
+        "qualification_probability": 0.922
+      },
+      {
+        "position": 3,
+        "team": "Tunisia",
+        "expected_position": 3.0487,
+        "expected_played": 3.0,
+        "expected_points": 2.874,
+        "expected_goals_for": 3.1139,
+        "expected_goals_against": 5.06,
+        "expected_goal_difference": -1.9461,
+        "qualification_probability": 0.5062
+      },
+      {
+        "position": 4,
+        "team": "Sweden",
+        "expected_position": 3.3615,
+        "expected_played": 3.0,
+        "expected_points": 2.1197,
+        "expected_goals_for": 3.3397,
+        "expected_goals_against": 7.3737,
+        "expected_goal_difference": -4.034,
+        "qualification_probability": 0.3276
+      }
+    ],
+    "G": [
+      {
+        "position": 1,
+        "team": "Belgium",
+        "expected_position": 1.9445,
+        "expected_played": 3.0,
+        "expected_points": 5.3276,
+        "expected_goals_for": 4.8337,
+        "expected_goals_against": 3.1201,
+        "expected_goal_difference": 1.7136,
+        "qualification_probability": 0.8536
+      },
+      {
+        "position": 2,
+        "team": "Iran",
+        "expected_position": 2.3379,
+        "expected_played": 3.0,
+        "expected_points": 4.4471,
+        "expected_goals_for": 3.5936,
+        "expected_goals_against": 3.1453,
+        "expected_goal_difference": 0.4483,
+        "qualification_probability": 0.7562
+      },
+      {
+        "position": 3,
+        "team": "New Zealand",
+        "expected_position": 2.5971,
+        "expected_played": 3.0,
+        "expected_points": 3.905,
+        "expected_goals_for": 3.43,
+        "expected_goals_against": 3.7707,
+        "expected_goal_difference": -0.3407,
+        "qualification_probability": 0.6642
+      },
+      {
+        "position": 4,
+        "team": "Egypt",
+        "expected_position": 3.1205,
+        "expected_played": 3.0,
+        "expected_points": 2.6849,
+        "expected_goals_for": 2.1451,
+        "expected_goals_against": 3.9663,
+        "expected_goal_difference": -1.8212,
+        "qualification_probability": 0.4383
+      }
+    ],
+    "H": [
+      {
+        "position": 1,
+        "team": "Spain",
+        "expected_position": 1.1349,
+        "expected_played": 3.0,
+        "expected_points": 7.8058,
+        "expected_goals_for": 7.7169,
+        "expected_goals_against": 1.1979,
+        "expected_goal_difference": 6.519,
+        "qualification_probability": 0.9962
+      },
+      {
+        "position": 2,
+        "team": "Uruguay",
+        "expected_position": 2.4966,
+        "expected_played": 3.0,
+        "expected_points": 3.9677,
+        "expected_goals_for": 2.4102,
+        "expected_goals_against": 2.8184,
+        "expected_goal_difference": -0.4082,
+        "qualification_probability": 0.7259
+      },
+      {
+        "position": 3,
+        "team": "Cape Verde",
+        "expected_position": 2.9822,
+        "expected_played": 3.0,
+        "expected_points": 2.8523,
+        "expected_goals_for": 1.9265,
+        "expected_goals_against": 4.169,
+        "expected_goal_difference": -2.2425,
+        "qualification_probability": 0.4991
+      },
+      {
+        "position": 4,
+        "team": "Saudi Arabia",
+        "expected_position": 3.3863,
+        "expected_played": 3.0,
+        "expected_points": 1.944,
+        "expected_goals_for": 1.4266,
+        "expected_goals_against": 5.2949,
+        "expected_goal_difference": -3.8683,
+        "qualification_probability": 0.279
+      }
+    ],
+    "I": [
+      {
+        "position": 1,
+        "team": "France",
+        "expected_position": 1.637,
+        "expected_played": 3.0,
+        "expected_points": 6.2588,
+        "expected_goals_for": 5.9045,
+        "expected_goals_against": 2.643,
+        "expected_goal_difference": 3.2615,
+        "qualification_probability": 0.947
+      },
+      {
+        "position": 2,
+        "team": "Senegal",
+        "expected_position": 2.278,
+        "expected_played": 3.0,
+        "expected_points": 4.6858,
+        "expected_goals_for": 4.2685,
+        "expected_goals_against": 3.5458,
+        "expected_goal_difference": 0.7227,
+        "qualification_probability": 0.8086
+      },
+      {
+        "position": 3,
+        "team": "Norway",
+        "expected_position": 2.495,
+        "expected_played": 3.0,
+        "expected_points": 4.1636,
+        "expected_goals_for": 3.8325,
+        "expected_goals_against": 3.9298,
+        "expected_goal_difference": -0.0973,
+        "qualification_probability": 0.7372
+      },
+      {
+        "position": 4,
+        "team": "Iraq",
+        "expected_position": 3.59,
+        "expected_played": 3.0,
+        "expected_points": 1.5425,
+        "expected_goals_for": 1.4812,
+        "expected_goals_against": 5.3681,
+        "expected_goal_difference": -3.8869,
+        "qualification_probability": 0.2056
+      }
+    ],
+    "J": [
+      {
+        "position": 1,
+        "team": "Argentina",
+        "expected_position": 1.3959,
+        "expected_played": 3.0,
+        "expected_points": 7.0062,
+        "expected_goals_for": 7.5229,
+        "expected_goals_against": 2.3168,
+        "expected_goal_difference": 5.2061,
+        "qualification_probability": 0.9851
+      },
+      {
+        "position": 2,
+        "team": "Algeria",
+        "expected_position": 2.4358,
+        "expected_played": 3.0,
+        "expected_points": 4.3294,
+        "expected_goals_for": 4.5017,
+        "expected_goals_against": 4.1625,
+        "expected_goal_difference": 0.3392,
+        "qualification_probability": 0.7993
+      },
+      {
+        "position": 3,
+        "team": "Austria",
+        "expected_position": 2.4815,
+        "expected_played": 3.0,
+        "expected_points": 4.2497,
+        "expected_goals_for": 4.4351,
+        "expected_goals_against": 4.2483,
+        "expected_goal_difference": 0.1868,
+        "qualification_probability": 0.7804
+      },
+      {
+        "position": 4,
+        "team": "Jordan",
+        "expected_position": 3.6868,
+        "expected_played": 3.0,
+        "expected_points": 1.2866,
+        "expected_goals_for": 2.2956,
+        "expected_goals_against": 8.0277,
+        "expected_goal_difference": -5.7321,
+        "qualification_probability": 0.1607
+      }
+    ],
+    "K": [
+      {
+        "position": 1,
+        "team": "Portugal",
+        "expected_position": 1.6151,
+        "expected_played": 3.0,
+        "expected_points": 6.2455,
+        "expected_goals_for": 5.343,
+        "expected_goals_against": 2.2711,
+        "expected_goal_difference": 3.0719,
+        "qualification_probability": 0.9374
+      },
+      {
+        "position": 2,
+        "team": "Colombia",
+        "expected_position": 2.0986,
+        "expected_played": 3.0,
+        "expected_points": 4.9966,
+        "expected_goals_for": 4.2238,
+        "expected_goals_against": 3.0688,
+        "expected_goal_difference": 1.155,
+        "qualification_probability": 0.8404
+      },
+      {
+        "position": 3,
+        "team": "DR Congo",
+        "expected_position": 3.1234,
+        "expected_played": 3.0,
+        "expected_points": 2.6376,
+        "expected_goals_for": 2.1581,
+        "expected_goals_against": 4.2977,
+        "expected_goal_difference": -2.1396,
+        "qualification_probability": 0.4427
+      },
+      {
+        "position": 4,
+        "team": "Uzbekistan",
+        "expected_position": 3.1629,
+        "expected_played": 3.0,
+        "expected_points": 2.5864,
+        "expected_goals_for": 1.9296,
+        "expected_goals_against": 4.0169,
+        "expected_goal_difference": -2.0873,
+        "qualification_probability": 0.4258
+      }
+    ],
+    "L": [
+      {
+        "position": 1,
+        "team": "England",
+        "expected_position": 1.4816,
+        "expected_played": 3.0,
+        "expected_points": 6.8653,
+        "expected_goals_for": 7.3297,
+        "expected_goals_against": 2.4229,
+        "expected_goal_difference": 4.9068,
+        "qualification_probability": 0.9814
+      },
+      {
+        "position": 2,
+        "team": "Croatia",
+        "expected_position": 1.897,
+        "expected_played": 3.0,
+        "expected_points": 5.7143,
+        "expected_goals_for": 6.0892,
+        "expected_goals_against": 3.3322,
+        "expected_goal_difference": 2.757,
+        "qualification_probability": 0.9328
+      },
+      {
+        "position": 3,
+        "team": "Panama",
+        "expected_position": 3.0138,
+        "expected_played": 3.0,
+        "expected_points": 2.9515,
+        "expected_goals_for": 3.3945,
+        "expected_goals_against": 5.6823,
+        "expected_goal_difference": -2.2878,
+        "qualification_probability": 0.5329
+      },
+      {
+        "position": 4,
+        "team": "Ghana",
+        "expected_position": 3.6076,
+        "expected_played": 3.0,
+        "expected_points": 1.4206,
+        "expected_goals_for": 2.1631,
+        "expected_goals_against": 7.5391,
+        "expected_goal_difference": -5.376,
+        "qualification_probability": 0.1883
+      }
+    ]
+  }
+}
