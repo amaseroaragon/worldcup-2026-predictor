@@ -18,10 +18,14 @@ from src.prediction.settings import (
     DEFAULT_WORLD_CUP_2026_THIRD_PLACE_COMBINATIONS_PATH,
 )
 from src.prediction.io.exports import (
+    DEFAULT_GROUP_RESULTS_JSON_PATH,
     DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH,
+    DEFAULT_WORLD_CUP_TEAM_METRICS_JSON_PATH,
     DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH,
+    export_group_results,
     export_match_predictions_json,
     export_probabilities,
+    export_world_cup_team_metrics,
     validate_probability_output,
 )
 from src.prediction.tournament_flow.monte_carlo import run_monte_carlo
@@ -104,12 +108,13 @@ def main() -> None:
         third_place_combinations_config=args.third_place_combinations_config,
         squad_values_config=args.squad_values_config,
     )
-    export_team_metrics(
+    team_metrics = export_team_metrics(
         inputs.team_strength_ratings,
         recent_form_ratings=inputs.recent_form_ratings,
         squad_strength_ratings=inputs.squad_strength_ratings,
         squad_values_source=path_relative_to_project(args.squad_values_config),
     )
+    export_world_cup_team_metrics(team_metrics, inputs.groups)
 
     print(f"Running prediction pipeline with {args.simulations} simulations...")
     probabilities, outcomes = run_monte_carlo(
@@ -128,6 +133,7 @@ def main() -> None:
 
     df = export_probabilities(probabilities, args.output)
     validate_probability_output(df)
+    export_group_results(outcomes, inputs.groups)
 
     match_predictions = build_predicted_bracket_predictions(
         outcomes=outcomes,
@@ -155,6 +161,8 @@ def main() -> None:
 
     print(f"Generated file: {args.output}")
     print(f"Generated predictions file: {args.predictions_output}")
+    print(f"Generated World Cup team metrics file: {DEFAULT_WORLD_CUP_TEAM_METRICS_JSON_PATH}")
+    print(f"Generated group results file: {DEFAULT_GROUP_RESULTS_JSON_PATH}")
     print(f"Simulations executed: {args.simulations}")
     print("Validation status: passed")
     print("\nTop 10 teams by champion probability:")

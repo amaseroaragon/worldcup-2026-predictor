@@ -1,18 +1,25 @@
 from __future__ import annotations
 
 import json
+from collections import defaultdict
 from dataclasses import asdict
 from pathlib import Path
 
 import pandas as pd
 
-from src.prediction.core.models import MatchPrediction
+from src.prediction.core.models import MatchPrediction, TournamentOutcome
 from src.prediction.settings import (
     DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH,
     DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH,
+    PREDICTIONS_OUTPUT_DIR,
     PROBABILITY_COLUMNS,
     PROBABILITY_VALUE_COLUMNS,
 )
+
+DEFAULT_WORLD_CUP_TEAM_METRICS_JSON_PATH = (
+    PREDICTIONS_OUTPUT_DIR / "world_cup_team_metrics.json"
+)
+DEFAULT_GROUP_RESULTS_JSON_PATH = PREDICTIONS_OUTPUT_DIR / "group_results.json"
 
 
 def probabilities_to_dataframe(probabilities: dict) -> pd.DataFrame:
@@ -66,6 +73,138 @@ def export_match_predictions_json(
     payload = {
         "metadata": metadata or {},
         "matches": rows,
+    }
+    with output_path.open("w", encoding="utf-8") as file:
+        json.dump(payload, file, ensure_ascii=False, indent=2)
+
+    return payload
+
+
+def export_world_cup_team_metrics(
+    team_metrics: dict,
+    groups: dict[str, list[str]],
+    output_path: str | Path = DEFAULT_WORLD_CUP_TEAM_METRICS_JSON_PATH,
+) -> dict:
+    """Write team metrics filtered to the configured World Cup groups."""
+
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    group_by_team = {
+        team: group
+        for group, teams in groups.items()
+        for team in teams
+    }
+    metrics_by_team = {
+        record["team"]: record
+        for record in team_metrics.get("teams", [])
+    }
+    records = []
+    for team, group in group_by_team.items():
+        if team not in metrics_by_team:
+            raise ValueError(f"Missing team metrics for World Cup team: {team}")
+        record = metrics_by_team[team]
+        records.append(
+            {
+                "team": team,
+                "group": group,
+                "attack_rating": record.get("attack_rating"),
+                "defense_rating": record.get("defense_rating"),
+                "matches_used": record.get("matches_used"),
+                "recent_form": record.get("recent_form"),
+                "squad_strength": record.get("squad_strength"),
+            }
+        )
+
+    payload = {
+        "metadata": {
+            "source": "team_metrics.json",
+            "scope": "world_cup_2026_teams",
+        },
+        "teams": sorted(records, key=lambda record: (record["group"], record["team"])),
+    }
+    with output_path.open("w", encoding="utf-8") as file:
+        json.dump(payload, file, ensure_ascii=False, indent=2)
+
+    return payload
+
+
+def export_group_results(
+    outcomes: list[TournamentOutcome],
+    groups: dict[str, list[str]],
+    output_path: str | Path = DEFAULT_GROUP_RESULTS_JSON_PATH,
+) -> dict:
+    """Write aggregate group standings from Monte Carlo tournament outcomes."""
+
+    if not outcomes:
+        raise ValueError("outcomes must not be empty")
+
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    totals = defaultdict(
+        lambda: {
+            "position": 0.0,
+            "played": 0.0,
+            "points": 0.0,
+            "goals_for": 0.0,
+            "goals_against": 0.0,
+            "goal_difference": 0.0,
+            "qualified": 0,
+        }
+    )
+    for outcome in outcomes:
+        for group, group_outcome in outcome.group_outcomes.items():
+            for position, row in enumerate(group_outcome.standings, start=1):
+                values = totals[(group, row.team)]
+                values["position"] += position
+                values["played"] += row.played
+                values["points"] += row.points
+                values["goals_for"] += row.goals_for
+                values["goals_against"] += row.goals_against
+                values["goal_difference"] += row.goal_difference
+                values["qualified"] += int(row.team in outcome.round_of_32)
+
+    simulations = len(outcomes)
+    group_results = {}
+    for group, teams in groups.items():
+        records = []
+        for team in teams:
+            values = totals[(group, team)]
+            records.append(
+                {
+                    "team": team,
+                    "expected_position": values["position"] / simulations,
+                    "expected_played": values["played"] / simulations,
+                    "expected_points": values["points"] / simulations,
+                    "expected_goals_for": values["goals_for"] / simulations,
+                    "expected_goals_against": values["goals_against"] / simulations,
+                    "expected_goal_difference": values["goal_difference"] / simulations,
+                    "qualification_probability": values["qualified"] / simulations,
+                }
+            )
+
+        records.sort(
+            key=lambda record: (
+                record["expected_position"],
+                -record["expected_points"],
+                -record["expected_goal_difference"],
+                -record["expected_goals_for"],
+                record["team"],
+            )
+        )
+        group_results[group] = [
+            {"position": position, **record}
+            for position, record in enumerate(records, start=1)
+        ]
+
+    payload = {
+        "metadata": {
+            "source": "monte_carlo",
+            "scope": "world_cup_2026_group_results",
+            "simulations": simulations,
+        },
+        "groups": group_results,
     }
     with output_path.open("w", encoding="utf-8") as file:
         json.dump(payload, file, ensure_ascii=False, indent=2)
