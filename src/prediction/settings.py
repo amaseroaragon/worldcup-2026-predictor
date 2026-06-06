@@ -142,7 +142,7 @@ class ModelWeights:
     recent_form_weight: float = 0.15
     recent_form_primary_window: int = 10
     use_squad_strength: bool = True
-    squad_strength_weight: float = 0.10
+    squad_strength_weight: float = 0.30
     use_model_based_knockout_tiebreaker: bool = True
     tiebreaker_expected_goals_weight: float = 0.35
     base_goals: float = 1.35

@@ -99,8 +99,8 @@ def test_expected_goals_include_squad_strength_multiplier():
         squad_strength_rating_b=0.85,
     )
 
-    assert goals_a == pytest.approx(1.35 * (1 + 0.10 * 0.15))
-    assert goals_b == pytest.approx(1.35 * (1 + 0.10 * -0.15))
+    assert goals_a == pytest.approx(1.35 * (1 + 0.30 * 0.15))
+    assert goals_b == pytest.approx(1.35 * (1 + 0.30 * -0.15))
 
 
 def test_recent_form_multiplier_uses_neutral_fallback():

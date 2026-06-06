@@ -140,6 +140,16 @@ Scripts are operational entry points.
 
 - `scripts/prediction/run_prediction_pipeline.py`: runs the full prediction pipeline, including team metrics, Monte Carlo probabilities, and match predictions.
 
+### Backtesting and Calibration
+
+- `scripts/backtesting/run_backtest.py`: runs the prediction pipeline against a historical tournament dataset.
+- `scripts/backtesting/evaluate_model_variants.py`: compares declarative model-component variants.
+- `scripts/backtesting/calibration_experiments.py`: evaluates individual calibration parameters.
+- `scripts/backtesting/combination_experiments.py`: evaluates controlled parameter combinations.
+- `scripts/backtesting/multiseed_combination_experiments.py`: validates selected combinations across multiple seeds.
+
+V5.5 calibration used World Cup 2018, World Cup 2022, and Euro 2024. The selected default keeps `recent_form_weight = 0.15` and Dynamic Elo enabled, while setting `squad_strength_weight = 0.30`.
+
 ## Data Flow
 
 ```text

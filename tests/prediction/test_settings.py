@@ -200,7 +200,7 @@ def test_model_weight_aliases_keep_current_values():
         MODEL_WEIGHTS.recent_form_primary_window
     ) == 10
     assert prediction_config.USE_SQUAD_STRENGTH is MODEL_WEIGHTS.use_squad_strength is True
-    assert prediction_config.SQUAD_STRENGTH_WEIGHT == MODEL_WEIGHTS.squad_strength_weight == 0.10
+    assert prediction_config.SQUAD_STRENGTH_WEIGHT == MODEL_WEIGHTS.squad_strength_weight == 0.30
     assert prediction_config.TIEBREAKER_EXPECTED_GOALS_WEIGHT == (
         MODEL_WEIGHTS.tiebreaker_expected_goals_weight
     ) == 0.35

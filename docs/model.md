@@ -104,6 +104,8 @@ Current process:
 
 The result acts as an additional expected-goals multiplier. Missing squad strength is treated as neutral.
 
+The calibrated default squad-strength weight is `0.30`.
+
 ## Knockout Tiebreaker
 
 If a knockout match has a tied simulated score, the model calculates the probability that team A advances.
@@ -120,6 +122,22 @@ The expected-goals component is controlled by `TIEBREAKER_EXPECTED_GOALS_WEIGHT`
 During a tournament simulation, the model can update a local copy of Elo ratings after group-stage and knockout matches.
 
 This does not modify `data/processed/elo_rankings.csv`; it only affects later matches within the same simulation. The relevant flags are defined in `settings.py` and re-exported through `config.py`.
+
+## V5.5 Calibration
+
+The default model configuration was calibrated through historical backtesting against:
+
+- FIFA World Cup 2018.
+- FIFA World Cup 2022.
+- UEFA Euro 2024.
+
+The calibration process compared model-component variants, controlled weight combinations, and repeated evaluations across multiple random seeds. The selected default configuration is:
+
+- `recent_form_weight = 0.15` unchanged.
+- `squad_strength_weight = 0.30`, increased from `0.10`.
+- Dynamic Elo enabled for the group stage and knockout stage, unchanged.
+
+The selected configuration provided a conservative improvement while retaining Dynamic Elo. Calibration experiments remain isolated from the main prediction pipeline.
 
 ## Current Limits
 

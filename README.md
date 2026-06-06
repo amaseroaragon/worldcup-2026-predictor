@@ -89,4 +89,6 @@ python -m pytest -q
 
 ## Current Status
 
-The project is currently in V5: architecture cleanup, data validation, documentation, and preparation for Monte Carlo optimization. The frontend is planned for V6 and is not implemented yet.
+The project is currently in V5.5. Model calibration was validated through backtesting on World Cup 2018, World Cup 2022, and Euro 2024, including model variants and multiple random seeds.
+
+The selected default configuration keeps `recent_form_weight = 0.15` and Dynamic Elo enabled, and uses the calibrated `squad_strength_weight = 0.30`. The frontend is planned for V6 and is not implemented yet.
