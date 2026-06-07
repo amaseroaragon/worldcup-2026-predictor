@@ -12,6 +12,16 @@ export const MATCH_ROUND_FILTERS = [
 
 export type MatchRoundFilter = (typeof MATCH_ROUND_FILTERS)[number];
 
+export const BRACKET_ROUNDS = [
+  "Round of 32",
+  "Round of 16",
+  "Quarter-final",
+  "Semi-final",
+  "Final",
+] as const;
+
+export type BracketRoundLabel = (typeof BRACKET_ROUNDS)[number];
+
 const ROUND_ORDER: Record<string, number> = {
   "Group Stage": 0,
   "Round of 32": 1,

@@ -1,19 +1,24 @@
 import { BracketSummary } from "@/components/bracket/bracket-summary";
 import { PageContainer } from "@/components/layout/page-container";
-import { loadTournamentData } from "@/lib/data/load-tournament-data";
+import { loadTournamentPredictions } from "@/lib/data/load-prediction-data";
 
 export const metadata = { title: "Bracket" };
 
 export default async function BracketPage() {
-  const { bracket } = await loadTournamentData();
+  const { matches, metadata } = await loadTournamentPredictions();
+  const knockoutMatches = matches.filter((match) => match.round !== null);
 
   return (
     <PageContainer
       eyebrow="Knockout stage"
       title="Most likely bracket"
-      description="Mock knockout path until Python-generated JSON is connected."
+      description="Projected knockout matchups derived from synchronized tournament predictions."
     >
-      <BracketSummary bracket={bracket} />
+      <p className="rounded-xl border border-dashed bg-card/60 px-4 py-3 text-sm text-muted-foreground">
+        Loaded from the latest synchronized tournament predictions
+        {typeof metadata.simulations === "number" ? ` · ${metadata.simulations.toLocaleString("en")} simulations` : ""}.
+      </p>
+      <BracketSummary matches={knockoutMatches} />
     </PageContainer>
   );
 }
