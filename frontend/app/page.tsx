@@ -4,6 +4,7 @@ import { ArrowRight, BarChart3, CalendarDays, GitCompareArrows, Trophy } from "l
 import { ProbabilityBar } from "@/components/dashboard/probability-bar";
 import { PageContainer } from "@/components/layout/page-container";
 import { SectionCard } from "@/components/layout/section-card";
+import { TeamBadge } from "@/components/teams/team-badge";
 import { buttonVariants } from "@/components/ui/button";
 import { loadWorldCupProbabilities } from "@/lib/data/load-prediction-data";
 import { formatPercent } from "@/lib/formatters";
@@ -66,7 +67,7 @@ export default async function HomePage() {
             {favorites.map((item) => (
               <div key={item.team}>
                 <div className="mb-2 flex items-center justify-between gap-3">
-                  <span className="font-semibold">{item.team}</span>
+                  <TeamBadge team={item.team} />
                   <span className="text-sm font-bold text-primary">
                     {formatPercent(item.champion_probability, 1)}
                   </span>

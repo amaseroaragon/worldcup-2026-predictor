@@ -1,5 +1,6 @@
 import { ProbabilityBar } from "@/components/dashboard/probability-bar";
 import { SectionCard } from "@/components/layout/section-card";
+import { TeamBadge } from "@/components/teams/team-badge";
 import { formatPercent } from "@/lib/formatters";
 import type { WorldCupProbability } from "@/lib/types";
 
@@ -21,7 +22,7 @@ export function CompareTable({ probabilities }: { probabilities: WorldCupProbabi
             {probabilities.map((item, index) => (
               <tr key={item.team} className="transition hover:bg-muted/40">
                 <td className="py-4 pr-5 font-bold text-muted-foreground">{index + 1}</td>
-                <td className="py-5 pr-8 font-semibold">{item.team}</td>
+                <td className="py-5 pr-8"><TeamBadge team={item.team} size="sm" /></td>
                 <td className="w-64 px-8 py-5">
                   <div className="mb-2 font-semibold">{formatPercent(item.champion_probability, 1)}</div>
                   <ProbabilityBar value={item.champion_probability} />

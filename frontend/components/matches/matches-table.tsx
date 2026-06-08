@@ -3,6 +3,7 @@ import {
   formatMatchRound,
   formatPredictedScore,
 } from "@/lib/match-formatters";
+import { TeamBadge } from "@/components/teams/team-badge";
 import type { TournamentPredictionMatch } from "@/lib/types";
 
 type MatchesTableProps = {
@@ -32,8 +33,8 @@ export function MatchesTable({ matches }: MatchesTableProps) {
             <tr key={match.match_id} className="transition hover:bg-muted/40">
               <td className="whitespace-nowrap py-4 pr-5 text-muted-foreground">{formatMatchRound(match)}</td>
               <td className="whitespace-nowrap py-4 pr-5 font-medium">{match.match_id}</td>
-              <td className="whitespace-nowrap py-4 pr-6 font-semibold">{match.home_team}</td>
-              <td className="whitespace-nowrap py-4 pr-6 font-semibold">{match.away_team}</td>
+              <td className="whitespace-nowrap py-4 pr-6"><TeamBadge team={match.home_team} size="sm" /></td>
+              <td className="whitespace-nowrap py-4 pr-6"><TeamBadge team={match.away_team} size="sm" /></td>
               <td className="py-4 pr-5 font-semibold text-primary">{formatMatchProbability(match.home_win_probability)}</td>
               <td className="py-4 pr-5">{formatMatchProbability(match.draw_probability)}</td>
               <td className="py-4 pr-5 font-semibold text-primary">{formatMatchProbability(match.away_win_probability)}</td>
@@ -42,7 +43,9 @@ export function MatchesTable({ matches }: MatchesTableProps) {
                   {formatPredictedScore(match)}
                 </span>
               </td>
-              <td className="whitespace-nowrap py-4 pr-5">{match.predicted_winner ?? "—"}</td>
+              <td className="whitespace-nowrap py-4 pr-5">
+                {match.predicted_winner ? <TeamBadge team={match.predicted_winner} size="sm" /> : "—"}
+              </td>
               <td className="py-4 text-right">{formatMatchProbability(match.appearance_probability)}</td>
             </tr>
           ))}

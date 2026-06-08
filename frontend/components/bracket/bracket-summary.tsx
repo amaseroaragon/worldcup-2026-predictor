@@ -1,4 +1,5 @@
 import { SectionCard } from "@/components/layout/section-card";
+import { TeamBadge } from "@/components/teams/team-badge";
 import {
   BRACKET_ROUNDS,
   formatMatchProbability,
@@ -19,13 +20,13 @@ function MatchCard({ match }: { match: TournamentPredictionMatch }) {
 
       <div className="space-y-2">
         <div className="flex items-center justify-between gap-3">
-          <span className="font-semibold">{match.home_team}</span>
+          <TeamBadge team={match.home_team} size="sm" />
           <span className="text-sm font-bold text-primary">
             {formatMatchProbability(match.home_win_probability)}
           </span>
         </div>
         <div className="flex items-center justify-between gap-3">
-          <span className="font-semibold">{match.away_team}</span>
+          <TeamBadge team={match.away_team} size="sm" />
           <span className="text-sm font-bold text-primary">
             {formatMatchProbability(match.away_win_probability)}
           </span>
@@ -41,9 +42,11 @@ function MatchCard({ match }: { match: TournamentPredictionMatch }) {
         )}
         <div className="flex justify-between gap-3">
           <span>Winner</span>
-          <span className="text-right font-semibold text-foreground">
-            {match.predicted_winner ?? "—"}
-          </span>
+          {match.predicted_winner ? (
+            <TeamBadge team={match.predicted_winner} size="sm" />
+          ) : (
+            <span>—</span>
+          )}
         </div>
         <div className="flex justify-between gap-3">
           <span>Appearance</span>

@@ -146,3 +146,9 @@ export type TournamentPredictions = {
   metadata: Record<string, unknown>;
   matches: TournamentPredictionMatch[];
 };
+
+export type TeamProfile = {
+  metric: TeamMetric;
+  probability: WorldCupProbability | null;
+  groupResult: GroupResultTeam | null;
+};

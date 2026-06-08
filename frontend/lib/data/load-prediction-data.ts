@@ -1,6 +1,7 @@
 import type {
   GroupResults,
   TeamMetric,
+  TeamProfile,
   TournamentPredictions,
   WorldCupProbability,
 } from "@/lib/types";
@@ -26,4 +27,22 @@ export function loadGroupResults(): Promise<GroupResults> {
 
 export function loadTournamentPredictions(): Promise<TournamentPredictions> {
   return loadPublicJson("/data/tournament_predictions.json");
+}
+
+export async function loadTeamProfiles(): Promise<TeamProfile[]> {
+  const [{ teams }, probabilities, { groups }] = await Promise.all([
+    loadWorldCupTeamMetrics(),
+    loadWorldCupProbabilities(),
+    loadGroupResults(),
+  ]);
+  const probabilitiesByTeam = new Map(probabilities.map((item) => [item.team, item]));
+  const groupResultsByTeam = new Map(
+    Object.values(groups).flatMap((standings) => standings.map((item) => [item.team, item] as const)),
+  );
+
+  return teams.map((metric) => ({
+    metric,
+    probability: probabilitiesByTeam.get(metric.team) ?? null,
+    groupResult: groupResultsByTeam.get(metric.team) ?? null,
+  }));
 }

@@ -1,6 +1,7 @@
 import { CompareTable } from "@/components/compare/compare-table";
 import { PageContainer } from "@/components/layout/page-container";
 import { SectionCard } from "@/components/layout/section-card";
+import { TeamBadge } from "@/components/teams/team-badge";
 import { loadWorldCupProbabilities } from "@/lib/data/load-prediction-data";
 import { formatPercent } from "@/lib/formatters";
 
@@ -27,7 +28,7 @@ export default async function ComparePage() {
         <SectionCard title="Current favourite">
           {favourite ? (
             <>
-              <p className="text-2xl font-bold tracking-tight">{favourite.team}</p>
+              <TeamBadge team={favourite.team} size="lg" />
               <p className="mt-1 text-sm text-muted-foreground">
                 {formatPercent(favourite.champion_probability, 1)} title probability
               </p>

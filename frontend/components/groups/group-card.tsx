@@ -1,4 +1,5 @@
 import { SectionCard } from "@/components/layout/section-card";
+import { TeamBadge } from "@/components/teams/team-badge";
 import { formatOptionalNumber, formatOptionalPercent } from "@/lib/formatters";
 import type { GroupResultTeam } from "@/lib/types";
 
@@ -31,7 +32,7 @@ export function GroupCard({ group, teams, projectedPoints }: GroupCardProps) {
             {teams.map((team) => (
               <tr key={team.team}>
                 <td className="py-3 pr-2 font-bold text-muted-foreground">{team.position}</td>
-                <td className="py-3 pr-3 font-semibold">{team.team}</td>
+                <td className="py-3 pr-3"><TeamBadge team={team.team} size="sm" /></td>
                 <td className="py-3 text-center font-semibold">{formatOptionalNumber(firstDefined(projectedPoints[team.team], team.points), 0)}</td>
                 <td className="py-3 text-center">{formatOptionalNumber(firstDefined(team.expected_goals_for, team.goals_for))}</td>
                 <td className="py-3 text-center">{formatOptionalNumber(firstDefined(team.expected_goals_against, team.goals_against))}</td>
