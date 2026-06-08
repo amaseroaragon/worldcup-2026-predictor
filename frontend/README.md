@@ -6,13 +6,15 @@ Independent Next.js frontend for exploring tournament predictions. Overview and 
 
 ```bash
 python scripts/prediction/run_prediction_pipeline.py
-python scripts/frontend/sync_frontend_data.py
 cd frontend
 npm install
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000). Use `npm run lint` and `npm run build` before shipping changes.
+
+The prediction pipeline automatically synchronizes its JSON outputs into `public/data/`.
+You can also run `python scripts/frontend/sync_frontend_data.py` manually when needed.
 
 ## Structure
 

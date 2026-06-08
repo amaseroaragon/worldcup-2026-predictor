@@ -32,6 +32,7 @@ from src.prediction.tournament_flow.monte_carlo import run_monte_carlo
 from src.prediction.tournament_flow.bracket_predictions import build_predicted_bracket_predictions
 from src.prediction.pipeline import load_prediction_inputs, path_relative_to_project
 from src.prediction.metrics.team_strength import export_team_metrics
+from scripts.frontend.sync_frontend_data import sync_frontend_data
 
 
 def parse_args() -> argparse.Namespace:
@@ -158,6 +159,7 @@ def main() -> None:
             "squad_strength": True,
         },
     )
+    sync_frontend_data()
 
     print(f"Generated file: {args.output}")
     print(f"Generated predictions file: {args.predictions_output}")

@@ -1,12 +1,17 @@
 import { GroupCard } from "@/components/groups/group-card";
 import { PageContainer } from "@/components/layout/page-container";
-import { loadGroupResults } from "@/lib/data/load-prediction-data";
+import { loadGroupResults, loadTournamentPredictions } from "@/lib/data/load-prediction-data";
+import { calculateProjectedGroupPoints } from "@/lib/group-points";
 
 export const metadata = { title: "Groups" };
 
 export default async function GroupsPage() {
-  const { groups, metadata } = await loadGroupResults();
+  const [{ groups, metadata }, { matches }] = await Promise.all([
+    loadGroupResults(),
+    loadTournamentPredictions(),
+  ]);
   const groupEntries = Object.entries(groups).toSorted(([a], [b]) => a.localeCompare(b));
+  const projectedPoints = calculateProjectedGroupPoints(matches);
 
   return (
     <PageContainer
@@ -15,7 +20,9 @@ export default async function GroupsPage() {
       description={`Aggregate group-stage projections from ${metadata.simulations?.toLocaleString("en") ?? "the latest"} Monte Carlo simulations.`}
     >
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {groupEntries.map(([group, teams]) => <GroupCard key={group} group={group} teams={teams} />)}
+        {groupEntries.map(([group, teams]) => (
+          <GroupCard key={group} group={group} teams={teams} projectedPoints={projectedPoints} />
+        ))}
       </div>
     </PageContainer>
   );
