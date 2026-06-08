@@ -42,11 +42,9 @@ function MatchCard({ match }: { match: TournamentPredictionMatch }) {
         )}
         <div className="flex justify-between gap-3">
           <span>Winner</span>
-          {match.predicted_winner ? (
-            <TeamBadge team={match.predicted_winner} size="sm" />
-          ) : (
-            <span>—</span>
-          )}
+          <span className="text-right font-semibold text-foreground">
+            {match.predicted_winner ?? "—"}
+          </span>
         </div>
         <div className="flex justify-between gap-3">
           <span>Appearance</span>

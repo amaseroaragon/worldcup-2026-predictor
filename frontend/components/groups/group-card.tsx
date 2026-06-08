@@ -1,18 +1,19 @@
 import { SectionCard } from "@/components/layout/section-card";
 import { TeamBadge } from "@/components/teams/team-badge";
 import { formatOptionalNumber, formatOptionalPercent } from "@/lib/formatters";
+import type { ProjectedGroupStats } from "@/lib/group-points";
 import type { GroupResultTeam } from "@/lib/types";
 
 type GroupCardProps = {
   group: string;
   teams: GroupResultTeam[];
-  projectedPoints: Record<string, number>;
+  projectedStats: Record<string, ProjectedGroupStats>;
 };
 
 const firstDefined = (...values: Array<number | null | undefined>) =>
   values.find((value) => value !== null && value !== undefined);
 
-export function GroupCard({ group, teams, projectedPoints }: GroupCardProps) {
+export function GroupCard({ group, teams, projectedStats }: GroupCardProps) {
   return (
     <SectionCard title={`Group ${group}`}>
       <div className="overflow-x-auto">
@@ -33,10 +34,10 @@ export function GroupCard({ group, teams, projectedPoints }: GroupCardProps) {
               <tr key={team.team}>
                 <td className="py-3 pr-2 font-bold text-muted-foreground">{team.position}</td>
                 <td className="py-3 pr-3"><TeamBadge team={team.team} size="sm" /></td>
-                <td className="py-3 text-center font-semibold">{formatOptionalNumber(firstDefined(projectedPoints[team.team], team.points), 0)}</td>
-                <td className="py-3 text-center">{formatOptionalNumber(firstDefined(team.expected_goals_for, team.goals_for))}</td>
-                <td className="py-3 text-center">{formatOptionalNumber(firstDefined(team.expected_goals_against, team.goals_against))}</td>
-                <td className="py-3 text-center">{formatOptionalNumber(firstDefined(team.expected_goal_difference, team.goal_difference))}</td>
+                <td className="py-3 text-center font-semibold">{formatOptionalNumber(firstDefined(projectedStats[team.team]?.points, team.points), 0)}</td>
+                <td className="py-3 text-center">{formatOptionalNumber(firstDefined(projectedStats[team.team]?.goalsFor, team.goals_for), 0)}</td>
+                <td className="py-3 text-center">{formatOptionalNumber(firstDefined(projectedStats[team.team]?.goalsAgainst, team.goals_against), 0)}</td>
+                <td className="py-3 text-center">{formatOptionalNumber(firstDefined(projectedStats[team.team]?.goalDifference, team.goal_difference), 0)}</td>
                 <td className="py-3 text-right font-semibold text-primary">{formatOptionalPercent(team.qualification_probability)}</td>
               </tr>
             ))}
@@ -44,7 +45,7 @@ export function GroupCard({ group, teams, projectedPoints }: GroupCardProps) {
         </table>
       </div>
       <p className="mt-4 text-[0.7rem] leading-5 text-muted-foreground">
-        Points use the most likely predicted score for each group-stage match.
+        Points and goal stats use the most likely predicted score for each group-stage match.
       </p>
     </SectionCard>
   );

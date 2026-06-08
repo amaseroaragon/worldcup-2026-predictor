@@ -1,7 +1,7 @@
 import { GroupCard } from "@/components/groups/group-card";
 import { PageContainer } from "@/components/layout/page-container";
 import { loadGroupResults, loadTournamentPredictions } from "@/lib/data/load-prediction-data";
-import { calculateProjectedGroupPoints } from "@/lib/group-points";
+import { calculateProjectedGroupStats } from "@/lib/group-points";
 
 export const metadata = { title: "Groups" };
 
@@ -11,7 +11,7 @@ export default async function GroupsPage() {
     loadTournamentPredictions(),
   ]);
   const groupEntries = Object.entries(groups).toSorted(([a], [b]) => a.localeCompare(b));
-  const projectedPoints = calculateProjectedGroupPoints(matches);
+  const projectedStats = calculateProjectedGroupStats(matches);
 
   return (
     <PageContainer
@@ -21,7 +21,7 @@ export default async function GroupsPage() {
     >
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {groupEntries.map(([group, teams]) => (
-          <GroupCard key={group} group={group} teams={teams} projectedPoints={projectedPoints} />
+          <GroupCard key={group} group={group} teams={teams} projectedStats={projectedStats} />
         ))}
       </div>
     </PageContainer>

@@ -12,9 +12,11 @@ import { cn } from "@/lib/utils";
 
 export default async function HomePage() {
   const probabilities = await loadWorldCupProbabilities();
-  const favorites = probabilities
-    .toSorted((a, b) => b.champion_probability - a.champion_probability)
-    .slice(0, 5);
+  const rankedTeams = probabilities.toSorted(
+    (a, b) => b.champion_probability - a.champion_probability,
+  );
+  const favorites = rankedTeams.slice(0, 5);
+  const teamPreview = rankedTeams.slice(0, 6);
 
   return (
     <PageContainer
@@ -81,8 +83,26 @@ export default async function HomePage() {
             ))}
           </div>
         </SectionCard>
-        <SectionCard title="Bracket preview">
-          <div className="min-h-64" aria-label="Bracket preview placeholder" />
+        <SectionCard
+          title="Teams"
+          description="Explore team profiles, model metrics and tournament probabilities."
+        >
+          <div className="grid gap-3 sm:grid-cols-2">
+            {teamPreview.map((item) => (
+              <div
+                key={item.team}
+                className="flex items-center justify-between gap-3 rounded-xl border bg-background px-3 py-3"
+              >
+                <TeamBadge team={item.team} size="sm" />
+                <span className="text-xs font-bold text-primary">
+                  {formatPercent(item.champion_probability, 1)}
+                </span>
+              </div>
+            ))}
+          </div>
+          <Link href="/teams" className={cn(buttonVariants({ variant: "outline" }), "mt-5 w-full")}>
+            View team profiles <ArrowRight />
+          </Link>
         </SectionCard>
       </section>
     </PageContainer>
