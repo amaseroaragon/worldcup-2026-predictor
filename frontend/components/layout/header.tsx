@@ -4,6 +4,7 @@ import { Trophy } from "lucide-react";
 const navigation = [
   { href: "/", label: "Overview" },
   { href: "/groups", label: "Groups" },
+  { href: "/teams", label: "Teams" },
   { href: "/bracket", label: "Bracket" },
   { href: "/matches", label: "Matches" },
   { href: "/compare", label: "Compare" },
