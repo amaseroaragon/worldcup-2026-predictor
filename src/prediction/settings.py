@@ -195,7 +195,7 @@ class OutputSettings:
 
 @dataclass(frozen=True)
 class DisplaySettings:
-    draw_competitive_margin: float = 0.05
+    draw_competitive_margin: float = 0.08
 
 
 @dataclass(frozen=True)
