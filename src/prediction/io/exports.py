@@ -20,6 +20,9 @@ DEFAULT_WORLD_CUP_TEAM_METRICS_JSON_PATH = (
     PREDICTIONS_OUTPUT_DIR / "world_cup_team_metrics.json"
 )
 DEFAULT_GROUP_RESULTS_JSON_PATH = PREDICTIONS_OUTPUT_DIR / "group_results.json"
+DEFAULT_REPRESENTATIVE_TOURNAMENT_JSON_PATH = (
+    PREDICTIONS_OUTPUT_DIR / "representative_tournament.json"
+)
 
 
 def probabilities_to_dataframe(probabilities: dict) -> pd.DataFrame:
@@ -77,6 +80,23 @@ def export_match_predictions_json(
     with output_path.open("w", encoding="utf-8") as file:
         json.dump(payload, file, ensure_ascii=False, indent=2)
 
+    return payload
+
+
+def export_representative_tournament_json(
+    representative_tournament: dict,
+    output_path: str | Path = DEFAULT_REPRESENTATIVE_TOURNAMENT_JSON_PATH,
+    metadata: dict | None = None,
+) -> dict:
+    """Write the coherent representative tournament scenario to JSON."""
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "metadata": metadata or {},
+        "representative_tournament": representative_tournament,
+    }
+    with output_path.open("w", encoding="utf-8") as file:
+        json.dump(payload, file, ensure_ascii=False, indent=2)
     return payload
 
 

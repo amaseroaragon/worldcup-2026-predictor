@@ -9,6 +9,7 @@ from src.prediction.io.exports import (
     PROBABILITY_COLUMNS,
     export_match_predictions_json,
     export_probabilities,
+    export_representative_tournament_json,
     probabilities_to_dataframe,
     validate_probability_output,
 )
@@ -158,6 +159,25 @@ def test_export_match_predictions_json_writes_structured_file():
     assert written["matches"][0]["user_home_goals"] is None
     assert written["matches"][0]["real_home_goals"] is None
     assert written["matches"][0]["prediction_correct"] is None
+
+
+def test_export_representative_tournament_json_writes_named_structure():
+    representative = {"groups": {}, "results": [], "bracket": []}
+
+    with patch("pathlib.Path.mkdir"), patch(
+        "pathlib.Path.open",
+        mock_open(),
+    ) as mocked_open:
+        payload = export_representative_tournament_json(
+            representative,
+            "outputs/predictions/representative_tournament.json",
+            metadata={"seed": 42},
+        )
+
+    written = json.loads("".join(call.args[0] for call in mocked_open().write.call_args_list))
+    assert payload == written
+    assert written["metadata"]["seed"] == 42
+    assert written["representative_tournament"] == representative
 
 
 def test_build_predicted_bracket_predictions_returns_one_entry_per_bracket_slot():

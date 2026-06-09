@@ -12,6 +12,7 @@ FILES = (
     "tournament_predictions.json",
     "world_cup_probabilities.json",
     "group_results.json",
+    "representative_tournament.json",
 )
 
 

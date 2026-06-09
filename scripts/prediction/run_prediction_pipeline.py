@@ -19,17 +19,22 @@ from src.prediction.settings import (
 )
 from src.prediction.io.exports import (
     DEFAULT_GROUP_RESULTS_JSON_PATH,
+    DEFAULT_REPRESENTATIVE_TOURNAMENT_JSON_PATH,
     DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH,
     DEFAULT_WORLD_CUP_TEAM_METRICS_JSON_PATH,
     DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH,
     export_group_results,
     export_match_predictions_json,
     export_probabilities,
+    export_representative_tournament_json,
     export_world_cup_team_metrics,
     validate_probability_output,
 )
 from src.prediction.tournament_flow.monte_carlo import run_monte_carlo
 from src.prediction.tournament_flow.bracket_predictions import build_predicted_bracket_predictions
+from src.prediction.tournament_flow.representative_tournament import (
+    build_representative_tournament,
+)
 from src.prediction.pipeline import load_prediction_inputs, path_relative_to_project
 from src.prediction.metrics.team_strength import export_team_metrics
 from scripts.frontend.sync_frontend_data import sync_frontend_data
@@ -134,7 +139,7 @@ def main() -> None:
 
     df = export_probabilities(probabilities, args.output)
     validate_probability_output(df)
-    export_group_results(outcomes, inputs.groups)
+    aggregate_group_results = export_group_results(outcomes, inputs.groups)
 
     match_predictions = build_predicted_bracket_predictions(
         outcomes=outcomes,
@@ -161,12 +166,31 @@ def main() -> None:
             "representative_score_seed": args.seed,
         },
     )
+    qualification_probabilities = {
+        row["team"]: row["qualification_probability"]
+        for standings in aggregate_group_results["groups"].values()
+        for row in standings
+    }
+    representative_tournament = build_representative_tournament(
+        match_predictions,
+        inputs.knockout_matches,
+        qualification_probabilities,
+    )
+    export_representative_tournament_json(
+        representative_tournament,
+        metadata={
+            "simulations": args.simulations,
+            "seed": args.seed,
+            "source": "single_coherent_representative_scenario",
+        },
+    )
     sync_frontend_data()
 
     print(f"Generated file: {args.output}")
     print(f"Generated predictions file: {args.predictions_output}")
     print(f"Generated World Cup team metrics file: {DEFAULT_WORLD_CUP_TEAM_METRICS_JSON_PATH}")
     print(f"Generated group results file: {DEFAULT_GROUP_RESULTS_JSON_PATH}")
+    print(f"Generated representative tournament file: {DEFAULT_REPRESENTATIVE_TOURNAMENT_JSON_PATH}")
     print(f"Simulations executed: {args.simulations}")
     print("Validation status: passed")
     print("\nTop 10 teams by champion probability:")

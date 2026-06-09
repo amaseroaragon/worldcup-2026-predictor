@@ -1,27 +1,27 @@
 import { GroupCard } from "@/components/groups/group-card";
 import { PageContainer } from "@/components/layout/page-container";
-import { loadGroupResults, loadTournamentPredictions } from "@/lib/data/load-prediction-data";
-import { calculateProjectedGroupStats } from "@/lib/group-points";
+import { loadRepresentativeTournament } from "@/lib/data/load-prediction-data";
 
 export const metadata = { title: "Groups" };
 
 export default async function GroupsPage() {
-  const [{ groups, metadata }, { matches }] = await Promise.all([
-    loadGroupResults(),
-    loadTournamentPredictions(),
-  ]);
+  const { metadata, representative_tournament } = await loadRepresentativeTournament();
+  const { groups } = representative_tournament;
   const groupEntries = Object.entries(groups).toSorted(([a], [b]) => a.localeCompare(b));
-  const projectedStats = calculateProjectedGroupStats(matches);
 
   return (
     <PageContainer
       eyebrow="Group stage"
       title="Projected groups"
-      description={`Aggregate group-stage projections from ${metadata.simulations?.toLocaleString("en") ?? "the latest"} Monte Carlo simulations.`}
+      description={`One coherent predicted scenario derived from ${
+        typeof metadata.simulations === "number"
+          ? `${metadata.simulations.toLocaleString("en")} Monte Carlo simulations`
+          : "the latest model run"
+      }.`}
     >
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {groupEntries.map(([group, teams]) => (
-          <GroupCard key={group} group={group} teams={teams} projectedStats={projectedStats} />
+          <GroupCard key={group} group={group} teams={teams} />
         ))}
       </div>
     </PageContainer>

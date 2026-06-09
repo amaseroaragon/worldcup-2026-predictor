@@ -2,6 +2,7 @@ import type {
   GroupResults,
   TeamMetric,
   TeamProfile,
+  RepresentativeTournament,
   TournamentPredictions,
   WorldCupProbability,
 } from "@/lib/types";
@@ -27,6 +28,10 @@ export function loadGroupResults(): Promise<GroupResults> {
 
 export function loadTournamentPredictions(): Promise<TournamentPredictions> {
   return loadPublicJson("/data/tournament_predictions.json");
+}
+
+export function loadRepresentativeTournament(): Promise<RepresentativeTournament> {
+  return loadPublicJson("/data/representative_tournament.json");
 }
 
 export async function loadTeamProfiles(): Promise<TeamProfile[]> {

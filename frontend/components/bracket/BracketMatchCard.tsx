@@ -1,10 +1,10 @@
 import { TeamBadge } from "@/components/teams/team-badge";
 import { formatMatchProbability } from "@/lib/match-formatters";
-import type { TournamentPredictionMatch } from "@/lib/types";
+import type { RepresentativeBracketMatch } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 type BracketMatchCardProps = {
-  match: TournamentPredictionMatch;
+  match: RepresentativeBracketMatch;
 };
 
 type TeamRowProps = {
@@ -36,6 +36,10 @@ function TeamRow({ team, probability, goals, isWinner }: TeamRowProps) {
 export function BracketMatchCard({ match }: BracketMatchCardProps) {
   return (
     <article className="rounded-lg border bg-background p-2.5 shadow-sm">
+      <div className="mb-2 flex items-center justify-between gap-2 text-[0.6rem] font-semibold uppercase tracking-wide text-muted-foreground">
+        <span>{match.match_id}</span>
+        <span>{match.predicted_score}</span>
+      </div>
       <div className="space-y-1.5">
         <TeamRow
           team={match.home_team}
@@ -49,6 +53,10 @@ export function BracketMatchCard({ match }: BracketMatchCardProps) {
           goals={match.predicted_away_goals}
           isWinner={match.predicted_winner === match.away_team}
         />
+      </div>
+      <div className="mt-2 space-y-0.5 border-t pt-1.5 text-[0.6rem] text-muted-foreground">
+        <p className="truncate">Home: {match.source.home}</p>
+        <p className="truncate">Away: {match.source.away}</p>
       </div>
     </article>
   );

@@ -8,6 +8,9 @@ WORLD_CUP_TEAM_METRICS_PATH = (
     PROJECT_ROOT / "outputs/predictions/world_cup_team_metrics.json"
 )
 GROUP_RESULTS_PATH = PROJECT_ROOT / "outputs/predictions/group_results.json"
+REPRESENTATIVE_TOURNAMENT_PATH = (
+    PROJECT_ROOT / "outputs/predictions/representative_tournament.json"
+)
 
 
 def load_json(path: Path):
@@ -49,3 +52,25 @@ def test_group_results_contract():
         for record in standings:
             probability = record.get("qualification_probability")
             assert probability is None or 0 <= probability <= 1
+
+
+def test_representative_tournament_contract():
+    assert REPRESENTATIVE_TOURNAMENT_PATH.exists()
+
+    payload = load_json(REPRESENTATIVE_TOURNAMENT_PATH)["representative_tournament"]
+    assert len(payload["groups"]) == 12
+    assert len(payload["qualified"]["round_of_32"]) == 32
+    assert len(payload["bracket"]) == 32
+    assert payload["champion"] is not None
+
+    for standings in payload["groups"].values():
+        assert [row["position"] for row in standings] == [1, 2, 3, 4]
+        assert standings == sorted(
+            standings,
+            key=lambda row: (
+                -row["points"],
+                -row["goal_difference"],
+                -row["goals_for"],
+                row["team"],
+            ),
+        )

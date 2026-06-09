@@ -56,7 +56,7 @@ def build_predicted_bracket_predictions(
         squad_strength_ratings,
         representative_score_seed,
     )
-    group_outcomes = _build_predicted_group_outcomes(group_predictions)
+    group_outcomes = build_representative_group_outcomes(group_predictions)
     knockout_predictions = _build_knockout_stage_predictions(
         outcomes,
         group_outcomes,
@@ -112,9 +112,10 @@ def _build_group_stage_predictions(
     return predictions
 
 
-def _build_predicted_group_outcomes(
+def build_representative_group_outcomes(
     group_predictions: list[MatchPrediction],
 ) -> dict[str, GroupOutcome]:
+    """Build representative standings solely from displayed group scores."""
     results_by_group: dict[str, list[MatchResult]] = defaultdict(list)
 
     for prediction in group_predictions:

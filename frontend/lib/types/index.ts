@@ -148,6 +148,53 @@ export type TournamentPredictions = {
   matches: TournamentPredictionMatch[];
 };
 
+export type RepresentativeStanding = {
+  position: number;
+  team: string;
+  played: number;
+  points: number;
+  goals_for: number;
+  goals_against: number;
+  goal_difference: number;
+  wins: number;
+  draws: number;
+  losses: number;
+  qualification_probability: number | null;
+};
+
+export type RepresentativeBracketMatch = TournamentPredictionMatch & {
+  home_score: number;
+  away_score: number;
+  predicted_score: string;
+  winner: string;
+  source: {
+    home: string;
+    away: string;
+  };
+  source_match_ids: string[];
+};
+
+export type RepresentativeTournament = {
+  metadata: Record<string, unknown>;
+  representative_tournament: {
+    results: TournamentPredictionMatch[];
+    groups: Record<string, RepresentativeStanding[]>;
+    best_third_places: Array<RepresentativeStanding & {
+      rank: number;
+      group: string;
+      qualified: boolean;
+    }>;
+    qualified: {
+      group_winners: string[];
+      runners_up: string[];
+      best_third_places: string[];
+      round_of_32: string[];
+    };
+    bracket: RepresentativeBracketMatch[];
+    champion: string | null;
+  };
+};
+
 export type TeamProfile = {
   metric: TeamMetric;
   probability: WorldCupProbability | null;
