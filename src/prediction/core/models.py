@@ -51,6 +51,7 @@ class MatchPrediction:
     home_win_probability: float
     draw_probability: float
     away_win_probability: float
+    advanced_by: str | None = None
     simulations_count: int | None = None
     appearance_count: int | None = None
     appearance_probability: float | None = None

@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+import hashlib
 from collections import defaultdict
 
-from src.prediction.config import RECENT_FORM_PRIMARY_WINDOW
+from src.prediction.core.match import _expected_goals_feature_kwargs
 from src.prediction.tournament_flow.fixtures import build_group_stage_fixtures
 from src.prediction.tournament_flow.knockout import (
     build_knockout_fixtures,
@@ -11,19 +12,19 @@ from src.prediction.tournament_flow.knockout import (
     resolve_knockout_fixture,
 )
 from src.prediction.core.models import GroupOutcome, MatchPrediction, MatchResult, TournamentOutcome
-from src.prediction.core.poisson import expected_goals_from_elo
+from src.prediction.core.poisson import expected_goals_from_elo, score_matrix
 from src.prediction.core.probabilities import elo_win_draw_loss_probs
 from src.prediction.tournament_flow.prediction_summary import (
     average_goals,
-    most_common_score,
-    predicted_winner_from_probabilities,
     prediction_to_match_result,
     result_probabilities,
+    select_representative_score,
 )
 from src.prediction.metrics.recent_form import RecentFormRating
 from src.prediction.metrics.squad_strength import SquadStrengthRating
 from src.prediction.core.standings import build_group_standings
 from src.prediction.metrics.team_strength import TeamStrengthRating
+from src.prediction.settings import DEFAULT_CLI_SEED
 
 
 def build_predicted_bracket_predictions(
@@ -36,6 +37,7 @@ def build_predicted_bracket_predictions(
     recent_form_ratings: dict[str, RecentFormRating] | None = None,
     group_matches: list[dict[str, str | int]] | None = None,
     squad_strength_ratings: dict[str, SquadStrengthRating] | None = None,
+    representative_score_seed: int | str = DEFAULT_CLI_SEED,
 ) -> list[MatchPrediction]:
     """Build one frontend-ready predicted bracket from aggregate simulations."""
 
@@ -49,6 +51,10 @@ def build_predicted_bracket_predictions(
         ratings,
         simulations_count,
         group_matches,
+        team_strength_ratings,
+        recent_form_ratings,
+        squad_strength_ratings,
+        representative_score_seed,
     )
     group_outcomes = _build_predicted_group_outcomes(group_predictions)
     knockout_predictions = _build_knockout_stage_predictions(
@@ -61,6 +67,7 @@ def build_predicted_bracket_predictions(
         team_strength_ratings,
         recent_form_ratings,
         squad_strength_ratings,
+        representative_score_seed,
     )
 
     return [*group_predictions, *knockout_predictions]
@@ -72,6 +79,10 @@ def _build_group_stage_predictions(
     ratings: dict[str, float],
     simulations_count: int,
     group_matches: list[dict[str, str | int]] | None,
+    team_strength_ratings: dict[str, TeamStrengthRating] | None,
+    recent_form_ratings: dict[str, RecentFormRating] | None,
+    squad_strength_ratings: dict[str, SquadStrengthRating] | None,
+    representative_score_seed: int | str,
 ) -> list[MatchPrediction]:
     results_by_match_id = _results_by_match_id(outcomes)
     predictions = []
@@ -91,6 +102,10 @@ def _build_group_stage_predictions(
                 simulations_count=simulations_count,
                 appearance_count=len(results),
                 source="aggregated_monte_carlo",
+                team_strength_ratings=team_strength_ratings,
+                recent_form_ratings=recent_form_ratings,
+                squad_strength_ratings=squad_strength_ratings,
+                representative_score_seed=representative_score_seed,
             )
         )
 
@@ -146,6 +161,7 @@ def _build_knockout_stage_predictions(
     team_strength_ratings: dict[str, TeamStrengthRating] | None,
     recent_form_ratings: dict[str, RecentFormRating] | None,
     squad_strength_ratings: dict[str, SquadStrengthRating] | None,
+    representative_score_seed: int | str,
 ) -> list[MatchPrediction]:
     matchup_results = _knockout_results_by_matchup(outcomes)
     knockout_rounds = {
@@ -188,6 +204,10 @@ def _build_knockout_stage_predictions(
                 appearance_count=len(results),
                 source="aggregated_monte_carlo",
                 knockout=True,
+                team_strength_ratings=team_strength_ratings,
+                recent_form_ratings=recent_form_ratings,
+                squad_strength_ratings=squad_strength_ratings,
+                representative_score_seed=representative_score_seed,
             )
         else:
             prediction = _prediction_from_direct_model(
@@ -201,6 +221,7 @@ def _build_knockout_stage_predictions(
                 team_strength_ratings=team_strength_ratings,
                 recent_form_ratings=recent_form_ratings,
                 squad_strength_ratings=squad_strength_ratings,
+                representative_score_seed=representative_score_seed,
             )
 
         predictions.append(prediction)
@@ -222,6 +243,10 @@ def _prediction_from_results(
     appearance_count: int,
     source: str,
     knockout: bool = False,
+    team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
+    recent_form_ratings: dict[str, RecentFormRating] | None = None,
+    squad_strength_ratings: dict[str, SquadStrengthRating] | None = None,
+    representative_score_seed: int | str = DEFAULT_CLI_SEED,
 ) -> MatchPrediction:
     if not results:
         raise ValueError(f"No simulated results found for match {match_id}")
@@ -232,17 +257,29 @@ def _prediction_from_results(
         away_team,
         knockout=knockout,
     )
-    predicted_winner = predicted_winner_from_probabilities(
+    expected_home_goals, expected_away_goals = _expected_goals_for_match(
         home_team,
         away_team,
+        ratings,
+        team_strength_ratings,
+        recent_form_ratings,
+        squad_strength_ratings,
+    )
+    predicted_home_goals, predicted_away_goals = select_representative_score(
+        score_matrix(expected_home_goals, expected_away_goals),
         home_win_probability,
         draw_probability,
         away_win_probability,
-        allow_draw=not knockout,
+        seed=_match_seed(representative_score_seed, match_id),
     )
-    predicted_home_goals, predicted_away_goals = most_common_score(
-        results,
-        predicted_winner,
+    predicted_winner, advanced_by = _winner_from_representative_score(
+        home_team,
+        away_team,
+        predicted_home_goals,
+        predicted_away_goals,
+        home_win_probability,
+        away_win_probability,
+        knockout,
     )
 
     return MatchPrediction(
@@ -255,6 +292,7 @@ def _prediction_from_results(
         predicted_home_goals=predicted_home_goals,
         predicted_away_goals=predicted_away_goals,
         predicted_winner=predicted_winner,
+        advanced_by=advanced_by,
         home_win_probability=home_win_probability,
         draw_probability=draw_probability,
         away_win_probability=away_win_probability,
@@ -279,41 +317,38 @@ def _prediction_from_direct_model(
     team_strength_ratings: dict[str, TeamStrengthRating] | None,
     recent_form_ratings: dict[str, RecentFormRating] | None,
     squad_strength_ratings: dict[str, SquadStrengthRating] | None,
+    representative_score_seed: int | str,
 ) -> MatchPrediction:
     home_elo = ratings[home_team]
     away_elo = ratings[away_team]
-    home_win_probability, _draw_probability, away_win_probability = elo_win_draw_loss_probs(
+    home_win_probability, draw_probability, away_win_probability = elo_win_draw_loss_probs(
         home_elo,
         away_elo,
     )
-    decisive_probability = home_win_probability + away_win_probability
-    home_win_probability = home_win_probability / decisive_probability
-    away_win_probability = away_win_probability / decisive_probability
-    home_strength = team_strength_ratings.get(home_team) if team_strength_ratings else None
-    away_strength = team_strength_ratings.get(away_team) if team_strength_ratings else None
-    home_form = recent_form_ratings.get(home_team) if recent_form_ratings else None
-    away_form = recent_form_ratings.get(away_team) if recent_form_ratings else None
-    home_squad_strength = squad_strength_ratings.get(home_team) if squad_strength_ratings else None
-    away_squad_strength = squad_strength_ratings.get(away_team) if squad_strength_ratings else None
-    expected_home_goals, expected_away_goals = expected_goals_from_elo(
-        home_elo,
-        away_elo,
-        attack_rating_a=home_strength.attack_rating if home_strength else 1.0,
-        defense_rating_a=home_strength.defense_rating if home_strength else 1.0,
-        attack_rating_b=away_strength.attack_rating if away_strength else 1.0,
-        defense_rating_b=away_strength.defense_rating if away_strength else 1.0,
-        form_rating_a=home_form.for_window(RECENT_FORM_PRIMARY_WINDOW) if home_form else None,
-        form_rating_b=away_form.for_window(RECENT_FORM_PRIMARY_WINDOW) if away_form else None,
-        squad_strength_rating_a=(
-            home_squad_strength.squad_strength_rating if home_squad_strength else None
-        ),
-        squad_strength_rating_b=(
-            away_squad_strength.squad_strength_rating if away_squad_strength else None
-        ),
+    expected_home_goals, expected_away_goals = _expected_goals_for_match(
+        home_team,
+        away_team,
+        ratings,
+        team_strength_ratings,
+        recent_form_ratings,
+        squad_strength_ratings,
     )
-    predicted_home_goals = round(expected_home_goals)
-    predicted_away_goals = round(expected_away_goals)
-    predicted_winner = home_team if home_win_probability >= away_win_probability else away_team
+    predicted_home_goals, predicted_away_goals = select_representative_score(
+        score_matrix(expected_home_goals, expected_away_goals),
+        home_win_probability,
+        draw_probability,
+        away_win_probability,
+        seed=_match_seed(representative_score_seed, match_id),
+    )
+    predicted_winner, advanced_by = _winner_from_representative_score(
+        home_team,
+        away_team,
+        predicted_home_goals,
+        predicted_away_goals,
+        home_win_probability,
+        away_win_probability,
+        knockout=True,
+    )
 
     return MatchPrediction(
         match_id=match_id,
@@ -325,8 +360,9 @@ def _prediction_from_direct_model(
         predicted_home_goals=predicted_home_goals,
         predicted_away_goals=predicted_away_goals,
         predicted_winner=predicted_winner,
+        advanced_by=advanced_by,
         home_win_probability=home_win_probability,
-        draw_probability=0.0,
+        draw_probability=draw_probability,
         away_win_probability=away_win_probability,
         simulations_count=simulations_count,
         appearance_count=0,
@@ -336,6 +372,52 @@ def _prediction_from_direct_model(
         most_common_score=f"{predicted_home_goals}-{predicted_away_goals}",
         source="direct_model_fallback",
     )
+
+
+def _expected_goals_for_match(
+    home_team: str,
+    away_team: str,
+    ratings: dict[str, float],
+    team_strength_ratings: dict[str, TeamStrengthRating] | None,
+    recent_form_ratings: dict[str, RecentFormRating] | None,
+    squad_strength_ratings: dict[str, SquadStrengthRating] | None,
+) -> tuple[float, float]:
+    return expected_goals_from_elo(
+        ratings[home_team],
+        ratings[away_team],
+        **_expected_goals_feature_kwargs(
+            team_a=home_team,
+            team_b=away_team,
+            team_strength_ratings=team_strength_ratings,
+            recent_form_ratings=recent_form_ratings,
+            squad_strength_ratings=squad_strength_ratings,
+        ),
+    )
+
+
+def _match_seed(base_seed: int | str, match_id: str) -> int:
+    digest = hashlib.sha256(f"{base_seed}:{match_id}".encode()).digest()
+    return int.from_bytes(digest[:8], byteorder="big")
+
+
+def _winner_from_representative_score(
+    home_team: str,
+    away_team: str,
+    home_goals: int,
+    away_goals: int,
+    home_win_probability: float,
+    away_win_probability: float,
+    knockout: bool,
+) -> tuple[str | None, str | None]:
+    if home_goals > away_goals:
+        return home_team, "normal_time_win" if knockout else None
+    if away_goals > home_goals:
+        return away_team, "normal_time_win" if knockout else None
+    if not knockout:
+        return None, None
+
+    winner = home_team if home_win_probability >= away_win_probability else away_team
+    return winner, "higher_win_probability_after_draw"
 
 
 def _results_by_match_id(outcomes: list[TournamentOutcome]) -> dict[str, list[MatchResult]]:
@@ -358,4 +440,3 @@ def _knockout_results_by_matchup(
             key = (result.match_id, result.team_a, result.team_b)
             results_by_matchup[key].append(result)
     return results_by_matchup
-

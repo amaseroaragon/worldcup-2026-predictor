@@ -125,6 +125,7 @@ export type TournamentPredictionMatch = {
   predicted_home_goals: number | null;
   predicted_away_goals: number | null;
   predicted_winner: string | null;
+  advanced_by: "normal_time_win" | "higher_win_probability_after_draw" | null;
   home_win_probability: number | null;
   draw_probability: number | null;
   away_win_probability: number | null;

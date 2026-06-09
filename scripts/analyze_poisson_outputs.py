@@ -113,6 +113,7 @@ def build_diagnostic_rows(
                     away_lambda,
                 ),
                 "predicted_winner": match.get("predicted_winner"),
+                "advanced_by": match.get("advanced_by"),
                 "prediction_source": match.get("source"),
             }
         )
@@ -141,6 +142,14 @@ def aggregate_diagnostics(rows: list[dict[str, Any]], top: int = 20) -> dict[str
         }
         for score, count in score_counts.most_common()
     ]
+    stage_distribution = {
+        stage: _stage_diagnostics(
+            [row for row in rows if (row["round"] or row["stage"] or "unknown") == stage],
+            top,
+        )
+        for stage in dict.fromkeys(row["round"] or row["stage"] or "unknown" for row in rows)
+    }
+    knockout_rows = [row for row in rows if row["stage"] != "group"]
     return {
         "matches_analyzed": len(rows),
         "mean_home_lambda": mean(float(row["home_lambda"]) for row in rows),
@@ -150,6 +159,37 @@ def aggregate_diagnostics(rows: list[dict[str, Any]], top: int = 20) -> dict[str
         "predicted_draw_percentage": predicted_draws / len(rows) * 100,
         "predicted_score_distribution": distribution,
         "top_predicted_scores": distribution[:top],
+        "knockout_mean_draw_probability": (
+            mean(float(row["draw_probability"]) for row in knockout_rows)
+            if knockout_rows
+            else None
+        ),
+        "knockout_matches_without_winner": sum(
+            row["predicted_winner"] is None for row in knockout_rows
+        ),
+        "stage_distribution": stage_distribution,
+    }
+
+
+def _stage_diagnostics(rows: list[dict[str, Any]], top: int) -> dict[str, Any]:
+    score_counts = Counter(str(row["predicted_score"]) for row in rows)
+    draws = sum(
+        row["predicted_score"].split("-", maxsplit=1)[0]
+        == row["predicted_score"].split("-", maxsplit=1)[1]
+        for row in rows
+    )
+    return {
+        "matches": len(rows),
+        "mean_draw_probability": mean(float(row["draw_probability"]) for row in rows),
+        "predicted_draw_percentage": draws / len(rows) * 100,
+        "top_predicted_scores": [
+            {
+                "predicted_score": score,
+                "count": count,
+                "percentage": count / len(rows) * 100,
+            }
+            for score, count in score_counts.most_common(top)
+        ],
     }
 
 
@@ -213,6 +253,11 @@ def print_aggregate(aggregate: dict[str, Any], top: int) -> None:
     print(f"Mean total_lambda: {aggregate['mean_total_lambda']:.4f}")
     print(f"Mean draw_probability: {aggregate['mean_draw_probability']:.4f}")
     print(f"Predicted draw percentage: {aggregate['predicted_draw_percentage']:.2f}%")
+    print(
+        "Knockout mean draw_probability: "
+        f"{aggregate['knockout_mean_draw_probability']:.4f}"
+    )
+    print(f"Knockout matches without winner: {aggregate['knockout_matches_without_winner']}")
 
     print("\nPredicted score distribution:")
     for item in aggregate["predicted_score_distribution"]:
@@ -226,6 +271,19 @@ def print_aggregate(aggregate: dict[str, Any], top: int) -> None:
         print(
             f"  {rank:>2}. {item['predicted_score']:>5}: {item['count']:>3} "
             f"({item['percentage']:.2f}%)"
+        )
+
+    print("\nDistribution by stage:")
+    for stage, values in aggregate["stage_distribution"].items():
+        top_scores = ", ".join(
+            f"{item['predicted_score']}={item['count']}"
+            for item in values["top_predicted_scores"][:5]
+        )
+        print(
+            f"  {stage}: matches={values['matches']}, "
+            f"mean_draw_probability={values['mean_draw_probability']:.4f}, "
+            f"predicted_draw_percentage={values['predicted_draw_percentage']:.2f}%, "
+            f"top_scores=[{top_scores}]"
         )
 
 

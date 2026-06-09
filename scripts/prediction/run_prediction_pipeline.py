@@ -146,6 +146,7 @@ def main() -> None:
         recent_form_ratings=inputs.recent_form_ratings,
         group_matches=inputs.group_matches,
         squad_strength_ratings=inputs.squad_strength_ratings,
+        representative_score_seed=args.seed,
     )
     export_match_predictions_json(
         match_predictions,
@@ -157,6 +158,7 @@ def main() -> None:
             "team_strength_ratings": True,
             "recent_form": True,
             "squad_strength": True,
+            "representative_score_seed": args.seed,
         },
     )
     sync_frontend_data()

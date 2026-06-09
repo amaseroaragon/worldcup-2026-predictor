@@ -40,6 +40,12 @@ def _build_match_prediction(
         away_elo,
     )
     stage, group, round_name = _match_metadata(result.match_id, knockout_rounds)
+    predicted_winner, advanced_by = _winner_from_score(
+        result,
+        home_win_probability,
+        away_win_probability,
+        knockout=round_name is not None,
+    )
 
     return MatchPrediction(
         match_id=result.match_id or "",
@@ -50,11 +56,29 @@ def _build_match_prediction(
         away_team=result.team_b,
         predicted_home_goals=result.goals_a,
         predicted_away_goals=result.goals_b,
-        predicted_winner=result.winner,
+        predicted_winner=predicted_winner,
+        advanced_by=advanced_by,
         home_win_probability=home_win_probability,
         draw_probability=draw_probability,
         away_win_probability=away_win_probability,
     )
+
+
+def _winner_from_score(
+    result: MatchResult,
+    home_win_probability: float,
+    away_win_probability: float,
+    knockout: bool,
+) -> tuple[str | None, str | None]:
+    if result.goals_a > result.goals_b:
+        return result.team_a, "normal_time_win" if knockout else None
+    if result.goals_b > result.goals_a:
+        return result.team_b, "normal_time_win" if knockout else None
+    if not knockout:
+        return None, None
+
+    winner = result.team_a if home_win_probability >= away_win_probability else result.team_b
+    return winner, "higher_win_probability_after_draw"
 
 
 def _match_metadata(

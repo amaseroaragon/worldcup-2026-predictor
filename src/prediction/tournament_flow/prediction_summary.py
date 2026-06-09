@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from collections import Counter
+import random
 
 from src.prediction.core.models import MatchPrediction, MatchResult
 
@@ -12,26 +12,38 @@ def result_probabilities(
     knockout: bool,
 ) -> tuple[float, float, float]:
     total = len(results)
-    home_wins = sum(result.winner == home_team for result in results)
-    away_wins = sum(result.winner == away_team for result in results)
-    draws = 0 if knockout else sum(result.winner is None for result in results)
+    home_wins = sum(result.goals_a > result.goals_b for result in results)
+    away_wins = sum(result.goals_b > result.goals_a for result in results)
+    draws = sum(result.goals_a == result.goals_b for result in results)
 
     return home_wins / total, draws / total, away_wins / total
 
 
-def most_common_score(
-    results: list[MatchResult],
-    predicted_winner: str | None,
+def select_representative_score(
+    score_matrix: list[list[float]],
+    home_win_probability: float,
+    draw_probability: float,
+    away_win_probability: float,
+    seed: int | str | None = None,
 ) -> tuple[int, int]:
-    matching_results = [
-        result for result in results
-        if result.winner == predicted_winner
+    """Sample a representative score from an unchanged Poisson score matrix."""
+    if not score_matrix or not all(score_matrix):
+        raise ValueError("score_matrix must not be empty")
+    if any(len(row) != len(score_matrix[0]) for row in score_matrix):
+        raise ValueError("score_matrix rows must have equal length")
+    if abs(home_win_probability + draw_probability + away_win_probability - 1.0) > 1e-6:
+        raise ValueError("win/draw/loss probabilities must sum to one")
+
+    scores = [
+        (home_goals, away_goals)
+        for home_goals, row in enumerate(score_matrix)
+        for away_goals in range(len(row))
     ]
-    score_results = matching_results or results
-    return Counter(
-        (result.goals_a, result.goals_b)
-        for result in score_results
-    ).most_common(1)[0][0]
+    weights = [probability for row in score_matrix for probability in row]
+    if sum(weights) <= 0:
+        raise ValueError("score_matrix must contain positive probability mass")
+
+    return random.Random(seed).choices(scores, weights=weights, k=1)[0]
 
 
 def average_goals(results: list[MatchResult], team: str) -> float:
@@ -65,7 +77,11 @@ def prediction_to_match_result(prediction: MatchPrediction) -> MatchResult:
         goals_a=prediction.predicted_home_goals,
         goals_b=prediction.predicted_away_goals,
         winner=prediction.predicted_winner,
-        is_draw=prediction.predicted_winner is None,
-        decided_by="tiebreaker" if is_draw and prediction.predicted_winner else "regular_time",
+        is_draw=is_draw,
+        decided_by=(
+            "higher_win_probability_after_draw"
+            if is_draw and prediction.predicted_winner
+            else "draw" if is_draw else "regular_time"
+        ),
         match_id=prediction.match_id,
     )
