@@ -8,6 +8,7 @@ import type {
 } from "@/lib/types";
 
 import { loadPublicJson } from "./load-public-json";
+import { getTeamRepresentativeSummary } from "./team-representative-summary";
 
 type TeamMetricsPayload = {
   metadata: { source: string; scope: string };
@@ -35,10 +36,11 @@ export function loadRepresentativeTournament(): Promise<RepresentativeTournament
 }
 
 export async function loadTeamProfiles(): Promise<TeamProfile[]> {
-  const [{ teams }, probabilities, { groups }] = await Promise.all([
+  const [{ teams }, probabilities, { groups }, representativeTournament] = await Promise.all([
     loadWorldCupTeamMetrics(),
     loadWorldCupProbabilities(),
     loadGroupResults(),
+    loadRepresentativeTournament(),
   ]);
   const probabilitiesByTeam = new Map(probabilities.map((item) => [item.team, item]));
   const groupResultsByTeam = new Map(
@@ -48,6 +50,7 @@ export async function loadTeamProfiles(): Promise<TeamProfile[]> {
   return teams.map((metric) => ({
     metric,
     probability: probabilitiesByTeam.get(metric.team) ?? null,
-    groupResult: groupResultsByTeam.get(metric.team) ?? null,
+    aggregateGroupResult: groupResultsByTeam.get(metric.team) ?? null,
+    representativeSummary: getTeamRepresentativeSummary(metric.team, representativeTournament),
   }));
 }

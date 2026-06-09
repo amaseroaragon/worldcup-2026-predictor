@@ -83,6 +83,7 @@ export type SquadStrengthMetric = {
 export type TeamMetric = {
   team: string;
   group: string;
+  elo?: number | null;
   attack_rating: number | null;
   defense_rating: number | null;
   matches_used: number | null;
@@ -195,8 +196,20 @@ export type RepresentativeTournament = {
   };
 };
 
+export type TeamRepresentativeSummary = {
+  group_position: number;
+  points: number;
+  goals_for: number;
+  goals_against: number;
+  goal_difference: number;
+  qualified: boolean;
+  stage_reached: string;
+  representative_matches: TournamentPredictionMatch[];
+};
+
 export type TeamProfile = {
   metric: TeamMetric;
   probability: WorldCupProbability | null;
-  groupResult: GroupResultTeam | null;
+  aggregateGroupResult: GroupResultTeam | null;
+  representativeSummary: TeamRepresentativeSummary;
 };

@@ -29,13 +29,15 @@ export default async function TeamPage({ params }: TeamPageProps) {
 
   if (!profile) notFound();
 
-  const { metric, probability, groupResult } = profile;
+  const { metric, probability, aggregateGroupResult, representativeSummary } = profile;
   const probabilities = [
+    ["Qualification probability", aggregateGroupResult?.qualification_probability],
     ["Champion probability", probability?.champion_probability],
     ["Runner-up probability", probability?.runner_up_probability],
     ["Semi-final probability", probability?.semifinal_probability],
   ] as const;
   const metrics = [
+    ["Elo", metric.elo],
     ["Attack Rating", metric.attack_rating],
     ["Defense Rating", metric.defense_rating],
     ["Recent Form (5)", metric.recent_form?.form_5],
@@ -49,7 +51,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
     <PageContainer
       eyebrow={`Team profile · Group ${metric.group}`}
       title={metric.team}
-      description="Model metrics, tournament probabilities and projected group-stage outlook."
+      description="Representative tournament outcome, aggregate Monte Carlo probabilities and model metrics."
     >
       <Link href="/groups" className={cn(buttonVariants({ variant: "outline" }), "w-fit")}>
         <ArrowLeft /> Back
@@ -60,8 +62,27 @@ export default async function TeamPage({ params }: TeamPageProps) {
         <p className="mt-4 text-sm text-muted-foreground">Group {metric.group}</p>
       </SectionCard>
 
+      <SectionCard
+        title="Representative scenario"
+        description="Results from the same coherent tournament scenario shown in Groups and Bracket."
+      >
+        <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Metric label="Predicted group position" value={formatOptionalNumber(representativeSummary.group_position, 0)} />
+          <Metric label="Points" value={formatOptionalNumber(representativeSummary.points, 0)} />
+          <Metric label="Goals for" value={formatOptionalNumber(representativeSummary.goals_for, 0)} />
+          <Metric label="Goals against" value={formatOptionalNumber(representativeSummary.goals_against, 0)} />
+          <Metric label="Goal difference" value={formatOptionalNumber(representativeSummary.goal_difference, 0)} />
+          <Metric label="Group status" value={representativeSummary.qualified ? "Qualified" : "Eliminated"} />
+          <Metric label="Stage reached" value={representativeSummary.stage_reached} />
+          <Metric label="Matches played" value={formatOptionalNumber(representativeSummary.representative_matches.length, 0)} />
+        </dl>
+      </SectionCard>
+
       <div className="grid gap-6 lg:grid-cols-2">
-        <SectionCard title="Tournament probabilities">
+        <SectionCard
+          title="Monte Carlo probabilities"
+          description="Aggregate outcomes across all simulations."
+        >
           <div className="space-y-5">
             {probabilities.map(([label, value]) => (
               <div key={label}>
@@ -75,17 +96,20 @@ export default async function TeamPage({ params }: TeamPageProps) {
           </div>
         </SectionCard>
 
-        <SectionCard title="Group projection">
+        <SectionCard
+          title="Monte Carlo group averages"
+          description="Expected values across all simulations, not the representative scenario."
+        >
           <dl className="grid grid-cols-2 gap-4">
-            <Metric label="Projected position" value={formatOptionalNumber(groupResult?.position, 0)} />
-            <Metric label="Expected points" value={formatOptionalNumber(groupResult?.expected_points)} />
-            <Metric label="Qualification" value={formatOptionalPercent(groupResult?.qualification_probability, 1)} />
-            <Metric label="Expected goal difference" value={formatOptionalNumber(groupResult?.expected_goal_difference)} />
+            <Metric label="Expected group position" value={formatOptionalNumber(aggregateGroupResult?.expected_position)} />
+            <Metric label="Expected points" value={formatOptionalNumber(aggregateGroupResult?.expected_points)} />
+            <Metric label="Expected goals for" value={formatOptionalNumber(aggregateGroupResult?.expected_goals_for)} />
+            <Metric label="Expected goals against" value={formatOptionalNumber(aggregateGroupResult?.expected_goals_against)} />
           </dl>
         </SectionCard>
       </div>
 
-      <SectionCard title="Model metrics">
+      <SectionCard title="Model metrics" description="Structural team inputs used by the prediction model.">
         <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {metrics.map(([label, value]) => (
             <Metric
