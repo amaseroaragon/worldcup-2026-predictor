@@ -9,6 +9,7 @@ type TeamBadgeProps = {
   size?: "sm" | "default" | "lg";
   linked?: boolean;
   className?: string;
+  nameClassName?: string;
 };
 
 export function TeamBadge({
@@ -16,11 +17,12 @@ export function TeamBadge({
   size = "default",
   linked = true,
   className,
+  nameClassName,
 }: TeamBadgeProps) {
   const content = (
     <>
       <TeamFlag team={team} size={size} />
-      <span className={cn("font-semibold", size === "lg" && "text-xl")}>{team}</span>
+      <span className={cn("font-semibold", size === "lg" && "text-xl", nameClassName)}>{team}</span>
     </>
   );
   const styles = cn(

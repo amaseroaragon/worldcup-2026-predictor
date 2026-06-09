@@ -86,12 +86,13 @@ export default async function HomePage() {
         <SectionCard
           title="Teams"
           description="Explore team profiles, model metrics and tournament probabilities."
+          className="self-start"
         >
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-2">
             {teamPreview.map((item) => (
               <div
                 key={item.team}
-                className="flex items-center justify-between gap-3 rounded-xl border bg-background px-3 py-3"
+                className="flex items-center justify-between gap-3 rounded-xl border bg-background px-3 py-2"
               >
                 <TeamBadge team={item.team} size="sm" />
                 <span className="text-xs font-bold text-primary">

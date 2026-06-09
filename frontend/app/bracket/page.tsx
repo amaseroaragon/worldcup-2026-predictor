@@ -18,6 +18,9 @@ export default async function BracketPage() {
         Loaded from the latest synchronized tournament predictions
         {typeof metadata.simulations === "number" ? ` · ${metadata.simulations.toLocaleString("en")} simulations` : ""}.
       </p>
+      <p className="text-xs text-muted-foreground">
+        On smaller screens, scroll horizontally to follow the projected path to the final.
+      </p>
       <BracketSummary matches={knockoutMatches} />
     </PageContainer>
   );
