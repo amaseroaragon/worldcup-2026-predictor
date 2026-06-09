@@ -10,7 +10,7 @@ from src.prediction.tournament_flow.bracket_predictions import (
 )
 from src.prediction.tournament_flow.knockout import rank_third_place_teams
 from src.prediction.tournament_flow.prediction_summary import (
-    score_contradicts_most_probable_outcome,
+    score_contradicts_displayed_outcome,
 )
 
 
@@ -163,7 +163,7 @@ def validate_representative_tournament(
         for record in representative_tournament["results"]
     ]
     for prediction in predictions:
-        if score_contradicts_most_probable_outcome(
+        if score_contradicts_displayed_outcome(
             prediction.home_team,
             prediction.away_team,
             prediction.predicted_home_goals,
@@ -175,7 +175,7 @@ def validate_representative_tournament(
             prediction.away_win_probability,
         ):
             raise ValueError(
-                f"Displayed score contradicts most probable outcome: {prediction.match_id}"
+                f"Displayed score contradicts displayed outcome: {prediction.match_id}"
             )
     group_predictions = [prediction for prediction in predictions if prediction.stage == "group"]
     expected_outcomes = build_displayed_group_outcomes(group_predictions)

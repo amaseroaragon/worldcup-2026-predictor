@@ -4,48 +4,55 @@
     "prediction_metadata": {
       "simulations": 1000,
       "seed": 42,
-      "method": "deterministic_most_probable_outcome",
+      "method": "deterministic_displayed_outcome",
       "team_strength_ratings": true,
       "recent_form": true,
       "squad_strength": true,
-      "displayed_outcome_selection": "maximum_match_outcome_probability"
+      "displayed_outcome_selection": "competitive_draw_then_stronger_win",
+      "draw_competitive_margin": 0.05
     },
     "lambda_source": "expected_goals_from_elo with current base prediction inputs",
     "probability_source": "existing tournament prediction records",
+    "draw_competitive_margin": 0.05,
     "interpretation_note": "Exported Monte Carlo probabilities may include dynamic Elo updates; diagnostic lambdas are a reproducible base-ratings snapshot."
   },
   "aggregate": {
     "matches_analyzed": 104,
-    "mean_home_lambda": 1.4963713927604656,
-    "mean_away_lambda": 1.1649609484774532,
-    "mean_total_lambda": 2.661332341237919,
-    "mean_draw_probability": 0.24118273991073913,
-    "predicted_draw_percentage": 0.9615384615384616,
+    "mean_home_lambda": 1.5018266374859353,
+    "mean_away_lambda": 1.1746739711359309,
+    "mean_total_lambda": 2.676500608621866,
+    "mean_draw_probability": 0.23709072596232755,
+    "displayed_draw_percentage": 4.807692307692308,
     "predicted_score_distribution": [
       {
         "predicted_score": "1-0",
-        "count": 40,
-        "percentage": 38.46153846153847
+        "count": 36,
+        "percentage": 34.61538461538461
       },
       {
         "predicted_score": "0-1",
-        "count": 31,
-        "percentage": 29.807692307692307
+        "count": 28,
+        "percentage": 26.923076923076923
       },
       {
         "predicted_score": "2-0",
+        "count": 14,
+        "percentage": 13.461538461538462
+      },
+      {
+        "predicted_score": "2-1",
         "count": 13,
         "percentage": 12.5
       },
       {
-        "predicted_score": "2-1",
-        "count": 10,
-        "percentage": 9.615384615384617
+        "predicted_score": "1-2",
+        "count": 6,
+        "percentage": 5.769230769230769
       },
       {
-        "predicted_score": "1-2",
-        "count": 7,
-        "percentage": 6.730769230769231
+        "predicted_score": "1-1",
+        "count": 4,
+        "percentage": 3.8461538461538463
       },
       {
         "predicted_score": "0-2",
@@ -53,7 +60,7 @@
         "percentage": 1.9230769230769231
       },
       {
-        "predicted_score": "1-1",
+        "predicted_score": "0-0",
         "count": 1,
         "percentage": 0.9615384615384616
       }
@@ -61,28 +68,33 @@
     "top_predicted_scores": [
       {
         "predicted_score": "1-0",
-        "count": 40,
-        "percentage": 38.46153846153847
+        "count": 36,
+        "percentage": 34.61538461538461
       },
       {
         "predicted_score": "0-1",
-        "count": 31,
-        "percentage": 29.807692307692307
+        "count": 28,
+        "percentage": 26.923076923076923
       },
       {
         "predicted_score": "2-0",
+        "count": 14,
+        "percentage": 13.461538461538462
+      },
+      {
+        "predicted_score": "2-1",
         "count": 13,
         "percentage": 12.5
       },
       {
-        "predicted_score": "2-1",
-        "count": 10,
-        "percentage": 9.615384615384617
+        "predicted_score": "1-2",
+        "count": 6,
+        "percentage": 5.769230769230769
       },
       {
-        "predicted_score": "1-2",
-        "count": 7,
-        "percentage": 6.730769230769231
+        "predicted_score": "1-1",
+        "count": 4,
+        "percentage": 3.8461538461538463
       },
       {
         "predicted_score": "0-2",
@@ -90,19 +102,62 @@
         "percentage": 1.9230769230769231
       },
       {
-        "predicted_score": "1-1",
+        "predicted_score": "0-0",
         "count": 1,
         "percentage": 0.9615384615384616
       }
     ],
-    "knockout_mean_draw_probability": 0.24528140470990215,
+    "knockout_mean_draw_probability": 0.2319823593775645,
     "knockout_matches_without_winner": 0,
-    "scores_contradicting_most_probable_outcome": 0,
+    "scores_contradicting_displayed_outcome": 0,
+    "number_of_competitive_draws_selected": 4,
+    "competitive_draws_selected": [
+      {
+        "match_id": "group_C_1",
+        "stage": "group",
+        "home_team": "Brazil",
+        "away_team": "Morocco",
+        "home_win_probability": 0.333,
+        "draw_probability": 0.331,
+        "away_win_probability": 0.336,
+        "predicted_score": "1-1"
+      },
+      {
+        "match_id": "group_H_6",
+        "stage": "group",
+        "home_team": "Cape Verde",
+        "away_team": "Saudi Arabia",
+        "home_win_probability": 0.348,
+        "draw_probability": 0.302,
+        "away_win_probability": 0.35,
+        "predicted_score": "1-1"
+      },
+      {
+        "match_id": "group_K_6",
+        "stage": "group",
+        "home_team": "DR Congo",
+        "away_team": "Uzbekistan",
+        "home_win_probability": 0.317,
+        "draw_probability": 0.335,
+        "away_win_probability": 0.348,
+        "predicted_score": "0-0"
+      },
+      {
+        "match_id": "M97",
+        "stage": "quarter_final",
+        "home_team": "France",
+        "away_team": "Japan",
+        "home_win_probability": 0.2777777777777778,
+        "draw_probability": 0.35185185185185186,
+        "away_win_probability": 0.37037037037037035,
+        "predicted_score": "1-1"
+      }
+    ],
     "stage_distribution": {
       "group": {
         "matches": 72,
         "mean_draw_probability": 0.2393611111111111,
-        "predicted_draw_percentage": 0.0,
+        "displayed_draw_percentage": 4.166666666666666,
         "top_predicted_scores": [
           {
             "predicted_score": "1-0",
@@ -111,8 +166,8 @@
           },
           {
             "predicted_score": "0-1",
-            "count": 24,
-            "percentage": 33.33333333333333
+            "count": 21,
+            "percentage": 29.166666666666668
           },
           {
             "predicted_score": "2-0",
@@ -130,36 +185,46 @@
             "percentage": 2.7777777777777777
           },
           {
+            "predicted_score": "1-1",
+            "count": 2,
+            "percentage": 2.7777777777777777
+          },
+          {
             "predicted_score": "1-2",
             "count": 2,
             "percentage": 2.7777777777777777
+          },
+          {
+            "predicted_score": "0-0",
+            "count": 1,
+            "percentage": 1.3888888888888888
           }
         ]
       },
       "round_of_32": {
         "matches": 16,
-        "mean_draw_probability": 0.2578227223492239,
-        "predicted_draw_percentage": 6.25,
+        "mean_draw_probability": 0.2359539568356758,
+        "displayed_draw_percentage": 6.25,
         "top_predicted_scores": [
           {
             "predicted_score": "1-0",
-            "count": 9,
-            "percentage": 56.25
-          },
-          {
-            "predicted_score": "1-2",
-            "count": 3,
-            "percentage": 18.75
+            "count": 7,
+            "percentage": 43.75
           },
           {
             "predicted_score": "2-1",
+            "count": 4,
+            "percentage": 25.0
+          },
+          {
+            "predicted_score": "1-2",
             "count": 2,
             "percentage": 12.5
           },
           {
             "predicted_score": "2-0",
-            "count": 1,
-            "percentage": 6.25
+            "count": 2,
+            "percentage": 12.5
           },
           {
             "predicted_score": "1-1",
@@ -170,8 +235,8 @@
       },
       "round_of_16": {
         "matches": 8,
-        "mean_draw_probability": 0.20640738841743167,
-        "predicted_draw_percentage": 0.0,
+        "mean_draw_probability": 0.23404119600550755,
+        "displayed_draw_percentage": 0.0,
         "top_predicted_scores": [
           {
             "predicted_score": "0-1",
@@ -179,29 +244,29 @@
             "percentage": 50.0
           },
           {
-            "predicted_score": "1-0",
+            "predicted_score": "1-2",
             "count": 2,
             "percentage": 25.0
           },
           {
-            "predicted_score": "1-2",
-            "count": 2,
-            "percentage": 25.0
+            "predicted_score": "2-1",
+            "count": 1,
+            "percentage": 12.5
+          },
+          {
+            "predicted_score": "1-0",
+            "count": 1,
+            "percentage": 12.5
           }
         ]
       },
       "quarter_final": {
         "matches": 4,
-        "mean_draw_probability": 0.2565613457122891,
-        "predicted_draw_percentage": 0.0,
+        "mean_draw_probability": 0.27623528879048753,
+        "displayed_draw_percentage": 25.0,
         "top_predicted_scores": [
           {
-            "predicted_score": "1-0",
-            "count": 2,
-            "percentage": 50.0
-          },
-          {
-            "predicted_score": "0-1",
+            "predicted_score": "1-1",
             "count": 1,
             "percentage": 25.0
           },
@@ -209,30 +274,35 @@
             "predicted_score": "2-1",
             "count": 1,
             "percentage": 25.0
+          },
+          {
+            "predicted_score": "0-1",
+            "count": 1,
+            "percentage": 25.0
+          },
+          {
+            "predicted_score": "1-0",
+            "count": 1,
+            "percentage": 25.0
           }
         ]
       },
       "semi_final": {
         "matches": 2,
-        "mean_draw_probability": 0.2565017848036716,
-        "predicted_draw_percentage": 0.0,
+        "mean_draw_probability": 0.22433962264150945,
+        "displayed_draw_percentage": 0.0,
         "top_predicted_scores": [
           {
             "predicted_score": "0-1",
-            "count": 1,
-            "percentage": 50.0
-          },
-          {
-            "predicted_score": "1-0",
-            "count": 1,
-            "percentage": 50.0
+            "count": 2,
+            "percentage": 100.0
           }
         ]
       },
       "third_place_playoff": {
         "matches": 1,
-        "mean_draw_probability": 0.2,
-        "predicted_draw_percentage": 0.0,
+        "mean_draw_probability": 0.0,
+        "displayed_draw_percentage": 0.0,
         "top_predicted_scores": [
           {
             "predicted_score": "1-0",
@@ -243,11 +313,11 @@
       },
       "final": {
         "matches": 1,
-        "mean_draw_probability": 0.3333333333333333,
-        "predicted_draw_percentage": 0.0,
+        "mean_draw_probability": 0.2222222222222222,
+        "displayed_draw_percentage": 0.0,
         "top_predicted_scores": [
           {
-            "predicted_score": "0-1",
+            "predicted_score": "1-0",
             "count": 1,
             "percentage": 100.0
           }
@@ -270,12 +340,14 @@
       "home_win_probability": 0.557,
       "draw_probability": 0.279,
       "away_win_probability": 0.164,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.17048396381081496,
       "predicted_winner": "Mexico",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_A_2",
@@ -291,12 +363,14 @@
       "home_win_probability": 0.524,
       "draw_probability": 0.23,
       "away_win_probability": 0.246,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.11065779421172367,
       "predicted_winner": "South Korea",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_B_1",
@@ -312,12 +386,14 @@
       "home_win_probability": 0.658,
       "draw_probability": 0.224,
       "away_win_probability": 0.118,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.1447296484601819,
       "predicted_winner": "Canada",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_B_2",
@@ -333,12 +409,14 @@
       "home_win_probability": 0.099,
       "draw_probability": 0.148,
       "away_win_probability": 0.753,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-2",
       "predicted_score_probability": 0.10452216328590284,
       "predicted_winner": "Switzerland",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_C_1",
@@ -354,12 +432,14 @@
       "home_win_probability": 0.333,
       "draw_probability": 0.331,
       "away_win_probability": 0.336,
-      "predicted_score": "0-1",
-      "predicted_score_probability": 0.1213488109086193,
-      "predicted_winner": "Morocco",
+      "displayed_outcome": "draw",
+      "competitive_draw_selected": true,
+      "predicted_score": "1-1",
+      "predicted_score_probability": 0.1336724151262805,
+      "predicted_winner": null,
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_C_2",
@@ -375,12 +455,14 @@
       "home_win_probability": 0.354,
       "draw_probability": 0.252,
       "away_win_probability": 0.394,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-2",
       "predicted_score_probability": 0.08785571393449611,
       "predicted_winner": "Scotland",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_D_1",
@@ -396,12 +478,14 @@
       "home_win_probability": 0.369,
       "draw_probability": 0.28,
       "away_win_probability": 0.351,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.09369923688995119,
       "predicted_winner": "United States",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_D_2",
@@ -417,12 +501,14 @@
       "home_win_probability": 0.36,
       "draw_probability": 0.254,
       "away_win_probability": 0.386,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.09752618630076369,
       "predicted_winner": "Turkey",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_E_1",
@@ -438,12 +524,14 @@
       "home_win_probability": 0.735,
       "draw_probability": 0.146,
       "away_win_probability": 0.119,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-0",
       "predicted_score_probability": 0.1040369542016488,
       "predicted_winner": "Germany",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_E_2",
@@ -459,12 +547,14 @@
       "home_win_probability": 0.248,
       "draw_probability": 0.325,
       "away_win_probability": 0.427,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.17772179108215774,
       "predicted_winner": "Ecuador",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_F_1",
@@ -480,12 +570,14 @@
       "home_win_probability": 0.3,
       "draw_probability": 0.263,
       "away_win_probability": 0.437,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.0971683853727521,
       "predicted_winner": "Japan",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_F_2",
@@ -501,12 +593,14 @@
       "home_win_probability": 0.33,
       "draw_probability": 0.257,
       "away_win_probability": 0.413,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.08628170489620983,
       "predicted_winner": "Tunisia",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_G_1",
@@ -522,12 +616,14 @@
       "home_win_probability": 0.477,
       "draw_probability": 0.258,
       "away_win_probability": 0.265,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.12893454532623339,
       "predicted_winner": "Belgium",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_G_2",
@@ -543,12 +639,14 @@
       "home_win_probability": 0.338,
       "draw_probability": 0.297,
       "away_win_probability": 0.365,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.09787709083062243,
       "predicted_winner": "New Zealand",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_H_1",
@@ -564,12 +662,14 @@
       "home_win_probability": 0.845,
       "draw_probability": 0.095,
       "away_win_probability": 0.06,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-0",
       "predicted_score_probability": 0.12774523172108485,
       "predicted_winner": "Spain",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_H_2",
@@ -585,12 +685,14 @@
       "home_win_probability": 0.195,
       "draw_probability": 0.282,
       "away_win_probability": 0.523,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.17105974112234396,
       "predicted_winner": "Uruguay",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_I_1",
@@ -606,12 +708,14 @@
       "home_win_probability": 0.462,
       "draw_probability": 0.229,
       "away_win_probability": 0.309,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-1",
       "predicted_score_probability": 0.09472882802512111,
       "predicted_winner": "France",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_I_2",
@@ -627,12 +731,14 @@
       "home_win_probability": 0.149,
       "draw_probability": 0.217,
       "away_win_probability": 0.634,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.1158234228349094,
       "predicted_winner": "Norway",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_J_1",
@@ -648,12 +754,14 @@
       "home_win_probability": 0.613,
       "draw_probability": 0.236,
       "away_win_probability": 0.151,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.1440781331048158,
       "predicted_winner": "Argentina",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_J_2",
@@ -669,12 +777,14 @@
       "home_win_probability": 0.517,
       "draw_probability": 0.251,
       "away_win_probability": 0.232,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.10406910307225058,
       "predicted_winner": "Austria",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_K_1",
@@ -690,12 +800,14 @@
       "home_win_probability": 0.602,
       "draw_probability": 0.216,
       "away_win_probability": 0.182,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.1408029413948119,
       "predicted_winner": "Portugal",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_K_2",
@@ -711,12 +823,14 @@
       "home_win_probability": 0.21,
       "draw_probability": 0.244,
       "away_win_probability": 0.546,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.14161717741760166,
       "predicted_winner": "Colombia",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_L_1",
@@ -732,12 +846,14 @@
       "home_win_probability": 0.498,
       "draw_probability": 0.261,
       "away_win_probability": 0.241,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.1141954786608198,
       "predicted_winner": "England",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_L_2",
@@ -753,12 +869,14 @@
       "home_win_probability": 0.264,
       "draw_probability": 0.23,
       "away_win_probability": 0.506,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.10419823576919594,
       "predicted_winner": "Panama",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_A_3",
@@ -774,12 +892,14 @@
       "home_win_probability": 0.412,
       "draw_probability": 0.292,
       "away_win_probability": 0.296,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.13838423870511227,
       "predicted_winner": "Mexico",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_A_4",
@@ -795,12 +915,14 @@
       "home_win_probability": 0.352,
       "draw_probability": 0.288,
       "away_win_probability": 0.36,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.10925521657827178,
       "predicted_winner": "Czech Republic",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_B_3",
@@ -816,12 +938,14 @@
       "home_win_probability": 0.688,
       "draw_probability": 0.205,
       "away_win_probability": 0.107,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-0",
       "predicted_score_probability": 0.14004126191492253,
       "predicted_winner": "Canada",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_B_4",
@@ -837,12 +961,14 @@
       "home_win_probability": 0.13,
       "draw_probability": 0.183,
       "away_win_probability": 0.687,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-2",
       "predicted_score_probability": 0.10558784361663574,
       "predicted_winner": "Switzerland",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_C_3",
@@ -858,12 +984,14 @@
       "home_win_probability": 0.685,
       "draw_probability": 0.189,
       "away_win_probability": 0.126,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-0",
       "predicted_score_probability": 0.10653769306669249,
       "predicted_winner": "Brazil",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_C_4",
@@ -879,12 +1007,14 @@
       "home_win_probability": 0.608,
       "draw_probability": 0.263,
       "away_win_probability": 0.129,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.15390883612177453,
       "predicted_winner": "Morocco",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_D_3",
@@ -900,12 +1030,14 @@
       "home_win_probability": 0.349,
       "draw_probability": 0.264,
       "away_win_probability": 0.387,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.09359809579165085,
       "predicted_winner": "Australia",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_D_4",
@@ -921,12 +1053,14 @@
       "home_win_probability": 0.32,
       "draw_probability": 0.25,
       "away_win_probability": 0.43,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.10354021688376952,
       "predicted_winner": "Turkey",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_E_3",
@@ -942,12 +1076,14 @@
       "home_win_probability": 0.51,
       "draw_probability": 0.232,
       "away_win_probability": 0.258,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.11061186651251363,
       "predicted_winner": "Germany",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_E_4",
@@ -963,12 +1099,14 @@
       "home_win_probability": 0.143,
       "draw_probability": 0.253,
       "away_win_probability": 0.604,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.17297290715103814,
       "predicted_winner": "Ecuador",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_F_3",
@@ -984,12 +1122,14 @@
       "home_win_probability": 0.628,
       "draw_probability": 0.185,
       "away_win_probability": 0.187,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-1",
       "predicted_score_probability": 0.09348521360211076,
       "predicted_winner": "Netherlands",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_F_4",
@@ -1005,12 +1145,14 @@
       "home_win_probability": 0.617,
       "draw_probability": 0.256,
       "away_win_probability": 0.127,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.14632292894616802,
       "predicted_winner": "Japan",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_G_3",
@@ -1026,12 +1168,14 @@
       "home_win_probability": 0.443,
       "draw_probability": 0.256,
       "away_win_probability": 0.301,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.1015107790438284,
       "predicted_winner": "Belgium",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_G_4",
@@ -1047,12 +1191,14 @@
       "home_win_probability": 0.31,
       "draw_probability": 0.281,
       "away_win_probability": 0.409,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.1261726414307948,
       "predicted_winner": "New Zealand",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_H_3",
@@ -1068,12 +1214,14 @@
       "home_win_probability": 0.81,
       "draw_probability": 0.127,
       "away_win_probability": 0.063,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-0",
       "predicted_score_probability": 0.12721597650056315,
       "predicted_winner": "Spain",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_H_4",
@@ -1089,12 +1237,14 @@
       "home_win_probability": 0.195,
       "draw_probability": 0.28,
       "away_win_probability": 0.525,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.17203180374943308,
       "predicted_winner": "Uruguay",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_I_3",
@@ -1110,12 +1260,14 @@
       "home_win_probability": 0.711,
       "draw_probability": 0.187,
       "away_win_probability": 0.102,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-0",
       "predicted_score_probability": 0.13631839227326983,
       "predicted_winner": "France",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_I_4",
@@ -1131,12 +1283,14 @@
       "home_win_probability": 0.375,
       "draw_probability": 0.253,
       "away_win_probability": 0.372,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-1",
       "predicted_score_probability": 0.08509120349389684,
       "predicted_winner": "Senegal",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_J_3",
@@ -1152,12 +1306,14 @@
       "home_win_probability": 0.613,
       "draw_probability": 0.222,
       "away_win_probability": 0.165,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.13462643297290214,
       "predicted_winner": "Argentina",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_J_4",
@@ -1173,12 +1329,14 @@
       "home_win_probability": 0.558,
       "draw_probability": 0.228,
       "away_win_probability": 0.214,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.1138303674311268,
       "predicted_winner": "Algeria",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_K_3",
@@ -1194,12 +1352,14 @@
       "home_win_probability": 0.567,
       "draw_probability": 0.249,
       "away_win_probability": 0.184,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.1435224670323808,
       "predicted_winner": "Portugal",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_K_4",
@@ -1215,12 +1375,14 @@
       "home_win_probability": 0.208,
       "draw_probability": 0.244,
       "away_win_probability": 0.548,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.13964359538139426,
       "predicted_winner": "Colombia",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_L_3",
@@ -1236,12 +1398,14 @@
       "home_win_probability": 0.755,
       "draw_probability": 0.16,
       "away_win_probability": 0.085,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-0",
       "predicted_score_probability": 0.13908314204693262,
       "predicted_winner": "England",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_L_4",
@@ -1257,12 +1421,14 @@
       "home_win_probability": 0.567,
       "draw_probability": 0.219,
       "away_win_probability": 0.214,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-1",
       "predicted_score_probability": 0.0985461817306739,
       "predicted_winner": "Croatia",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_A_5",
@@ -1278,12 +1444,14 @@
       "home_win_probability": 0.542,
       "draw_probability": 0.265,
       "away_win_probability": 0.193,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.14391628092106845,
       "predicted_winner": "Mexico",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_A_6",
@@ -1299,12 +1467,14 @@
       "home_win_probability": 0.236,
       "draw_probability": 0.278,
       "away_win_probability": 0.486,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.13601677641208487,
       "predicted_winner": "South Korea",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_B_5",
@@ -1320,12 +1490,14 @@
       "home_win_probability": 0.401,
       "draw_probability": 0.259,
       "away_win_probability": 0.34,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.10174673762424917,
       "predicted_winner": "Canada",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_B_6",
@@ -1341,12 +1513,14 @@
       "home_win_probability": 0.442,
       "draw_probability": 0.25,
       "away_win_probability": 0.308,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.1001053560720484,
       "predicted_winner": "Bosnia and Herzegovina",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_C_5",
@@ -1362,12 +1536,14 @@
       "home_win_probability": 0.645,
       "draw_probability": 0.215,
       "away_win_probability": 0.14,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-0",
       "predicted_score_probability": 0.11320206044022002,
       "predicted_winner": "Brazil",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_C_6",
@@ -1383,12 +1559,14 @@
       "home_win_probability": 0.661,
       "draw_probability": 0.212,
       "away_win_probability": 0.127,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.1336677609160311,
       "predicted_winner": "Morocco",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_D_5",
@@ -1404,12 +1582,14 @@
       "home_win_probability": 0.369,
       "draw_probability": 0.227,
       "away_win_probability": 0.404,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-2",
       "predicted_score_probability": 0.08799894620640868,
       "predicted_winner": "Turkey",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_D_6",
@@ -1425,12 +1605,14 @@
       "home_win_probability": 0.304,
       "draw_probability": 0.292,
       "away_win_probability": 0.404,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.13192099637474514,
       "predicted_winner": "Australia",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_E_5",
@@ -1446,12 +1628,14 @@
       "home_win_probability": 0.342,
       "draw_probability": 0.297,
       "away_win_probability": 0.361,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.1134447917251139,
       "predicted_winner": "Ecuador",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_E_6",
@@ -1467,12 +1651,14 @@
       "home_win_probability": 0.155,
       "draw_probability": 0.253,
       "away_win_probability": 0.592,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.13793360004993738,
       "predicted_winner": "Ivory Coast",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_F_5",
@@ -1488,12 +1674,14 @@
       "home_win_probability": 0.557,
       "draw_probability": 0.233,
       "away_win_probability": 0.21,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.1089442559989624,
       "predicted_winner": "Netherlands",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_F_6",
@@ -1509,12 +1697,14 @@
       "home_win_probability": 0.687,
       "draw_probability": 0.17,
       "away_win_probability": 0.143,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-0",
       "predicted_score_probability": 0.10874689296813563,
       "predicted_winner": "Japan",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_G_5",
@@ -1530,12 +1720,14 @@
       "home_win_probability": 0.448,
       "draw_probability": 0.227,
       "away_win_probability": 0.325,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-1",
       "predicted_score_probability": 0.09056744754721546,
       "predicted_winner": "Belgium",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_G_6",
@@ -1551,12 +1743,14 @@
       "home_win_probability": 0.283,
       "draw_probability": 0.301,
       "away_win_probability": 0.416,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.1509442067776383,
       "predicted_winner": "Iran",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_H_5",
@@ -1572,12 +1766,14 @@
       "home_win_probability": 0.61,
       "draw_probability": 0.231,
       "away_win_probability": 0.159,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.12792002492307689,
       "predicted_winner": "Spain",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_H_6",
@@ -1593,12 +1789,14 @@
       "home_win_probability": 0.348,
       "draw_probability": 0.302,
       "away_win_probability": 0.35,
-      "predicted_score": "0-1",
-      "predicted_score_probability": 0.1275404083440477,
-      "predicted_winner": "Saudi Arabia",
+      "displayed_outcome": "draw",
+      "competitive_draw_selected": true,
+      "predicted_score": "1-1",
+      "predicted_score_probability": 0.13481212788553745,
+      "predicted_winner": null,
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_I_5",
@@ -1614,12 +1812,14 @@
       "home_win_probability": 0.494,
       "draw_probability": 0.228,
       "away_win_probability": 0.278,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-1",
       "predicted_score_probability": 0.09401500452928216,
       "predicted_winner": "France",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_I_6",
@@ -1635,12 +1835,14 @@
       "home_win_probability": 0.641,
       "draw_probability": 0.221,
       "away_win_probability": 0.138,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.14268229502840268,
       "predicted_winner": "Senegal",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_J_5",
@@ -1656,12 +1858,14 @@
       "home_win_probability": 0.775,
       "draw_probability": 0.152,
       "away_win_probability": 0.073,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-0",
       "predicted_score_probability": 0.13375413643477618,
       "predicted_winner": "Argentina",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_J_6",
@@ -1677,12 +1881,14 @@
       "home_win_probability": 0.366,
       "draw_probability": 0.282,
       "away_win_probability": 0.352,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.11040092509761282,
       "predicted_winner": "Algeria",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_K_5",
@@ -1698,12 +1904,14 @@
       "home_win_probability": 0.428,
       "draw_probability": 0.236,
       "away_win_probability": 0.336,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-1",
       "predicted_score_probability": 0.08862745504562715,
       "predicted_winner": "Portugal",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_K_6",
@@ -1719,12 +1927,14 @@
       "home_win_probability": 0.317,
       "draw_probability": 0.335,
       "away_win_probability": 0.348,
-      "predicted_score": "0-1",
-      "predicted_score_probability": 0.15199961417836966,
-      "predicted_winner": "Uzbekistan",
+      "displayed_outcome": "draw",
+      "competitive_draw_selected": true,
+      "predicted_score": "0-0",
+      "predicted_score_probability": 0.16256207027303132,
+      "predicted_winner": null,
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_L_5",
@@ -1740,12 +1950,14 @@
       "home_win_probability": 0.689,
       "draw_probability": 0.19,
       "away_win_probability": 0.121,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-0",
       "predicted_score_probability": 0.12356624918111597,
       "predicted_winner": "England",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "group_L_6",
@@ -1761,12 +1973,14 @@
       "home_win_probability": 0.645,
       "draw_probability": 0.207,
       "away_win_probability": 0.148,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-0",
       "predicted_score_probability": 0.11050137145750549,
       "predicted_winner": "Croatia",
       "advanced_by": null,
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M73",
@@ -1782,12 +1996,14 @@
       "home_win_probability": 0.2830188679245283,
       "draw_probability": 0.2169811320754717,
       "away_win_probability": 0.5,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-2",
       "predicted_score_probability": 0.08950239440268688,
       "predicted_winner": "Switzerland",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M74",
@@ -1803,12 +2019,14 @@
       "home_win_probability": 0.4722222222222222,
       "draw_probability": 0.3055555555555556,
       "away_win_probability": 0.2222222222222222,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.14007997382502577,
       "predicted_winner": "Ecuador",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M75",
@@ -1816,41 +2034,45 @@
       "round": "round_of_32",
       "group": null,
       "home_team": "Japan",
-      "away_team": "Brazil",
-      "home_lambda": 1.322400435384581,
-      "away_lambda": 1.1866591896232244,
-      "total_lambda": 2.509059625007805,
-      "lambda_diff": 0.1357412457613567,
-      "home_win_probability": 0.44970414201183434,
-      "draw_probability": 0.26627218934911245,
-      "away_win_probability": 0.28402366863905326,
+      "away_team": "Morocco",
+      "home_lambda": 1.0678426729017205,
+      "away_lambda": 0.9810594400702253,
+      "total_lambda": 2.0489021129719456,
+      "lambda_diff": 0.08678323283149525,
+      "home_win_probability": 0.4645161290322581,
+      "draw_probability": 0.23870967741935484,
+      "away_win_probability": 0.2967741935483871,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
-      "predicted_score_probability": 0.10757026379350618,
+      "predicted_score_probability": 0.1376196314411365,
       "predicted_winner": "Japan",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M76",
       "stage": "round_of_32",
       "round": "round_of_32",
       "group": null,
-      "home_team": "Morocco",
+      "home_team": "Brazil",
       "away_team": "Netherlands",
-      "home_lambda": 1.312883169552527,
-      "away_lambda": 1.1355634115147935,
-      "total_lambda": 2.44844658106732,
-      "lambda_diff": 0.17731975803773348,
-      "home_win_probability": 0.5277777777777778,
-      "draw_probability": 0.2708333333333333,
-      "away_win_probability": 0.2013888888888889,
-      "predicted_score": "1-0",
-      "predicted_score_probability": 0.11346952622929359,
-      "predicted_winner": "Morocco",
+      "home_lambda": 1.5880229213631056,
+      "away_lambda": 1.406264787783181,
+      "total_lambda": 2.9942877091462865,
+      "lambda_diff": 0.18175813357992454,
+      "home_win_probability": 0.4691358024691358,
+      "draw_probability": 0.1728395061728395,
+      "away_win_probability": 0.35802469135802467,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
+      "predicted_score": "2-1",
+      "predicted_score_probability": 0.08878671967506331,
+      "predicted_winner": "Brazil",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M77",
@@ -1866,12 +2088,14 @@
       "home_win_probability": 0.6024096385542169,
       "draw_probability": 0.18072289156626506,
       "away_win_probability": 0.21686746987951808,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-0",
       "predicted_score_probability": 0.11605405766316214,
       "predicted_winner": "France",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M78",
@@ -1887,12 +2111,14 @@
       "home_win_probability": 0.44871794871794873,
       "draw_probability": 0.2692307692307692,
       "away_win_probability": 0.28205128205128205,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-1",
       "predicted_score_probability": 0.09035630241422511,
       "predicted_winner": "Germany",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M79",
@@ -1908,12 +2134,14 @@
       "home_win_probability": 0.421875,
       "draw_probability": 0.234375,
       "away_win_probability": 0.34375,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.15348786984777707,
       "predicted_winner": "Mexico",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M80",
@@ -1921,20 +2149,22 @@
       "round": "round_of_32",
       "group": null,
       "home_team": "England",
-      "away_team": "Uzbekistan",
-      "home_lambda": 1.5229256572814889,
-      "away_lambda": 0.6715529372637463,
-      "total_lambda": 2.1944785945452354,
-      "lambda_diff": 0.8513727200177426,
-      "home_win_probability": 0.5797101449275363,
-      "draw_probability": 0.2536231884057971,
-      "away_win_probability": 0.16666666666666666,
-      "predicted_score": "1-0",
-      "predicted_score_probability": 0.1696792591042445,
+      "away_team": "Norway",
+      "home_lambda": 1.7032334306155723,
+      "away_lambda": 1.1794161453345176,
+      "total_lambda": 2.88264957595009,
+      "lambda_diff": 0.5238172852810548,
+      "home_win_probability": 0.5405405405405406,
+      "draw_probability": 0.13513513513513514,
+      "away_win_probability": 0.32432432432432434,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
+      "predicted_score": "2-1",
+      "predicted_score_probability": 0.09577818752879144,
       "predicted_winner": "England",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M81",
@@ -1950,12 +2180,14 @@
       "home_win_probability": 0.3333333333333333,
       "draw_probability": 0.4,
       "away_win_probability": 0.26666666666666666,
+      "displayed_outcome": "draw",
+      "competitive_draw_selected": false,
       "predicted_score": "1-1",
       "predicted_score_probability": 0.11740471317216901,
       "predicted_winner": "Turkey",
       "advanced_by": "higher_win_probability_after_draw",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M82",
@@ -1971,12 +2203,14 @@
       "home_win_probability": 0.5490196078431373,
       "draw_probability": 0.2549019607843137,
       "away_win_probability": 0.19607843137254902,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-1",
       "predicted_score_probability": 0.09928866934481113,
       "predicted_winner": "Belgium",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M83",
@@ -1992,12 +2226,14 @@
       "home_win_probability": 0.3643410852713178,
       "draw_probability": 0.20155038759689922,
       "away_win_probability": 0.43410852713178294,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-2",
       "predicted_score_probability": 0.07513681307264816,
       "predicted_winner": "Croatia",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M84",
@@ -2013,12 +2249,14 @@
       "home_win_probability": 0.569811320754717,
       "draw_probability": 0.22264150943396227,
       "away_win_probability": 0.20754716981132076,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.10291637498389819,
       "predicted_winner": "Spain",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M85",
@@ -2034,12 +2272,14 @@
       "home_win_probability": 0.421875,
       "draw_probability": 0.296875,
       "away_win_probability": 0.28125,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.13847345878750542,
       "predicted_winner": "Canada",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M86",
@@ -2055,12 +2295,14 @@
       "home_win_probability": 0.6428571428571429,
       "draw_probability": 0.20748299319727892,
       "away_win_probability": 0.14965986394557823,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.1699510753987702,
       "predicted_winner": "Argentina",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M87",
@@ -2068,20 +2310,22 @@
       "round": "round_of_32",
       "group": null,
       "home_team": "Portugal",
-      "away_team": "Norway",
-      "home_lambda": 1.8206472562884783,
-      "away_lambda": 1.4061444218482693,
-      "total_lambda": 3.2267916781367476,
-      "lambda_diff": 0.4145028344402091,
-      "home_win_probability": 0.35,
-      "draw_probability": 0.25,
-      "away_win_probability": 0.4,
-      "predicted_score": "1-2",
-      "predicted_score_probability": 0.07142953977927909,
-      "predicted_winner": "Norway",
+      "away_team": "Panama",
+      "home_lambda": 2.1606446940634103,
+      "away_lambda": 0.9347290968263438,
+      "total_lambda": 3.095373790889754,
+      "lambda_diff": 1.2259155972370666,
+      "home_win_probability": 0.6756756756756757,
+      "draw_probability": 0.14414414414414414,
+      "away_win_probability": 0.18018018018018017,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
+      "predicted_score": "2-0",
+      "predicted_score_probability": 0.10564111063897935,
+      "predicted_winner": "Portugal",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M88",
@@ -2097,12 +2341,14 @@
       "home_win_probability": 0.39215686274509803,
       "draw_probability": 0.29411764705882354,
       "away_win_probability": 0.3137254901960784,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.099526181198872,
       "predicted_winner": "Australia",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M89",
@@ -2118,12 +2364,14 @@
       "home_win_probability": 0.23684210526315788,
       "draw_probability": 0.2894736842105263,
       "away_win_probability": 0.47368421052631576,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.140505586280441,
       "predicted_winner": "France",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M90",
@@ -2139,33 +2387,37 @@
       "home_win_probability": 0.32727272727272727,
       "draw_probability": 0.10909090909090909,
       "away_win_probability": 0.5636363636363636,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.10415807595481058,
       "predicted_winner": "Japan",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M91",
       "stage": "round_of_16",
       "round": "round_of_16",
       "group": null,
-      "home_team": "Morocco",
+      "home_team": "Brazil",
       "away_team": "Germany",
-      "home_lambda": 1.3128911151858007,
-      "away_lambda": 1.1832057608135094,
-      "total_lambda": 2.49609687599931,
-      "lambda_diff": 0.12968535437229134,
-      "home_win_probability": 0.5333333333333333,
-      "draw_probability": 0.2222222222222222,
-      "away_win_probability": 0.24444444444444444,
-      "predicted_score": "1-0",
-      "predicted_score_probability": 0.10819012181103252,
-      "predicted_winner": "Morocco",
+      "home_lambda": 1.588032532155639,
+      "away_lambda": 1.4652643623967017,
+      "total_lambda": 3.0532968945523407,
+      "lambda_diff": 0.12276816975893734,
+      "home_win_probability": 0.3902439024390244,
+      "draw_probability": 0.2682926829268293,
+      "away_win_probability": 0.34146341463414637,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
+      "predicted_score": "2-1",
+      "predicted_score_probability": 0.0872117072995669,
+      "predicted_winner": "Brazil",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M92",
@@ -2181,12 +2433,14 @@
       "home_win_probability": 0.2196969696969697,
       "draw_probability": 0.2878787878787879,
       "away_win_probability": 0.49242424242424243,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.15184821489016945,
       "predicted_winner": "England",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M93",
@@ -2202,12 +2456,14 @@
       "home_win_probability": 0.16535433070866143,
       "draw_probability": 0.25196850393700787,
       "away_win_probability": 0.5826771653543307,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-2",
       "predicted_score_probability": 0.09846167275648395,
       "predicted_winner": "Spain",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M94",
@@ -2223,12 +2479,14 @@
       "home_win_probability": 0.375,
       "draw_probability": 0.225,
       "away_win_probability": 0.4,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-2",
       "predicted_score_probability": 0.08797452747525096,
       "predicted_winner": "Belgium",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M95",
@@ -2244,12 +2502,14 @@
       "home_win_probability": 0.65625,
       "draw_probability": 0.140625,
       "away_win_probability": 0.203125,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
       "predicted_score_probability": 0.15214684211357699,
       "predicted_winner": "Argentina",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M96",
@@ -2257,20 +2517,22 @@
       "round": "round_of_16",
       "group": null,
       "home_team": "Canada",
-      "away_team": "Norway",
-      "home_lambda": 1.2823811384390515,
-      "away_lambda": 1.3682722687173237,
-      "total_lambda": 2.6506534071563754,
-      "lambda_diff": -0.08589113027827211,
-      "home_win_probability": 0.375,
-      "draw_probability": 0.125,
-      "away_win_probability": 0.5,
+      "away_team": "Portugal",
+      "home_lambda": 1.027129315910121,
+      "away_lambda": 1.418980446169778,
+      "total_lambda": 2.4461097620798986,
+      "lambda_diff": -0.391851130259657,
+      "home_win_probability": 0.25555555555555554,
+      "draw_probability": 0.3,
+      "away_win_probability": 0.4444444444444444,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
-      "predicted_score_probability": 0.09660695128127986,
-      "predicted_winner": "Norway",
+      "predicted_score_probability": 0.12292619504332192,
+      "predicted_winner": "Portugal",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M97",
@@ -2286,12 +2548,14 @@
       "home_win_probability": 0.2777777777777778,
       "draw_probability": 0.35185185185185186,
       "away_win_probability": 0.37037037037037035,
-      "predicted_score": "0-1",
-      "predicted_score_probability": 0.0955473504403963,
+      "displayed_outcome": "draw",
+      "competitive_draw_selected": true,
+      "predicted_score": "1-1",
+      "predicted_score_probability": 0.12403325648872288,
       "predicted_winner": "Japan",
-      "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "advanced_by": "higher_win_probability_after_draw",
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M98",
@@ -2307,33 +2571,37 @@
       "home_win_probability": 0.6415094339622641,
       "draw_probability": 0.18867924528301888,
       "away_win_probability": 0.16981132075471697,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "2-1",
       "predicted_score_probability": 0.09707310894682901,
       "predicted_winner": "Spain",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M99",
       "stage": "quarter_final",
       "round": "quarter_final",
       "group": null,
-      "home_team": "Morocco",
+      "home_team": "Brazil",
       "away_team": "England",
-      "home_lambda": 0.9875134334348263,
-      "away_lambda": 1.0552415616099682,
-      "total_lambda": 2.0427549950447945,
-      "lambda_diff": -0.06772812817514184,
-      "home_win_probability": 0.44,
-      "draw_probability": 0.2,
-      "away_win_probability": 0.36,
-      "predicted_score": "1-0",
-      "predicted_score_probability": 0.12805183016395533,
-      "predicted_winner": "Morocco",
+      "home_lambda": 1.1944657406058268,
+      "away_lambda": 1.3067954071520407,
+      "total_lambda": 2.5012611477578677,
+      "lambda_diff": -0.1123296665462139,
+      "home_win_probability": 0.3090909090909091,
+      "draw_probability": 0.3090909090909091,
+      "away_win_probability": 0.38181818181818183,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
+      "predicted_score": "0-1",
+      "predicted_score_probability": 0.10713310329169494,
+      "predicted_winner": "England",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M100",
@@ -2341,20 +2609,22 @@
       "round": "quarter_final",
       "group": null,
       "home_team": "Argentina",
-      "away_team": "Norway",
-      "home_lambda": 1.971821687583204,
-      "away_lambda": 0.9930524560787982,
-      "total_lambda": 2.9648741436620023,
-      "lambda_diff": 0.9787692315044058,
-      "home_win_probability": 0.42857142857142855,
-      "draw_probability": 0.2857142857142857,
-      "away_win_probability": 0.2857142857142857,
+      "away_team": "Portugal",
+      "home_lambda": 1.579340026420963,
+      "away_lambda": 1.0298549853076084,
+      "total_lambda": 2.6091950117285716,
+      "lambda_diff": 0.5494850411133545,
+      "home_win_probability": 0.5,
+      "draw_probability": 0.2553191489361702,
+      "away_win_probability": 0.24468085106382978,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
-      "predicted_score_probability": 0.10168084785336902,
+      "predicted_score_probability": 0.11622957408489694,
       "predicted_winner": "Argentina",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M101",
@@ -2370,33 +2640,37 @@
       "home_win_probability": 0.37735849056603776,
       "draw_probability": 0.18867924528301888,
       "away_win_probability": 0.4339622641509434,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
       "predicted_score": "0-1",
       "predicted_score_probability": 0.09530605653326366,
       "predicted_winner": "Spain",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M102",
       "stage": "semi_final",
       "round": "semi_final",
       "group": null,
-      "home_team": "Morocco",
+      "home_team": "England",
       "away_team": "Argentina",
-      "home_lambda": 0.8314729659776865,
-      "away_lambda": 1.2216459349730429,
-      "total_lambda": 2.0531189009507296,
-      "lambda_diff": -0.39017296899535636,
-      "home_win_probability": 0.40540540540540543,
-      "draw_probability": 0.32432432432432434,
-      "away_win_probability": 0.2702702702702703,
-      "predicted_score": "1-0",
-      "predicted_score_probability": 0.1067062663006991,
-      "predicted_winner": "Morocco",
+      "home_lambda": 0.9634394765946336,
+      "away_lambda": 1.324685499719546,
+      "total_lambda": 2.2881249763141795,
+      "lambda_diff": -0.3612460231249125,
+      "home_win_probability": 0.36,
+      "draw_probability": 0.26,
+      "away_win_probability": 0.38,
+      "displayed_outcome": "away_win",
+      "competitive_draw_selected": false,
+      "predicted_score": "0-1",
+      "predicted_score_probability": 0.13439797691095412,
+      "predicted_winner": "Argentina",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M103",
@@ -2404,20 +2678,22 @@
       "round": "third_place_playoff",
       "group": null,
       "home_team": "Japan",
-      "away_team": "Argentina",
-      "home_lambda": 0.9749443381439776,
-      "away_lambda": 1.3160278844042421,
-      "total_lambda": 2.29097222254822,
-      "lambda_diff": -0.3410835462602645,
-      "home_win_probability": 0.6,
-      "draw_probability": 0.2,
-      "away_win_probability": 0.2,
+      "away_team": "England",
+      "home_lambda": 1.1579097218588839,
+      "away_lambda": 1.1367674381789188,
+      "total_lambda": 2.2946771600378026,
+      "lambda_diff": 0.021142283679965068,
+      "home_win_probability": 0.5,
+      "draw_probability": 0.0,
+      "away_win_probability": 0.5,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
       "predicted_score": "1-0",
-      "predicted_score_probability": 0.09863322355437897,
+      "predicted_score_probability": 0.11671026951096528,
       "predicted_winner": "Japan",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     },
     {
       "match_id": "M104",
@@ -2425,20 +2701,22 @@
       "round": "final",
       "group": null,
       "home_team": "Spain",
-      "away_team": "Morocco",
-      "home_lambda": 1.4119441764943779,
-      "away_lambda": 1.0652162913205225,
-      "total_lambda": 2.4771604678149,
-      "lambda_diff": 0.34672788517385533,
-      "home_win_probability": 0.26666666666666666,
-      "draw_probability": 0.3333333333333333,
-      "away_win_probability": 0.4,
-      "predicted_score": "0-1",
-      "predicted_score_probability": 0.0894583076247585,
-      "predicted_winner": "Morocco",
+      "away_team": "Argentina",
+      "home_lambda": 1.2891102927249731,
+      "away_lambda": 1.4289188657102512,
+      "total_lambda": 2.7180291584352245,
+      "lambda_diff": -0.13980857298527805,
+      "home_win_probability": 0.4,
+      "draw_probability": 0.2222222222222222,
+      "away_win_probability": 0.37777777777777777,
+      "displayed_outcome": "home_win",
+      "competitive_draw_selected": false,
+      "predicted_score": "1-0",
+      "predicted_score_probability": 0.08508735251243241,
+      "predicted_winner": "Spain",
       "advanced_by": "normal_time_win",
-      "score_contradicts_most_probable_outcome": false,
-      "prediction_source": "most_probable_outcome"
+      "score_contradicts_displayed_outcome": false,
+      "prediction_source": "deterministic_displayed_outcome"
     }
   ]
 }

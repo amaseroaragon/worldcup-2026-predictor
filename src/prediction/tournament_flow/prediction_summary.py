@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from src.prediction.core.models import MatchPrediction, MatchResult
+from src.prediction.settings import DRAW_COMPETITIVE_MARGIN
 
 
 HOME_WIN = "home_win"
@@ -22,21 +23,43 @@ def result_probabilities(
     return home_wins / total, draws / total, away_wins / total
 
 
-def select_most_probable_outcome(
+def select_displayed_outcome(
     home_win_probability: float,
     draw_probability: float,
     away_win_probability: float,
+    draw_competitive_margin: float = DRAW_COMPETITIVE_MARGIN,
 ) -> str:
-    """Return the highest-probability outcome class, with stable tie-breaking."""
-    if abs(home_win_probability + draw_probability + away_win_probability - 1.0) > 1e-6:
-        raise ValueError("win/draw/loss probabilities must sum to one")
+    """Return a deterministic outcome, allowing statistically competitive draws."""
+    probabilities = (home_win_probability, draw_probability, away_win_probability)
+    if any(probability < 0 or probability > 1 for probability in probabilities):
+        raise ValueError("win/draw/loss probabilities must be between zero and one")
+    if draw_competitive_margin < 0:
+        raise ValueError("draw_competitive_margin must be non-negative")
 
-    probabilities = (
-        (HOME_WIN, home_win_probability),
-        (DRAW, draw_probability),
-        (AWAY_WIN, away_win_probability),
+    max_win_probability = max(home_win_probability, away_win_probability)
+    if draw_probability >= max_win_probability - draw_competitive_margin:
+        return DRAW
+    return HOME_WIN if home_win_probability >= away_win_probability else AWAY_WIN
+
+
+def is_competitive_draw_selected(
+    home_win_probability: float,
+    draw_probability: float,
+    away_win_probability: float,
+    draw_competitive_margin: float = DRAW_COMPETITIVE_MARGIN,
+) -> bool:
+    """Return whether the margin promotes draw over a higher win probability."""
+    max_win_probability = max(home_win_probability, away_win_probability)
+    return (
+        draw_probability < max_win_probability
+        and select_displayed_outcome(
+            home_win_probability,
+            draw_probability,
+            away_win_probability,
+            draw_competitive_margin,
+        )
+        == DRAW
     )
-    return max(probabilities, key=lambda item: item[1])[0]
 
 
 def select_most_likely_score_for_outcome(
@@ -82,7 +105,7 @@ def ranked_scores_for_outcome(
     )
 
 
-def score_contradicts_most_probable_outcome(
+def score_contradicts_displayed_outcome(
     home_team: str,
     away_team: str,
     home_goals: int,
@@ -93,8 +116,8 @@ def score_contradicts_most_probable_outcome(
     draw_probability: float,
     away_win_probability: float,
 ) -> bool:
-    """Return whether score/winner contradict the highest-probability outcome."""
-    outcome = select_most_probable_outcome(
+    """Return whether score/winner contradict the deterministic displayed outcome."""
+    outcome = select_displayed_outcome(
         home_win_probability,
         draw_probability,
         away_win_probability,

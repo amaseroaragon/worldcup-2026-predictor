@@ -109,7 +109,7 @@ def test_representative_validation_rejects_champion_inconsistent_with_final():
         validate_representative_tournament(inconsistent, knockouts)
 
 
-def test_representative_validation_rejects_score_contradicting_most_probable_outcome():
+def test_representative_validation_rejects_score_contradicting_displayed_outcome():
     representative, knockouts = current_representative_tournament()
     inconsistent = copy.deepcopy(representative)
     group_match = next(
@@ -119,5 +119,5 @@ def test_representative_validation_rejects_score_contradicting_most_probable_out
     group_match["predicted_home_goals"] = 0
     group_match["predicted_away_goals"] = 1
 
-    with pytest.raises(ValueError, match="score contradicts most probable outcome"):
+    with pytest.raises(ValueError, match="score contradicts displayed outcome"):
         validate_representative_tournament(inconsistent, knockouts)

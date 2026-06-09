@@ -117,19 +117,24 @@ Relevant fields include:
 - `average_home_goals`
 - `average_away_goals`
 
-The displayed tournament is deterministic. For every match, the largest of
-`home_win_probability`, `draw_probability`, and `away_win_probability` selects
-the displayed outcome. The score is the highest-probability Poisson score
-compatible with that outcome. Standings and the knockout path are rebuilt from
-those displayed results.
+The displayed tournament is deterministic. A draw is selected when its
+probability is within `DRAW_COMPETITIVE_MARGIN` of the stronger win
+probability. Otherwise, the stronger win probability selects the displayed
+outcome. The score is the highest-probability Poisson score compatible with
+that outcome. Standings and the knockout path are rebuilt from those displayed
+results.
 
-- A most-probable home win always displays a home-win score and home winner.
-- A most-probable away win always displays an away-win score and away winner.
-- A most-probable group draw displays a draw score and no winner.
-- A most-probable knockout draw displays a draw score while the stronger win
+- A displayed home win always displays a home-win score and home winner.
+- A displayed away win always displays an away-win score and away winner.
+- A displayed group draw displays a draw score and no winner.
+- A displayed knockout draw displays a draw score while the stronger win
   probability determines the team that advances.
-- `most_common_score` is the displayed score selected within the most probable
+- `most_common_score` is the displayed score selected within the displayed
   outcome class.
+
+`DRAW_COMPETITIVE_MARGIN` is configured in `src/prediction/settings.py`.
+Increase it to display more competitive draws, or decrease it to require draws
+to be closer to the stronger win probability.
 
 ## Reproducibility
 

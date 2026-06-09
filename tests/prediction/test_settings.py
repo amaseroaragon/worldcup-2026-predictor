@@ -14,6 +14,8 @@ from src.prediction.settings import (
     DEFAULT_RAW_RESULTS_PATH,
     DEFAULT_TEAM_METRICS_PATH,
     DEFAULT_WORLD_CUP_PROBABILITIES_JSON_PATH,
+    DISPLAY_SETTINGS,
+    DRAW_COMPETITIVE_MARGIN,
     ELO_SETTINGS,
     MODEL_WEIGHTS,
     OUTPUT_SETTINGS,
@@ -42,6 +44,11 @@ def test_path_settings_match_public_default_aliases():
     )
     assert prediction_config.DEFAULT_WORLD_CUP_2026_KNOCKOUTS_PATH == PATH_SETTINGS.knockouts_path
     assert prediction_config.DEFAULT_SQUAD_VALUES_PATH == PATH_SETTINGS.squad_values_path
+
+
+def test_display_settings_expose_competitive_draw_margin():
+    assert PREDICTION_SETTINGS.display is DISPLAY_SETTINGS
+    assert DRAW_COMPETITIVE_MARGIN == DISPLAY_SETTINGS.draw_competitive_margin == 0.05
 
 
 def test_path_settings_keep_current_default_routes():

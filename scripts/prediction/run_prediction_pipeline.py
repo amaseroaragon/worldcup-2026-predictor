@@ -9,6 +9,7 @@ ROOT_DIR = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT_DIR))
 
 from src.prediction.settings import (
+    DRAW_COMPETITIVE_MARGIN,
     DEFAULT_CLI_SEED,
     DEFAULT_N_SIMULATIONS,
     DEFAULT_SQUAD_VALUES_PATH,
@@ -158,11 +159,12 @@ def main() -> None:
         metadata={
             "simulations": args.simulations,
             "seed": args.seed,
-            "method": "deterministic_most_probable_outcome",
+            "method": "deterministic_displayed_outcome",
             "team_strength_ratings": True,
             "recent_form": True,
             "squad_strength": True,
-            "displayed_outcome_selection": "maximum_match_outcome_probability",
+            "displayed_outcome_selection": "competitive_draw_then_stronger_win",
+            "draw_competitive_margin": DRAW_COMPETITIVE_MARGIN,
         },
     )
     qualification_probabilities = {
@@ -180,7 +182,8 @@ def main() -> None:
         metadata={
             "simulations": args.simulations,
             "seed": args.seed,
-            "source": "coherent_deterministic_most_probable_outcomes",
+            "source": "coherent_deterministic_displayed_outcomes",
+            "draw_competitive_margin": DRAW_COMPETITIVE_MARGIN,
         },
     )
     sync_frontend_data()

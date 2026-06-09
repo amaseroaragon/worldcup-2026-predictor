@@ -16,9 +16,14 @@ sys.path.insert(0, str(ROOT_DIR))
 from src.prediction.core.match import _expected_goals_feature_kwargs
 from src.prediction.core.poisson import expected_goals_from_elo, score_probability
 from src.prediction.pipeline import PredictionInputs, load_prediction_inputs
-from src.prediction.settings import DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH
+from src.prediction.settings import (
+    DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH,
+    DRAW_COMPETITIVE_MARGIN,
+)
 from src.prediction.tournament_flow.prediction_summary import (
-    score_contradicts_most_probable_outcome,
+    is_competitive_draw_selected,
+    score_contradicts_displayed_outcome,
+    select_displayed_outcome,
 )
 
 
@@ -92,16 +97,29 @@ def build_diagnostic_rows(
         predicted_home_goals = int(match["predicted_home_goals"])
         predicted_away_goals = int(match["predicted_away_goals"])
         predicted_score = f"{predicted_home_goals}-{predicted_away_goals}"
-        score_contradiction = score_contradicts_most_probable_outcome(
+        home_win_probability = float(match["home_win_probability"])
+        draw_probability = float(match["draw_probability"])
+        away_win_probability = float(match["away_win_probability"])
+        displayed_outcome = select_displayed_outcome(
+            home_win_probability,
+            draw_probability,
+            away_win_probability,
+        )
+        competitive_draw_selected = is_competitive_draw_selected(
+            home_win_probability,
+            draw_probability,
+            away_win_probability,
+        )
+        score_contradiction = score_contradicts_displayed_outcome(
             home_team,
             away_team,
             predicted_home_goals,
             predicted_away_goals,
             match.get("predicted_winner"),
             match.get("advanced_by"),
-            float(match["home_win_probability"]),
-            float(match["draw_probability"]),
-            float(match["away_win_probability"]),
+            home_win_probability,
+            draw_probability,
+            away_win_probability,
         )
 
         rows.append(
@@ -116,9 +134,11 @@ def build_diagnostic_rows(
                 "away_lambda": away_lambda,
                 "total_lambda": home_lambda + away_lambda,
                 "lambda_diff": home_lambda - away_lambda,
-                "home_win_probability": float(match["home_win_probability"]),
-                "draw_probability": float(match["draw_probability"]),
-                "away_win_probability": float(match["away_win_probability"]),
+                "home_win_probability": home_win_probability,
+                "draw_probability": draw_probability,
+                "away_win_probability": away_win_probability,
+                "displayed_outcome": displayed_outcome,
+                "competitive_draw_selected": competitive_draw_selected,
                 "predicted_score": predicted_score,
                 "predicted_score_probability": score_probability(
                     predicted_home_goals,
@@ -128,7 +148,7 @@ def build_diagnostic_rows(
                 ),
                 "predicted_winner": match.get("predicted_winner"),
                 "advanced_by": match.get("advanced_by"),
-                "score_contradicts_most_probable_outcome": score_contradiction,
+                "score_contradicts_displayed_outcome": score_contradiction,
                 "prediction_source": match.get("source"),
             }
         )
@@ -171,7 +191,7 @@ def aggregate_diagnostics(rows: list[dict[str, Any]], top: int = 20) -> dict[str
         "mean_away_lambda": mean(float(row["away_lambda"]) for row in rows),
         "mean_total_lambda": mean(float(row["total_lambda"]) for row in rows),
         "mean_draw_probability": mean(float(row["draw_probability"]) for row in rows),
-        "predicted_draw_percentage": predicted_draws / len(rows) * 100,
+        "displayed_draw_percentage": predicted_draws / len(rows) * 100,
         "predicted_score_distribution": distribution,
         "top_predicted_scores": distribution[:top],
         "knockout_mean_draw_probability": (
@@ -182,9 +202,26 @@ def aggregate_diagnostics(rows: list[dict[str, Any]], top: int = 20) -> dict[str
         "knockout_matches_without_winner": sum(
             row["predicted_winner"] is None for row in knockout_rows
         ),
-        "scores_contradicting_most_probable_outcome": sum(
-            bool(row["score_contradicts_most_probable_outcome"]) for row in rows
+        "scores_contradicting_displayed_outcome": sum(
+            bool(row["score_contradicts_displayed_outcome"]) for row in rows
         ),
+        "number_of_competitive_draws_selected": sum(
+            bool(row["competitive_draw_selected"]) for row in rows
+        ),
+        "competitive_draws_selected": [
+            {
+                "match_id": row["match_id"],
+                "stage": row["round"] or row["stage"],
+                "home_team": row["home_team"],
+                "away_team": row["away_team"],
+                "home_win_probability": row["home_win_probability"],
+                "draw_probability": row["draw_probability"],
+                "away_win_probability": row["away_win_probability"],
+                "predicted_score": row["predicted_score"],
+            }
+            for row in rows
+            if row["competitive_draw_selected"]
+        ],
         "stage_distribution": stage_distribution,
     }
 
@@ -199,7 +236,7 @@ def _stage_diagnostics(rows: list[dict[str, Any]], top: int) -> dict[str, Any]:
     return {
         "matches": len(rows),
         "mean_draw_probability": mean(float(row["draw_probability"]) for row in rows),
-        "predicted_draw_percentage": draws / len(rows) * 100,
+        "displayed_draw_percentage": draws / len(rows) * 100,
         "top_predicted_scores": [
             {
                 "predicted_score": score,
@@ -270,16 +307,28 @@ def print_aggregate(aggregate: dict[str, Any], top: int) -> None:
     print(f"Mean away_lambda: {aggregate['mean_away_lambda']:.4f}")
     print(f"Mean total_lambda: {aggregate['mean_total_lambda']:.4f}")
     print(f"Mean draw_probability: {aggregate['mean_draw_probability']:.4f}")
-    print(f"Predicted draw percentage: {aggregate['predicted_draw_percentage']:.2f}%")
+    print(f"Displayed draw percentage: {aggregate['displayed_draw_percentage']:.2f}%")
     print(
         "Knockout mean draw_probability: "
         f"{aggregate['knockout_mean_draw_probability']:.4f}"
     )
     print(f"Knockout matches without winner: {aggregate['knockout_matches_without_winner']}")
     print(
-        "Scores contradicting most probable outcome: "
-        f"{aggregate['scores_contradicting_most_probable_outcome']}"
+        "Scores contradicting displayed outcome: "
+        f"{aggregate['scores_contradicting_displayed_outcome']}"
     )
+    print(
+        "Competitive draws selected: "
+        f"{aggregate['number_of_competitive_draws_selected']}"
+    )
+    for row in aggregate["competitive_draws_selected"]:
+        print(
+            f"  {row['match_id']}: {row['home_team']} vs {row['away_team']} "
+            f"-> {row['predicted_score']} "
+            f"({row['home_win_probability']:.3f}/"
+            f"{row['draw_probability']:.3f}/"
+            f"{row['away_win_probability']:.3f})"
+        )
 
     print("\nPredicted score distribution:")
     for item in aggregate["predicted_score_distribution"]:
@@ -304,7 +353,7 @@ def print_aggregate(aggregate: dict[str, Any], top: int) -> None:
         print(
             f"  {stage}: matches={values['matches']}, "
             f"mean_draw_probability={values['mean_draw_probability']:.4f}, "
-            f"predicted_draw_percentage={values['predicted_draw_percentage']:.2f}%, "
+            f"displayed_draw_percentage={values['displayed_draw_percentage']:.2f}%, "
             f"top_scores=[{top_scores}]"
         )
 
@@ -331,6 +380,7 @@ def main() -> None:
                 "prediction_metadata": metadata,
                 "lambda_source": "expected_goals_from_elo with current base prediction inputs",
                 "probability_source": "existing tournament prediction records",
+                "draw_competitive_margin": DRAW_COMPETITIVE_MARGIN,
                 "interpretation_note": (
                     "Exported Monte Carlo probabilities may include dynamic Elo updates; "
                     "diagnostic lambdas are a reproducible base-ratings snapshot."

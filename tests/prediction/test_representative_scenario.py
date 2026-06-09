@@ -3,7 +3,7 @@ from src.prediction.tournament_flow.bracket_predictions import (
     build_predicted_bracket_predictions,
 )
 from src.prediction.tournament_flow.monte_carlo import run_monte_carlo
-from src.prediction.tournament_flow.prediction_summary import select_most_probable_outcome
+from src.prediction.tournament_flow.prediction_summary import select_displayed_outcome
 
 from tests.prediction.test_monte_carlo import (
     mini_groups,
@@ -38,12 +38,12 @@ def test_displayed_predictions_use_each_match_most_probable_outcome():
             if prediction.predicted_away_goals > prediction.predicted_home_goals
             else "draw"
         )
-        assert displayed_outcome == select_most_probable_outcome(
+        assert displayed_outcome == select_displayed_outcome(
             prediction.home_win_probability,
             prediction.draw_probability,
             prediction.away_win_probability,
         )
-        assert prediction.source in {"most_probable_outcome", "direct_model_fallback"}
+        assert prediction.source in {"deterministic_displayed_outcome", "direct_model_fallback"}
 
     displayed_groups = build_displayed_group_outcomes(
         [prediction for prediction in predictions if prediction.stage == "group"]

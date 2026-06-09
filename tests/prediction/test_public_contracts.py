@@ -97,7 +97,14 @@ def test_real_displayed_scores_follow_most_probable_outcome():
             "draw": match["draw_probability"],
             "away_win": match["away_win_probability"],
         }
-        outcome = max(probabilities, key=probabilities.get)
+        max_win = max(probabilities["home_win"], probabilities["away_win"])
+        outcome = (
+            "draw"
+            if probabilities["draw"] >= max_win - 0.05
+            else "home_win"
+            if probabilities["home_win"] >= probabilities["away_win"]
+            else "away_win"
+        )
         home_goals = match["predicted_home_goals"]
         away_goals = match["predicted_away_goals"]
 

@@ -194,6 +194,11 @@ class OutputSettings:
 
 
 @dataclass(frozen=True)
+class DisplaySettings:
+    draw_competitive_margin: float = 0.05
+
+
+@dataclass(frozen=True)
 class PredictionSettings:
     paths: PathSettings = field(default_factory=PathSettings)
     elo: EloSettings = field(default_factory=EloSettings)
@@ -201,6 +206,7 @@ class PredictionSettings:
     simulation: SimulationSettings = field(default_factory=SimulationSettings)
     team_metrics: TeamMetricSettings = field(default_factory=TeamMetricSettings)
     outputs: OutputSettings = field(default_factory=OutputSettings)
+    display: DisplaySettings = field(default_factory=DisplaySettings)
 
 
 PREDICTION_SETTINGS = PredictionSettings()
@@ -210,6 +216,7 @@ MODEL_WEIGHTS = PREDICTION_SETTINGS.weights
 SIMULATION_SETTINGS = PREDICTION_SETTINGS.simulation
 TEAM_METRIC_SETTINGS = PREDICTION_SETTINGS.team_metrics
 OUTPUT_SETTINGS = PREDICTION_SETTINGS.outputs
+DISPLAY_SETTINGS = PREDICTION_SETTINGS.display
 
 # Public aliases kept for backwards compatibility.
 DATA_DIR = PATH_SETTINGS.data_dir
@@ -275,3 +282,4 @@ FORM_WINDOWS = TEAM_METRIC_SETTINGS.form_windows
 
 PROBABILITY_COLUMNS = list(OUTPUT_SETTINGS.probability_columns)
 PROBABILITY_VALUE_COLUMNS = PROBABILITY_COLUMNS[1:]
+DRAW_COMPETITIVE_MARGIN = DISPLAY_SETTINGS.draw_competitive_margin

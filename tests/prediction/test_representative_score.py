@@ -13,7 +13,7 @@ from src.prediction.tournament_flow.prediction_summary import (
     DRAW,
     HOME_WIN,
     select_most_likely_score_for_outcome,
-    select_most_probable_outcome,
+    select_displayed_outcome,
 )
 
 
@@ -63,16 +63,16 @@ def test_highest_away_win_probability_selects_away_win_score_and_winner():
     assert prediction.advanced_by is None
 
 
-def test_highest_draw_probability_selects_group_draw_without_winner():
-    prediction = build_prediction((0.25, 0.50, 0.25))
+def test_competitive_draw_selects_group_draw_without_winner():
+    prediction = build_prediction((0.36, 0.33, 0.31))
 
     assert prediction.predicted_home_goals == prediction.predicted_away_goals
     assert prediction.predicted_winner is None
     assert prediction.advanced_by is None
 
 
-def test_highest_draw_probability_selects_knockout_draw_with_winner():
-    prediction = build_prediction((0.30, 0.50, 0.20), knockout=True)
+def test_competitive_draw_selects_knockout_draw_with_winner():
+    prediction = build_prediction((0.36, 0.33, 0.31), knockout=True)
 
     assert prediction.predicted_home_goals == prediction.predicted_away_goals
     assert prediction.predicted_winner == "Home"
@@ -105,8 +105,17 @@ def test_direct_knockout_prediction_has_non_null_winner():
         ((0.20, 0.20, 0.60), AWAY_WIN),
     ],
 )
-def test_select_most_probable_outcome(probabilities, outcome):
-    assert select_most_probable_outcome(*probabilities) == outcome
+def test_select_displayed_outcome(probabilities, outcome):
+    assert select_displayed_outcome(*probabilities) == outcome
+
+
+def test_draw_is_selected_when_inside_competitive_margin():
+    assert select_displayed_outcome(0.36, 0.33, 0.31) == DRAW
+
+
+def test_win_is_selected_when_draw_is_outside_competitive_margin():
+    assert select_displayed_outcome(0.52, 0.23, 0.25) == HOME_WIN
+    assert select_displayed_outcome(0.35, 0.30, 0.39) == AWAY_WIN
 
 
 @pytest.mark.parametrize(
@@ -134,7 +143,7 @@ def test_score_selection_does_not_change_lambdas():
     lambdas_before = expected_goals_from_elo(1600.0, 1500.0)
     matrix = score_matrix(*lambdas_before)
 
-    outcome = select_most_probable_outcome(0.45, 0.25, 0.30)
+    outcome = select_displayed_outcome(0.45, 0.25, 0.30)
     select_most_likely_score_for_outcome(matrix, outcome)
 
     assert expected_goals_from_elo(1600.0, 1500.0) == lambdas_before

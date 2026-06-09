@@ -23,7 +23,7 @@ from src.prediction.tournament_flow.prediction_summary import (
     prediction_to_match_result,
     result_probabilities,
     select_most_likely_score_for_outcome,
-    select_most_probable_outcome,
+    select_displayed_outcome,
 )
 from src.prediction.metrics.recent_form import RecentFormRating
 from src.prediction.metrics.squad_strength import SquadStrengthRating
@@ -42,7 +42,7 @@ def build_predicted_bracket_predictions(
     group_matches: list[dict[str, str | int]] | None = None,
     squad_strength_ratings: dict[str, SquadStrengthRating] | None = None,
 ) -> list[MatchPrediction]:
-    """Build one deterministic tournament from each match's most probable outcome."""
+    """Build one deterministic tournament from each match's displayed outcome."""
 
     if not outcomes:
         raise ValueError("outcomes must not be empty")
@@ -261,7 +261,7 @@ def _prediction_from_results(
         recent_form_ratings,
         squad_strength_ratings,
     )
-    selected_outcome = select_most_probable_outcome(
+    selected_outcome = select_displayed_outcome(
         home_win_probability,
         draw_probability,
         away_win_probability,
@@ -299,7 +299,7 @@ def _prediction_from_results(
         average_home_goals=average_goals(results, home_team),
         average_away_goals=average_goals(results, away_team),
         most_common_score=f"{predicted_home_goals}-{predicted_away_goals}",
-        source="most_probable_outcome",
+        source="deterministic_displayed_outcome",
     )
 
 
@@ -329,7 +329,7 @@ def _prediction_from_direct_model(
         recent_form_ratings,
         squad_strength_ratings,
     )
-    selected_outcome = select_most_probable_outcome(
+    selected_outcome = select_displayed_outcome(
         home_win_probability,
         draw_probability,
         away_win_probability,

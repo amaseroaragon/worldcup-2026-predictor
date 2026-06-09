@@ -64,7 +64,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
 
       <SectionCard
         title="Deterministic prediction"
-        description="Results from the same most-probable-outcome prediction shown in Groups and Bracket."
+        description="Results from the same deterministic displayed-outcome prediction shown in Groups and Bracket."
       >
         <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Metric label="Predicted group position" value={formatOptionalNumber(predictionSummary.group_position, 0)} />
