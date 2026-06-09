@@ -195,7 +195,6 @@ def run_backtest(paths: PathSettings, simulations: int, seed: int) -> pd.DataFra
         recent_form_ratings=inputs.recent_form_ratings,
         group_matches=inputs.group_matches,
         squad_strength_ratings=inputs.squad_strength_ratings,
-        representative_score_seed=seed,
     )
     export_match_predictions_json(
         match_predictions,

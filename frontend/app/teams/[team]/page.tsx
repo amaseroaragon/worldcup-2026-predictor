@@ -29,7 +29,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
 
   if (!profile) notFound();
 
-  const { metric, probability, aggregateGroupResult, representativeSummary } = profile;
+  const { metric, probability, aggregateGroupResult, predictionSummary } = profile;
   const probabilities = [
     ["Qualification probability", aggregateGroupResult?.qualification_probability],
     ["Champion probability", probability?.champion_probability],
@@ -51,7 +51,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
     <PageContainer
       eyebrow={`Team profile · Group ${metric.group}`}
       title={metric.team}
-      description="Representative tournament outcome, aggregate Monte Carlo probabilities and model metrics."
+      description="Deterministic tournament prediction, aggregate Monte Carlo probabilities and model metrics."
     >
       <Link href="/groups" className={cn(buttonVariants({ variant: "outline" }), "w-fit")}>
         <ArrowLeft /> Back
@@ -63,18 +63,18 @@ export default async function TeamPage({ params }: TeamPageProps) {
       </SectionCard>
 
       <SectionCard
-        title="Representative scenario"
-        description="Results from the same coherent tournament scenario shown in Groups and Bracket."
+        title="Deterministic prediction"
+        description="Results from the same most-probable-outcome prediction shown in Groups and Bracket."
       >
         <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <Metric label="Predicted group position" value={formatOptionalNumber(representativeSummary.group_position, 0)} />
-          <Metric label="Points" value={formatOptionalNumber(representativeSummary.points, 0)} />
-          <Metric label="Goals for" value={formatOptionalNumber(representativeSummary.goals_for, 0)} />
-          <Metric label="Goals against" value={formatOptionalNumber(representativeSummary.goals_against, 0)} />
-          <Metric label="Goal difference" value={formatOptionalNumber(representativeSummary.goal_difference, 0)} />
-          <Metric label="Group status" value={representativeSummary.qualified ? "Qualified" : "Eliminated"} />
-          <Metric label="Stage reached" value={representativeSummary.stage_reached} />
-          <Metric label="Matches played" value={formatOptionalNumber(representativeSummary.representative_matches.length, 0)} />
+          <Metric label="Predicted group position" value={formatOptionalNumber(predictionSummary.group_position, 0)} />
+          <Metric label="Points" value={formatOptionalNumber(predictionSummary.points, 0)} />
+          <Metric label="Goals for" value={formatOptionalNumber(predictionSummary.goals_for, 0)} />
+          <Metric label="Goals against" value={formatOptionalNumber(predictionSummary.goals_against, 0)} />
+          <Metric label="Goal difference" value={formatOptionalNumber(predictionSummary.goal_difference, 0)} />
+          <Metric label="Group status" value={predictionSummary.qualified ? "Qualified" : "Eliminated"} />
+          <Metric label="Stage reached" value={predictionSummary.stage_reached} />
+          <Metric label="Matches played" value={formatOptionalNumber(predictionSummary.displayed_matches.length, 0)} />
         </dl>
       </SectionCard>
 
@@ -98,7 +98,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
 
         <SectionCard
           title="Monte Carlo group averages"
-          description="Expected values across all simulations, not the representative scenario."
+          description="Expected values across all simulations, not the deterministic prediction."
         >
           <dl className="grid grid-cols-2 gap-4">
             <Metric label="Expected group position" value={formatOptionalNumber(aggregateGroupResult?.expected_position)} />

@@ -1,7 +1,7 @@
 import { formatMatchRound } from "@/lib/match-formatters";
 import type {
   RepresentativeTournament,
-  TeamRepresentativeSummary,
+  TeamPredictionSummary,
   TournamentPredictionMatch,
 } from "@/lib/types";
 
@@ -19,10 +19,10 @@ function includesTeam(match: TournamentPredictionMatch, teamName: string): boole
   return match.home_team === teamName || match.away_team === teamName;
 }
 
-export function getTeamRepresentativeSummary(
+export function getTeamPredictionSummary(
   teamName: string,
   payload: RepresentativeTournament,
-): TeamRepresentativeSummary {
+): TeamPredictionSummary {
   const representative = payload.representative_tournament;
   const standing = Object.values(representative.groups)
     .flat()
@@ -32,7 +32,7 @@ export function getTeamRepresentativeSummary(
     throw new Error(`Representative group standing not found for ${teamName}`);
   }
 
-  const representativeMatches = representative.results.filter((match) =>
+  const displayedMatches = representative.results.filter((match) =>
     includesTeam(match, teamName),
   );
   const knockoutMatches = representative.bracket.filter((match) =>
@@ -54,6 +54,6 @@ export function getTeamRepresentativeSummary(
     goal_difference: standing.goal_difference,
     qualified: representative.qualified.round_of_32.includes(teamName),
     stage_reached: stageReached,
-    representative_matches: representativeMatches,
+    displayed_matches: displayedMatches,
   };
 }

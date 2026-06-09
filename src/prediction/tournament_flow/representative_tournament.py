@@ -1,12 +1,17 @@
+"""Legacy JSON contract for the coherent deterministic displayed tournament."""
+
 from __future__ import annotations
 
 from dataclasses import asdict
 
 from src.prediction.core.models import MatchPrediction
 from src.prediction.tournament_flow.bracket_predictions import (
-    build_representative_group_outcomes,
+    build_displayed_group_outcomes,
 )
 from src.prediction.tournament_flow.knockout import rank_third_place_teams
+from src.prediction.tournament_flow.prediction_summary import (
+    score_contradicts_most_probable_outcome,
+)
 
 
 ROUND_TEAM_COUNTS = {
@@ -23,10 +28,10 @@ def build_representative_tournament(
     knockout_matches: list[dict[str, str]],
     qualification_probabilities: dict[str, float] | None = None,
 ) -> dict:
-    """Build one coherent tournament scenario from displayed match predictions."""
+    """Build one coherent deterministic tournament from displayed predictions."""
     group_predictions = [prediction for prediction in predictions if prediction.stage == "group"]
     bracket_predictions = [prediction for prediction in predictions if prediction.stage != "group"]
-    group_outcomes = build_representative_group_outcomes(group_predictions)
+    group_outcomes = build_displayed_group_outcomes(group_predictions)
     third_place_rankings = rank_third_place_teams(group_outcomes)
     best_third_teams = [row.team for _group, row in third_place_rankings[:8]]
     group_winners = [outcome.winner for outcome in group_outcomes.values()]
@@ -152,13 +157,28 @@ def validate_representative_tournament(
     representative_tournament: dict,
     knockout_matches: list[dict[str, str]],
 ) -> None:
-    """Validate standings, qualifiers, and bracket against the same displayed results."""
+    """Validate standings, qualifiers, and bracket against deterministic results."""
     predictions = [
         MatchPrediction(**record)
         for record in representative_tournament["results"]
     ]
+    for prediction in predictions:
+        if score_contradicts_most_probable_outcome(
+            prediction.home_team,
+            prediction.away_team,
+            prediction.predicted_home_goals,
+            prediction.predicted_away_goals,
+            prediction.predicted_winner,
+            prediction.advanced_by,
+            prediction.home_win_probability,
+            prediction.draw_probability,
+            prediction.away_win_probability,
+        ):
+            raise ValueError(
+                f"Displayed score contradicts most probable outcome: {prediction.match_id}"
+            )
     group_predictions = [prediction for prediction in predictions if prediction.stage == "group"]
-    expected_outcomes = build_representative_group_outcomes(group_predictions)
+    expected_outcomes = build_displayed_group_outcomes(group_predictions)
 
     for group, outcome in expected_outcomes.items():
         exported = representative_tournament["groups"][group]
@@ -210,18 +230,18 @@ def validate_representative_tournament(
         for match in representative_tournament["bracket"]
     }
     if set(bracket_by_id) != {match["match_id"] for match in knockout_matches}:
-        raise ValueError("Representative bracket match IDs do not match configured bracket")
+        raise ValueError("Displayed bracket match IDs do not match configured bracket")
     for match in representative_tournament["bracket"]:
         if not match["home_team"] or not match["away_team"]:
-            raise ValueError(f"Representative bracket match {match['match_id']} has an empty team")
+            raise ValueError(f"Displayed bracket match {match['match_id']} has an empty team")
         if match["winner"] not in {match["home_team"], match["away_team"]}:
             raise ValueError(
-                f"Representative bracket winner is not a participant: {match['match_id']}"
+                f"Displayed bracket winner is not a participant: {match['match_id']}"
             )
         if match["winner"] != match["predicted_winner"]:
-            raise ValueError(f"Representative bracket winner alias is inconsistent: {match['match_id']}")
+            raise ValueError(f"Displayed bracket winner alias is inconsistent: {match['match_id']}")
         if match["predicted_score"] != f"{match['home_score']}-{match['away_score']}":
-            raise ValueError(f"Representative bracket score aliases are inconsistent: {match['match_id']}")
+            raise ValueError(f"Displayed bracket score aliases are inconsistent: {match['match_id']}")
 
     for round_name, expected_team_count in ROUND_TEAM_COUNTS.items():
         round_matches = [
@@ -253,7 +273,7 @@ def validate_representative_tournament(
         )
     }
     if first_round_teams != expected_qualified:
-        raise ValueError("Representative bracket is inconsistent with qualifiers")
+        raise ValueError("Displayed bracket is inconsistent with qualifiers")
 
     for config in knockout_matches:
         match = bracket_by_id[config["match_id"]]
@@ -266,7 +286,7 @@ def validate_representative_tournament(
         ]
         if match["source_match_ids"] != expected_source_match_ids:
             raise ValueError(
-                f"Representative bracket sources are inconsistent: {match['match_id']}"
+                f"Displayed bracket sources are inconsistent: {match['match_id']}"
             )
         for side, source in (("home_team", config["home"]), ("away_team", config["away"])):
             source_key = "home" if side == "home_team" else "away"
@@ -275,7 +295,7 @@ def validate_representative_tournament(
                 expected_team = outcome.winner if source[0] == "1" else outcome.runner_up
                 if match[side] != expected_team:
                     raise ValueError(
-                        f"Representative bracket group path is inconsistent: {source}"
+                        f"Displayed bracket group path is inconsistent: {source}"
                     )
                 expected_label = (
                     f"Group {source[1]} winner"
@@ -284,7 +304,7 @@ def validate_representative_tournament(
                 )
                 if match["source"][source_key] != expected_label:
                     raise ValueError(
-                        f"Representative bracket source label is inconsistent: {source}"
+                        f"Displayed bracket source label is inconsistent: {source}"
                     )
             elif source.startswith("3"):
                 qualified_thirds = {
@@ -293,24 +313,24 @@ def validate_representative_tournament(
                 }
                 if match[side] not in qualified_thirds:
                     raise ValueError(
-                        f"Representative bracket third-place path is inconsistent: {source}"
+                        f"Displayed bracket third-place path is inconsistent: {source}"
                     )
                 group = qualified_thirds[match[side]]
                 if group not in set(source.removeprefix("3")):
                     raise ValueError(
-                        f"Representative bracket third-place group is not allowed: {source}"
+                        f"Displayed bracket third-place group is not allowed: {source}"
                     )
                 if match["source"][source_key] != f"Group {group} third place":
                     raise ValueError(
-                        f"Representative bracket source label is inconsistent: {source}"
+                        f"Displayed bracket source label is inconsistent: {source}"
                     )
             elif source.startswith("W"):
                 source_match = bracket_by_id[f"M{source.removeprefix('W')}"]
                 if match[side] != source_match["predicted_winner"]:
-                    raise ValueError(f"Representative bracket winner path is inconsistent: {source}")
+                    raise ValueError(f"Displayed bracket winner path is inconsistent: {source}")
                 if match["source"][source_key] != f"Winner of {source_match['match_id']}":
                     raise ValueError(
-                        f"Representative bracket source label is inconsistent: {source}"
+                        f"Displayed bracket source label is inconsistent: {source}"
                     )
             elif source.startswith("RU"):
                 source_match = bracket_by_id[f"M{source.removeprefix('RU')}"]
@@ -320,10 +340,10 @@ def validate_representative_tournament(
                     else source_match["home_team"]
                 )
                 if match[side] != loser:
-                    raise ValueError(f"Representative bracket loser path is inconsistent: {source}")
+                    raise ValueError(f"Displayed bracket loser path is inconsistent: {source}")
                 if match["source"][source_key] != f"Loser of {source_match['match_id']}":
                     raise ValueError(
-                        f"Representative bracket source label is inconsistent: {source}"
+                        f"Displayed bracket source label is inconsistent: {source}"
                     )
 
     final = next(match for match in representative_tournament["bracket"] if match["round"] == "final")

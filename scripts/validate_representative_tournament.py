@@ -29,7 +29,7 @@ ROUND_ORDER = (
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Validate and trace the coherent representative tournament."
+        description="Validate and trace the coherent deterministic displayed tournament."
     )
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
     parser.add_argument(
@@ -74,7 +74,7 @@ def main() -> None:
             )
 
     print(f"\nChampion: {representative['champion']}")
-    print("\nRepresentative tournament validation passed")
+    print("\nDeterministic displayed tournament validation passed")
 
 
 if __name__ == "__main__":

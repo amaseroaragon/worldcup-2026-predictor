@@ -11,6 +11,9 @@ GROUP_RESULTS_PATH = PROJECT_ROOT / "outputs/predictions/group_results.json"
 REPRESENTATIVE_TOURNAMENT_PATH = (
     PROJECT_ROOT / "outputs/predictions/representative_tournament.json"
 )
+TOURNAMENT_PREDICTIONS_PATH = (
+    PROJECT_ROOT / "outputs/predictions/tournament_predictions.json"
+)
 
 
 def load_json(path: Path):
@@ -74,3 +77,35 @@ def test_representative_tournament_contract():
                 row["team"],
             ),
         )
+
+
+def test_real_displayed_scores_follow_most_probable_outcome():
+    matches = load_json(TOURNAMENT_PREDICTIONS_PATH)["matches"]
+    by_matchup = {
+        (match["home_team"], match["away_team"]): match
+        for match in matches
+    }
+
+    for matchup in (
+        ("South Korea", "Czech Republic"),
+        ("Haiti", "Scotland"),
+        ("Germany", "Curaçao"),
+    ):
+        match = by_matchup[matchup]
+        probabilities = {
+            "home_win": match["home_win_probability"],
+            "draw": match["draw_probability"],
+            "away_win": match["away_win_probability"],
+        }
+        outcome = max(probabilities, key=probabilities.get)
+        home_goals = match["predicted_home_goals"]
+        away_goals = match["predicted_away_goals"]
+
+        if outcome == "home_win":
+            assert home_goals > away_goals
+            assert match["predicted_winner"] == match["home_team"]
+        elif outcome == "away_win":
+            assert away_goals > home_goals
+            assert match["predicted_winner"] == match["away_team"]
+        else:
+            assert home_goals == away_goals

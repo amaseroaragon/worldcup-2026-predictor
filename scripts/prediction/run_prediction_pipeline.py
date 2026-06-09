@@ -151,7 +151,6 @@ def main() -> None:
         recent_form_ratings=inputs.recent_form_ratings,
         group_matches=inputs.group_matches,
         squad_strength_ratings=inputs.squad_strength_ratings,
-        representative_score_seed=args.seed,
     )
     export_match_predictions_json(
         match_predictions,
@@ -159,11 +158,11 @@ def main() -> None:
         metadata={
             "simulations": args.simulations,
             "seed": args.seed,
-            "method": "closest_complete_monte_carlo_outcome",
+            "method": "deterministic_most_probable_outcome",
             "team_strength_ratings": True,
             "recent_form": True,
             "squad_strength": True,
-            "representative_scenario_selection": "minimum_aggregate_distance",
+            "displayed_outcome_selection": "maximum_match_outcome_probability",
         },
     )
     qualification_probabilities = {
@@ -181,7 +180,7 @@ def main() -> None:
         metadata={
             "simulations": args.simulations,
             "seed": args.seed,
-            "source": "single_coherent_representative_scenario",
+            "source": "coherent_deterministic_most_probable_outcomes",
         },
     )
     sync_frontend_data()
@@ -190,7 +189,7 @@ def main() -> None:
     print(f"Generated predictions file: {args.predictions_output}")
     print(f"Generated World Cup team metrics file: {DEFAULT_WORLD_CUP_TEAM_METRICS_JSON_PATH}")
     print(f"Generated group results file: {DEFAULT_GROUP_RESULTS_JSON_PATH}")
-    print(f"Generated representative tournament file: {DEFAULT_REPRESENTATIVE_TOURNAMENT_JSON_PATH}")
+    print(f"Generated deterministic tournament file: {DEFAULT_REPRESENTATIVE_TOURNAMENT_JSON_PATH}")
     print(f"Simulations executed: {args.simulations}")
     print("Validation status: passed")
     print("\nTop 10 teams by champion probability:")

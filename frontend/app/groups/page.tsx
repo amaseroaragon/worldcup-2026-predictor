@@ -13,7 +13,7 @@ export default async function GroupsPage() {
     <PageContainer
       eyebrow="Group stage"
       title="Projected groups"
-      description={`One coherent predicted scenario derived from ${
+      description={`One coherent deterministic prediction derived from ${
         typeof metadata.simulations === "number"
           ? `${metadata.simulations.toLocaleString("en")} Monte Carlo simulations`
           : "the latest model run"

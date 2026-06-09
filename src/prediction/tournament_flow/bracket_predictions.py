@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import hashlib
 from collections import defaultdict
 
 from src.prediction.core.match import _expected_goals_feature_kwargs
@@ -11,23 +10,25 @@ from src.prediction.tournament_flow.knockout import (
     rank_third_place_teams,
     resolve_knockout_fixture,
 )
-from src.prediction.core.models import GroupOutcome, MatchPrediction, MatchResult, TournamentOutcome
+from src.prediction.core.models import (
+    GroupOutcome,
+    MatchPrediction,
+    MatchResult,
+    TournamentOutcome,
+)
 from src.prediction.core.poisson import expected_goals_from_elo, score_matrix
 from src.prediction.core.probabilities import elo_win_draw_loss_probs
 from src.prediction.tournament_flow.prediction_summary import (
     average_goals,
     prediction_to_match_result,
     result_probabilities,
-    select_representative_score,
-)
-from src.prediction.tournament_flow.representative_scenario import (
-    select_representative_outcome,
+    select_most_likely_score_for_outcome,
+    select_most_probable_outcome,
 )
 from src.prediction.metrics.recent_form import RecentFormRating
 from src.prediction.metrics.squad_strength import SquadStrengthRating
 from src.prediction.core.standings import build_group_standings
 from src.prediction.metrics.team_strength import TeamStrengthRating
-from src.prediction.settings import DEFAULT_CLI_SEED
 
 
 def build_predicted_bracket_predictions(
@@ -40,19 +41,13 @@ def build_predicted_bracket_predictions(
     recent_form_ratings: dict[str, RecentFormRating] | None = None,
     group_matches: list[dict[str, str | int]] | None = None,
     squad_strength_ratings: dict[str, SquadStrengthRating] | None = None,
-    representative_score_seed: int | str = DEFAULT_CLI_SEED,
-    representative_outcome: TournamentOutcome | None = None,
 ) -> list[MatchPrediction]:
-    """Build predictions around one complete, representative simulation."""
+    """Build one deterministic tournament from each match's most probable outcome."""
 
     if not outcomes:
         raise ValueError("outcomes must not be empty")
 
     simulations_count = len(outcomes)
-    representative_outcome = representative_outcome or select_representative_outcome(
-        outcomes,
-        groups,
-    )
     group_predictions = _build_group_stage_predictions(
         outcomes,
         groups,
@@ -62,12 +57,11 @@ def build_predicted_bracket_predictions(
         team_strength_ratings,
         recent_form_ratings,
         squad_strength_ratings,
-        representative_score_seed,
-        representative_outcome,
     )
+    group_outcomes = build_displayed_group_outcomes(group_predictions)
     knockout_predictions = _build_knockout_stage_predictions(
         outcomes,
-        representative_outcome.group_outcomes,
+        group_outcomes,
         ratings,
         knockout_matches,
         third_place_combinations,
@@ -75,8 +69,6 @@ def build_predicted_bracket_predictions(
         team_strength_ratings,
         recent_form_ratings,
         squad_strength_ratings,
-        representative_score_seed,
-        representative_outcome,
     )
 
     return [*group_predictions, *knockout_predictions]
@@ -91,11 +83,8 @@ def _build_group_stage_predictions(
     team_strength_ratings: dict[str, TeamStrengthRating] | None,
     recent_form_ratings: dict[str, RecentFormRating] | None,
     squad_strength_ratings: dict[str, SquadStrengthRating] | None,
-    representative_score_seed: int | str,
-    representative_outcome: TournamentOutcome,
 ) -> list[MatchPrediction]:
     results_by_match_id = _results_by_match_id(outcomes)
-    representative_results = _representative_results_by_match_id(representative_outcome)
     predictions = []
 
     for fixture in build_group_stage_fixtures(groups, group_matches):
@@ -116,18 +105,16 @@ def _build_group_stage_predictions(
                 team_strength_ratings=team_strength_ratings,
                 recent_form_ratings=recent_form_ratings,
                 squad_strength_ratings=squad_strength_ratings,
-                representative_score_seed=representative_score_seed,
-                representative_result=representative_results[fixture.match_id],
             )
         )
 
     return predictions
 
 
-def build_representative_group_outcomes(
+def build_displayed_group_outcomes(
     group_predictions: list[MatchPrediction],
 ) -> dict[str, GroupOutcome]:
-    """Build representative standings solely from displayed group scores."""
+    """Build deterministic standings solely from displayed group scores."""
     results_by_group: dict[str, list[MatchResult]] = defaultdict(list)
 
     for prediction in group_predictions:
@@ -174,8 +161,6 @@ def _build_knockout_stage_predictions(
     team_strength_ratings: dict[str, TeamStrengthRating] | None,
     recent_form_ratings: dict[str, RecentFormRating] | None,
     squad_strength_ratings: dict[str, SquadStrengthRating] | None,
-    representative_score_seed: int | str,
-    representative_outcome: TournamentOutcome,
 ) -> list[MatchPrediction]:
     matchup_results = _knockout_results_by_matchup(outcomes)
     knockout_rounds = {
@@ -185,7 +170,6 @@ def _build_knockout_stage_predictions(
     knockout_fixtures = build_knockout_fixtures(knockout_matches)
     match_results_by_id: dict[str, MatchResult] = {}
     predictions = []
-    representative_results = _representative_results_by_match_id(representative_outcome)
     used_third_place_groups: set[str] = set()
     third_place_rankings = rank_third_place_teams(group_outcomes)
     third_place_placeholder_resolution = (
@@ -222,8 +206,6 @@ def _build_knockout_stage_predictions(
                 team_strength_ratings=team_strength_ratings,
                 recent_form_ratings=recent_form_ratings,
                 squad_strength_ratings=squad_strength_ratings,
-                representative_score_seed=representative_score_seed,
-                representative_result=representative_results[resolved_fixture.match_id],
             )
         else:
             prediction = _prediction_from_direct_model(
@@ -237,7 +219,6 @@ def _build_knockout_stage_predictions(
                 team_strength_ratings=team_strength_ratings,
                 recent_form_ratings=recent_form_ratings,
                 squad_strength_ratings=squad_strength_ratings,
-                representative_score_seed=representative_score_seed,
             )
 
         predictions.append(prediction)
@@ -262,8 +243,6 @@ def _prediction_from_results(
     team_strength_ratings: dict[str, TeamStrengthRating] | None = None,
     recent_form_ratings: dict[str, RecentFormRating] | None = None,
     squad_strength_ratings: dict[str, SquadStrengthRating] | None = None,
-    representative_score_seed: int | str = DEFAULT_CLI_SEED,
-    representative_result: MatchResult | None = None,
 ) -> MatchPrediction:
     if not results:
         raise ValueError(f"No simulated results found for match {match_id}")
@@ -282,33 +261,23 @@ def _prediction_from_results(
         recent_form_ratings,
         squad_strength_ratings,
     )
-    if representative_result is None:
-        predicted_home_goals, predicted_away_goals = select_representative_score(
-            score_matrix(expected_home_goals, expected_away_goals),
-            home_win_probability,
-            draw_probability,
-            away_win_probability,
-            seed=_match_seed(representative_score_seed, match_id),
-        )
-        predicted_winner, advanced_by = _winner_from_representative_score(
-            home_team,
-            away_team,
-            predicted_home_goals,
-            predicted_away_goals,
-            home_win_probability,
-            away_win_probability,
-            knockout,
-        )
-    else:
-        if (representative_result.team_a, representative_result.team_b) != (
-            home_team,
-            away_team,
-        ):
-            raise ValueError(f"Representative result participants do not match {match_id}")
-        predicted_home_goals = representative_result.goals_a
-        predicted_away_goals = representative_result.goals_b
-        predicted_winner = representative_result.winner
-        advanced_by = representative_result.decided_by if knockout else None
+    selected_outcome = select_most_probable_outcome(
+        home_win_probability,
+        draw_probability,
+        away_win_probability,
+    )
+    predicted_home_goals, predicted_away_goals = select_most_likely_score_for_outcome(
+        score_matrix(expected_home_goals, expected_away_goals),
+        selected_outcome,
+    )
+    predicted_winner, advanced_by = _winner_from_selected_outcome(
+        home_team,
+        away_team,
+        selected_outcome,
+        home_win_probability,
+        away_win_probability,
+        knockout,
+    )
 
     return MatchPrediction(
         match_id=match_id,
@@ -330,11 +299,7 @@ def _prediction_from_results(
         average_home_goals=average_goals(results, home_team),
         average_away_goals=average_goals(results, away_team),
         most_common_score=f"{predicted_home_goals}-{predicted_away_goals}",
-        source=(
-            "representative_monte_carlo_outcome"
-            if representative_result is not None
-            else source
-        ),
+        source="most_probable_outcome",
     )
 
 
@@ -349,7 +314,6 @@ def _prediction_from_direct_model(
     team_strength_ratings: dict[str, TeamStrengthRating] | None,
     recent_form_ratings: dict[str, RecentFormRating] | None,
     squad_strength_ratings: dict[str, SquadStrengthRating] | None,
-    representative_score_seed: int | str,
 ) -> MatchPrediction:
     home_elo = ratings[home_team]
     away_elo = ratings[away_team]
@@ -365,18 +329,19 @@ def _prediction_from_direct_model(
         recent_form_ratings,
         squad_strength_ratings,
     )
-    predicted_home_goals, predicted_away_goals = select_representative_score(
-        score_matrix(expected_home_goals, expected_away_goals),
+    selected_outcome = select_most_probable_outcome(
         home_win_probability,
         draw_probability,
         away_win_probability,
-        seed=_match_seed(representative_score_seed, match_id),
     )
-    predicted_winner, advanced_by = _winner_from_representative_score(
+    predicted_home_goals, predicted_away_goals = select_most_likely_score_for_outcome(
+        score_matrix(expected_home_goals, expected_away_goals),
+        selected_outcome,
+    )
+    predicted_winner, advanced_by = _winner_from_selected_outcome(
         home_team,
         away_team,
-        predicted_home_goals,
-        predicted_away_goals,
+        selected_outcome,
         home_win_probability,
         away_win_probability,
         knockout=True,
@@ -427,23 +392,17 @@ def _expected_goals_for_match(
     )
 
 
-def _match_seed(base_seed: int | str, match_id: str) -> int:
-    digest = hashlib.sha256(f"{base_seed}:{match_id}".encode()).digest()
-    return int.from_bytes(digest[:8], byteorder="big")
-
-
-def _winner_from_representative_score(
+def _winner_from_selected_outcome(
     home_team: str,
     away_team: str,
-    home_goals: int,
-    away_goals: int,
+    selected_outcome: str,
     home_win_probability: float,
     away_win_probability: float,
     knockout: bool,
 ) -> tuple[str | None, str | None]:
-    if home_goals > away_goals:
+    if selected_outcome == "home_win":
         return home_team, "normal_time_win" if knockout else None
-    if away_goals > home_goals:
+    if selected_outcome == "away_win":
         return away_team, "normal_time_win" if knockout else None
     if not knockout:
         return None, None
@@ -459,16 +418,6 @@ def _results_by_match_id(outcomes: list[TournamentOutcome]) -> dict[str, list[Ma
             if result.match_id is not None:
                 results_by_match_id[result.match_id].append(result)
     return results_by_match_id
-
-
-def _representative_results_by_match_id(
-    outcome: TournamentOutcome,
-) -> dict[str, MatchResult]:
-    return {
-        result.match_id: result
-        for result in outcome.match_results
-        if result.match_id is not None
-    }
 
 
 def _knockout_results_by_matchup(

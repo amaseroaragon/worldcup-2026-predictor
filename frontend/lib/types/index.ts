@@ -176,6 +176,7 @@ export type RepresentativeBracketMatch = TournamentPredictionMatch & {
 };
 
 export type RepresentativeTournament = {
+  // Legacy JSON key; contents are the coherent deterministic displayed tournament.
   metadata: Record<string, unknown>;
   representative_tournament: {
     results: TournamentPredictionMatch[];
@@ -196,7 +197,7 @@ export type RepresentativeTournament = {
   };
 };
 
-export type TeamRepresentativeSummary = {
+export type TeamPredictionSummary = {
   group_position: number;
   points: number;
   goals_for: number;
@@ -204,12 +205,12 @@ export type TeamRepresentativeSummary = {
   goal_difference: number;
   qualified: boolean;
   stage_reached: string;
-  representative_matches: TournamentPredictionMatch[];
+  displayed_matches: TournamentPredictionMatch[];
 };
 
 export type TeamProfile = {
   metric: TeamMetric;
   probability: WorldCupProbability | null;
   aggregateGroupResult: GroupResultTeam | null;
-  representativeSummary: TeamRepresentativeSummary;
+  predictionSummary: TeamPredictionSummary;
 };

@@ -9,82 +9,77 @@ from src.prediction.tournament_flow.bracket_predictions import (
     _prediction_from_results,
 )
 from src.prediction.tournament_flow.prediction_summary import (
-    result_probabilities,
-    select_representative_score,
+    AWAY_WIN,
+    DRAW,
+    HOME_WIN,
+    select_most_likely_score_for_outcome,
+    select_most_probable_outcome,
 )
 
 
-def _results() -> list[MatchResult]:
-    return [
-        MatchResult("Home", "Away", 1, 0, "Home", False, "regular_time", "M1"),
-        MatchResult("Home", "Away", 1, 1, "Home", False, "tiebreaker", "M1"),
-        MatchResult("Home", "Away", 0, 1, "Away", False, "regular_time", "M1"),
-        MatchResult("Home", "Away", 2, 2, "Away", False, "tiebreaker", "M1"),
-        MatchResult("Home", "Away", 2, 0, "Home", False, "regular_time", "M1"),
-    ]
+RESULTS = [
+    MatchResult("Home", "Away", 1, 0, "Home", False, "regular_time", "M1"),
+]
 
 
-def test_group_draw_representative_score_has_no_winner():
+def build_prediction(
+    probabilities: tuple[float, float, float],
+    *,
+    knockout: bool = False,
+):
     with patch(
-        "src.prediction.tournament_flow.bracket_predictions.select_representative_score",
-        return_value=(1, 1),
+        "src.prediction.tournament_flow.bracket_predictions.result_probabilities",
+        return_value=probabilities,
     ):
-        prediction = _prediction_from_results(
-            match_id="group_A_1",
-            stage="group",
-            group="A",
-            round_name=None,
+        return _prediction_from_results(
+            match_id="M1" if knockout else "group_A_1",
+            stage="round_of_32" if knockout else "group",
+            group=None if knockout else "A",
+            round_name="round_of_32" if knockout else None,
             home_team="Home",
             away_team="Away",
-            results=_results(),
+            results=RESULTS,
             ratings={"Home": 1600.0, "Away": 1500.0},
-            simulations_count=5,
-            appearance_count=5,
+            simulations_count=10,
+            appearance_count=10,
             source="test",
+            knockout=knockout,
         )
 
+
+def test_highest_home_win_probability_selects_home_win_score_and_winner():
+    prediction = build_prediction((0.60, 0.20, 0.20))
+
+    assert prediction.predicted_home_goals > prediction.predicted_away_goals
+    assert prediction.predicted_winner == "Home"
+    assert prediction.advanced_by is None
+
+
+def test_highest_away_win_probability_selects_away_win_score_and_winner():
+    prediction = build_prediction((0.20, 0.20, 0.60))
+
+    assert prediction.predicted_away_goals > prediction.predicted_home_goals
+    assert prediction.predicted_winner == "Away"
+    assert prediction.advanced_by is None
+
+
+def test_highest_draw_probability_selects_group_draw_without_winner():
+    prediction = build_prediction((0.25, 0.50, 0.25))
+
+    assert prediction.predicted_home_goals == prediction.predicted_away_goals
     assert prediction.predicted_winner is None
     assert prediction.advanced_by is None
 
 
-def test_knockout_draw_advances_team_with_higher_win_probability():
-    with patch(
-        "src.prediction.tournament_flow.bracket_predictions.select_representative_score",
-        return_value=(1, 1),
-    ):
-        prediction = _prediction_from_results(
-            match_id="M1",
-            stage="round_of_32",
-            group=None,
-            round_name="round_of_32",
-            home_team="Home",
-            away_team="Away",
-            results=_results(),
-            ratings={"Home": 1600.0, "Away": 1500.0},
-            simulations_count=5,
-            appearance_count=5,
-            source="test",
-            knockout=True,
-        )
+def test_highest_draw_probability_selects_knockout_draw_with_winner():
+    prediction = build_prediction((0.30, 0.50, 0.20), knockout=True)
 
-    assert prediction.home_win_probability > prediction.away_win_probability
+    assert prediction.predicted_home_goals == prediction.predicted_away_goals
     assert prediction.predicted_winner == "Home"
     assert prediction.advanced_by == "higher_win_probability_after_draw"
 
 
-def test_knockout_probabilities_keep_draws_from_90_minutes():
-    home_win, draw, away_win = result_probabilities(
-        _results(),
-        "Home",
-        "Away",
-        knockout=True,
-    )
-
-    assert (home_win, draw, away_win) == pytest.approx((0.4, 0.4, 0.2))
-    assert home_win + draw + away_win == pytest.approx(1.0)
-
-
-def test_direct_knockout_prediction_does_not_force_draw_probability_to_zero():
+def test_direct_knockout_prediction_has_non_null_winner():
     prediction = _prediction_from_direct_model(
         match_id="M1",
         stage="round_of_32",
@@ -96,27 +91,50 @@ def test_direct_knockout_prediction_does_not_force_draw_probability_to_zero():
         team_strength_ratings=None,
         recent_form_ratings=None,
         squad_strength_ratings=None,
-        representative_score_seed=42,
     )
 
     assert prediction.draw_probability > 0
     assert prediction.predicted_winner is not None
 
 
-def test_select_representative_score_is_deterministic_with_seed():
-    matrix = score_matrix(1.56, 1.12)
+@pytest.mark.parametrize(
+    ("probabilities", "outcome"),
+    [
+        ((0.60, 0.20, 0.20), HOME_WIN),
+        ((0.20, 0.60, 0.20), DRAW),
+        ((0.20, 0.20, 0.60), AWAY_WIN),
+    ],
+)
+def test_select_most_probable_outcome(probabilities, outcome):
+    assert select_most_probable_outcome(*probabilities) == outcome
 
-    first = select_representative_score(matrix, 0.45, 0.25, 0.30, seed=42)
-    second = select_representative_score(matrix, 0.45, 0.25, 0.30, seed=42)
 
-    assert first == second
+@pytest.mark.parametrize(
+    ("outcome", "expected_score"),
+    [
+        (HOME_WIN, (1, 0)),
+        (DRAW, (0, 0)),
+        (AWAY_WIN, (0, 1)),
+    ],
+)
+def test_select_most_likely_score_for_outcome_never_contradicts_outcome(
+    outcome,
+    expected_score,
+):
+    matrix = [
+        [0.30, 0.20, 0.05],
+        [0.25, 0.10, 0.04],
+        [0.03, 0.02, 0.01],
+    ]
+
+    assert select_most_likely_score_for_outcome(matrix, outcome) == expected_score
 
 
-def test_select_representative_score_does_not_change_lambdas():
+def test_score_selection_does_not_change_lambdas():
     lambdas_before = expected_goals_from_elo(1600.0, 1500.0)
     matrix = score_matrix(*lambdas_before)
 
-    select_representative_score(matrix, 0.45, 0.25, 0.30, seed=42)
-    lambdas_after = expected_goals_from_elo(1600.0, 1500.0)
+    outcome = select_most_probable_outcome(0.45, 0.25, 0.30)
+    select_most_likely_score_for_outcome(matrix, outcome)
 
-    assert lambdas_after == lambdas_before
+    assert expected_goals_from_elo(1600.0, 1500.0) == lambdas_before

@@ -117,6 +117,20 @@ Relevant fields include:
 - `average_home_goals`
 - `average_away_goals`
 
+The displayed tournament is deterministic. For every match, the largest of
+`home_win_probability`, `draw_probability`, and `away_win_probability` selects
+the displayed outcome. The score is the highest-probability Poisson score
+compatible with that outcome. Standings and the knockout path are rebuilt from
+those displayed results.
+
+- A most-probable home win always displays a home-win score and home winner.
+- A most-probable away win always displays an away-win score and away winner.
+- A most-probable group draw displays a draw score and no winner.
+- A most-probable knockout draw displays a draw score while the stronger win
+  probability determines the team that advances.
+- `most_common_score` is the displayed score selected within the most probable
+  outcome class.
+
 ## Reproducibility
 
 Scripts accept `--seed`. With the same configuration, seed, and number of simulations, results should be reproducible in the same environment.

@@ -8,7 +8,7 @@ import type {
 } from "@/lib/types";
 
 import { loadPublicJson } from "./load-public-json";
-import { getTeamRepresentativeSummary } from "./team-representative-summary";
+import { getTeamPredictionSummary } from "./team-prediction-summary";
 
 type TeamMetricsPayload = {
   metadata: { source: string; scope: string };
@@ -51,6 +51,6 @@ export async function loadTeamProfiles(): Promise<TeamProfile[]> {
     metric,
     probability: probabilitiesByTeam.get(metric.team) ?? null,
     aggregateGroupResult: groupResultsByTeam.get(metric.team) ?? null,
-    representativeSummary: getTeamRepresentativeSummary(metric.team, representativeTournament),
+    predictionSummary: getTeamPredictionSummary(metric.team, representativeTournament),
   }));
 }

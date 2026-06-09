@@ -1,8 +1,11 @@
 from __future__ import annotations
 
-import random
-
 from src.prediction.core.models import MatchPrediction, MatchResult
+
+
+HOME_WIN = "home_win"
+DRAW = "draw"
+AWAY_WIN = "away_win"
 
 
 def result_probabilities(
@@ -19,31 +22,98 @@ def result_probabilities(
     return home_wins / total, draws / total, away_wins / total
 
 
-def select_representative_score(
-    score_matrix: list[list[float]],
+def select_most_probable_outcome(
     home_win_probability: float,
     draw_probability: float,
     away_win_probability: float,
-    seed: int | str | None = None,
+) -> str:
+    """Return the highest-probability outcome class, with stable tie-breaking."""
+    if abs(home_win_probability + draw_probability + away_win_probability - 1.0) > 1e-6:
+        raise ValueError("win/draw/loss probabilities must sum to one")
+
+    probabilities = (
+        (HOME_WIN, home_win_probability),
+        (DRAW, draw_probability),
+        (AWAY_WIN, away_win_probability),
+    )
+    return max(probabilities, key=lambda item: item[1])[0]
+
+
+def select_most_likely_score_for_outcome(
+    score_matrix: list[list[float]],
+    outcome: str,
 ) -> tuple[int, int]:
-    """Sample a representative score from an unchanged Poisson score matrix."""
+    """Return the highest-probability score compatible with an outcome class."""
+    _probability, home_goals, away_goals = ranked_scores_for_outcome(
+        score_matrix,
+        outcome,
+    )[0]
+    return home_goals, away_goals
+
+
+def ranked_scores_for_outcome(
+    score_matrix: list[list[float]],
+    outcome: str,
+) -> list[tuple[float, int, int]]:
+    """Return compatible scores ordered from most to least likely."""
     if not score_matrix or not all(score_matrix):
         raise ValueError("score_matrix must not be empty")
     if any(len(row) != len(score_matrix[0]) for row in score_matrix):
         raise ValueError("score_matrix rows must have equal length")
-    if abs(home_win_probability + draw_probability + away_win_probability - 1.0) > 1e-6:
-        raise ValueError("win/draw/loss probabilities must sum to one")
+    if outcome not in {HOME_WIN, DRAW, AWAY_WIN}:
+        raise ValueError(f"Unknown outcome: {outcome}")
 
-    scores = [
-        (home_goals, away_goals)
+    candidates = [
+        (probability, home_goals, away_goals)
         for home_goals, row in enumerate(score_matrix)
-        for away_goals in range(len(row))
+        for away_goals, probability in enumerate(row)
+        if (
+            (outcome == HOME_WIN and home_goals > away_goals)
+            or (outcome == DRAW and home_goals == away_goals)
+            or (outcome == AWAY_WIN and away_goals > home_goals)
+        )
     ]
-    weights = [probability for row in score_matrix for probability in row]
-    if sum(weights) <= 0:
-        raise ValueError("score_matrix must contain positive probability mass")
+    if not candidates or max(probability for probability, _home, _away in candidates) <= 0:
+        raise ValueError(f"score_matrix has no positive probability mass for {outcome}")
 
-    return random.Random(seed).choices(scores, weights=weights, k=1)[0]
+    return sorted(
+        candidates,
+        key=lambda candidate: (-candidate[0], candidate[1] + candidate[2]),
+    )
+
+
+def score_contradicts_most_probable_outcome(
+    home_team: str,
+    away_team: str,
+    home_goals: int,
+    away_goals: int,
+    winner: str | None,
+    advanced_by: str | None,
+    home_win_probability: float,
+    draw_probability: float,
+    away_win_probability: float,
+) -> bool:
+    """Return whether score/winner contradict the highest-probability outcome."""
+    outcome = select_most_probable_outcome(
+        home_win_probability,
+        draw_probability,
+        away_win_probability,
+    )
+    if outcome == HOME_WIN:
+        return home_goals <= away_goals or winner != home_team or advanced_by == "higher_win_probability_after_draw"
+    if outcome == AWAY_WIN:
+        return away_goals <= home_goals or winner != away_team or advanced_by == "higher_win_probability_after_draw"
+
+    expected_draw_winner = (
+        home_team if home_win_probability >= away_win_probability else away_team
+    )
+    if advanced_by is None:
+        return home_goals != away_goals or winner is not None
+    return (
+        home_goals != away_goals
+        or winner != expected_draw_winner
+        or advanced_by != "higher_win_probability_after_draw"
+    )
 
 
 def average_goals(results: list[MatchResult], team: str) -> float:

@@ -17,6 +17,9 @@ from src.prediction.core.match import _expected_goals_feature_kwargs
 from src.prediction.core.poisson import expected_goals_from_elo, score_probability
 from src.prediction.pipeline import PredictionInputs, load_prediction_inputs
 from src.prediction.settings import DEFAULT_TOURNAMENT_PREDICTIONS_JSON_PATH
+from src.prediction.tournament_flow.prediction_summary import (
+    score_contradicts_most_probable_outcome,
+)
 
 
 DEFAULT_DIAGNOSTICS_DIR = ROOT_DIR / "outputs" / "diagnostics"
@@ -89,6 +92,17 @@ def build_diagnostic_rows(
         predicted_home_goals = int(match["predicted_home_goals"])
         predicted_away_goals = int(match["predicted_away_goals"])
         predicted_score = f"{predicted_home_goals}-{predicted_away_goals}"
+        score_contradiction = score_contradicts_most_probable_outcome(
+            home_team,
+            away_team,
+            predicted_home_goals,
+            predicted_away_goals,
+            match.get("predicted_winner"),
+            match.get("advanced_by"),
+            float(match["home_win_probability"]),
+            float(match["draw_probability"]),
+            float(match["away_win_probability"]),
+        )
 
         rows.append(
             {
@@ -114,6 +128,7 @@ def build_diagnostic_rows(
                 ),
                 "predicted_winner": match.get("predicted_winner"),
                 "advanced_by": match.get("advanced_by"),
+                "score_contradicts_most_probable_outcome": score_contradiction,
                 "prediction_source": match.get("source"),
             }
         )
@@ -166,6 +181,9 @@ def aggregate_diagnostics(rows: list[dict[str, Any]], top: int = 20) -> dict[str
         ),
         "knockout_matches_without_winner": sum(
             row["predicted_winner"] is None for row in knockout_rows
+        ),
+        "scores_contradicting_most_probable_outcome": sum(
+            bool(row["score_contradicts_most_probable_outcome"]) for row in rows
         ),
         "stage_distribution": stage_distribution,
     }
@@ -258,6 +276,10 @@ def print_aggregate(aggregate: dict[str, Any], top: int) -> None:
         f"{aggregate['knockout_mean_draw_probability']:.4f}"
     )
     print(f"Knockout matches without winner: {aggregate['knockout_matches_without_winner']}")
+    print(
+        "Scores contradicting most probable outcome: "
+        f"{aggregate['scores_contradicting_most_probable_outcome']}"
+    )
 
     print("\nPredicted score distribution:")
     for item in aggregate["predicted_score_distribution"]:

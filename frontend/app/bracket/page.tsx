@@ -11,11 +11,11 @@ export default async function BracketPage() {
   return (
     <PageContainer
       eyebrow="Knockout stage"
-      title="Representative bracket"
-      description="One coherent predicted scenario, resolved from group qualifiers through the champion."
+      title="Deterministic bracket"
+      description="One coherent prediction using each match's most probable outcome."
     >
       <p className="rounded-xl border border-dashed bg-card/60 px-4 py-3 text-sm text-muted-foreground">
-        Loaded from the representative tournament scenario
+        Loaded from deterministic most-probable match outcomes
         {typeof metadata.simulations === "number" ? ` · ${metadata.simulations.toLocaleString("en")} simulations` : ""}.
       </p>
       <p className="text-xs text-muted-foreground">
