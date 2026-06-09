@@ -50,7 +50,7 @@ def load_prediction_inputs(
 
     ratings = load_ratings(path_settings.elo_rankings_path)
     results = pd.read_csv(clean_results_path or path_settings.clean_results_path)
-    team_strength_ratings = build_team_strength_ratings(results)
+    team_strength_ratings = build_team_strength_ratings(results, elo_ratings=ratings)
     recent_form_ratings = build_recent_form_ratings(results)
     squad_values = load_squad_values(squad_values_config or path_settings.squad_values_path)
     squad_strength_ratings = build_squad_strength_ratings(squad_values)

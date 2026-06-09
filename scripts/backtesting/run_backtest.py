@@ -204,11 +204,11 @@ def run_backtest(paths: PathSettings, simulations: int, seed: int) -> pd.DataFra
             "dataset": str(paths.data_dir),
             "simulations": simulations,
             "seed": seed,
-            "method": "backtest_aggregate_group_stage_then_predicted_bracket",
+            "method": "backtest_closest_complete_monte_carlo_outcome",
             "team_strength_ratings": True,
             "recent_form": True,
             "squad_strength": True,
-            "representative_score_seed": seed,
+            "representative_scenario_selection": "minimum_aggregate_distance",
         },
     )
 

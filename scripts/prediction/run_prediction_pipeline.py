@@ -159,11 +159,11 @@ def main() -> None:
         metadata={
             "simulations": args.simulations,
             "seed": args.seed,
-            "method": "aggregate_group_stage_then_predicted_bracket",
+            "method": "closest_complete_monte_carlo_outcome",
             "team_strength_ratings": True,
             "recent_form": True,
             "squad_strength": True,
-            "representative_score_seed": args.seed,
+            "representative_scenario_selection": "minimum_aggregate_distance",
         },
     )
     qualification_probabilities = {

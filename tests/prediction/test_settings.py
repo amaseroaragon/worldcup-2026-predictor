@@ -128,7 +128,11 @@ def test_prediction_input_loader_accepts_path_settings(monkeypatch, tmp_path):
 
     monkeypatch.setattr(pipeline, "load_ratings", capture("elo_rankings_path"))
     monkeypatch.setattr(pipeline.pd, "read_csv", lambda path: calls.setdefault("results_path", path))
-    monkeypatch.setattr(pipeline, "build_team_strength_ratings", lambda results: {})
+    monkeypatch.setattr(
+        pipeline,
+        "build_team_strength_ratings",
+        lambda results, elo_ratings: {},
+    )
     monkeypatch.setattr(pipeline, "build_recent_form_ratings", lambda results: {})
     monkeypatch.setattr(pipeline, "load_squad_values", capture("squad_values_path"))
     monkeypatch.setattr(pipeline, "build_squad_strength_ratings", lambda squad_values: {})
@@ -161,7 +165,11 @@ def test_prediction_input_loader_can_allow_missing_third_place_combinations(
 
     monkeypatch.setattr(pipeline, "load_ratings", lambda path: {})
     monkeypatch.setattr(pipeline.pd, "read_csv", lambda path: calls.setdefault("results", path))
-    monkeypatch.setattr(pipeline, "build_team_strength_ratings", lambda results: {})
+    monkeypatch.setattr(
+        pipeline,
+        "build_team_strength_ratings",
+        lambda results, elo_ratings: {},
+    )
     monkeypatch.setattr(pipeline, "build_recent_form_ratings", lambda results: {})
     monkeypatch.setattr(pipeline, "load_squad_values", lambda path: {})
     monkeypatch.setattr(pipeline, "build_squad_strength_ratings", lambda squad_values: {})
@@ -226,7 +234,7 @@ def test_simulation_settings_match_existing_defaults():
 
 
 def test_team_metric_settings_match_legacy_aliases():
-    assert team_strength.METRICS_VERSION == TEAM_METRIC_SETTINGS.metrics_version == "v4.5"
+    assert team_strength.METRICS_VERSION == TEAM_METRIC_SETTINGS.metrics_version == "v5.0"
     assert team_strength.SQUAD_VALUES_SOURCE == (
         TEAM_METRIC_SETTINGS.squad_values_source
     ) == "data/external/teams_value.json"

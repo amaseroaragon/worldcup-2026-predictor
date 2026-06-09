@@ -54,14 +54,14 @@ def test_build_team_strength_ratings_calculates_attack_and_defense_for_both_venu
 
     assert ratings["A"] == TeamStrengthRating(
         team="A",
-        attack_rating=1.5,
-        defense_rating=0.5,
+        attack_rating=1.25,
+        defense_rating=0.75,
         matches_used=2,
     )
     assert ratings["B"] == TeamStrengthRating(
         team="B",
-        attack_rating=0.5,
-        defense_rating=1.5,
+        attack_rating=0.75,
+        defense_rating=1.25,
         matches_used=2,
     )
 
@@ -116,14 +116,14 @@ def test_build_team_strength_ratings_uses_recent_matches_per_team():
 
     assert ratings["A"] == TeamStrengthRating(
         team="A",
-        attack_rating=0.01,
-        defense_rating=2.0,
+        attack_rating=0.5,
+        defense_rating=1.5,
         matches_used=2,
     )
     assert ratings["B"] == TeamStrengthRating(
         team="B",
-        attack_rating=2.0,
-        defense_rating=0.01,
+        attack_rating=1.5,
+        defense_rating=0.5,
         matches_used=2,
     )
 
@@ -137,10 +137,39 @@ def test_build_team_strength_ratings_excludes_teams_below_minimum_matches():
 def test_build_team_strength_ratings_clips_extreme_ratings():
     ratings = build_team_strength_ratings(_results(), recent_matches=2, min_matches=2)
 
-    assert ratings["A"].attack_rating == 1.45
-    assert ratings["A"].defense_rating == 0.65
-    assert ratings["B"].attack_rating == 0.65
-    assert ratings["B"].defense_rating == 1.45
+    assert ratings["A"].attack_rating == 1.25
+    assert ratings["A"].defense_rating == 0.75
+    assert ratings["B"].attack_rating == 0.75
+    assert ratings["B"].defense_rating == 1.25
+
+
+def test_build_team_strength_ratings_adjusts_for_opponent_elo():
+    ratings = build_team_strength_ratings(
+        _results(),
+        elo_ratings={"A": 1800.0, "B": 1400.0},
+        recent_matches=2,
+        min_matches=2,
+        shrink_factor=1.0,
+        min_rating=0.01,
+        max_rating=10.0,
+    )
+
+    assert ratings["A"].attack_rating < 1.5
+    assert ratings["B"].attack_rating > 0.5
+
+
+def test_build_team_strength_ratings_can_disable_shrinkage():
+    ratings = build_team_strength_ratings(
+        _results(),
+        recent_matches=2,
+        min_matches=2,
+        shrink_factor=1.0,
+        min_rating=0.01,
+        max_rating=10.0,
+    )
+
+    assert ratings["A"].attack_rating == 1.5
+    assert ratings["A"].defense_rating == 0.5
 
 
 def test_build_team_strength_ratings_returns_empty_mapping_without_results():
@@ -189,6 +218,7 @@ def test_build_team_strength_ratings_rejects_missing_columns():
         ({"recent_matches": 0}, "recent_matches"),
         ({"min_rating": 0.0}, "rating bounds"),
         ({"min_rating": 2.0, "max_rating": 1.0}, "min_rating"),
+        ({"shrink_factor": 1.1}, "shrink_factor"),
     ],
 )
 def test_build_team_strength_ratings_rejects_invalid_configuration(kwargs, message):

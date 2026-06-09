@@ -73,7 +73,7 @@ def test_representative_validation_rejects_team_without_previous_round_win():
     round_of_16 = next(match for match in inconsistent["bracket"] if match["round"] == "round_of_16")
     round_of_16["home_team"] = "Not a previous winner"
 
-    with pytest.raises(ValueError, match="winner is not a participant"):
+    with pytest.raises(ValueError, match="winner path is inconsistent"):
         validate_representative_tournament(inconsistent, knockouts)
 
 

@@ -169,13 +169,15 @@ class SimulationSettings:
 
 @dataclass(frozen=True)
 class TeamMetricSettings:
-    metrics_version: str = "v4.5"
+    metrics_version: str = "v5.0"
     squad_values_source: str = "data/external/teams_value.json"
     squad_value_unit: str = "million_eur"
     recent_matches: int | None = 20
     min_matches: int = 5
+    # Elo-adjusted raw ratings retain half of their deviation from neutral.
+    shrink_factor: float = 0.50
     min_rating: float = 0.65
-    max_rating: float = 1.45
+    max_rating: float = 1.35
     squad_min_rating: float = 0.85
     squad_max_rating: float = 1.15
     form_windows: tuple[int, ...] = (5, 10, 20)
@@ -264,6 +266,7 @@ SQUAD_VALUES_SOURCE = TEAM_METRIC_SETTINGS.squad_values_source
 SQUAD_VALUE_UNIT = TEAM_METRIC_SETTINGS.squad_value_unit
 TEAM_STRENGTH_RECENT_MATCHES = TEAM_METRIC_SETTINGS.recent_matches
 TEAM_STRENGTH_MIN_MATCHES = TEAM_METRIC_SETTINGS.min_matches
+TEAM_STRENGTH_SHRINK_FACTOR = TEAM_METRIC_SETTINGS.shrink_factor
 TEAM_STRENGTH_MIN_RATING = TEAM_METRIC_SETTINGS.min_rating
 TEAM_STRENGTH_MAX_RATING = TEAM_METRIC_SETTINGS.max_rating
 SQUAD_STRENGTH_MIN_RATING = TEAM_METRIC_SETTINGS.squad_min_rating

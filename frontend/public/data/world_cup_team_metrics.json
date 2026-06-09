@@ -7,8 +7,8 @@
     {
       "team": "Czech Republic",
       "group": "A",
-      "attack_rating": 1.2449329629182269,
-      "defense_rating": 0.8299553086121513,
+      "attack_rating": 1.005343403186357,
+      "defense_rating": 1.0113646929742268,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.0755555555555556,
@@ -24,8 +24,8 @@
     {
       "team": "Mexico",
       "group": "A",
-      "attack_rating": 0.8645367798043242,
-      "defense_rating": 0.65,
+      "attack_rating": 0.8722843527118629,
+      "defense_rating": 0.7873502554877081,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.1111111111111112,
@@ -41,8 +41,8 @@
     {
       "team": "South Africa",
       "group": "A",
-      "attack_rating": 1.141188549341708,
-      "defense_rating": 0.65,
+      "attack_rating": 1.0088404199194279,
+      "defense_rating": 0.8181695852674342,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.8977777777777778,
@@ -58,8 +58,8 @@
     {
       "team": "South Korea",
       "group": "A",
-      "attack_rating": 1.2103514917260538,
-      "defense_rating": 0.6570479526512863,
+      "attack_rating": 1.0134972730705711,
+      "defense_rating": 0.9281861117419605,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.0133333333333334,
@@ -75,8 +75,8 @@
     {
       "team": "Bosnia and Herzegovina",
       "group": "B",
-      "attack_rating": 0.9682811933808431,
-      "defense_rating": 1.0374441357651891,
+      "attack_rating": 0.986505124343072,
+      "defense_rating": 0.9891542038160785,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.9511111111111111,
@@ -92,8 +92,8 @@
     {
       "team": "Canada",
       "group": "B",
-      "attack_rating": 1.1066070781495352,
-      "defense_rating": 0.65,
+      "attack_rating": 1.0102432173980498,
+      "defense_rating": 0.7287726380209075,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.057777777777778,
@@ -109,8 +109,8 @@
     {
       "team": "Qatar",
       "group": "B",
-      "attack_rating": 0.7953738374199782,
-      "defense_rating": 1.3486773764947457,
+      "attack_rating": 0.9257326147051007,
+      "defense_rating": 1.200630506227069,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.8266666666666667,
@@ -126,8 +126,8 @@
     {
       "team": "Switzerland",
       "group": "B",
-      "attack_rating": 1.3832588476869188,
-      "defense_rating": 0.8991182509964972,
+      "attack_rating": 1.1333823523260347,
+      "defense_rating": 1.0315634947650343,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.0133333333333334,
@@ -143,8 +143,8 @@
     {
       "team": "Brazil",
       "group": "C",
-      "attack_rating": 1.2449329629182269,
-      "defense_rating": 0.6570479526512863,
+      "attack_rating": 1.0354420229166408,
+      "defense_rating": 0.9269593190769531,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.0844444444444445,
@@ -160,8 +160,8 @@
     {
       "team": "Haiti",
       "group": "C",
-      "attack_rating": 1.45,
-      "defense_rating": 0.7607923662278054,
+      "attack_rating": 1.2400485357937858,
+      "defense_rating": 0.9793669788214414,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.9777777777777779,
@@ -177,8 +177,8 @@
     {
       "team": "Morocco",
       "group": "C",
-      "attack_rating": 1.3140959053025727,
-      "defense_rating": 0.65,
+      "attack_rating": 0.9536715655143009,
+      "defense_rating": 0.6646971364595406,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.128888888888889,
@@ -194,8 +194,8 @@
     {
       "team": "Scotland",
       "group": "C",
-      "attack_rating": 1.0374441357651891,
-      "defense_rating": 0.8645367798043242,
+      "attack_rating": 1.0211645898893744,
+      "defense_rating": 0.9538546582682527,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.9866666666666667,
@@ -211,8 +211,8 @@
     {
       "team": "Australia",
       "group": "D",
-      "attack_rating": 1.141188549341708,
-      "defense_rating": 0.65,
+      "attack_rating": 0.9892616185699172,
+      "defense_rating": 0.8528488432117006,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.9866666666666667,
@@ -228,8 +228,8 @@
     {
       "team": "Paraguay",
       "group": "D",
-      "attack_rating": 0.7607923662278054,
-      "defense_rating": 0.7607923662278054,
+      "attack_rating": 0.940853748305591,
+      "defense_rating": 0.8665961504320375,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.9866666666666667,
@@ -245,8 +245,8 @@
     {
       "team": "Turkey",
       "group": "D",
-      "attack_rating": 1.4178403188790916,
-      "defense_rating": 0.7953738374199782,
+      "attack_rating": 1.1044155857338813,
+      "defense_rating": 1.0000364671392745,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.1644444444444444,
@@ -262,8 +262,8 @@
     {
       "team": "United States",
       "group": "D",
-      "attack_rating": 1.2103514917260538,
-      "defense_rating": 1.0374441357651891,
+      "attack_rating": 1.1412394844257596,
+      "defense_rating": 1.048087041418805,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.0133333333333334,
@@ -279,8 +279,8 @@
     {
       "team": "Curaçao",
       "group": "E",
-      "attack_rating": 1.3832588476869188,
-      "defense_rating": 0.7262108950356324,
+      "attack_rating": 1.156845240031997,
+      "defense_rating": 0.9124781247708218,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.8444444444444444,
@@ -296,8 +296,8 @@
     {
       "team": "Ecuador",
       "group": "E",
-      "attack_rating": 0.65,
-      "defense_rating": 0.65,
+      "attack_rating": 0.803657780667264,
+      "defense_rating": 0.6572568430550185,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.057777777777778,
@@ -313,8 +313,8 @@
     {
       "team": "Germany",
       "group": "E",
-      "attack_rating": 1.45,
-      "defense_rating": 0.7262108950356324,
+      "attack_rating": 1.1799693468426276,
+      "defense_rating": 0.9980160331859755,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.2,
@@ -330,8 +330,8 @@
     {
       "team": "Ivory Coast",
       "group": "E",
-      "attack_rating": 1.175770020533881,
-      "defense_rating": 0.65,
+      "attack_rating": 0.9661586580547867,
+      "defense_rating": 0.7338040488396453,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.12,
@@ -347,8 +347,8 @@
     {
       "team": "Japan",
       "group": "F",
-      "attack_rating": 1.45,
-      "defense_rating": 0.65,
+      "attack_rating": 1.1319205208358212,
+      "defense_rating": 0.7228057023495658,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.2,
@@ -364,8 +364,8 @@
     {
       "team": "Netherlands",
       "group": "F",
-      "attack_rating": 1.45,
-      "defense_rating": 0.7262108950356324,
+      "attack_rating": 1.1174394732428252,
+      "defense_rating": 1.0226507291948752,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.0755555555555556,
@@ -381,8 +381,8 @@
     {
       "team": "Sweden",
       "group": "F",
-      "attack_rating": 1.4178403188790916,
-      "defense_rating": 1.0374441357651891,
+      "attack_rating": 1.1532588372233135,
+      "defense_rating": 1.1118597362795943,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.0044444444444445,
@@ -398,8 +398,8 @@
     {
       "team": "Tunisia",
       "group": "F",
-      "attack_rating": 1.2103514917260538,
-      "defense_rating": 0.65,
+      "attack_rating": 1.0488366301758885,
+      "defense_rating": 0.8265494559658806,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.9422222222222223,
@@ -415,8 +415,8 @@
     {
       "team": "Belgium",
       "group": "G",
-      "attack_rating": 1.45,
-      "defense_rating": 0.7953738374199782,
+      "attack_rating": 1.062472528280666,
+      "defense_rating": 1.0419783363745503,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.0755555555555556,
@@ -432,8 +432,8 @@
     {
       "team": "Egypt",
       "group": "G",
-      "attack_rating": 0.8299553086121513,
-      "defense_rating": 0.65,
+      "attack_rating": 0.8415792334201737,
+      "defense_rating": 0.7876490828016681,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.0666666666666667,
@@ -449,8 +449,8 @@
     {
       "team": "Iran",
       "group": "G",
-      "attack_rating": 1.2449329629182269,
-      "defense_rating": 0.65,
+      "attack_rating": 0.9612639222086485,
+      "defense_rating": 0.8856191881686528,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.0666666666666667,
@@ -466,8 +466,8 @@
     {
       "team": "New Zealand",
       "group": "G",
-      "attack_rating": 1.45,
-      "defense_rating": 0.6916294238434594,
+      "attack_rating": 1.3065767389792948,
+      "defense_rating": 0.9058446541599545,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.9422222222222223,
@@ -483,8 +483,8 @@
     {
       "team": "Cape Verde",
       "group": "H",
-      "attack_rating": 0.9336997221886703,
-      "defense_rating": 0.6570479526512863,
+      "attack_rating": 0.9307050961429495,
+      "defense_rating": 0.8815029691891054,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.9955555555555556,
@@ -500,8 +500,8 @@
     {
       "team": "Saudi Arabia",
       "group": "H",
-      "attack_rating": 0.7262108950356324,
-      "defense_rating": 0.8645367798043242,
+      "attack_rating": 0.8946025622415059,
+      "defense_rating": 0.9389538522029836,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.8266666666666667,
@@ -517,8 +517,8 @@
     {
       "team": "Spain",
       "group": "H",
-      "attack_rating": 1.45,
-      "defense_rating": 0.6570479526512863,
+      "attack_rating": 1.1340310218297227,
+      "defense_rating": 1.0165863185409858,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.057777777777778,
@@ -534,8 +534,8 @@
     {
       "team": "Uruguay",
       "group": "H",
-      "attack_rating": 0.65,
-      "defense_rating": 0.65,
+      "attack_rating": 0.7668030317395699,
+      "defense_rating": 0.8567023668285967,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.9244444444444445,
@@ -551,8 +551,8 @@
     {
       "team": "France",
       "group": "I",
-      "attack_rating": 1.45,
-      "defense_rating": 0.7262108950356324,
+      "attack_rating": 1.0216225352989434,
+      "defense_rating": 1.032009015114368,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.1822222222222223,
@@ -568,8 +568,8 @@
     {
       "team": "Iraq",
       "group": "I",
-      "attack_rating": 0.7262108950356324,
-      "defense_rating": 0.6570479526512863,
+      "attack_rating": 0.8021599292094039,
+      "defense_rating": 0.9281498044419842,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.0666666666666667,
@@ -585,8 +585,8 @@
     {
       "team": "Norway",
       "group": "I",
-      "attack_rating": 1.45,
-      "defense_rating": 0.6570479526512863,
+      "attack_rating": 1.3260252980138048,
+      "defense_rating": 0.9281749664752463,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.048888888888889,
@@ -602,8 +602,8 @@
     {
       "team": "Senegal",
       "group": "I",
-      "attack_rating": 1.45,
-      "defense_rating": 0.65,
+      "attack_rating": 1.0938377267700612,
+      "defense_rating": 0.8764546815340016,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.0133333333333334,
@@ -619,8 +619,8 @@
     {
       "team": "Algeria",
       "group": "J",
-      "attack_rating": 1.45,
-      "defense_rating": 0.65,
+      "attack_rating": 1.054769915520259,
+      "defense_rating": 0.8014867574541795,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.031111111111111,
@@ -636,8 +636,8 @@
     {
       "team": "Argentina",
       "group": "J",
-      "attack_rating": 1.45,
-      "defense_rating": 0.65,
+      "attack_rating": 0.9807321813417847,
+      "defense_rating": 0.7885187493723147,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.2,
@@ -653,8 +653,8 @@
     {
       "team": "Austria",
       "group": "J",
-      "attack_rating": 1.45,
-      "defense_rating": 0.65,
+      "attack_rating": 1.057421878603658,
+      "defense_rating": 0.862333204302387,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.1644444444444444,
@@ -670,8 +670,8 @@
     {
       "team": "Jordan",
       "group": "J",
-      "attack_rating": 1.141188549341708,
-      "defense_rating": 1.002862664573016,
+      "attack_rating": 1.0766590410930474,
+      "defense_rating": 1.0543606284915277,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.888888888888889,
@@ -687,8 +687,8 @@
     {
       "team": "Colombia",
       "group": "K",
-      "attack_rating": 1.2449329629182269,
-      "defense_rating": 0.7953738374199782,
+      "attack_rating": 1.0604595585203573,
+      "defense_rating": 0.9861667883443612,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.0133333333333334,
@@ -704,8 +704,8 @@
     {
       "team": "DR Congo",
       "group": "K",
-      "attack_rating": 1.002862664573016,
-      "defense_rating": 0.65,
+      "attack_rating": 0.9204778899859887,
+      "defense_rating": 0.7439307954486513,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.1022222222222222,
@@ -721,8 +721,8 @@
     {
       "team": "Portugal",
       "group": "K",
-      "attack_rating": 1.45,
-      "defense_rating": 0.65,
+      "attack_rating": 1.112200279389606,
+      "defense_rating": 0.920193966966367,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.057777777777778,
@@ -738,8 +738,8 @@
     {
       "team": "Uzbekistan",
       "group": "K",
-      "attack_rating": 0.8299553086121513,
-      "defense_rating": 0.65,
+      "attack_rating": 0.8762592335286181,
+      "defense_rating": 0.7927556601850481,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.9422222222222223,
@@ -755,8 +755,8 @@
     {
       "team": "Croatia",
       "group": "L",
-      "attack_rating": 1.45,
-      "defense_rating": 0.7262108950356324,
+      "attack_rating": 1.0320048952927665,
+      "defense_rating": 0.9890321002717499,
       "matches_used": 20,
       "recent_form": {
         "form_5": 1.0666666666666667,
@@ -772,8 +772,8 @@
     {
       "team": "England",
       "group": "L",
-      "attack_rating": 1.45,
-      "defense_rating": 0.65,
+      "attack_rating": 0.9879251977362096,
+      "defense_rating": 0.8125825418902475,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.9955555555555556,
@@ -789,8 +789,8 @@
     {
       "team": "Ghana",
       "group": "L",
-      "attack_rating": 1.0374441357651891,
-      "defense_rating": 0.8645367798043242,
+      "attack_rating": 1.0135876310899028,
+      "defense_rating": 0.9603992933403054,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.8,
@@ -806,8 +806,8 @@
     {
       "team": "Panama",
       "group": "L",
-      "attack_rating": 1.175770020533881,
-      "defense_rating": 0.8991182509964972,
+      "attack_rating": 0.9931628005430995,
+      "defense_rating": 1.0834003322777697,
       "matches_used": 20,
       "recent_form": {
         "form_5": 0.9422222222222223,

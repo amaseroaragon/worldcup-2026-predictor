@@ -1,83 +1,83 @@
 Group qualifiers:
 A1 Czech Republic
-A2 South Korea
-B1 Switzerland
-B2 Canada
-C1 Morocco
-C2 Brazil
-D1 Turkey
-D2 Australia
-E1 Germany
-E2 Curaçao
-F1 Japan
-F2 Tunisia
-G1 Belgium
-G2 New Zealand
+A2 Mexico
+B1 Canada
+B2 Switzerland
+C1 Brazil
+C2 Morocco
+D1 Australia
+D2 Turkey
+E1 Ecuador
+E2 Germany
+F1 Netherlands
+F2 Japan
+G1 Egypt
+G2 Iran
 H1 Spain
-H2 Uruguay
+H2 Cape Verde
 I1 France
-I2 Norway
-J1 Algeria
-J2 Argentina
-K1 Colombia
-K2 Portugal
-L1 Croatia
-L2 England
+I2 Senegal
+J1 Argentina
+J2 Algeria
+K1 Portugal
+K2 Colombia
+L1 England
+L2 Croatia
 
 Best third-place qualifiers:
-1. Group F - Netherlands
-2. Group A - Mexico
-3. Group H - Cape Verde
-4. Group L - Panama
-5. Group C - Haiti
-6. Group G - Egypt
-7. Group J - Austria
-8. Group D - United States
+1. Group G - Belgium
+2. Group A - South Korea
+3. Group D - United States
+4. Group I - Norway
+5. Group E - Ivory Coast
+6. Group C - Scotland
+7. Group L - Panama
+8. Group F - Sweden
 
 Round Of 32:
-M73: South Korea vs Canada -> South Korea (Group A runner-up / Group B runner-up)
-M74: Germany vs United States -> Germany (Group E winner / Group D third place)
-M75: Japan vs Brazil -> Brazil (Group F winner / Group C runner-up)
-M76: Morocco vs Tunisia -> Morocco (Group C winner / Group F runner-up)
-M77: France vs Netherlands -> Netherlands (Group I winner / Group F third place)
-M78: Curaçao vs Norway -> Norway (Group E runner-up / Group I runner-up)
-M79: Czech Republic vs Haiti -> Czech Republic (Group A winner / Group C third place)
-M80: Croatia vs Cape Verde -> Croatia (Group L winner / Group H third place)
-M81: Turkey vs Austria -> Austria (Group D winner / Group J third place)
-M82: Belgium vs Mexico -> Belgium (Group G winner / Group A third place)
-M83: Portugal vs England -> Portugal (Group K runner-up / Group L runner-up)
-M84: Spain vs Argentina -> Spain (Group H winner / Group J runner-up)
-M85: Switzerland vs Egypt -> Switzerland (Group B winner / Group G third place)
-M86: Algeria vs Uruguay -> Algeria (Group J winner / Group H runner-up)
-M87: Colombia vs Panama -> Colombia (Group K winner / Group L third place)
-M88: Australia vs New Zealand -> Australia (Group D runner-up / Group G runner-up)
+M73: Mexico vs Switzerland -> Mexico (Group A runner-up / Group B runner-up)
+M74: Ecuador vs United States -> United States (Group E winner / Group D third place)
+M75: Netherlands vs Morocco -> Morocco (Group F winner / Group C runner-up)
+M76: Brazil vs Japan -> Japan (Group C winner / Group F runner-up)
+M77: France vs Sweden -> France (Group I winner / Group F third place)
+M78: Germany vs Senegal -> Senegal (Group E runner-up / Group I runner-up)
+M79: Czech Republic vs Scotland -> Czech Republic (Group A winner / Group C third place)
+M80: England vs Norway -> England (Group L winner / Group I third place)
+M81: Australia vs Ivory Coast -> Australia (Group D winner / Group E third place)
+M82: Egypt vs South Korea -> South Korea (Group G winner / Group A third place)
+M83: Colombia vs Croatia -> Colombia (Group K runner-up / Group L runner-up)
+M84: Spain vs Algeria -> Spain (Group H winner / Group J runner-up)
+M85: Canada vs Belgium -> Canada (Group B winner / Group G third place)
+M86: Argentina vs Cape Verde -> Argentina (Group J winner / Group H runner-up)
+M87: Portugal vs Panama -> Portugal (Group K winner / Group L third place)
+M88: Turkey vs Iran -> Turkey (Group D runner-up / Group G runner-up)
 
 Round Of 16:
-M89: Germany vs Netherlands -> Germany (Winner of M74 / Winner of M77)
-M90: South Korea vs Brazil -> Brazil (Winner of M73 / Winner of M75)
-M91: Morocco vs Norway -> Morocco (Winner of M76 / Winner of M78)
-M92: Czech Republic vs Croatia -> Croatia (Winner of M79 / Winner of M80)
-M93: Portugal vs Spain -> Spain (Winner of M83 / Winner of M84)
-M94: Austria vs Belgium -> Belgium (Winner of M81 / Winner of M82)
-M95: Algeria vs Australia -> Algeria (Winner of M86 / Winner of M88)
-M96: Switzerland vs Colombia -> Switzerland (Winner of M85 / Winner of M87)
+M89: United States vs France -> France (Winner of M74 / Winner of M77)
+M90: Mexico vs Morocco -> Morocco (Winner of M73 / Winner of M75)
+M91: Japan vs Senegal -> Senegal (Winner of M76 / Winner of M78)
+M92: Czech Republic vs England -> England (Winner of M79 / Winner of M80)
+M93: Colombia vs Spain -> Spain (Winner of M83 / Winner of M84)
+M94: Australia vs South Korea -> South Korea (Winner of M81 / Winner of M82)
+M95: Argentina vs Turkey -> Argentina (Winner of M86 / Winner of M88)
+M96: Canada vs Portugal -> Canada (Winner of M85 / Winner of M87)
 
 Quarter Final:
-M97: Germany vs Brazil -> Brazil (Winner of M89 / Winner of M90)
-M98: Spain vs Belgium -> Spain (Winner of M93 / Winner of M94)
-M99: Morocco vs Croatia -> Croatia (Winner of M91 / Winner of M92)
-M100: Algeria vs Switzerland -> Algeria (Winner of M95 / Winner of M96)
+M97: France vs Morocco -> Morocco (Winner of M89 / Winner of M90)
+M98: Spain vs South Korea -> Spain (Winner of M93 / Winner of M94)
+M99: Senegal vs England -> England (Winner of M91 / Winner of M92)
+M100: Argentina vs Canada -> Argentina (Winner of M95 / Winner of M96)
 
 Semi Final:
-M101: Brazil vs Spain -> Spain (Winner of M97 / Winner of M98)
-M102: Croatia vs Algeria -> Croatia (Winner of M99 / Winner of M100)
+M101: Morocco vs Spain -> Morocco (Winner of M97 / Winner of M98)
+M102: England vs Argentina -> Argentina (Winner of M99 / Winner of M100)
 
 Third Place Playoff:
-M103: Brazil vs Algeria -> Brazil (Loser of M101 / Loser of M102)
+M103: Spain vs England -> Spain (Loser of M101 / Loser of M102)
 
 Final:
-M104: Spain vs Croatia -> Spain (Winner of M101 / Winner of M102)
+M104: Morocco vs Argentina -> Argentina (Winner of M101 / Winner of M102)
 
-Champion: Spain
+Champion: Argentina
 
 Representative tournament validation passed
