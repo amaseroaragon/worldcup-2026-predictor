@@ -40,12 +40,6 @@ export default async function ComparePage() {
       </section>
 
       <CompareTable probabilities={rankedProbabilities} />
-
-      <SectionCard title="User predictions" description="Coming soon">
-        <p className="text-sm leading-6 text-muted-foreground">
-          Compare your bracket and tournament picks against the model.
-        </p>
-      </SectionCard>
     </PageContainer>
   );
 }
