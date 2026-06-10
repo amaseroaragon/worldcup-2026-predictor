@@ -148,4 +148,4 @@ python scripts/prediction/run_prediction_pipeline.py --simulations 1000 --seed 4
 
 ## Cost and Optimization
 
-Runtime grows mainly with the number of simulations. Monte Carlo performance optimization remains a V5 target, especially for larger simulation counts and faster iteration.
+Runtime grows mainly with the number of simulations, especially for larger simulation counts.

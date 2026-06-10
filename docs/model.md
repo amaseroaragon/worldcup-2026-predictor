@@ -123,7 +123,7 @@ During a tournament simulation, the model can update a local copy of Elo ratings
 
 This does not modify `data/processed/elo_rankings.csv`; it only affects later matches within the same simulation. The relevant flags are defined in `settings.py` and re-exported through `config.py`.
 
-## V5.5 Calibration
+## Calibration
 
 The default model configuration was calibrated through historical backtesting against:
 
@@ -142,6 +142,4 @@ The selected configuration provided a conservative improvement while retaining D
 ## Current Limits
 
 - The model does not use real-time data.
-- The frontend is not implemented yet.
 - Probabilities depend on the quality of historical results and external configuration.
-- Monte Carlo performance is still a V5 optimization target.

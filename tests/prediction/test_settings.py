@@ -48,7 +48,7 @@ def test_path_settings_match_public_default_aliases():
 
 def test_display_settings_expose_competitive_draw_margin():
     assert PREDICTION_SETTINGS.display is DISPLAY_SETTINGS
-    assert DRAW_COMPETITIVE_MARGIN == DISPLAY_SETTINGS.draw_competitive_margin == 0.05
+    assert DRAW_COMPETITIVE_MARGIN == DISPLAY_SETTINGS.draw_competitive_margin == 0.08
 
 
 def test_path_settings_keep_current_default_routes():

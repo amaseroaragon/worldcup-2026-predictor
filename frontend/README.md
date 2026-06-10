@@ -2,6 +2,8 @@
 
 Independent Next.js frontend for exploring synchronized tournament predictions.
 
+The frontend is complete, except for a methodology tab planned for next week.
+
 ## Start locally
 
 ```bash
