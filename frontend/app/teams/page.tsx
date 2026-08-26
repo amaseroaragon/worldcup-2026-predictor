@@ -41,7 +41,7 @@ export default async function TeamsPage() {
                         <dd className="mt-1 font-semibold">{metric.group}</dd>
                       </div>
                       <div>
-                        <dt className="text-muted-foreground">Rep. position</dt>
+                        <dt className="text-muted-foreground">Projected position</dt>
                         <dd className="mt-1 font-semibold">
                           {formatOptionalNumber(predictionSummary.group_position, 0)}
                         </dd>

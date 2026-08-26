@@ -12,25 +12,25 @@ export default async function ComparePage() {
   const rankedProbabilities = probabilities.toSorted(
     (a, b) => b.champion_probability - a.champion_probability,
   );
-  const favourite = rankedProbabilities[0];
+  const favorite = rankedProbabilities[0];
 
   return (
     <PageContainer
       eyebrow="Team analysis"
       title="Compare contenders"
-      description="Compare aggregate tournament probabilities from the latest synchronized model output."
+      description="Compare aggregate tournament probabilities from the latest model output."
     >
       <section className="grid gap-4 sm:grid-cols-2">
         <SectionCard title="Teams analysed">
           <p className="text-3xl font-bold tracking-tight">{rankedProbabilities.length}</p>
           <p className="mt-1 text-sm text-muted-foreground">World Cup contenders in the model.</p>
         </SectionCard>
-        <SectionCard title="Current favourite">
-          {favourite ? (
+        <SectionCard title="Current favorite">
+          {favorite ? (
             <>
-              <TeamBadge team={favourite.team} size="lg" />
+              <TeamBadge team={favorite.team} size="lg" />
               <p className="mt-1 text-sm text-muted-foreground">
-                {formatPercent(favourite.champion_probability, 1)} title probability
+                {formatPercent(favorite.champion_probability, 1)} title probability
               </p>
             </>
           ) : (

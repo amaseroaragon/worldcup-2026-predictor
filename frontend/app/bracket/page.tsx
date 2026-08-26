@@ -12,10 +12,10 @@ export default async function BracketPage() {
     <PageContainer
       eyebrow="Knockout stage"
       title="Deterministic bracket"
-      description="One coherent prediction using each match's deterministic displayed outcome."
+      description="A single projected bracket using the model's deterministic match outcomes."
     >
       <p className="rounded-xl border border-dashed bg-card/60 px-4 py-3 text-sm text-muted-foreground">
-        Loaded from deterministic displayed match outcomes
+        Based on the model&apos;s deterministic match outcomes
         {typeof metadata.simulations === "number" ? ` · ${metadata.simulations.toLocaleString("en")} simulations` : ""}.
       </p>
       <p className="text-xs text-muted-foreground">

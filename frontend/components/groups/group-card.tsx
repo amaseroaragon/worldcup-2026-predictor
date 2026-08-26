@@ -40,7 +40,7 @@ export function GroupCard({ group, teams }: GroupCardProps) {
         </table>
       </div>
       <p className="mt-4 text-[0.7rem] leading-5 text-muted-foreground">
-        Position, points, and goal stats all come from the displayed representative results.
+        Position, points and goal statistics reflect the representative results shown above.
       </p>
     </SectionCard>
   );

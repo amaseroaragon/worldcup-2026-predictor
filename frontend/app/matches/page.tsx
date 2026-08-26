@@ -14,7 +14,7 @@ export default async function MatchesPage() {
       description="Browse projected fixtures, probabilities and expected results."
     >
       <p className="rounded-xl border border-dashed bg-card/60 px-4 py-3 text-sm text-muted-foreground">
-        Loaded from the latest synchronized tournament predictions
+        Based on the latest tournament model output
         {typeof metadata.simulations === "number" ? ` · ${metadata.simulations.toLocaleString("en")} simulations` : ""}.
       </p>
       <MatchesExplorer matches={matches} />

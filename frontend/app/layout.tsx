@@ -5,12 +5,26 @@ import { Header } from "@/components/layout/header";
 
 import "./globals.css";
 
+const siteTitle = "World Cup 2026 Predictor";
+const siteDescription =
+  "World Cup 2026 tournament projections powered by Elo ratings, Poisson modelling and Monte Carlo simulations.";
+
 export const metadata: Metadata = {
   title: {
-    default: "World Cup 2026 Predictor",
-    template: "%s | World Cup 2026 Predictor",
+    default: siteTitle,
+    template: `%s | ${siteTitle}`,
   },
-  description: "Tournament projections powered by Monte Carlo simulations.",
+  description: siteDescription,
+  openGraph: {
+    title: siteTitle,
+    description: siteDescription,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: siteTitle,
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

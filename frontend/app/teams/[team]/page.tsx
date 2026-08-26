@@ -51,7 +51,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
     <PageContainer
       eyebrow={`Team profile · Group ${metric.group}`}
       title={metric.team}
-      description="Deterministic tournament prediction, aggregate Monte Carlo probabilities and model metrics."
+      description="Deterministic tournament outcome, aggregate Monte Carlo probabilities and model metrics."
     >
       <Link href="/groups" className={cn(buttonVariants({ variant: "outline" }), "w-fit")}>
         <ArrowLeft /> Back
@@ -64,7 +64,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
 
       <SectionCard
         title="Deterministic prediction"
-        description="Results from the same deterministic displayed-outcome prediction shown in Groups and Bracket."
+        description="Results from the representative tournament outcome shown in Groups and Bracket."
       >
         <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Metric label="Predicted group position" value={formatOptionalNumber(predictionSummary.group_position, 0)} />
@@ -98,7 +98,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
 
         <SectionCard
           title="Monte Carlo group averages"
-          description="Expected values across all simulations, not the deterministic prediction."
+          description="Expected values across all simulations; these are separate from the deterministic prediction."
         >
           <dl className="grid grid-cols-2 gap-4">
             <Metric label="Expected group position" value={formatOptionalNumber(aggregateGroupResult?.expected_position)} />

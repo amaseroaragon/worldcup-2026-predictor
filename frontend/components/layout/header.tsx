@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Trophy } from "lucide-react";
 
+import { PROJECT_REPORT_URL } from "@/lib/site-config";
+
 const navigation = [
   { href: "/", label: "Overview" },
   { href: "/groups", label: "Groups" },
@@ -26,6 +28,16 @@ export function Header() {
               {item.label}
             </Link>
           ))}
+          {PROJECT_REPORT_URL && (
+            <a
+              href={PROJECT_REPORT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition hover:bg-accent hover:text-foreground"
+            >
+              Project Report
+            </a>
+          )}
         </nav>
       </div>
     </header>
