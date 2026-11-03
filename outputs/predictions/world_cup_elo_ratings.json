@@ -1,0 +1,392 @@
+{
+  "metadata": {
+    "source": "data/processed/elo_rankings.csv",
+    "scope": "world_cup_2026_teams"
+  },
+  "teams": [
+    {
+      "team": "Argentina",
+      "group": "J",
+      "elo": 2060.8,
+      "world_rank": 1,
+      "field_rank": 1,
+      "rating_date": "2026-06-09"
+    },
+    {
+      "team": "Spain",
+      "group": "H",
+      "elo": 2060.4,
+      "world_rank": 2,
+      "field_rank": 2,
+      "rating_date": "2026-06-08"
+    },
+    {
+      "team": "France",
+      "group": "I",
+      "elo": 2012.8,
+      "world_rank": 3,
+      "field_rank": 3,
+      "rating_date": "2026-06-08"
+    },
+    {
+      "team": "England",
+      "group": "L",
+      "elo": 1969.3,
+      "world_rank": 4,
+      "field_rank": 4,
+      "rating_date": "2026-06-10"
+    },
+    {
+      "team": "Brazil",
+      "group": "C",
+      "elo": 1966.0,
+      "world_rank": 5,
+      "field_rank": 5,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "Colombia",
+      "group": "K",
+      "elo": 1939.2,
+      "world_rank": 6,
+      "field_rank": 6,
+      "rating_date": "2026-06-07"
+    },
+    {
+      "team": "Portugal",
+      "group": "K",
+      "elo": 1933.9,
+      "world_rank": 7,
+      "field_rank": 7,
+      "rating_date": "2026-06-10"
+    },
+    {
+      "team": "Netherlands",
+      "group": "F",
+      "elo": 1922.9,
+      "world_rank": 8,
+      "field_rank": 8,
+      "rating_date": "2026-06-08"
+    },
+    {
+      "team": "Germany",
+      "group": "E",
+      "elo": 1916.0,
+      "world_rank": 9,
+      "field_rank": 9,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "Belgium",
+      "group": "G",
+      "elo": 1891.0,
+      "world_rank": 10,
+      "field_rank": 10,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "Japan",
+      "group": "F",
+      "elo": 1890.8,
+      "world_rank": 11,
+      "field_rank": 11,
+      "rating_date": "2026-05-31"
+    },
+    {
+      "team": "Mexico",
+      "group": "A",
+      "elo": 1886.3,
+      "world_rank": 12,
+      "field_rank": 12,
+      "rating_date": "2026-06-04"
+    },
+    {
+      "team": "Ecuador",
+      "group": "E",
+      "elo": 1884.8,
+      "world_rank": 13,
+      "field_rank": 13,
+      "rating_date": "2026-06-07"
+    },
+    {
+      "team": "Morocco",
+      "group": "C",
+      "elo": 1884.1,
+      "world_rank": 14,
+      "field_rank": 14,
+      "rating_date": "2026-06-07"
+    },
+    {
+      "team": "Uruguay",
+      "group": "H",
+      "elo": 1881.2,
+      "world_rank": 15,
+      "field_rank": 15,
+      "rating_date": "2026-03-31"
+    },
+    {
+      "team": "Croatia",
+      "group": "L",
+      "elo": 1870.7,
+      "world_rank": 16,
+      "field_rank": 16,
+      "rating_date": "2026-06-07"
+    },
+    {
+      "team": "Switzerland",
+      "group": "B",
+      "elo": 1843.2,
+      "world_rank": 18,
+      "field_rank": 17,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "Senegal",
+      "group": "I",
+      "elo": 1840.8,
+      "world_rank": 19,
+      "field_rank": 18,
+      "rating_date": "2026-06-09"
+    },
+    {
+      "team": "Iran",
+      "group": "G",
+      "elo": 1839.3,
+      "world_rank": 20,
+      "field_rank": 19,
+      "rating_date": "2026-06-04"
+    },
+    {
+      "team": "Turkey",
+      "group": "D",
+      "elo": 1819.0,
+      "world_rank": 21,
+      "field_rank": 20,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "Australia",
+      "group": "D",
+      "elo": 1816.5,
+      "world_rank": 22,
+      "field_rank": 21,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "South Korea",
+      "group": "A",
+      "elo": 1813.4,
+      "world_rank": 23,
+      "field_rank": 22,
+      "rating_date": "2026-06-03"
+    },
+    {
+      "team": "Algeria",
+      "group": "J",
+      "elo": 1796.9,
+      "world_rank": 25,
+      "field_rank": 23,
+      "rating_date": "2026-06-10"
+    },
+    {
+      "team": "Canada",
+      "group": "B",
+      "elo": 1790.2,
+      "world_rank": 26,
+      "field_rank": 24,
+      "rating_date": "2026-06-05"
+    },
+    {
+      "team": "Norway",
+      "group": "I",
+      "elo": 1789.3,
+      "world_rank": 27,
+      "field_rank": 25,
+      "rating_date": "2026-06-07"
+    },
+    {
+      "team": "Paraguay",
+      "group": "D",
+      "elo": 1784.4,
+      "world_rank": 28,
+      "field_rank": 26,
+      "rating_date": "2026-06-05"
+    },
+    {
+      "team": "United States",
+      "group": "D",
+      "elo": 1780.5,
+      "world_rank": 30,
+      "field_rank": 27,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "Austria",
+      "group": "J",
+      "elo": 1775.6,
+      "world_rank": 31,
+      "field_rank": 28,
+      "rating_date": "2026-06-01"
+    },
+    {
+      "team": "Panama",
+      "group": "L",
+      "elo": 1775.5,
+      "world_rank": 32,
+      "field_rank": 29,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "Egypt",
+      "group": "G",
+      "elo": 1757.7,
+      "world_rank": 36,
+      "field_rank": 30,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "Uzbekistan",
+      "group": "K",
+      "elo": 1754.6,
+      "world_rank": 37,
+      "field_rank": 31,
+      "rating_date": "2026-06-08"
+    },
+    {
+      "team": "Ivory Coast",
+      "group": "E",
+      "elo": 1742.0,
+      "world_rank": 38,
+      "field_rank": 32,
+      "rating_date": "2026-06-04"
+    },
+    {
+      "team": "New Zealand",
+      "group": "G",
+      "elo": 1734.0,
+      "world_rank": 40,
+      "field_rank": 33,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "Scotland",
+      "group": "C",
+      "elo": 1716.9,
+      "world_rank": 45,
+      "field_rank": 34,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "Iraq",
+      "group": "I",
+      "elo": 1711.5,
+      "world_rank": 47,
+      "field_rank": 35,
+      "rating_date": "2026-06-09"
+    },
+    {
+      "team": "Jordan",
+      "group": "J",
+      "elo": 1710.2,
+      "world_rank": 50,
+      "field_rank": 36,
+      "rating_date": "2026-06-07"
+    },
+    {
+      "team": "Sweden",
+      "group": "F",
+      "elo": 1709.2,
+      "world_rank": 51,
+      "field_rank": 37,
+      "rating_date": "2026-06-04"
+    },
+    {
+      "team": "Czech Republic",
+      "group": "A",
+      "elo": 1702.3,
+      "world_rank": 53,
+      "field_rank": 38,
+      "rating_date": "2026-06-04"
+    },
+    {
+      "team": "Tunisia",
+      "group": "F",
+      "elo": 1688.7,
+      "world_rank": 57,
+      "field_rank": 39,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "DR Congo",
+      "group": "K",
+      "elo": 1682.2,
+      "world_rank": 58,
+      "field_rank": 40,
+      "rating_date": "2026-06-09"
+    },
+    {
+      "team": "Saudi Arabia",
+      "group": "H",
+      "elo": 1668.9,
+      "world_rank": 61,
+      "field_rank": 41,
+      "rating_date": "2026-06-09"
+    },
+    {
+      "team": "Haiti",
+      "group": "C",
+      "elo": 1641.3,
+      "world_rank": 69,
+      "field_rank": 42,
+      "rating_date": "2026-06-05"
+    },
+    {
+      "team": "South Africa",
+      "group": "A",
+      "elo": 1640.8,
+      "world_rank": 70,
+      "field_rank": 43,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "Qatar",
+      "group": "B",
+      "elo": 1613.6,
+      "world_rank": 76,
+      "field_rank": 44,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "Cape Verde",
+      "group": "H",
+      "elo": 1609.8,
+      "world_rank": 77,
+      "field_rank": 45,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "Ghana",
+      "group": "L",
+      "elo": 1605.1,
+      "world_rank": 79,
+      "field_rank": 46,
+      "rating_date": "2026-06-02"
+    },
+    {
+      "team": "Bosnia and Herzegovina",
+      "group": "B",
+      "elo": 1592.2,
+      "world_rank": 85,
+      "field_rank": 47,
+      "rating_date": "2026-06-06"
+    },
+    {
+      "team": "Curaçao",
+      "group": "E",
+      "elo": 1566.6,
+      "world_rank": 96,
+      "field_rank": 48,
+      "rating_date": "2026-06-06"
+    }
+  ]
+}
