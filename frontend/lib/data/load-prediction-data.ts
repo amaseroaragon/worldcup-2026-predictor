@@ -1,4 +1,6 @@
 import type {
+  EloRatings,
+  ForecastVsActual,
   GroupResults,
   TeamMetric,
   TeamProfile,
@@ -33,6 +35,14 @@ export function loadTournamentPredictions(): Promise<TournamentPredictions> {
 
 export function loadRepresentativeTournament(): Promise<RepresentativeTournament> {
   return loadPublicJson("/data/representative_tournament.json");
+}
+
+export function loadEloRatings(): Promise<EloRatings> {
+  return loadPublicJson("/data/world_cup_elo_ratings.json");
+}
+
+export function loadForecastVsActual(): Promise<ForecastVsActual> {
+  return loadPublicJson("/data/forecast_vs_actual.json");
 }
 
 export async function loadTeamProfiles(): Promise<TeamProfile[]> {

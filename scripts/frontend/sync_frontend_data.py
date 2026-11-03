@@ -14,6 +14,11 @@ FILES = (
     "group_results.json",
     "representative_tournament.json",
 )
+# Produced by separate scripts (Elo export, post-tournament evaluation); copied when present.
+OPTIONAL_FILES = (
+    "world_cup_elo_ratings.json",
+    "forecast_vs_actual.json",
+)
 
 
 def sync_frontend_data(
@@ -33,7 +38,8 @@ def sync_frontend_data(
 
     destination_dir = frontend_dir / "public" / "data"
     destination_dir.mkdir(parents=True, exist_ok=True)
-    for filename in FILES:
+    optional = [filename for filename in OPTIONAL_FILES if (source_dir / filename).is_file()]
+    for filename in (*FILES, *optional):
         source = source_dir / filename
         destination = destination_dir / filename
         shutil.copyfile(source, destination)

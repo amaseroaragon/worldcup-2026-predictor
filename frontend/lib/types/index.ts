@@ -214,3 +214,134 @@ export type TeamProfile = {
   aggregateGroupResult: GroupResultTeam | null;
   predictionSummary: TeamPredictionSummary;
 };
+
+export type ActualStage =
+  | "group"
+  | "round_of_32"
+  | "round_of_16"
+  | "quarter_final"
+  | "semi_final"
+  | "final"
+  | "champion";
+
+export type EloRating = {
+  team: string;
+  group: string;
+  elo: number;
+  world_rank: number;
+  field_rank: number;
+  rating_date: string;
+};
+
+export type EloRatings = {
+  metadata: Record<string, unknown>;
+  teams: EloRating[];
+};
+
+export type ActualGroupMatch = {
+  match_number: number;
+  date: string;
+  group: string;
+  home_team: string;
+  away_team: string;
+  home_score: number;
+  away_score: number;
+  outcome: "home" | "draw" | "away";
+  home_win_probability: number;
+  draw_probability: number;
+  away_win_probability: number;
+  predicted_outcome: "home" | "draw" | "away";
+  predicted_home_goals: number;
+  predicted_away_goals: number;
+  outcome_hit: boolean;
+  exact_score_hit: boolean;
+  probability_of_actual_outcome: number;
+  brier: number;
+};
+
+export type ActualKnockoutStage =
+  | "round_of_32"
+  | "round_of_16"
+  | "quarter_final"
+  | "semi_final"
+  | "third_place_playoff"
+  | "final";
+
+export type ActualKnockoutMatch = {
+  match_number: number;
+  date: string;
+  stage: ActualKnockoutStage;
+  home_team: string;
+  away_team: string;
+  home_score: number;
+  away_score: number;
+  shootout_winner: string | null;
+  winner: string;
+  pairing_predicted: boolean;
+  home_win_probability: number;
+  draw_probability: number;
+  away_win_probability: number;
+  home_advance_probability: number;
+  away_advance_probability: number;
+  home_expected_goals: number;
+  away_expected_goals: number;
+  model_favourite: string;
+  favourite_advanced: boolean;
+  probability_of_actual_winner: number;
+};
+
+export type ForecastVsActual = {
+  metadata: Record<string, unknown>;
+  summary: {
+    champion: string;
+    runner_up: string;
+    champion_probability: number;
+    champion_rank: number;
+    runner_up_rank: number;
+    model_favourite: string;
+    model_favourite_stage: ActualStage;
+    predicted_final: [string, string];
+    predicted_champion: string;
+    final_pairing_predicted: boolean;
+    qualified_correct: number;
+    qualified_total: number;
+    qualification_brier: number;
+    qualification_baseline_brier: number;
+    semifinal_brier: number;
+    semifinal_baseline_brier: number;
+  };
+  group_stage: {
+    summary: {
+      matches: number;
+      outcome_hits: number;
+      exact_score_hits: number;
+      mean_brier: number;
+      baseline_mean_brier: number;
+      mean_log_loss: number;
+      baseline_log_loss: number;
+      outcome_counts: Record<"home" | "draw" | "away", number>;
+      predicted_draws: number;
+    };
+    matches: ActualGroupMatch[];
+  };
+  knockout_rounds: Array<{ stage: ActualKnockoutStage; teams: number; predicted_teams_correct: number }>;
+  knockout_summary: {
+    matches: number;
+    favourite_advanced: number;
+    advance_brier: number;
+    baseline_advance_brier: number;
+    advance_log_loss: number;
+    baseline_advance_log_loss: number;
+    method: string;
+  };
+  knockout_matches: ActualKnockoutMatch[];
+  teams: Array<{
+    team: string;
+    actual_stage: ActualStage;
+    qualification_probability: number;
+    semifinal_probability: number;
+    final_probability: number;
+    champion_probability: number;
+    champion_rank: number;
+  }>;
+};

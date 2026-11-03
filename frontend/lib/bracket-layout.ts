@@ -1,7 +1,7 @@
-import type { RepresentativeBracketMatch } from "@/lib/types";
+type BracketNode = { match_id: string; round: string | null; source_match_ids: string[] };
 
-export type PositionedBracketMatch = {
-  match: RepresentativeBracketMatch;
+export type PositionedBracketMatch<T extends BracketNode = BracketNode> = {
+  match: T;
   position: number;
 };
 
@@ -10,7 +10,7 @@ function numericMatchId(matchId: string): number {
 }
 
 export function positionBracketMatches(
-  matches: RepresentativeBracketMatch[],
+  matches: BracketNode[],
 ): Map<string, number> {
   const matchesById = new Map(matches.map((match) => [match.match_id, match]));
   const final = matches.find((match) => match.round === "final");
@@ -77,10 +77,10 @@ export function positionBracketMatches(
   return positionById;
 }
 
-export function positionedRoundMatches(
-  matches: RepresentativeBracketMatch[],
+export function positionedRoundMatches<T extends BracketNode>(
+  matches: T[],
   positions: Map<string, number>,
-): PositionedBracketMatch[] {
+): PositionedBracketMatch<T>[] {
   return matches
     .map((match) => ({
       match,
