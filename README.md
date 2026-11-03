@@ -2,9 +2,7 @@
 
 A statistical forecast of the FIFA World Cup 2026, made before the tournament and scored against what actually happened. Python model, bilingual Next.js site (EN/ES).
 
-**[Live site →](https://worldcup-2026-predictor-delta.vercel.app/en)** · [Project report (PDF)](frontend/public/world-cup-2026-project-report-english.pdf) · [Informe en español](frontend/public/world-cup-2026-project-report.pdf)
-
-![Forecast vs. result overview](docs/images/result.png)
+[Live site](https://worldcup-2026-predictor-delta.vercel.app/en) · [Project Report (PDF)](frontend/public/world-cup-2026-project-report-english.pdf) · [Informe del proyecto (PDF)](frontend/public/world-cup-2026-project-report.pdf)
 
 ## Results
 
@@ -24,17 +22,6 @@ A statistical forecast of the FIFA World Cup 2026, made before the tournament an
 4. **Monte Carlo**: the full 48-team tournament simulated 10,000 times.
 
 Calibrated by backtesting on three past tournaments, then evaluated against the real 2026 results without retraining. Details: [docs/methodology.md](docs/methodology.md) · [docs/architecture.md](docs/architecture.md)
-
-## Screenshots
-
-| Bracket: real vs. model | Team profile | Mobile |
-|---|---|---|
-| ![Bracket](docs/images/bracket.png) | ![Team profile](docs/images/team.png) | ![Mobile](docs/images/mobile.png) |
-
-## Stack
-
-- **Model:** Python 3.11, pandas, numpy; 250+ pytest tests.
-- **Site:** Next.js 16 (static pages), React 19, TypeScript, Tailwind CSS 4. Charts in plain HTML/CSS, English and Spanish routes, deployed on Vercel.
 
 ## Data
 
